@@ -127,6 +127,18 @@ function FactCard({
         className="bg-bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
         onClick={onToggle}
       >
+        {/* Mobile image - full width at top */}
+        {fact.image && (
+          <div className="block md:hidden">
+            <img
+              src={fact.image}
+              alt={fact.title}
+              loading="lazy"
+              className="w-full h-[120px] object-cover"
+            />
+          </div>
+        )}
+
         <div className="p-5">
           <div className="flex items-start gap-4">
             {/* Icon */}
@@ -154,6 +166,18 @@ function FactCard({
               <h3 className="text-base font-semibold text-text-primary mb-1">{fact.title}</h3>
               <p className="text-sm text-text-secondary leading-relaxed">{fact.summary}</p>
             </div>
+
+            {/* Desktop thumbnail */}
+            {fact.image && (
+              <div className="hidden md:block shrink-0">
+                <img
+                  src={fact.image}
+                  alt={fact.title}
+                  loading="lazy"
+                  className="w-[120px] h-[80px] object-cover rounded-lg"
+                />
+              </div>
+            )}
           </div>
 
           {/* Expanded detail */}

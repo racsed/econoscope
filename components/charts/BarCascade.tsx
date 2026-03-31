@@ -14,7 +14,7 @@ interface BarCascadeProps {
   themeColor?: string;
 }
 
-const margin = { top: 30, right: 30, bottom: 50, left: 75 };
+const margin = { top: 35, right: 30, bottom: 50, left: 65 };
 
 function formatCompact(value: number): string {
   const abs = Math.abs(value);

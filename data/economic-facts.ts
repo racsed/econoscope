@@ -8,6 +8,7 @@ export interface EconomicFact {
   scenarioValues: Record<string, number | boolean | string>;
   category: 'crise' | 'politique' | 'commerce' | 'monetaire' | 'social' | 'histoire';
   icon: string;
+  image?: string;
 }
 
 export const economicFacts: EconomicFact[] = [
@@ -22,6 +23,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { productivite_pays1_bienA: 8, productivite_pays1_bienB: 3, productivite_pays2_bienA: 2, productivite_pays2_bienB: 6, specialisation: true },
     category: 'histoire',
     icon: 'Globe',
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'devaluation-denarius-romain',
@@ -33,6 +35,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depot_initial: 10000, taux_reserves: 5, taux_fuite_billets: 2, nb_tours: 20 },
     category: 'histoire',
     icon: 'Coins',
+    image: 'https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'monnaie-papier-chine-song',
@@ -44,6 +47,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depot_initial: 5000, taux_reserves: 10, taux_fuite_billets: 3, nb_tours: 15 },
     category: 'histoire',
     icon: 'Banknote',
+    image: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'foires-de-champagne',
@@ -55,6 +59,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu: 1500, nb_acheteurs: 500, cout_production: 8, taxe: 0 },
     category: 'histoire',
     icon: 'Ship',
+    image: 'https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'peste-noire-salaires',
@@ -66,6 +71,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu: 2000, nb_acheteurs: 100, cout_production: 25, taxe: 0 },
     category: 'histoire',
     icon: 'Shield',
+    image: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'monopole-gabelle-sel',
@@ -77,6 +83,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { demande_intercept: 200, pente_demande: 0.5, cout_marginal: 5, cout_fixe: 100, mode: 'monopole' },
     category: 'histoire',
     icon: 'Crown',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'inflation-or-ameriques',
@@ -88,6 +95,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 200, offre_monnaie: 1800, prix_petrole: 100, productivite: 100, salaire_nominal: 150 },
     category: 'histoire',
     icon: 'Coins',
+    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== EPOQUE MODERNE (XVIIe-XIXe) =====
@@ -101,6 +109,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { demande_intercept: 200, pente_demande: 0.8, cout_marginal: 15, cout_fixe: 500, mode: 'monopole' },
     category: 'commerce',
     icon: 'Ship',
+    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5eb95?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'tulipomanie-1637',
@@ -112,6 +121,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu: 5000, nb_acheteurs: 800, cout_production: 2, taxe: 0 },
     category: 'crise',
     icon: 'TrendingDown',
+    image: 'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'revolution-industrielle-productivite',
@@ -123,6 +133,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { ressources_totales: 800, productivite_A: 8, productivite_B: 5 },
     category: 'histoire',
     icon: 'Factory',
+    image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'corn-laws-ricardo',
@@ -147,6 +158,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depot_initial: 100000, taux_reserves: 1, taux_fuite_billets: 1, nb_tours: 20 },
     category: 'monetaire',
     icon: 'Banknote',
+    image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'new-deal-roosevelt-1933',
@@ -158,6 +170,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 400, taux_imposition: 0.25, offre_monnaie: 600, niveau_prix: 1.2, investissement_autonome: 150, sensibilite_investissement: 40, sensibilite_monnaie: 50 },
     category: 'politique',
     icon: 'Landmark',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'bretton-woods-1944',
@@ -169,6 +182,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 1, prix_domestiques: 100, prix_etrangers: 100, elasticite_export: 1.2, elasticite_import: 1.0 },
     category: 'monetaire',
     icon: 'Landmark',
+    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'plan-marshall-1948',
@@ -191,6 +205,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { croissance: 8, chomage: 1.5, inflation: 2, solde_commercial: 3 },
     category: 'histoire',
     icon: 'Factory',
+    image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'trente-glorieuses-france',
@@ -202,6 +217,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 300, offre_monnaie: 1000, prix_petrole: 80, productivite: 150, salaire_nominal: 110 },
     category: 'histoire',
     icon: 'ArrowUpCircle',
+    image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f7?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'decolonisation-termes-echange',
@@ -226,6 +242,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 200, offre_monnaie: 600, prix_petrole: 200, productivite: 100, salaire_nominal: 120 },
     category: 'crise',
     icon: 'Flame',
+    image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'stagflation-1975',
@@ -248,6 +265,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 200, taux_imposition: 0.3, offre_monnaie: 300, niveau_prix: 2, investissement_autonome: 200, sensibilite_investissement: 40, sensibilite_monnaie: 50 },
     category: 'politique',
     icon: 'Landmark',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'crise-asiatique-1997',
@@ -259,6 +277,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.5, prix_domestiques: 150, prix_etrangers: 100, elasticite_export: 0.8, elasticite_import: 0.6 },
     category: 'crise',
     icon: 'TrendingDown',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== TOURNANT DU MILLENAIRE =====
@@ -272,6 +291,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu: 4000, nb_acheteurs: 900, cout_production: 5, taxe: 0 },
     category: 'crise',
     icon: 'TrendingDown',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== XXIe SIECLE =====
@@ -285,6 +305,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 250, taux_imposition: 0.25, offre_monnaie: 250, niveau_prix: 1.8, investissement_autonome: 100, sensibilite_investissement: 50, sensibilite_monnaie: 60 },
     category: 'crise',
     icon: 'Flame',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'relance-keynesian-2009',
@@ -329,6 +350,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depot_initial: 50000, taux_reserves: 15, taux_fuite_billets: 5, nb_tours: 20 },
     category: 'monetaire',
     icon: 'Banknote',
+    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'brexit-livre-sterling-2016',
@@ -340,6 +362,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.85, prix_domestiques: 115, prix_etrangers: 100, elasticite_export: 1.3, elasticite_import: 1.1 },
     category: 'commerce',
     icon: 'Euro',
+    image: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'guerre-commerciale-usa-chine-2018',
@@ -351,6 +374,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 1.12, prix_domestiques: 125, prix_etrangers: 100, elasticite_export: 0.9, elasticite_import: 0.7 },
     category: 'commerce',
     icon: 'Globe',
+    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5eb95?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'covid-effondrement-offre-2020',
@@ -362,6 +386,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 350, offre_monnaie: 1500, prix_petrole: 60, productivite: 70, salaire_nominal: 100 },
     category: 'crise',
     icon: 'Flame',
+    image: 'https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'monopole-sncf',
@@ -373,6 +398,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { demande_intercept: 150, pente_demande: 1, cout_marginal: 30, cout_fixe: 200, mode: 'monopole' },
     category: 'politique',
     icon: 'Train',
+    image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f7?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'gafam-pouvoir-marche-2020',
@@ -384,6 +410,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { demande_intercept: 250, pente_demande: 0.5, cout_marginal: 10, cout_fixe: 1000, mode: 'monopole' },
     category: 'politique',
     icon: 'Smartphone',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'inflation-post-covid-2021',
@@ -406,6 +433,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.95, prix_domestiques: 110, prix_etrangers: 100, elasticite_export: 1.5, elasticite_import: 1.2 },
     category: 'commerce',
     icon: 'Euro',
+    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'crise-energetique-europe-2022',
@@ -417,6 +445,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { cout_marginal_prive: 20, cout_externe_unitaire: 25, type_externalite: 'negative', taxe_pigouvienne: 15 },
     category: 'crise',
     icon: 'Zap',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'taxe-carbone-eu-ets',
@@ -439,6 +468,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { preset: 1, transferts: 300 },
     category: 'social',
     icon: 'Scale',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'rsa-prime-activite-france',

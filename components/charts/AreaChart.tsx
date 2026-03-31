@@ -16,7 +16,7 @@ interface AreaChartProps {
   themeColor?: string;
 }
 
-const margin = { top: 20, right: 30, bottom: 50, left: 75 };
+const margin = { top: 30, right: 30, bottom: 50, left: 65 };
 
 function formatCompact(value: number): string {
   const abs = Math.abs(value);
@@ -60,6 +60,11 @@ function AreaChartInner({
 
   return (
     <svg width={width} height={height}>
+      {data.yLabel && (
+        <text x={margin.left} y={14} fill={colors.tickLabel} fontSize={10} fontFamily="var(--font-mono)">
+          {data.yLabel}
+        </text>
+      )}
       <Group left={margin.left} top={margin.top}>
         {/* Grid */}
         {yScale.ticks(5).map((tick) => (
@@ -144,18 +149,12 @@ function AreaChartInner({
           tickStroke={colors.axis}
           tickLabelProps={() => ({
             fill: colors.tickLabel,
-            fontSize: 11,
+            fontSize: 10,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'end' as const,
             dx: -4,
             dy: 4,
           })}
-          label={data.yLabel}
-          labelProps={{
-            fill: colors.tickLabel,
-            fontSize: 12,
-            textAnchor: 'middle',
-          }}
         />
         <AxisBottom
           scale={xScale}
