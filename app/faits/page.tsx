@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { History, ArrowRight, Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train } from 'lucide-react';
+import { History, ArrowRight, Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train, Globe, Factory, Crown, Ship, Wheat, Coins, Building, Zap, Shield, Smartphone } from 'lucide-react';
 import { economicFacts, type EconomicFact } from '@/data/economic-facts';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
-  Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train,
+  Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train, Globe, Factory, Crown, Ship, Wheat, Coins, Building, Zap, Shield, Smartphone,
 };
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
@@ -16,9 +16,10 @@ const categoryLabels: Record<string, { label: string; color: string }> = {
   commerce: { label: 'Commerce', color: '#F59E0B' },
   monetaire: { label: 'Monetaire', color: '#0EA5E9' },
   social: { label: 'Social', color: '#EC4899' },
+  histoire: { label: 'Histoire', color: '#8B5CF6' },
 };
 
-const categories = ['all', 'crise', 'politique', 'commerce', 'monetaire', 'social'];
+const categories = ['all', 'histoire', 'crise', 'politique', 'commerce', 'monetaire', 'social'];
 
 export default function FaitsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
