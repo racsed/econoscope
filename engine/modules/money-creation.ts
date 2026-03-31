@@ -8,28 +8,26 @@ import type {
   CascadeBar,
 } from '../types';
 import { registerModule } from '../core/registry';
-import { moneyCreationScenarios } from '../../data/scenarios/money-creation-scenarios';
 
 const meta: ModuleMeta = {
   slug: 'creation-monetaire',
-  title: 'Creation monetaire par le credit',
-  subtitle: 'Le mecanisme du multiplicateur de credit et des reserves fractionnaires',
+  title: 'Creation monetaire',
+  subtitle: "Le multiplicateur de credit bancaire",
   theme: 'monetary',
   level: 'intermediate',
   introduction:
-    "Lorsqu'une banque recoit un depot, elle en conserve une fraction en reserves obligatoires et prete le reste. Ce pret, une fois depense, revient dans le systeme bancaire sous forme de nouveau depot, permettant un nouveau credit. Ce processus en cascade multiplie la quantite de monnaie en circulation bien au-dela du depot initial.",
+    "Les banques commerciales creent de la monnaie par le credit. Quand une banque accorde un pret, elle cree un depot du meme montant. Ce depot est partiellement conserve en reserves, partiellement retire en billets, et le reste est reprete. Le processus se repete, multipliant le depot initial. La banque centrale controle ce processus par le taux de reserves obligatoires.",
   limites: [
-    "Le modele suppose que chaque banque prete le maximum autorise a chaque tour",
-    "Il ignore les reserves excedentaires volontaires des banques",
-    "La demande de credit est supposee illimitee",
-    "Le modele ne tient pas compte du risque de defaut sur les prets",
-    "Les taux de reserves et de fuite sont supposes constants a chaque tour",
+    "Suppose que les banques pretent tout ce qu'elles peuvent (pas de reserves excedentaires)",
+    "Ignore les contraintes de demande de credit",
+    "Taux de fuite en billets suppose constant",
+    "Ne tient pas compte des ratios prudentiels (Bale III)",
   ],
   realite: [
-    "En zone euro, le taux de reserves obligatoires est de 1 % depuis 2012",
-    "Les banques centrales modernes pilotent la creation monetaire par les taux directeurs plutot que par les reserves obligatoires",
-    "La creation monetaire reelle depend de la volonte des banques de preter et des agents d'emprunter",
-    "En pratique, les banques ne pretent pas mecaniquement a partir des depots : elles creent la monnaie au moment du credit",
+    "Le taux de reserves obligatoires de la BCE est de 1% depuis 2012",
+    "En pratique, les banques detiennent des reserves excedentaires importantes",
+    "La creation monetaire depend aussi de la demande de credit des entreprises et menages",
+    "Le multiplicateur theorique surestime la creation monetaire reelle",
   ],
 };
 
@@ -42,9 +40,9 @@ const inputs: SimulationInput[] = [
     max: 100000,
     step: 1000,
     defaultValue: 10000,
-    unit: 'EUR',
-    tooltip: "Montant du depot initial place dans le systeme bancaire",
-    group: 'Depot',
+    unit: '\u20ac',
+    tooltip: "Montant du depot initial dans le systeme bancaire",
+    group: 'Injection',
   },
   {
     id: 'taux_reserves',
@@ -53,10 +51,10 @@ const inputs: SimulationInput[] = [
     min: 1,
     max: 25,
     step: 0.5,
-    defaultValue: 2,
+    defaultValue: 10,
     unit: '%',
-    tooltip: "Part du depot que la banque doit conserver en reserves aupres de la banque centrale",
-    group: 'Parametres bancaires',
+    tooltip: "Pourcentage des depots que les banques doivent garder en reserves",
+    group: 'Reglementation',
   },
   {
     id: 'taux_fuite_billets',
@@ -67,12 +65,12 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 10,
     unit: '%',
-    tooltip: "Part de la monnaie creee retiree en especes a chaque tour (sort du circuit bancaire)",
-    group: 'Parametres bancaires',
+    tooltip: "Pourcentage des depots retires sous forme de billets par les menages",
+    group: 'Comportement',
   },
   {
     id: 'nb_tours',
-    label: 'Nombre de tours de credit',
+    label: 'Nombre de tours',
     type: 'slider',
     min: 1,
     max: 30,
@@ -82,66 +80,81 @@ const inputs: SimulationInput[] = [
   },
 ];
 
-const scenarios: Scenario[] = moneyCreationScenarios.map((s) => ({
-  id: s.id,
-  label: s.title,
-  description: s.description,
-  values: {
-    depot_initial: s.initialDeposit,
-    taux_reserves: s.reserveRatio * 100,
-    taux_fuite_billets: s.cashPreference * 100,
-    nb_tours: s.rounds,
+const scenarios: Scenario[] = [
+  {
+    id: 'base',
+    label: 'Cas de base',
+    description: "Reserves de 10%, fuite de 10%",
+    values: { depot_initial: 10000, taux_reserves: 10, taux_fuite_billets: 10, nb_tours: 15 },
   },
-}));
+  {
+    id: 'bce_actuel',
+    label: 'BCE actuelle',
+    description: "Reserves obligatoires de 1%, faible fuite",
+    values: { depot_initial: 10000, taux_reserves: 1, taux_fuite_billets: 5, nb_tours: 20 },
+  },
+  {
+    id: 'reserves_elevees',
+    label: 'Reserves elevees',
+    description: "Reglementation stricte, multiplicateur faible",
+    values: { depot_initial: 10000, taux_reserves: 20, taux_fuite_billets: 15, nb_tours: 15 },
+  },
+  {
+    id: 'full_reserve',
+    label: '100% monnaie (Fisher)',
+    description: "Reserves integrales : pas de multiplication",
+    values: { depot_initial: 10000, taux_reserves: 25, taux_fuite_billets: 0, nb_tours: 10 },
+  },
+];
 
 /**
- * Creation monetaire par reserves fractionnaires
+ * Money multiplication process:
  *
- * Reserve rate r = taux_reserves / 100
- * Leak rate (billets) b = taux_fuite_billets / 100
- * Money multiplier m = 1 / (r + b)
+ * Round 0: Initial deposit D
+ * Round n:
+ *   - Deposit entering the round: D_n
+ *   - Reserves: D_n * r   (kept by the bank)
+ *   - Cash leakage: D_n * b  (withdrawn by depositors)
+ *   - New loans (= new deposits in next round): D_n * (1 - r - b)
  *
- * A chaque tour n :
- *   depot_n = D0 * (1 - r - b)^n
- *   reserves_n = depot_n * r
- *   billets_n = depot_n * b
- *   credit_n = depot_n * (1 - r - b)  (= depot au tour suivant)
+ * D_{n+1} = D_n * (1 - r - b) = D_0 * (1 - r - b)^n
  *
- * Monnaie totale creee (asymptote) = D0 * m = D0 / (r + b)
+ * Total deposits: sum_{n=0}^{inf} D_n = D / (r + b)
+ * Multiplier: k = 1 / (r + b)
  */
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const D0 = values.depot_initial as number;
+  const depotInitial = values.depot_initial as number;
   const r = (values.taux_reserves as number) / 100;
   const b = (values.taux_fuite_billets as number) / 100;
   const nbTours = values.nb_tours as number;
 
   const alpha = 1 - r - b;
-  const m = 1 / (r + b);
-  const asymptote = D0 * m;
+  const multiplicateur = alpha >= 1 ? Infinity : 1 / (r + b);
+  const asymptote = depotInitial * multiplicateur;
 
   const bars: CascadeBar[] = [];
-  let cumulative = 0;
-  let reservesTotales = 0;
-  let billetsTotaux = 0;
+  let cumulativeDepots = 0;
+  let cumulativeReserves = 0;
+  let cumulativeBillets = 0;
 
   for (let n = 0; n <= nbTours; n++) {
-    const depot = D0 * Math.pow(alpha, n);
-    const reserves = depot * r;
-    const billets = depot * b;
-    const credit = depot * alpha; // pret accorde, qui deviendra le depot du tour suivant
+    const depotN = depotInitial * Math.pow(Math.max(0, alpha), n);
+    const reservesN = depotN * r;
+    const billetsN = depotN * b;
+    const pretsN = depotN * Math.max(0, alpha);
 
-    cumulative += depot;
-    reservesTotales += reserves;
-    billetsTotaux += billets;
+    cumulativeDepots += depotN;
+    cumulativeReserves += reservesN;
+    cumulativeBillets += billetsN;
 
     bars.push({
       round: n,
-      total: round2(depot),
-      consumption: round2(credit),  // credit accorde (analogue a la consommation dans le Keynesian)
-      savings: round2(reserves),    // reserves obligatoires (analogue a l'epargne)
-      taxes: 0,
-      imports: round2(billets),     // fuite en billets (analogue aux importations)
-      cumulative: round2(cumulative),
+      total: round2(depotN),
+      consumption: round2(pretsN),
+      savings: round2(reservesN),
+      taxes: round2(billetsN),
+      imports: 0,
+      cumulative: round2(cumulativeDepots),
     });
   }
 
@@ -149,45 +162,38 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     type: 'bar-cascade',
     bars,
     asymptote: round2(asymptote),
-    multiplier: round2(m),
+    multiplier: round2(multiplicateur),
   };
 
-  // Narration
-  const convergencePct = round2((cumulative / asymptote) * 100);
-  const observation =
-    `Un depot initial de ${D0.toLocaleString('fr-FR')} EUR genere, apres ${nbTours} tours de credit, ` +
-    `une masse monetaire cumulee de ${round2(cumulative).toLocaleString('fr-FR')} EUR ` +
-    `(soit ${convergencePct}% de l'asymptote theorique de ${round2(asymptote).toLocaleString('fr-FR')} EUR).`;
+  const convergencePercent = asymptote > 0 ? (cumulativeDepots / asymptote) * 100 : 100;
+  const monnaieCreee = cumulativeDepots - depotInitial;
 
-  let interpretation =
-    `Le multiplicateur de credit est de ${round2(m)}, ce qui signifie que chaque euro depose permet ` +
-    `theoriquement de creer ${round2(m)} euros de monnaie au total. `;
+  let observation = `A partir d'un depot initial de ${depotInitial.toLocaleString('fr-FR')}\u20ac, le systeme bancaire cree ${round2(monnaieCreee).toLocaleString('fr-FR')}\u20ac de monnaie supplementaire apres ${nbTours} tours (total des depots : ${round2(cumulativeDepots).toLocaleString('fr-FR')}\u20ac). L'asymptote theorique est de ${round2(asymptote).toLocaleString('fr-FR')}\u20ac.`;
 
-  interpretation +=
-    `A chaque tour, la banque conserve ${(r * 100).toFixed(1)}% en reserves obligatoires`;
-  if (b > 0) {
-    interpretation += ` et ${(b * 100).toFixed(0)}% sort du circuit sous forme de billets`;
+  let interpretation = `Le multiplicateur monetaire est de ${round2(multiplicateur)}, avec un coefficient de propagation de ${round2(alpha)}. `;
+
+  if (r + b > 0.5) {
+    interpretation += `Les fuites sont elevees (reserves ${(r * 100).toFixed(0)}% + billets ${(b * 100).toFixed(0)}% = ${((r + b) * 100).toFixed(0)}%), limitant fortement la creation monetaire. `;
   }
-  interpretation += `. Le reste (${(alpha * 100).toFixed(1)}%) est prete et revient dans le systeme bancaire comme nouveau depot. `;
 
-  interpretation +=
-    `Ce processus en cascade converge vers l'asymptote car les depots diminuent geometriquement ` +
-    `(facteur ${round2(alpha)} a chaque tour).`;
+  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du depot est reprete, ${(r * 100).toFixed(0)}% est garde en reserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
 
-  if (m > 20) {
-    interpretation +=
-      " Attention : un multiplicateur aussi eleve est theorique. En pratique, les banques detiennent des reserves excedentaires et la demande de credit n'est pas illimitee.";
-  } else if (m < 3) {
-    interpretation +=
-      " Le multiplicateur est relativement faible, ce qui traduit un systeme bancaire tres contraint par les reserves et/ou les fuites en billets.";
+  if (r <= 0.02) {
+    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE actuellement), le multiplicateur theorique est tres eleve. En pratique, d'autres contraintes (ratios prudentiels, demande de credit) limitent la creation monetaire.";
+  }
+
+  if (b > 0.2) {
+    interpretation += " La forte preference pour les billets reduit considerablement le multiplicateur : la monnaie \"fuit\" du circuit bancaire a chaque tour.";
   }
 
   return {
     outputs: [
-      { id: 'multiplicateur_monetaire', label: 'Multiplicateur monetaire', value: round2(m) },
-      { id: 'monnaie_totale_creee', label: 'Monnaie totale creee (asymptote)', value: round2(asymptote), unit: 'EUR' },
-      { id: 'reserves_totales', label: 'Reserves totales', value: round2(reservesTotales), unit: 'EUR' },
-      { id: 'billets_total', label: 'Billets en circulation', value: round2(billetsTotaux), unit: 'EUR' },
+      { id: 'multiplicateur', label: 'Multiplicateur monetaire', value: round2(multiplicateur) },
+      { id: 'total_depots', label: 'Total des depots', value: round2(cumulativeDepots), unit: '\u20ac' },
+      { id: 'monnaie_creee', label: 'Monnaie creee', value: round2(monnaieCreee), unit: '\u20ac' },
+      { id: 'total_reserves', label: 'Total des reserves', value: round2(cumulativeReserves), unit: '\u20ac' },
+      { id: 'total_billets', label: 'Fuite en billets', value: round2(cumulativeBillets), unit: '\u20ac' },
+      { id: 'convergence', label: 'Convergence', value: round2(convergencePercent), unit: '%' },
     ],
     chartData: cascadeData,
     narration: { observation, interpretation },
