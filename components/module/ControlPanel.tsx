@@ -48,13 +48,52 @@ export function ControlPanel({ inputs, values, onChange, themeColor }: ControlPa
               }
 
               if (input.type === 'toggle') {
+                const currentVal = values[input.id] ?? input.defaultValue;
+
+                // Toggle with string options (e.g., 'concurrence'/'monopole')
+                if (input.options && input.options.length === 2) {
+                  const isSecond = currentVal === input.options[1].value;
+                  return (
+                    <Toggle
+                      key={input.id}
+                      label={input.label}
+                      checked={isSecond}
+                      onChange={(checked) =>
+                        onChange(input.id, checked ? input.options![1].value : input.options![0].value)
+                      }
+                      options={[input.options[0].label, input.options[1].label]}
+                    />
+                  );
+                }
+
+                // Simple boolean toggle
                 return (
                   <Toggle
                     key={input.id}
                     label={input.label}
-                    checked={Boolean(values[input.id] ?? input.defaultValue)}
+                    checked={Boolean(currentVal)}
                     onChange={(v) => onChange(input.id, v)}
                   />
+                );
+              }
+
+              if (input.type === 'select' && input.options) {
+                const currentVal = String(values[input.id] ?? input.defaultValue);
+                return (
+                  <div key={input.id} className="flex flex-col gap-1.5">
+                    <span className="text-sm text-text-secondary">{input.label}</span>
+                    <select
+                      value={currentVal}
+                      onChange={(e) => onChange(input.id, e.target.value)}
+                      className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-bg-card text-text-primary focus:outline-none focus:border-accent-indigo/50 transition-colors"
+                    >
+                      {input.options.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 );
               }
 
