@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Maximize2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Maximize2, SlidersHorizontal, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { ExportButton } from '@/components/charts/ExportButton';
 import { ProjectionMode } from '@/components/module/ProjectionMode';
@@ -44,6 +44,7 @@ export function ModuleLayout({
   const themeColor = THEME_COLORS[theme];
   const chartRef = useRef<HTMLDivElement>(null);
   const [projectionActive, setProjectionActive] = useState(false);
+  const [controlsOpen, setControlsOpen] = useState(false);
 
   // Generate a slug-friendly filename from the title
   const exportFilename = `econoscope-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`;
@@ -86,18 +87,53 @@ export function ModuleLayout({
           {/* Control Panel */}
           <div className="lg:sticky lg:top-24 lg:self-start">
             <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 space-y-1">
+              {/* Mobile toggle */}
+              <button
+                onClick={() => setControlsOpen((v) => !v)}
+                className="flex items-center justify-between w-full lg:hidden mb-2"
+              >
+                <span
+                  className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider"
+                  style={{ color: themeColor }}
+                >
+                  <SlidersHorizontal size={16} />
+                  Variables
+                </span>
+                <motion.span
+                  animate={{ rotate: controlsOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronUp size={18} className="text-text-secondary" />
+                </motion.span>
+              </button>
+              {/* Desktop heading */}
               <h2
-                className="text-sm font-semibold uppercase tracking-wider mb-4"
+                className="hidden lg:block text-sm font-semibold uppercase tracking-wider mb-4"
                 style={{ color: themeColor }}
               >
                 Variables
               </h2>
-              {controls}
+              {/* Controls: always visible on desktop, collapsible on mobile */}
+              <div className="hidden lg:block">{controls}</div>
+              <AnimatePresence initial={false}>
+                {controlsOpen && (
+                  <motion.div
+                    key="mobile-controls"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    className="overflow-hidden lg:hidden"
+                  >
+                    {controls}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
           {/* Visualization */}
-          <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[400px] flex flex-col">
+          <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[300px] sm:min-h-[400px] flex flex-col">
             {/* Toolbar row */}
             <div className="flex items-center justify-end gap-2 mb-2">
               <ExportButton targetRef={chartRef} filename={exportFilename} />

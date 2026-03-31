@@ -19,7 +19,7 @@ interface ScenarioBarProps {
 export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps) {
   return (
     <Tooltip.Provider delayDuration={300}>
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none snap-x snap-mandatory">
         {scenarios.map((scenario) => {
           const isActive = scenario.id === activeId;
 
@@ -29,7 +29,7 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                 <button
                   type="button"
                   onClick={() => onSelect(scenario.id)}
-                  className={`relative shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                  className={`relative shrink-0 snap-start rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                     isActive
                       ? "text-white"
                       : "border border-border text-text-secondary hover:border-axis hover:text-text-primary"

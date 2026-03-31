@@ -29,7 +29,8 @@ export function DataTable({ outputs, themeColor }: DataTableProps) {
           Synthese
         </h3>
       </div>
-      <div className="divide-y divide-border-subtle">
+      <div className="overflow-x-auto">
+      <div className="divide-y divide-border-subtle min-w-[320px]">
         {outputs.map((output) => (
           <div
             key={output.id}
@@ -58,6 +59,7 @@ export function DataTable({ outputs, themeColor }: DataTableProps) {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </motion.div>
   );

@@ -9,8 +9,8 @@ export const THEME_COLORS = {
 
 export const LEVEL_LABELS = {
   accessible: 'Accessible',
-  intermediate: 'Intermediaire',
-  advanced: 'Avance',
+  intermediate: 'Intermédiaire',
+  advanced: 'Avancé',
 } as const;
 
 export type ThemeType = keyof typeof THEME_COLORS;
@@ -19,7 +19,7 @@ export type LevelType = keyof typeof LEVEL_LABELS;
 export const NAV_LINKS = [
   { href: '/explorer', label: 'Explorer' },
   { href: '/faits', label: 'Faits' },
-  { href: '/scenarios', label: 'Scenarios' },
+  { href: '/scenarios', label: 'Scénarios' },
   { href: '/glossaire', label: 'Glossaire' },
-  { href: '/a-propos', label: 'A propos' },
+  { href: '/a-propos', label: 'À propos' },
 ] as const;
