@@ -107,7 +107,7 @@ function FactCard({
   for (const [key, value] of Object.entries(fact.scenarioValues)) {
     params.set(key, String(value));
   }
-  const moduleUrl = `/module/${fact.moduleSlug}`;
+  const articleUrl = `/faits/${fact.id}`;
 
   return (
     <motion.div
@@ -167,11 +167,11 @@ function FactCard({
                 {fact.detail}
               </p>
               <Link
-                href={moduleUrl}
+                href={articleUrl}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:shadow-md"
                 style={{ backgroundColor: catInfo.color }}
               >
-                Simuler cet evenement
+                Lire l&apos;article et simuler
                 <ArrowRight size={14} />
               </Link>
             </motion.div>
