@@ -331,31 +331,41 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     annotations,
   };
 
-  let observation = `Le coefficient de Gini est de ${giniAvant.toFixed(3)}. Les 10% les plus riches detiennent ${partTop10.toFixed(1)}% du revenu total, tandis que les 50% les plus modestes en detiennent ${partBottom50.toFixed(1)}%. Le rapport interdecile D10/D1 est de ${d10d1.toFixed(1)}.`;
+  const preset = values.preset as string;
+  let observation = `Le coefficient de Gini est de ${giniAvant.toFixed(3)}. Geometriquement, le Gini represente le rapport entre l'aire situee entre la droite d'egalite parfaite et la courbe de Lorenz, et l'aire totale sous la droite d'egalite. Plus la courbe de Lorenz s'eloigne de la diagonale, plus le Gini est eleve. Les 10% les plus riches (D10) detiennent ${partTop10.toFixed(1)}% du revenu total, tandis que les 50% les plus modestes en detiennent ${partBottom50.toFixed(1)}%. Le rapport interdecile D10/D1 est de ${d10d1.toFixed(1)}.`;
 
   let interpretation: string;
 
   if (giniAvant < 0.25) {
-    interpretation = "Cette distribution est relativement egalitaire, comparable aux pays scandinaves.";
+    interpretation = "Cette distribution est relativement egalitaire (Gini < 0.25), comparable aux pays scandinaves (Suede ~0.25, Danemark ~0.26). Ces pays combinent impots eleves, transferts genereux et negociation salariale centralisee pour comprimer les ecarts.";
   } else if (giniAvant < 0.35) {
-    interpretation = "Cette distribution presente des inegalites moderees, typique des pays europeens.";
+    interpretation = "Cette distribution presente des inegalites moderees (Gini entre 0.25 et 0.35), typique des pays europeens continentaux. La France se situe autour de 0.29 apres redistribution grace a un systeme socio-fiscal puissant.";
   } else if (giniAvant < 0.45) {
-    interpretation = "Cette distribution presente des inegalites significatives, comparable aux Etats-Unis.";
+    interpretation = "Cette distribution presente des inegalites significatives (Gini entre 0.35 et 0.45), comparable aux Etats-Unis (~0.39). Les ecarts de revenus sont marques, avec une concentration importante au sommet de la distribution.";
   } else {
-    interpretation = "Cette distribution est tres inegalitaire, comparable aux pays emergents.";
+    interpretation = "Cette distribution est tres inegalitaire (Gini > 0.45), comparable aux pays emergents comme le Bresil (~0.49) ou l'Afrique du Sud (~0.63). Une petite fraction de la population concentre l'essentiel des revenus.";
+  }
+
+  // Country-specific context for presets
+  if (preset === 'france') {
+    interpretation += " La distribution francaise avant redistribution presente des inegalites moderees. Le systeme fiscal et social (IR progressif, RSA, prime d'activite, aides au logement) reduit le Gini d'environ 45% - un des taux de redistribution les plus eleves de l'OCDE.";
+  } else if (preset === 'usa') {
+    interpretation += " La distribution americaine est marquee par de fortes inegalites de revenus primaires et une redistribution plus faible qu'en Europe. Les revenus du capital (tres concentres) et la fiscalite moins progressive expliquent cet ecart.";
+  } else if (preset === 'bresil') {
+    interpretation += " La distribution bresilienne est l'une des plus inegalitaires au monde. L'heritage historique (esclavage, concentration fonciere), un systeme fiscal peu progressif et des services publics inegalement repartis expliquent cette situation.";
   }
 
   if (hasRedistribution) {
     const reductionGini = ((giniAvant - giniApres) / giniAvant) * 100;
-    observation += ` Apres redistribution, le Gini passe a ${giniApres.toFixed(3)}.`;
-    interpretation += ` La redistribution (impots progressifs + transferts) reduit le Gini de ${reductionGini.toFixed(1)}%. `;
+    observation += ` Apres redistribution, le Gini passe a ${giniApres.toFixed(3)} (la courbe de Lorenz apres redistribution se rapproche de la diagonale).`;
+    interpretation += ` La redistribution (impots progressifs + transferts forfaitaires de ${transferts}%) reduit le Gini de ${reductionGini.toFixed(1)}%. `;
 
     if (reductionGini > 30) {
-      interpretation += "L'effet redistributif est tres fort, reduisant significativement les inegalites.";
+      interpretation += "L'effet redistributif est tres fort. Le mecanisme est double : les impots progressifs compressent les hauts revenus (redistribution \"par le haut\") et les transferts forfaitaires augmentent proportionnellement plus les bas revenus (redistribution \"par le bas\").";
     } else if (reductionGini > 15) {
-      interpretation += "L'effet redistributif est notable mais les inegalites restent presentes.";
+      interpretation += "L'effet redistributif est notable mais les inegalites restent presentes. Pour aller plus loin, il faudrait augmenter les taux des tranches superieures ou les transferts forfaitaires.";
     } else if (reductionGini > 0) {
-      interpretation += "L'effet redistributif est modeste. Des taux plus progressifs ou des transferts plus genereux seraient necessaires pour une reduction significative.";
+      interpretation += "L'effet redistributif est modeste. Des taux plus progressifs (augmenter le slider de la tranche 3) ou des transferts plus genereux seraient necessaires pour une reduction significative des inegalites.";
     }
   }
 

@@ -269,11 +269,19 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation = `La condition de Marshall-Lerner (somme des elasticites = ${marshallLerner.toFixed(1)}) est ${conditionRemplie ? 'remplie (> 1)' : 'non remplie (< 1)'} : une depreciation de l'euro ${conditionRemplie ? 'ameliore' : 'degrade paradoxalement'} la balance commerciale. `;
 
   if (balance > 0) {
-    interpretation += `L'economie degage un excedent commercial. La competitivite-prix est favorable grace a ${TCR > 1 ? 'un taux de change reel deprecie' : 'des prix domestiques relativement bas'}.`;
+    interpretation += `L'economie degage un excedent commercial de ${balance.toFixed(0)}. La competitivite-prix est favorable grace a ${TCR > 1 ? 'un taux de change reel deprecie qui rend les produits domestiques relativement bon marche a l\'etranger' : 'des prix domestiques relativement bas par rapport aux prix etrangers convertis'}.`;
   } else if (balance < 0) {
-    interpretation += `L'economie est en deficit commercial. ${TCR < 1 ? 'L\'appreciation reelle de la monnaie penalise les exportations.' : 'Malgre un change favorable, les importations restent elevees.'} A court terme, la courbe en J suggere qu'une depreciation aggrave d'abord le deficit avant de l'ameliorer.`;
+    interpretation += `L'economie est en deficit commercial de ${Math.abs(balance).toFixed(0)}. ${TCR < 1 ? 'L\'appreciation reelle de la monnaie rend les produits domestiques plus chers a l\'etranger et les importations meilleur marche : les exportations chutent et les importations augmentent.' : 'Malgre un change nominalement favorable, d\'autres facteurs (prix domestiques eleves, elasticites faibles) maintiennent un deficit.'} A court terme, la courbe en J suggere qu'une depreciation aggrave d'abord le deficit (les volumes s'ajustent lentement) avant de l'ameliorer.`;
   } else {
-    interpretation += 'La balance commerciale est a l\'equilibre.';
+    interpretation += 'La balance commerciale est a l\'equilibre : les exportations financent exactement les importations.';
+  }
+
+  if (P > 110) {
+    interpretation += ` Les prix domestiques eleves (indice ${P}) reduisent la competitivite : meme sans variation du taux de change nominal, l'inflation interieure apprecie la monnaie en termes reels.`;
+  }
+
+  if (elX + elM < 1.2 && elX + elM > 1) {
+    interpretation += ` La condition de Marshall-Lerner est tout juste satisfaite (somme = ${marshallLerner.toFixed(1)}). L'effet d'une depreciation sur la balance sera modeste et lent a se materialiser.`;
   }
 
   return {

@@ -345,7 +345,15 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       interpretation += ` Avec h = ${h} (bien superieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidite. La politique monetaire perd en efficacite au profit de la politique budgetaire.`;
     }
   } else {
-    interpretation = `A l'equilibre, le marche des biens (IS) et le marche monetaire (LM) sont simultanement en equilibre. Le multiplicateur budgetaire effectif (tenant compte de l'eviction) est de ${multiplicateurEffectif.toFixed(2)}, inferieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}.`;
+    interpretation = `A l'equilibre, le marche des biens (IS) et le marche monetaire (LM) sont simultanement en equilibre. Le multiplicateur budgetaire effectif (tenant compte de l'eviction) est de ${multiplicateurEffectif.toFixed(2)}, inferieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}. Pourquoi cette difference ? Parce que la hausse du revenu augmente la demande de monnaie, ce qui fait monter le taux d'interet et freine l'investissement prive : c'est l'effet d'eviction (crowding out).`;
+  }
+
+  if (t > 0.4) {
+    interpretation += ` Le taux d'imposition eleve (${(t * 100).toFixed(0)}%) aplatit la courbe IS car il reduit le multiplicateur : chaque euro de revenu supplementaire est davantage preleve, limitant la propagation de la depense.`;
+  }
+
+  if (b > 60 && h < 20) {
+    interpretation += ` Avec un investissement tres sensible au taux (b = ${b}) et une demande de monnaie peu sensible (h = ${h}), l'effet d'eviction est maximal : toute relance budgetaire fait fortement monter les taux, annulant une grande partie de l'effet sur Y.`;
   }
 
   return {

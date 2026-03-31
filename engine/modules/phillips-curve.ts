@@ -272,19 +272,30 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   if (!versionAugmentee) {
     observation = `La courbe de Phillips originale montre une relation inverse stable : au NAIRU de ${nairu}%, l'inflation serait de ${inflationEquilibre.toFixed(1)}%. Reduire le chomage de 1 point augmenterait l'inflation de ${SLOPE_COEFFICIENT} point.`;
-    interpretation = "Cette version suppose que les agents ne forment pas d'anticipations d'inflation. Elle a ete remise en cause par la stagflation des annees 1970.";
+    interpretation = "Cette version suppose que les agents ne forment pas d'anticipations d'inflation. Elle a ete remise en cause par la stagflation des annees 1970 : l'inflation et le chomage augmentaient simultanement, ce qui etait impossible selon la courbe originale.";
+    if (nairu > 8) {
+      interpretation += ` Un NAIRU eleve de ${nairu}% suggere des rigidites structurelles du marche du travail (protection de l'emploi, salaire minimum eleve, inadequation des qualifications). La politique de demande ne peut pas reduire durablement le chomage en dessous de ce seuil.`;
+    } else if (nairu < 4) {
+      interpretation += ` Un NAIRU bas de ${nairu}% indique un marche du travail flexible, ou le chomage frictionnel est le seul irreductible.`;
+    }
   } else {
-    observation = `Avec des anticipations d'inflation a ${anticipations}%, la courbe de Phillips de court terme se deplace vers le haut. Au NAIRU (${nairu}%), l'inflation effective est de ${inflationEquilibre.toFixed(1)}%.`;
-    interpretation = `Le ratio de sacrifice est de ${ratioSacrifice.toFixed(1)} : pour reduire l'inflation de 1 point, il faut accepter une hausse du chomage de ${ratioSacrifice.toFixed(1)} point au-dessus du NAIRU pendant un an.`;
+    observation = `Avec des anticipations d'inflation a ${anticipations}%, la courbe de Phillips de court terme se deplace vers le haut. Au NAIRU (${nairu}%), l'inflation effective est de ${inflationEquilibre.toFixed(1)}%. Chaque point de chomage en dessous du NAIRU ajoute ${SLOPE_COEFFICIENT} point d'inflation.`;
+    interpretation = `Le ratio de sacrifice est de ${ratioSacrifice.toFixed(1)} : pour reduire l'inflation de 1 point, il faut accepter une hausse du chomage de ${ratioSacrifice.toFixed(1)} point au-dessus du NAIRU pendant un an. C'est le "prix" de la desinflation.`;
+
+    if (anticipations > 5) {
+      interpretation += ` Les anticipations elevees (${anticipations}%) creent une inertie inflationniste : meme au NAIRU, l'inflation reste a ${anticipations}% car les agents integ la hausse des prix future dans leurs decisions salariales et contractuelles. Reduire ces anticipations necessite une politique restrictive couteuse en chomage (credibilite de la banque centrale).`;
+    } else if (anticipations >= 1.5 && anticipations <= 3) {
+      interpretation += ` Les anticipations d'inflation sont bien ancrees autour de la cible de la banque centrale (environ 2%). C'est la situation ideale ou la politique monetaire est credible.`;
+    }
 
     if (chocOffre > 0) {
-      interpretation += ` Le choc d'offre positif de ${chocOffre}% deplace la courbe vers le haut : c'est le mecanisme de la stagflation (inflation et chomage augmentent simultanement).`;
+      interpretation += ` Le choc d'offre positif de ${chocOffre}% (hausse des couts de production, ex. petrole) deplace la courbe vers le haut : c'est le mecanisme de la stagflation. La banque centrale fait face a un dilemme : lutter contre l'inflation aggraverait le chomage, et stimuler l'emploi alimenterait l'inflation.`;
     } else if (chocOffre < 0) {
-      interpretation += ` Le choc d'offre negatif de ${chocOffre}% deplace la courbe vers le bas, permettant une desinflation sans cout en chomage.`;
+      interpretation += ` Le choc d'offre favorable de ${Math.abs(chocOffre)}% (baisse des couts, progres technique) deplace la courbe vers le bas, permettant une desinflation sans cout en chomage - c'est la situation revee des banques centrales.`;
     }
 
     if (modeLongTerme) {
-      interpretation += ` A long terme, la courbe est verticale au NAIRU : il n'y a pas d'arbitrage permanent entre inflation et chomage.`;
+      interpretation += ` A long terme, la courbe est verticale au NAIRU (${nairu}%) : les anticipations s'ajustent a l'inflation reelle et il n'y a pas d'arbitrage permanent entre inflation et chomage. Toute tentative de maintenir le chomage sous le NAIRU se traduit par une acceleration indefinie de l'inflation (accelerationniste de Friedman).`;
     }
   }
 

@@ -268,15 +268,39 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   };
 
   // Narration
+  const typeBien = String(values.type_bien || 'normal');
+  const typeBienLabel = typeBien === 'necessaire' ? 'bien necessaire' : typeBien === 'luxe' ? 'bien de luxe' : 'bien normal';
   let observation: string;
   let interpretation: string;
 
   if (variationPrix === 0) {
-    observation = `Au prix initial de ${prixInitial}\u20ac, la quantite demandee est de ${q0} unites, generant une recette totale de ${recetteInitiale.toFixed(0)}\u20ac.`;
+    observation = `Au prix initial de ${prixInitial}\u20ac, la quantite demandee est de ${q0} unites pour ce ${typeBienLabel}, generant une recette totale de ${recetteInitiale.toFixed(0)}\u20ac.`;
     interpretation = `Avec une elasticite de ${elasticite.toFixed(1)}, la demande est ${classifyElasticity(elasticite)}. ${elasticityImplication(elasticite)}`;
+    if (typeBien === 'necessaire') {
+      interpretation += ` Pour un bien necessaire (alimentation de base, energie, medicaments), les consommateurs n'ont pas de substitut : ils continuent d'acheter meme si le prix augmente, d'ou une faible elasticite.`;
+    } else if (typeBien === 'luxe') {
+      interpretation += ` Pour un bien de luxe (restaurants gastronomiques, voyages, biens de marque), les consommateurs peuvent facilement s'en passer ou se tourner vers des substituts, d'ou une forte elasticite.`;
+    }
   } else {
-    observation = `Une hausse du prix de ${variationPrix}% (de ${prixInitial}\u20ac a ${prixNouveau.toFixed(0)}\u20ac) entraine une variation de la quantite de ${variationQuantite.toFixed(1)}% (de ${q0} a ${quantiteNouvelle.toFixed(0)} unites).`;
+    const directionPrix = variationPrix > 0 ? 'hausse' : 'baisse';
+    const directionQuantite = variationQuantite > 0 ? 'hausse' : 'baisse';
+    observation = `Une ${directionPrix} du prix de ${Math.abs(variationPrix)}% (de ${prixInitial}\u20ac a ${prixNouveau.toFixed(0)}\u20ac) entraine une ${directionQuantite} de la quantite de ${Math.abs(variationQuantite).toFixed(1)}% (de ${q0} a ${quantiteNouvelle.toFixed(0)} unites) pour ce ${typeBienLabel}.`;
     interpretation = `La recette totale passe de ${recetteInitiale.toFixed(0)}\u20ac a ${recetteNouvelle.toFixed(0)}\u20ac (${variationRecette >= 0 ? '+' : ''}${variationRecette.toFixed(0)}\u20ac). ${elasticityImplication(elasticite)}`;
+
+    // Mid-range commentary
+    if (Math.abs(elasticite) > 0.8 && Math.abs(elasticite) < 1.2) {
+      interpretation += ` Pres de l'elasticite unitaire, la recette totale est quasi insensible aux variations de prix : l'effet-prix et l'effet-volume se compensent presque parfaitement.`;
+    }
+
+    if (variationPrix < 0 && variationRecette > 0 && Math.abs(elasticite) > 1) {
+      interpretation += ` La baisse du prix fait augmenter la recette : c'est la strategie de volume, efficace quand la demande est elastique.`;
+    } else if (variationPrix > 0 && variationRecette > 0 && Math.abs(elasticite) < 1) {
+      interpretation += ` La hausse du prix fait augmenter la recette malgre la perte de volume : c'est la strategie de marge, efficace quand la demande est inelastique (typique des ${typeBien === 'necessaire' ? 'biens de premiere necessite' : 'marches captifs'}).`;
+    }
+
+    if (variationPrix > 50) {
+      interpretation += ` Attention : une variation de prix aussi importante (${variationPrix}%) rend l'hypothese d'elasticite constante moins realiste. En pratique, l'elasticite change le long de la courbe de demande.`;
+    }
   }
 
   return {

@@ -262,16 +262,22 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (mode === 'concurrence') {
-    observation = `En concurrence parfaite, le prix s'etablit au cout marginal (${Cm} EUR). La quantite echangee est de ${Q_c.toFixed(1)} unites. Le surplus du consommateur atteint ${surplusConsoConcurrence.toFixed(0)} EUR. Le profit economique est nul a long terme.`;
-    interpretation = `La concurrence parfaite maximise le surplus total de la societe. Aucune perte seche n'existe car toutes les unites dont la valeur pour le consommateur depasse le cout de production sont echangees. Les couts fixes de ${CF} EUR sont couverts par le prix de marche a long terme (libre entree et sortie).`;
+    observation = `En concurrence parfaite, le prix s'etablit au cout marginal (${Cm} EUR) car la libre entree des firmes elimine tout profit economique. La quantite echangee est de ${Q_c.toFixed(1)} unites. Le surplus du consommateur atteint ${surplusConsoConcurrence.toFixed(0)} EUR.`;
+    interpretation = `La concurrence parfaite maximise le surplus total (consommateur + producteur) de la societe. Aucune perte seche n'existe car toutes les unites dont la valeur pour le consommateur depasse le cout de production sont echangees. Le prix egal au cout marginal est la condition d'efficacite allocative.`;
+    if (CF > 200) {
+      interpretation += ` Attention : des couts fixes de ${CF} EUR rendent cette structure de marche difficile a maintenir. Si les prix restent au cout marginal, les entreprises ne couvrent pas leurs couts fixes et quittent le marche. En pratique, un marche avec des couts fixes eleves tend naturellement vers le monopole ou l'oligopole.`;
+    }
   } else {
     const pctPrixHausse = ((P_m - P_c) / P_c * 100);
     const pctQteBaisse = ((Q_c - Q_m) / Q_c * 100);
-    observation = `Le monopole fixe un prix de ${P_m.toFixed(0)} EUR (+${pctPrixHausse.toFixed(0)}% vs concurrence) pour une quantite de ${Q_m.toFixed(1)} unites (-${pctQteBaisse.toFixed(0)}%). La perte seche s'eleve a ${DWL.toFixed(0)} EUR. Le profit du monopole est de ${profitMonopole.toFixed(0)} EUR.`;
-    interpretation = `Le monopoleur restreint la production en dessous du niveau socialement optimal pour maximiser son profit. Le surplus du consommateur passe de ${surplusConsoConcurrence.toFixed(0)} a ${surplusConsoMonopole.toFixed(0)} EUR. La perte seche de ${DWL.toFixed(0)} EUR represente une destruction nette de valeur pour la societe : des echanges mutuellement avantageux n'ont pas lieu.`;
+    const markup = ((P_m - Cm) / P_m * 100);
+    observation = `Le monopole fixe un prix de ${P_m.toFixed(0)} EUR (+${pctPrixHausse.toFixed(0)}% vs concurrence) pour une quantite de ${Q_m.toFixed(1)} unites (-${pctQteBaisse.toFixed(0)}%). Son taux de marge est de ${markup.toFixed(0)}%. La perte seche s'eleve a ${DWL.toFixed(0)} EUR et le profit a ${profitMonopole.toFixed(0)} EUR.`;
+    interpretation = `Le monopoleur egalise recette marginale et cout marginal (Rm = Cm), pas prix et Cm. Comme la recette marginale est inferieure au prix (vendre plus exige de baisser le prix sur toutes les unites), le monopoleur restreint volontairement la production. Le surplus du consommateur chute de ${surplusConsoConcurrence.toFixed(0)} a ${surplusConsoMonopole.toFixed(0)} EUR. La perte seche de ${DWL.toFixed(0)} EUR represente des echanges mutuellement avantageux qui n'ont pas lieu : des consommateurs prets a payer plus que le cout marginal sont exclus du marche.`;
 
     if (profitMonopole < 0) {
-      interpretation += ` Malgre le pouvoir de marche, les couts fixes de ${CF} EUR sont si eleves que le monopole est deficitaire : c'est le cas typique du monopole naturel necessitant une regulation ou une subvention publique.`;
+      interpretation += ` Malgre le pouvoir de marche, les couts fixes de ${CF} EUR sont si eleves que le monopole est deficitaire. C'est le cas typique du monopole naturel (reseau ferroviaire, distribution d'eau) ou les couts fixes sont enormes mais le cout marginal est bas : une seule entreprise est plus efficace que plusieurs, mais elle ne peut pas couvrir ses couts au prix concurrentiel. D'ou la necessite d'une regulation publique (tarification au cout moyen, subvention).`;
+    } else if (profitMonopole > 0 && markup > 50) {
+      interpretation += ` Le taux de marge de ${markup.toFixed(0)}% est tres eleve, signe d'un fort pouvoir de marche. En pratique, une telle rente attire des concurrents potentiels : seules des barrieres a l'entree (brevets, monopole legal, effets de reseau) peuvent maintenir cette situation.`;
     }
   }
 

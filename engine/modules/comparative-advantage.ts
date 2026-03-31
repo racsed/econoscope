@@ -258,18 +258,39 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let observation: string;
   let interpretation: string;
 
+  // Detect absolute advantage pattern
+  const pays1AvanAbsA = p1A > p2A;
+  const pays1AvanAbsB = p1B > p2B;
+  const pays1AvanAbsTotal = pays1AvanAbsA && pays1AvanAbsB;
+  const pays2AvanAbsTotal = !pays1AvanAbsA && !pays1AvanAbsB;
+
   if (parite) {
-    observation = "Les deux pays ont des couts d'opportunite identiques. Il n'y a pas d'avantage comparatif.";
-    interpretation = "Le libre-echange n'apporte aucun gain dans cette configuration. Les deux pays sont dans la meme situation relative.";
+    observation = `Les deux pays ont des couts d'opportunite identiques (${coutOpp1A.toFixed(2)} B pour 1 A dans les deux cas). Il n'y a pas d'avantage comparatif.`;
+    interpretation = "Le libre-echange n'apporte aucun gain dans cette configuration. Les deux pays ont exactement les memes productivites relatives, donc aucune specialisation n'est mutuellement avantageuse. Pour que des gains a l'echange existent, il faut que les ratios de productivite different entre les deux pays.";
   } else {
     const specA = pays1SpecialiseA ? 'Pays 1' : 'Pays 2';
     const specB = pays1SpecialiseA ? 'Pays 2' : 'Pays 1';
-    observation = `${specA} a l'avantage comparatif dans le bien A (cout d'opportunite : ${pays1SpecialiseA ? coutOpp1A.toFixed(2) : coutOpp2A.toFixed(2)} B). ${specB} a l'avantage comparatif dans le bien B.`;
+    const coutOppSpecA = pays1SpecialiseA ? coutOpp1A : coutOpp2A;
+    const coutOppAutreA = pays1SpecialiseA ? coutOpp2A : coutOpp1A;
+
+    observation = `${specA} a l'avantage comparatif dans le bien A : son cout d'opportunite est de ${coutOppSpecA.toFixed(2)} B par unite de A, contre ${coutOppAutreA.toFixed(2)} pour ${specB}. Autrement dit, ${specA} renonce a moins de B pour produire une unite de A, c'est donc lui qui doit se specialiser dans A.`;
+
+    // Key Ricardian insight
+    if (pays1AvanAbsTotal || pays2AvanAbsTotal) {
+      const paysDominant = pays1AvanAbsTotal ? 'Pays 1' : 'Pays 2';
+      const paysDomini = pays1AvanAbsTotal ? 'Pays 2' : 'Pays 1';
+      observation += ` Resultat contre-intuitif de Ricardo : ${paysDominant} est plus productif que ${paysDomini} dans les DEUX biens (avantage absolu dans A et B), pourtant le commerce reste benefique pour les deux. Ce qui compte n'est pas la productivite absolue, mais la productivite RELATIVE (les couts d'opportunite).`;
+    }
 
     if (isLibreEchange) {
-      interpretation = `Avec le libre-echange et la specialisation, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Le commerce international augmente la richesse totale disponible.`;
+      interpretation = `Avec le libre-echange et la specialisation complete, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Ce gain net est cree "a partir de rien" : les memes ressources, mieux allouees par la specialisation, produisent davantage au niveau mondial. Chaque pays consomme ensuite les deux biens en echangeant a un prix compris entre les deux couts d'opportunite.`;
+      if (gainA < 0 && gainB > 0) {
+        interpretation += ` La production de A diminue mais celle de B augmente davantage : le gain global est positif car les ressources liberees dans A sont utilisees plus efficacement dans B.`;
+      } else if (gainA > 0 && gainB < 0) {
+        interpretation += ` La production de B diminue mais celle de A augmente davantage : le gain global est positif car les ressources liberees dans B sont utilisees plus efficacement dans A.`;
+      }
     } else {
-      interpretation = `En autarcie, chaque pays produit les deux biens. La production mondiale totale est de ${totalAutarkyA.toFixed(0)} unites de A et ${totalAutarkyB.toFixed(0)} unites de B. Le passage au libre-echange permettrait un gain de ${Math.max(0, gainA).toFixed(0)} A et/ou ${Math.max(0, gainB).toFixed(0)} B.`;
+      interpretation = `En autarcie (sans commerce), chaque pays doit produire les deux biens par lui-meme. La production mondiale totale est de ${totalAutarkyA.toFixed(0)} unites de A et ${totalAutarkyB.toFixed(0)} unites de B. Le passage au libre-echange permettrait un gain de production grace a la specialisation selon l'avantage comparatif. Chaque pays se concentrerait sur le bien pour lequel il a le cout d'opportunite le plus faible.`;
     }
   }
 

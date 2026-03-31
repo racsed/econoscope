@@ -184,11 +184,19 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du depot est reprete, ${(r * 100).toFixed(0)}% est garde en reserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
 
   if (r <= 0.02) {
-    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE actuellement), le multiplicateur theorique est tres eleve. En pratique, d'autres contraintes (ratios prudentiels, demande de credit) limitent la creation monetaire.";
+    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE a 1% depuis 2012), le multiplicateur theorique est tres eleve. En pratique, d'autres contraintes (ratios prudentiels Bale III, demande de credit des entreprises, risk appetite des banques) limitent la creation monetaire effective bien en deca du maximum theorique.";
   }
 
   if (b > 0.2) {
-    interpretation += " La forte preference pour les billets reduit considerablement le multiplicateur : la monnaie \"fuit\" du circuit bancaire a chaque tour.";
+    interpretation += ` La forte preference pour les billets (${(b * 100).toFixed(0)}%) reduit considerablement le multiplicateur : a chaque tour, une part importante de la monnaie "sort" du circuit bancaire sous forme de billets et ne peut plus etre repretee. C'est une fuite definitive du processus de creation monetaire.`;
+  }
+
+  if (multiplicateur > 5 && multiplicateur < 20) {
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} signifie que chaque euro de depot initial genere theoriquement ${round2(multiplicateur)} euros de depots dans l'ensemble du systeme bancaire. C'est le pouvoir de creation monetaire des banques commerciales, sous controle de la banque centrale via le taux de reserves.`;
+  }
+
+  if (r > 0.15) {
+    interpretation += ` Le taux de reserves eleve (${(r * 100).toFixed(0)}%) bride fortement la creation monetaire. C'est un outil de politique monetaire restrictive utilise notamment par la Banque de Chine ou en Inde pour controler l'expansion du credit.`;
   }
 
   return {

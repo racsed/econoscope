@@ -229,9 +229,17 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   interpretation += fuitesDetail.join(', ') + '.';
 
   if (multiplicateur < 1.2) {
-    interpretation += " Le multiplicateur est tres faible : les fuites absorbent l'essentiel de l'injection. La politique budgetaire serait peu efficace dans ce contexte.";
+    interpretation += " Le multiplicateur est tres faible : les fuites absorbent l'essentiel de l'injection. La politique budgetaire serait peu efficace dans ce contexte. L'essentiel de la depense publique \"fuit\" vers l'epargne, les impots ou l'etranger des le premier tour.";
   } else if (multiplicateur > 3) {
-    interpretation += " Le multiplicateur est tres eleve : l'economie amplifie fortement l'impulsion budgetaire. Cela suppose toutefois des capacites productives disponibles.";
+    interpretation += " Le multiplicateur est tres eleve : l'economie amplifie fortement l'impulsion budgetaire. Cela suppose toutefois des capacites productives inutilisees (chomage, usines en sous-regime), sinon l'effet se dissipe en inflation plutot qu'en production reelle.";
+  } else if (multiplicateur > 1.5 && multiplicateur <= 3) {
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} est dans la fourchette typique des economies developpees en recession. Chaque euro de depense publique genere environ ${round2(multiplicateur)} euros de revenu total, l'effet en cascade etant modere par les fuites.`;
+  }
+
+  if (c > 0.85) {
+    interpretation += ` La forte propension a consommer (${(c * 100).toFixed(0)}%) indique une population qui depense rapidement ses revenus supplementaires, amplifiant la propagation. C'est typique des menages a bas revenus.`;
+  } else if (c < 0.5) {
+    interpretation += ` La faible propension a consommer (${(c * 100).toFixed(0)}%) signifie que les menages epargnent l'essentiel de leur revenu supplementaire, freinant la propagation. Le multiplicateur s'en trouve considerablement reduit.`;
   }
 
   return {

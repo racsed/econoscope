@@ -288,22 +288,28 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const qEcart = Math.abs(eqMarche.q - eqSocial.q);
 
   if (isNegative) {
-    observation = `Le marche produit ${eqMarche.q.toFixed(0)} unites alors que l'optimum social est de ${eqSocial.q.toFixed(0)} unites. Il y a surproduction de ${qEcart.toFixed(0)} unites due a l'externalite negative.`;
+    observation = `Le marche produit ${eqMarche.q.toFixed(0)} unites alors que l'optimum social est de ${eqSocial.q.toFixed(0)} unites. Il y a surproduction de ${qEcart.toFixed(0)} unites car les producteurs ne supportent pas le cout externe de ${coutExterne}\u20ac par unite (pollution, nuisances) qu'ils imposent a la societe. Le cout marginal prive (${cmPrive}\u20ac) est inferieur au cout marginal social (${(cmPrive + coutExterne)}\u20ac).`;
   } else {
-    observation = `Le marche produit ${eqMarche.q.toFixed(0)} unites alors que l'optimum social est de ${eqSocial.q.toFixed(0)} unites. Il y a sous-production de ${qEcart.toFixed(0)} unites car le benefice social n'est pas remunere.`;
+    observation = `Le marche produit ${eqMarche.q.toFixed(0)} unites alors que l'optimum social est de ${eqSocial.q.toFixed(0)} unites. Il y a sous-production de ${qEcart.toFixed(0)} unites car les producteurs ne captent pas le benefice externe de ${coutExterne}\u20ac par unite (immunite collective, savoir partage) qu'ils procurent a la societe. Le benefice social marginal depasse le benefice prive.`;
   }
 
   if (taxe > 0) {
     const correction = isNegative ? 'taxe' : 'subvention';
     if (Math.abs(taxe - coutExterne) < 0.5) {
-      interpretation = `La ${correction} de ${taxe}\u20ac est optimale : elle egalise le cout prive et le cout social. L'equilibre de marche coincide desormais avec l'optimum social, eliminant la perte seche.`;
+      interpretation = `La ${correction} pigouvienne de ${taxe}\u20ac est optimale : elle internalise l'externalite en faisant coincider le cout prive avec le cout social. Le producteur integre desormais le "vrai" cout de son activite dans ses decisions. L'equilibre de marche coincide avec l'optimum social, eliminant la perte seche.`;
     } else if (taxe < coutExterne) {
-      interpretation = `La ${correction} de ${taxe}\u20ac corrige partiellement la defaillance mais reste insuffisante (cout externe = ${coutExterne}\u20ac). La perte seche residuelle est de ${residualDWL.toFixed(1)}\u20ac.`;
+      interpretation = `La ${correction} de ${taxe}\u20ac corrige partiellement la defaillance mais reste insuffisante : le cout externe reel est de ${coutExterne}\u20ac. L'ecart residuel (${(coutExterne - taxe)}\u20ac) genere encore une perte seche de ${residualDWL.toFixed(1)}\u20ac. Augmenter la ${correction} vers ${coutExterne}\u20ac rapprocherait le marche de l'optimum.`;
     } else {
-      interpretation = `La ${correction} de ${taxe}\u20ac depasse le cout externe (${coutExterne}\u20ac), creant une distorsion en sens inverse. La ${correction} optimale serait de ${coutExterne}\u20ac exactement.`;
+      interpretation = `La ${correction} de ${taxe}\u20ac depasse le cout externe (${coutExterne}\u20ac), creant une sur-correction : on passe d'une ${isNegative ? 'surproduction' : 'sous-production'} a une ${isNegative ? 'sous-production' : 'surproduction'} par rapport a l'optimum social. La ${correction} optimale serait de ${coutExterne}\u20ac exactement.`;
     }
   } else {
-    interpretation = `Sans intervention, la perte seche due a la ${surplusSous} est de ${deadweightLoss.toFixed(1)}\u20ac. Une ${isNegative ? 'taxe' : 'subvention'} pigouvienne de ${coutExterne}\u20ac permettrait de retablir l'optimum social.`;
+    interpretation = `Sans intervention, la perte seche due a la ${surplusSous} est de ${deadweightLoss.toFixed(1)}\u20ac. C'est une defaillance de marche : le prix de marche ne reflete pas le "vrai" cout (ou benefice) pour la societe. Une ${isNegative ? 'taxe' : 'subvention'} pigouvienne de ${coutExterne}\u20ac par unite (slider "${isNegative ? 'Taxe' : 'Subvention'} pigouvienne") permettrait de retablir l'optimum social en forcant les agents a prendre en compte l'externalite.`;
+  }
+
+  if (coutExterne > 20) {
+    interpretation += ` Le cout externe eleve (${coutExterne}\u20ac) suggere une externalite majeure : sans correction, la distorsion par rapport a l'optimum social est tres importante.`;
+  } else if (coutExterne > 0 && coutExterne < 5) {
+    interpretation += ` Le cout externe modeste (${coutExterne}\u20ac) genere une faible distorsion. Le cout administratif de la taxe ou subvention pourrait depasser le gain de bien-etre.`;
   }
 
   return {

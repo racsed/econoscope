@@ -211,9 +211,17 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   }
 
   if (elasticite > 1.5) {
-    interpretation += ` Avec une elasticite elevee (${elasticite.toFixed(1)}), les agents economiques sont tres reactifs a la fiscalite : le sommet de la courbe est relativement bas (${tauxOptimal.toFixed(0)}%).`;
+    interpretation += ` Avec une elasticite elevee (${elasticite.toFixed(1)}), les agents economiques sont tres reactifs a la fiscalite (evasion, delocalisation, reduction de l'effort de travail) : le sommet de la courbe est relativement bas (${tauxOptimal.toFixed(0)}%). Cela correspond a des revenus tres mobiles (capital financier, hauts salaires).`;
   } else if (elasticite < 0.5) {
-    interpretation += ` Avec une elasticite faible (${elasticite.toFixed(1)}), les agents economiques sont peu reactifs a la fiscalite : le sommet de la courbe est eleve (${tauxOptimal.toFixed(0)}%), laissant une marge de manoeuvre fiscale importante.`;
+    interpretation += ` Avec une elasticite faible (${elasticite.toFixed(1)}), les agents economiques sont peu reactifs a la fiscalite : le sommet de la courbe est eleve (${tauxOptimal.toFixed(0)}%), laissant une marge de manoeuvre fiscale importante. Cela correspond a des revenus peu mobiles (salaires moyens, immobilier).`;
+  } else {
+    interpretation += ` Avec une elasticite moyenne (${elasticite.toFixed(1)}), le sommet se situe a ${tauxOptimal.toFixed(0)}%. C'est la valeur souvent citee dans les estimations empiriques pour l'impot sur le revenu des classes moyennes.`;
+  }
+
+  if (taux > 80) {
+    interpretation += ` Un taux de ${taux}% est quasi confiscatoire : le revenu imposable s'effondre a ${revenuImposable.toFixed(0)} (contre ${Y0} sans impot). L'assiette fiscale retrecit tellement que les recettes chutent malgre le taux eleve.`;
+  } else if (taux < 10 && taux > 0) {
+    interpretation += ` Un taux de ${taux}% est tres faible : l'assiette fiscale est quasi intacte (${revenuImposable.toFixed(0)}) mais les recettes sont modestes car le taux est bas. Il y a une large marge avant d'atteindre le sommet.`;
   }
 
   return {

@@ -92,6 +92,12 @@ function RadarChartInner({
         const end = polarToCartesian(cx, cy, radius, angle);
         const labelPos = polarToCartesian(cx, cy, radius + 20, angle);
 
+        // Show which end is "best" for inverted axes
+        const bestLabel = axis.invert ? `${axis.min}%` : `${axis.max}%`;
+        const worstLabel = axis.invert ? `${axis.max}%` : `${axis.min}%`;
+        const bestPos = polarToCartesian(cx, cy, radius + 8, angle);
+        const worstPos = polarToCartesian(cx, cy, 18, angle);
+
         return (
           <g key={axis.id}>
             <line
@@ -112,6 +118,18 @@ function RadarChartInner({
               dominantBaseline="middle"
             >
               {axis.label}
+            </text>
+            {/* Best value indicator at outer edge */}
+            <text
+              x={bestPos.x}
+              y={bestPos.y + 14}
+              fill={colors.tickLabel}
+              fontSize={8}
+              fontFamily="var(--font-mono)"
+              textAnchor="middle"
+              dominantBaseline="middle"
+            >
+              {axis.invert ? 'min' : 'max'}
             </text>
           </g>
         );
