@@ -15,7 +15,7 @@ interface NarrationBlockProps {
  * Wraps numeric values in styled mono spans.
  * Detects numbers (optionally with decimals, commas, spaces, %, currency symbols).
  */
-export function renderNarration(text: string, accentColor: string = "#6366F1"): React.ReactNode[] {
+export function renderNarration(text: string, accentColor: string = "#5B5EF4"): React.ReactNode[] {
   const parts = text.split(/(\d[\d\s,.']*\d*\s*[%€$£]?)/g);
 
   return parts.map((part, i) => {
@@ -39,20 +39,20 @@ export function NarrationBlock({
   icon: Icon,
   title,
   content,
-  themeColor = "#6366F1",
+  themeColor = "#5B5EF4",
 }: NarrationBlockProps) {
   // Use first 50 chars as stable key for AnimatePresence
   const contentKey = content.slice(0, 50);
 
   return (
     <div
-      className="rounded-xl bg-[#12121A] p-5"
+      className="rounded-xl bg-[#F8F9FB] p-5"
       style={{ borderLeft: `3px solid ${themeColor}` }}
     >
       {/* Header */}
       <div className="mb-3 flex items-center gap-2">
         <Icon size={18} style={{ color: themeColor }} />
-        <span className="text-sm font-semibold text-[#E8E8ED]">{title}</span>
+        <span className="text-sm font-semibold text-[#1A1D26]">{title}</span>
       </div>
 
       {/* Animated content */}
@@ -63,7 +63,7 @@ export function NarrationBlock({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.25 }}
-          className="text-sm leading-relaxed text-[#B0B0BA]"
+          className="text-sm leading-relaxed text-[#5F6980]"
         >
           {renderNarration(content, themeColor)}
         </motion.p>

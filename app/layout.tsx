@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "Laboratoire interactif d'economie. Explorez les mecanismes economiques a travers des simulations visuelles, des scenarios et des outils pedagogiques.",
   other: {
-    'theme-color': '#0A0A0F',
+    'theme-color': '#FAFBFC',
   },
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col antialiased bg-[#FAFBFC] text-[#1A1D26]">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

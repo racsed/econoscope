@@ -24,7 +24,7 @@ export function ControlPanel({ inputs, values, onChange, themeColor }: ControlPa
       {Array.from(groups.entries()).map(([groupName, groupInputs]) => (
         <div key={groupName}>
           {groupName && (
-            <h3 className="text-xs font-medium uppercase tracking-wider text-[#8888A0] mb-3">
+            <h3 className="text-xs font-medium uppercase tracking-wider text-[#5F6980] mb-3">
               {groupName}
             </h3>
           )}

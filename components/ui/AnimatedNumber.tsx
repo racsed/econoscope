@@ -61,9 +61,9 @@ export function AnimatedNumber({
   }, [value, duration, format]);
 
   const flashColor = flash === "up"
-    ? "text-emerald-400"
+    ? "text-emerald-500"
     : flash === "down"
-      ? "text-red-400"
+      ? "text-red-500"
       : "";
 
   return (

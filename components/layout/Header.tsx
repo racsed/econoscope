@@ -12,17 +12,17 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-lg border-b border-border-subtle">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-[#E2E4E9]">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <FlaskConical className="h-5 w-5 text-accent-indigo" />
-          <span className="text-lg font-bold text-text-primary">
+          <FlaskConical className="h-5 w-5 text-[#5B5EF4]" />
+          <span className="text-lg font-bold text-[#1A1D26]">
             Econoscope
           </span>
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-indigo opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-indigo" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5B5EF4] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5B5EF4]" />
           </span>
         </Link>
 
@@ -36,8 +36,8 @@ export default function Header() {
                 href={link.href}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   active
-                    ? 'text-accent-indigo bg-accent-indigo/10'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
+                    ? 'text-[#5B5EF4] bg-[#5B5EF4]/[0.08]'
+                    : 'text-[#5F6980] hover:text-[#1A1D26] hover:bg-[#F4F5F7]'
                 }`}
               >
                 {link.label}
@@ -49,7 +49,7 @@ export default function Header() {
         {/* Bouton mobile */}
         <button
           type="button"
-          className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
+          className="md:hidden p-2 text-[#5F6980] hover:text-[#1A1D26] transition-colors"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label={mobileOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         >
@@ -65,7 +65,7 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden border-b border-border-subtle bg-bg-primary/95 backdrop-blur-lg"
+            className="md:hidden overflow-hidden border-b border-[#E2E4E9] bg-white/95 backdrop-blur-lg"
           >
             <div className="px-6 py-4 space-y-1">
               {NAV_LINKS.map((link) => {
@@ -77,8 +77,8 @@ export default function Header() {
                     onClick={() => setMobileOpen(false)}
                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       active
-                        ? 'text-accent-indigo bg-accent-indigo/10'
-                        : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
+                        ? 'text-[#5B5EF4] bg-[#5B5EF4]/[0.08]'
+                        : 'text-[#5F6980] hover:text-[#1A1D26] hover:bg-[#F4F5F7]'
                     }`}
                   >
                     {link.label}

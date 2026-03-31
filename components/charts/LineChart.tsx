@@ -22,7 +22,7 @@ function LineChartInner({
   data,
   width,
   height,
-  themeColor = '#6366F1',
+  themeColor = '#5B5EF4',
 }: LineChartProps & { width: number; height: number }) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -62,9 +62,8 @@ function LineChartInner({
             x2={innerWidth}
             y1={yScale(tick)}
             y2={yScale(tick)}
-            stroke="#2A2A35"
-            strokeDasharray="4,4"
-            strokeWidth={0.5}
+            stroke="#F1F3F5"
+            strokeWidth={1}
           />
         ))}
         {xScale.ticks(5).map((tick) => (
@@ -74,9 +73,8 @@ function LineChartInner({
             x2={xScale(tick)}
             y1={0}
             y2={innerHeight}
-            stroke="#2A2A35"
-            strokeDasharray="4,4"
-            strokeWidth={0.5}
+            stroke="#F1F3F5"
+            strokeWidth={1}
           />
         ))}
 
@@ -151,7 +149,7 @@ function LineChartInner({
               y1={ann.y1 != null ? yScale(ann.y1) : 0}
               x2={ann.x2 != null ? xScale(ann.x2) : innerWidth}
               y2={ann.y2 != null ? yScale(ann.y2) : innerHeight}
-              stroke={ann.color ?? '#8888A0'}
+              stroke={ann.color ?? '#9CA3B4'}
               strokeWidth={1}
               strokeDasharray="6,3"
             />
@@ -165,7 +163,7 @@ function LineChartInner({
               key={`ann-label-${i}`}
               x={ann.x != null ? xScale(ann.x) : 0}
               y={ann.y != null ? yScale(ann.y) : 0}
-              fill={ann.color ?? '#8888A0'}
+              fill={ann.color ?? '#9CA3B4'}
               fontSize={11}
               fontFamily="var(--font-mono)"
             >
@@ -187,10 +185,10 @@ function LineChartInner({
         <AxisLeft
           scale={yScale}
           numTicks={5}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 11,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'end' as const,
@@ -199,7 +197,7 @@ function LineChartInner({
           })}
           label={data.yLabel}
           labelProps={{
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 12,
             textAnchor: 'middle',
           }}
@@ -208,10 +206,10 @@ function LineChartInner({
           scale={xScale}
           top={innerHeight}
           numTicks={5}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 11,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'middle' as const,
@@ -219,7 +217,7 @@ function LineChartInner({
           })}
           label={data.xLabel}
           labelProps={{
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 12,
             textAnchor: 'middle',
             dy: 14,
@@ -243,7 +241,7 @@ function LineChartInner({
             <text
               x={26}
               y={4}
-              fill="#8888A0"
+              fill="#5F6980"
               fontSize={11}
             >
               {series.label}

@@ -21,7 +21,7 @@ function AreaChartInner({
   data,
   width,
   height,
-  themeColor = '#6366F1',
+  themeColor = '#5B5EF4',
 }: AreaChartProps & { width: number; height: number }) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -60,9 +60,8 @@ function AreaChartInner({
             x2={innerWidth}
             y1={yScale(tick)}
             y2={yScale(tick)}
-            stroke="#2A2A35"
-            strokeDasharray="4,4"
-            strokeWidth={0.5}
+            stroke="#F1F3F5"
+            strokeWidth={1}
           />
         ))}
 
@@ -76,7 +75,7 @@ function AreaChartInner({
               y1={ann.y1 != null ? yScale(ann.y1) : innerHeight}
               x2={ann.x2 != null ? xScale(ann.x2) : innerWidth}
               y2={ann.y2 != null ? yScale(ann.y2) : 0}
-              stroke={ann.color ?? '#4A4A5A'}
+              stroke={ann.color ?? '#CBD5E1'}
               strokeWidth={1.5}
               strokeDasharray="6,4"
             />
@@ -119,7 +118,7 @@ function AreaChartInner({
               key={`label-${i}`}
               x={ann.x != null ? xScale(ann.x) : 0}
               y={ann.y != null ? yScale(ann.y) : 0}
-              fill={ann.color ?? '#8888A0'}
+              fill={ann.color ?? '#9CA3B4'}
               fontSize={11}
               fontFamily="var(--font-mono)"
             >
@@ -131,10 +130,10 @@ function AreaChartInner({
         <AxisLeft
           scale={yScale}
           numTicks={5}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 11,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'end' as const,
@@ -143,7 +142,7 @@ function AreaChartInner({
           })}
           label={data.yLabel}
           labelProps={{
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 12,
             textAnchor: 'middle',
           }}
@@ -152,10 +151,10 @@ function AreaChartInner({
           scale={xScale}
           top={innerHeight}
           numTicks={5}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 11,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'middle' as const,
@@ -163,7 +162,7 @@ function AreaChartInner({
           })}
           label={data.xLabel}
           labelProps={{
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 12,
             textAnchor: 'middle',
             dy: 14,
@@ -176,7 +175,7 @@ function AreaChartInner({
         {data.series.map((series, i) => (
           <g key={series.id} transform={`translate(0, ${i * 20})`}>
             <rect width={14} height={10} rx={2} fill={series.color} opacity={0.4} />
-            <text x={20} y={9} fill="#8888A0" fontSize={11}>
+            <text x={20} y={9} fill="#5F6980" fontSize={11}>
               {series.label}
             </text>
           </g>

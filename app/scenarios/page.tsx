@@ -58,9 +58,9 @@ export default function ScenariosPage() {
         >
           <div className="flex items-center gap-3 mb-3">
             <PlayCircle size={24} className="text-[#22D3EE]" />
-            <h1 className="text-3xl font-bold text-[#E8E8ED]">Scenarios</h1>
+            <h1 className="text-3xl font-bold text-[#1A1D26]">Scenarios</h1>
           </div>
-          <p className="text-[#8888A0] text-lg">
+          <p className="text-[#5F6980] text-lg">
             {allScenarios.length} situations economiques preconfigurees a explorer
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ export default function ScenariosPage() {
         <div className="space-y-10">
           {grouped.map(([moduleSlug, scenarios], gi) => {
             const color =
-              THEME_COLORS[scenarios[0].moduleTheme as ThemeType] ?? '#6366F1';
+              THEME_COLORS[scenarios[0].moduleTheme as ThemeType] ?? '#5B5EF4';
             return (
               <motion.div
                 key={moduleSlug}
@@ -81,7 +81,7 @@ export default function ScenariosPage() {
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: color }}
                   />
-                  <h2 className="text-lg font-semibold text-[#E8E8ED]">
+                  <h2 className="text-lg font-semibold text-[#1A1D26]">
                     {scenarios[0].moduleTitle}
                   </h2>
                 </div>
@@ -91,18 +91,18 @@ export default function ScenariosPage() {
                     <Link
                       key={`${moduleSlug}-${scenario.scenarioId}`}
                       href={`/module/${moduleSlug}?scenario=${scenario.scenarioId}`}
-                      className="group bg-[#141419] border border-[#2A2A35] rounded-xl p-4 hover:border-opacity-40 transition-all duration-200"
+                      className="group bg-white border border-[#E2E4E9] rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-200"
                       onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = `${color}40`;
+                        (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
                       }}
                       onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = '#2A2A35';
+                        (e.currentTarget as HTMLElement).style.borderColor = '#E2E4E9';
                       }}
                     >
-                      <h3 className="font-medium text-[#E8E8ED] text-sm mb-1">
+                      <h3 className="font-medium text-[#1A1D26] text-sm mb-1">
                         {scenario.scenarioLabel}
                       </h3>
-                      <p className="text-xs text-[#8888A0] leading-relaxed mb-3">
+                      <p className="text-xs text-[#5F6980] leading-relaxed mb-3">
                         {scenario.scenarioDescription}
                       </p>
                       <div

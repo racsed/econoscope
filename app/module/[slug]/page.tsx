@@ -27,7 +27,7 @@ export default function ModulePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-[#E8E8ED] mb-2">Module introuvable</h1>
-          <p className="text-[#8888A0]">Le module "{slug}" n&apos;existe pas encore.</p>
+          <p className="text-[#5F6980]">Le module "{slug}" n&apos;existe pas encore.</p>
         </div>
       </div>
     );

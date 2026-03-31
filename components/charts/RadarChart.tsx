@@ -27,7 +27,7 @@ function RadarChartInner({
   data,
   width,
   height,
-  themeColor = '#6366F1',
+  themeColor = '#5B5EF4',
 }: RadarChartProps & { width: number; height: number }) {
   const cx = width / 2;
   const cy = height / 2;
@@ -78,8 +78,8 @@ function RadarChartInner({
             key={`ring-${ringScale}`}
             points={points}
             fill="none"
-            stroke="#2A2A35"
-            strokeWidth={0.5}
+            stroke="#F1F3F5"
+            strokeWidth={1}
           />
         );
       })}
@@ -97,13 +97,13 @@ function RadarChartInner({
               y1={cy}
               x2={end.x}
               y2={end.y}
-              stroke="#2A2A35"
+              stroke="#E2E4E9"
               strokeWidth={1}
             />
             <text
               x={labelPos.x}
               y={labelPos.y}
-              fill="#8888A0"
+              fill="#5F6980"
               fontSize={11}
               fontWeight={500}
               textAnchor="middle"
@@ -141,7 +141,7 @@ function RadarChartInner({
                 cy={p.y}
                 r={4}
                 fill={ds.color}
-                stroke="#0A0A0F"
+                stroke="#FFFFFF"
                 strokeWidth={2}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -162,7 +162,7 @@ function RadarChartInner({
             height={36}
             rx={18}
             fill={themeColor}
-            opacity={0.12}
+            opacity={0.1}
           />
           <text
             x={width - 75}
@@ -184,7 +184,7 @@ function RadarChartInner({
           {polygonsData.map((ds, i) => (
             <g key={ds.label} transform={`translate(${i * 140}, 0)`}>
               <rect width={12} height={12} rx={3} fill={ds.color} opacity={0.6} />
-              <text x={18} y={10} fill="#8888A0" fontSize={11}>
+              <text x={18} y={10} fill="#5F6980" fontSize={11}>
                 {ds.label}
               </text>
             </g>

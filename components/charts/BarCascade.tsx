@@ -19,7 +19,7 @@ function BarCascadeInner({
   data,
   width,
   height,
-  themeColor = '#6366F1',
+  themeColor = '#5B5EF4',
 }: BarCascadeProps & { width: number; height: number }) {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -55,9 +55,8 @@ function BarCascadeInner({
             x2={innerWidth}
             y1={yScale(tick)}
             y2={yScale(tick)}
-            stroke="#2A2A35"
-            strokeDasharray="4,4"
-            strokeWidth={0.5}
+            stroke="#F1F3F5"
+            strokeWidth={1}
           />
         ))}
 
@@ -157,10 +156,10 @@ function BarCascadeInner({
         <AxisLeft
           scale={yScale}
           numTicks={5}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 11,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'end' as const,
@@ -171,10 +170,10 @@ function BarCascadeInner({
         <AxisBottom
           scale={xScale}
           top={innerHeight}
-          stroke="#4A4A5A"
-          tickStroke="#4A4A5A"
+          stroke="#CBD5E1"
+          tickStroke="#CBD5E1"
           tickLabelProps={() => ({
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 10,
             fontFamily: 'var(--font-mono)',
             textAnchor: 'middle' as const,
@@ -182,7 +181,7 @@ function BarCascadeInner({
           })}
           label="Tour"
           labelProps={{
-            fill: '#8888A0',
+            fill: '#9CA3B4',
             fontSize: 12,
             textAnchor: 'middle',
             dy: 14,
@@ -192,12 +191,12 @@ function BarCascadeInner({
         {/* Legend */}
         <g transform={`translate(${innerWidth - 180}, -10)`}>
           <rect width={8} height={8} rx={2} fill={themeColor} opacity={0.85} />
-          <text x={14} y={8} fill="#8888A0" fontSize={10}>
+          <text x={14} y={8} fill="#5F6980" fontSize={10}>
             Effet par tour
           </text>
           <line x1={80} y1={4} x2={100} y2={4} stroke="#22D3EE" strokeWidth={2} />
           <circle cx={90} cy={4} r={2.5} fill="#22D3EE" />
-          <text x={106} y={8} fill="#8888A0" fontSize={10}>
+          <text x={106} y={8} fill="#5F6980" fontSize={10}>
             Cumulatif
           </text>
         </g>
@@ -216,7 +215,7 @@ function BarCascadeInner({
           height={22}
           rx={11}
           fill={themeColor}
-          opacity={0.15}
+          opacity={0.1}
         />
         <text
           x={margin.left + 65}

@@ -23,7 +23,7 @@ export function Slider({
   max,
   step = 1,
   unit = "",
-  color = "#6366F1",
+  color = "#5B5EF4",
   tooltip,
 }: SliderProps) {
   const [editing, setEditing] = useState(false);
@@ -62,7 +62,7 @@ export function Slider({
   return (
     <div className="flex flex-col gap-2" title={tooltip}>
       <div className="flex items-center justify-between">
-        <span className="text-sm text-[#B0B0BA]">{label}</span>
+        <span className="text-sm text-[#5F6980]">{label}</span>
         {editing ? (
           <input
             ref={inputRef}
@@ -71,13 +71,13 @@ export function Slider({
             onChange={(e) => setInputValue(e.target.value)}
             onBlur={commitInput}
             onKeyDown={handleKeyDown}
-            className="w-20 rounded bg-[#1E1E28] px-2 py-0.5 text-right font-mono text-sm text-[#E8E8ED] outline-none ring-1 ring-[#2A2A35] focus:ring-[#6366F1]"
+            className="w-20 rounded bg-[#F4F5F7] px-2 py-0.5 text-right font-mono text-sm text-[#1A1D26] outline-none border border-[#E2E4E9] focus:ring-1 focus:ring-[#5B5EF4] focus:border-[#5B5EF4]"
           />
         ) : (
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="cursor-text rounded px-1 py-0.5 font-mono text-sm text-[#E8E8ED] transition-colors hover:bg-[#1E1E28]"
+            className="cursor-text rounded px-1 py-0.5 font-mono text-sm text-[#1A1D26] transition-colors hover:bg-[#F4F5F7]"
           >
             {value}
             {unit}
@@ -93,15 +93,15 @@ export function Slider({
         max={max}
         step={step}
       >
-        <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-[#2A2A35]">
+        <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-[#E2E4E9]">
           <SliderPrimitive.Range
             className="absolute h-full rounded-full transition-[width] duration-150"
             style={{ backgroundColor: color, width: `${percentage}%` }}
           />
         </SliderPrimitive.Track>
         <SliderPrimitive.Thumb
-          className="block h-4 w-4 rounded-full border-2 bg-[#E8E8ED] shadow-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0F] active:scale-110"
-          style={{ borderColor: color, focusVisibleRingColor: color } as React.CSSProperties}
+          className="block h-4 w-4 rounded-full border-2 bg-white shadow-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-110"
+          style={{ borderColor: color } as React.CSSProperties}
         />
       </SliderPrimitive.Root>
     </div>

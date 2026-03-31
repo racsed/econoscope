@@ -42,9 +42,9 @@ export function ModuleLayout({
 
   if (isProjectionMode) {
     return (
-      <div className="fixed inset-0 z-50 bg-[#0A0A0F] flex flex-col">
+      <div className="fixed inset-0 z-50 bg-white flex flex-col">
         <div className="flex-1 p-8">{visualization}</div>
-        <div className="p-4 border-t border-[#2A2A35]">
+        <div className="p-4 border-t border-[#E2E4E9]">
           <div className="flex gap-4 items-center justify-center">
             {scenarios}
           </div>
@@ -64,13 +64,13 @@ export function ModuleLayout({
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <Badge label={theme} color={themeColor} size="sm" />
-          <Badge label={LEVEL_LABELS[level]} color="#8888A0" size="sm" />
+          <Badge label={LEVEL_LABELS[level]} color="#9CA3B4" size="sm" />
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#E8E8ED] mb-2">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#1A1D26] mb-2">
           {title}
         </h1>
-        <p className="text-lg text-[#8888A0]">{subtitle}</p>
-        <p className="mt-4 text-[#E8E8ED]/80 max-w-3xl leading-relaxed">
+        <p className="text-lg text-[#5F6980]">{subtitle}</p>
+        <p className="mt-4 text-[#5F6980] max-w-3xl leading-relaxed">
           {introduction}
         </p>
       </div>
@@ -79,7 +79,7 @@ export function ModuleLayout({
       <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 mb-8">
         {/* Control Panel */}
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="bg-[#141419] border border-[#2A2A35] rounded-2xl p-5 space-y-1">
+          <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-2xl p-5 space-y-1">
             <h2
               className="text-sm font-semibold uppercase tracking-wider mb-4"
               style={{ color: themeColor }}
@@ -91,7 +91,7 @@ export function ModuleLayout({
         </div>
 
         {/* Visualization */}
-        <div className="bg-[#141419] border border-[#2A2A35] rounded-2xl p-5 min-h-[400px] flex items-center justify-center">
+        <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-2xl p-5 min-h-[400px] flex items-center justify-center">
           {visualization}
         </div>
       </div>
