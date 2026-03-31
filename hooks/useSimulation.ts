@@ -17,7 +17,14 @@ export function useSimulation(module: SimulationModule) {
   const [isProjectionMode, setIsProjectionMode] = useState(false);
 
   const setValue = useCallback((key: string, value: number | boolean | string) => {
-    setAllValues(prev => ({ ...prev, [key]: value }));
+    setAllValues(prev => {
+      const next = { ...prev, [key]: value };
+      // Auto-switch to 'personnalise' if user changes a decile slider
+      if (key.match(/^d\d+$/) && prev.preset !== undefined && prev.preset !== 'personnalise') {
+        next.preset = 'personnalise';
+      }
+      return next;
+    });
     setActiveScenarioId(null);
   }, []);
 
