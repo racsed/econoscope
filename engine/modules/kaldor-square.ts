@@ -226,51 +226,59 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const best = sorted[0];
   const worst = sorted[sorted.length - 1];
 
-  let observation = `Le carre magique couvre ${scorePercent.toFixed(0)}% de la surface ideale. Le point fort est ${best.label} (${best.raw}${best.unit}), le point faible est ${worst.label} (${worst.raw}${worst.unit}).`;
+  let observation = `Le carre magique couvre ${scorePercent.toFixed(0)}% de la surface ideale. Le point fort est ${best.label} (${best.raw}${best.unit}), le point faible est ${worst.label} (${worst.raw}${worst.unit}). La surface du quadrilatere est d'autant plus grande que les quatre indicateurs sont proches de leurs valeurs "ideales" (croissance forte, chomage bas, inflation basse, excedent commercial).`;
 
   let interpretation = `Avec une croissance de ${croissance}%, un chomage de ${chomage}%, une inflation de ${inflation}% et un solde commercial de ${soldeCommercial}% du PIB, `;
 
   if (scorePercent >= 70) {
-    interpretation += "la situation economique est globalement favorable. La plupart des objectifs macroeconomiques sont atteints ou en bonne voie.";
+    interpretation += "la situation economique est globalement favorable. La surface couvre plus de 70% de l'ideal, ce qui signifie que la plupart des objectifs macroeconomiques sont simultanement atteints - une configuration rare et difficile a maintenir car ces objectifs sont souvent contradictoires.";
   } else if (scorePercent >= 40) {
-    interpretation += "la situation economique est mitigee. Des arbitrages sont necessaires entre les differents objectifs de politique economique.";
+    interpretation += "la situation economique est mitigee. Le carre est deforme, ce qui revele des arbitrages entre objectifs : on ne peut pas tout avoir en meme temps. Par exemple, stimuler la croissance (via la demande) risque d'augmenter l'inflation et de creuser le deficit commercial.";
   } else {
-    interpretation += "la situation economique est degradee. Plusieurs indicateurs sont loin de leurs niveaux optimaux, ce qui appelle des mesures correctives.";
+    interpretation += "la situation economique est degradee. Plusieurs indicateurs sont loin de leurs niveaux optimaux. Le faible score reflete une economie desequilibree ou la politique economique doit prioriser les urgences.";
   }
 
   // Specific trade-offs
   if (chomage > 8 && inflation < 2) {
-    interpretation += " Le faible niveau d'inflation associe a un chomage eleve suggere une insuffisance de la demande globale (courbe de Phillips).";
+    interpretation += " Le faible niveau d'inflation associe a un chomage eleve suggere une insuffisance de la demande globale : c'est le mecanisme de la courbe de Phillips. Une politique de relance (budgetaire ou monetaire) pourrait reduire le chomage, mais au prix d'une inflation plus elevee.";
   }
   if (chomage < 4 && inflation > 4) {
-    interpretation += " La combinaison chomage bas / inflation elevee illustre l'arbitrage de Phillips : l'economie est en surchauffe.";
+    interpretation += " La combinaison chomage bas / inflation elevee illustre l'arbitrage de Phillips : l'economie est en surchauffe, les entreprises se disputent les travailleurs et les couts grimpent. La banque centrale devrait durcir sa politique monetaire.";
   }
   if (soldeCommercial < -3) {
-    interpretation += " Le deficit commercial important traduit un manque de competitivite ou une demande interieure excessive par rapport a l'offre domestique.";
+    interpretation += ` Le deficit commercial de ${soldeCommercial}% du PIB traduit soit un manque de competitivite-prix (couts trop eleves, monnaie trop forte), soit une demande interieure excessive qui aspire les importations. Ce deficit doit etre finance par des emprunts exterieurs.`;
+  }
+  if (soldeCommercial > 5) {
+    interpretation += ` L'excedent commercial de ${soldeCommercial}% du PIB peut refleter une forte competitivite, mais aussi une demande interieure trop faible (epargne excessive). Un excedent persistant cree des tensions avec les partenaires commerciaux.`;
+  }
+  if (croissance < 0 && croissance > -3) {
+    interpretation += ` La croissance legerement negative (${croissance}%) indique un ralentissement ou une recession technique. Le PIB recule mais la situation n'est pas encore une crise profonde.`;
+  }
+  if (inflation < 0) {
+    interpretation += ` L'inflation negative (deflation de ${Math.abs(inflation)}%) est preoccupante : la baisse des prix incite les menages a reporter leurs achats, deprimant davantage la demande. C'est le piege deflationniste redoute par les banques centrales.`;
   }
 
-  // Coherence warnings
+  // Coherence warnings - more pedagogical
   const coherenceWarnings: string[] = [];
   if (chomage < 4 && inflation < 1) {
-    coherenceWarnings.push("Historiquement rare : un chomage si bas s'accompagne generalement d'une inflation plus elevee (courbe de Phillips)");
+    coherenceWarnings.push("Historiquement rare : un chomage si bas s'accompagne generalement d'une inflation plus elevee. La courbe de Phillips predit que les tensions sur le marche du travail alimentent la hausse des salaires puis des prix");
   }
   if (croissance > 5 && soldeCommercial < -3) {
-    coherenceWarnings.push("Une forte croissance tend a augmenter les importations et creuser le deficit commercial");
+    coherenceWarnings.push("Coherent mais fragile : une forte croissance stimule les importations (les menages consomment plus, y compris des produits etrangers), ce qui creuse naturellement le deficit commercial");
   }
   if (chomage < 3 && croissance < 0) {
-    coherenceWarnings.push("Incoherent : une recession s'accompagne generalement d'une hausse du chomage");
+    coherenceWarnings.push("Combinaison incoherente : une recession detruit des emplois et augmente le chomage (loi d'Okun). Un chomage bas avec un PIB en recul est quasi impossible hors contexte demographique exceptionnel");
   }
   if (inflation > 10 && croissance > 5) {
-    coherenceWarnings.push("Combinaison possible mais instable : une croissance forte avec une inflation a deux chiffres suggere une surchauffe");
+    coherenceWarnings.push("Surchauffe : une croissance forte avec une inflation a deux chiffres indique une economie qui depasse ses capacites productives. Les marches de matieres premieres et du travail sont en tension");
   }
   if (chomage > 15 && inflation > 8) {
-    coherenceWarnings.push("Situation de stagflation : combinaison rare en dehors de chocs d'offre majeurs");
+    coherenceWarnings.push("Stagflation : cette combinaison rare (chomage ET inflation eleves) resulte generalement d'un choc d'offre majeur (crise petroliere, pandemie) et non d'un exces de demande");
   }
 
   if (coherenceWarnings.length > 0) {
     const warningText = coherenceWarnings.map(w => `\u26a0 ${w}`).join('. ');
     observation += ` ${warningText}.`;
-    interpretation += ` Attention : ${coherenceWarnings.join(' ; ')}.`;
   }
 
   return {
