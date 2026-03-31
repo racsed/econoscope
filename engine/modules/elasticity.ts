@@ -105,6 +105,36 @@ const scenarios: Scenario[] = [
     description: "Demande peu elastique, forte dependance",
     values: { prix_initial: 12, elasticite: -0.4, type_bien: 'necessaire', variation_prix: 30 },
   },
+  {
+    id: 'electricite',
+    label: 'Electricite (inelastique)',
+    description: "Bien essentiel, peu de substituts a court terme",
+    values: { prix_initial: 150, elasticite: -0.2, type_bien: 'necessaire', variation_prix: 15 },
+  },
+  {
+    id: 'netflix',
+    label: 'Abonnement Netflix',
+    description: "Loisir substituable, demande elastique",
+    values: { prix_initial: 14, elasticite: -1.8, type_bien: 'luxe', variation_prix: 20 },
+  },
+  {
+    id: 'baguette',
+    label: 'Baguette de pain',
+    description: "Bien de premiere necessite, tres inelastique",
+    values: { prix_initial: 1.2, elasticite: -0.15, type_bien: 'necessaire', variation_prix: 25 },
+  },
+  {
+    id: 'vol_low_cost',
+    label: 'Vol low-cost',
+    description: "Tres substituable, demande tres elastique",
+    values: { prix_initial: 50, elasticite: -3.5, type_bien: 'luxe', variation_prix: 10 },
+  },
+  {
+    id: 'medicament_vital',
+    label: 'Medicament vital',
+    description: "Aucun substitut, demande parfaitement inelastique",
+    values: { prix_initial: 30, elasticite: -0.05, type_bien: 'necessaire', variation_prix: 50 },
+  },
 ];
 
 /**
@@ -160,8 +190,6 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // If e > -1 (inelastic), RT always increases with P
   // If e < -1 (elastic), RT always decreases with P
   // If e = -1, RT is constant
-
-  const absElasticite = Math.abs(elasticite);
 
   const demandAnnotations: Annotation[] = [
     {

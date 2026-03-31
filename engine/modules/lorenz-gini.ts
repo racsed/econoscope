@@ -12,7 +12,7 @@ import type {
 import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
-  slug: 'lorenz-gini',
+  slug: 'courbe-de-lorenz-gini',
   title: 'Courbe de Lorenz et coefficient de Gini',
   subtitle: "Mesurer les inegalites de revenus",
   theme: 'inequality',

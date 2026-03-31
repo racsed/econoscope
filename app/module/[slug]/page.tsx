@@ -5,6 +5,8 @@ import { useMemo } from 'react';
 import { getModule } from '@/engine/init';
 import { useSimulation } from '@/hooks/useSimulation';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
+import Link from 'next/link';
+import { SearchX, ArrowLeft } from 'lucide-react';
 import { ModuleLayout } from '@/components/module/ModuleLayout';
 import { ControlPanel } from '@/components/module/ControlPanel';
 import { VisualizationPane } from '@/components/module/VisualizationPane';
@@ -23,10 +25,25 @@ export default function ModulePage() {
 
   if (!simulationModule) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-text-primary mb-2">Module introuvable</h1>
-          <p className="text-text-secondary">Le module &quot;{slug}&quot; n&apos;existe pas encore.</p>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-accent-indigo/10 flex items-center justify-center mx-auto mb-6">
+            <SearchX size={28} className="text-accent-indigo" />
+          </div>
+          <h1 className="text-2xl font-bold text-text-primary mb-3">
+            Module introuvable
+          </h1>
+          <p className="text-text-secondary mb-8 leading-relaxed">
+            Le module &quot;{slug}&quot; n&apos;existe pas encore.
+            Il sera peut-etre disponible prochainement.
+          </p>
+          <Link
+            href="/explorer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-accent-indigo text-white font-semibold rounded-full hover:bg-[#4F52E0] transition-all duration-200 hover:shadow-lg hover:shadow-accent-indigo/25"
+          >
+            <ArrowLeft size={16} />
+            Retour au catalogue
+          </Link>
         </div>
       </div>
     );

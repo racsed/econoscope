@@ -322,8 +322,11 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (marcheNonViable) {
-    observation = `Avec ces parametres, le marche n'est pas viable : les couts sont trop eleves par rapport a la demande.`;
-    interpretation = `La quantite d'equilibre calculee est negative, ce qui signifie qu'aucun echange n'est possible. Il faudrait reduire les couts de production, la taxation, ou augmenter le revenu des consommateurs pour rendre le marche viable.`;
+    observation = `Avec ces parametres, le marche n'est pas viable : les couts sont trop eleves par rapport a la disposition a payer des consommateurs.`;
+    interpretation = `La quantite d'equilibre calculee est negative, ce qui signifie qu'aucun echange mutuellement avantageux n'est possible. Le prix minimum acceptable par les producteurs depasse le prix maximum que les acheteurs sont prets a payer. Il faudrait reduire les couts de production (slider "Cout de production"), baisser la taxe, ou augmenter le revenu des consommateurs pour qu'offre et demande puissent se croiser.`;
+  } else if (taxe === 0) {
+    observation = `Au prix d'equilibre de ${eqBase.price.toFixed(1)}\u20ac, la quantite echangee est de ${eqBase.quantity.toFixed(0)} unites. Ce prix resulte de la confrontation entre l'offre et la demande : c'est le seul prix auquel la quantite que les acheteurs souhaitent acheter egal celle que les vendeurs souhaitent vendre.`;
+    interpretation = `Le surplus du consommateur (${Math.max(0, surplusConsommateur).toFixed(0)}\u20ac) mesure le gain des acheteurs qui auraient paye plus cher. Le surplus du producteur (${Math.max(0, surplusProducteur).toFixed(0)}\u20ac) mesure le gain des vendeurs qui auraient accepte moins. Le surplus total (${(Math.max(0, surplusConsommateur) + Math.max(0, surplusProducteur)).toFixed(0)}\u20ac) est maximal a l'equilibre : tout autre prix reduirait le bien-etre collectif.`;
   } else {
     observation = `Au prix d'equilibre de ${eqBase.price.toFixed(1)}\u20ac, la quantite echangee est de ${eqBase.quantity.toFixed(0)} unites.`;
     interpretation = `Le surplus du consommateur est de ${Math.max(0, surplusConsommateur).toFixed(0)}\u20ac et le surplus du producteur de ${Math.max(0, surplusProducteur).toFixed(0)}\u20ac.`;
@@ -332,12 +335,24 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (!marcheNonViable && taxe > 0) {
     const prixAcheteur = taxeSurVendeur ? eqTax.price : eqTax.price + taxe;
     const prixVendeur = taxeSurVendeur ? eqTax.price - taxe : eqTax.price;
-    observation = `La taxe de ${taxe}\u20ac deplace l'equilibre : le prix passe de ${eqBase.price.toFixed(1)}\u20ac a ${eqTax.price.toFixed(1)}\u20ac et la quantite de ${eqBase.quantity.toFixed(0)} a ${eqTax.quantity.toFixed(0)} unites.`;
-    interpretation = `L'acheteur paie ${prixAcheteur.toFixed(1)}\u20ac, le vendeur recoit ${prixVendeur.toFixed(1)}\u20ac. La recette fiscale est de ${recetteFiscale.toFixed(0)}\u20ac mais la perte seche de ${pertSeche.toFixed(1)}\u20ac reduit le bien-etre global. L'incidence de la taxe se repartit entre acheteurs et vendeurs selon les elasticites relatives.`;
+    const incidenceAcheteur = ((prixAcheteur - eqBase.price) / taxe * 100).toFixed(0);
+    const incidenceVendeur = ((eqBase.price - prixVendeur) / taxe * 100).toFixed(0);
+    observation = `La taxe de ${taxe}\u20ac ${taxeSurVendeur ? 'sur le vendeur deplace la courbe d\'offre vers le haut' : 'sur l\'acheteur deplace la courbe de demande vers le bas'} : le prix passe de ${eqBase.price.toFixed(1)}\u20ac a ${eqTax.price.toFixed(1)}\u20ac et la quantite chute de ${eqBase.quantity.toFixed(0)} a ${eqTax.quantity.toFixed(0)} unites. La taxe cree un ecart (coin fiscal) entre ce que paie l'acheteur et ce que recoit le vendeur.`;
+    interpretation = `L'acheteur paie effectivement ${prixAcheteur.toFixed(1)}\u20ac, le vendeur ne recoit que ${prixVendeur.toFixed(1)}\u20ac. L'incidence fiscale se repartit : environ ${incidenceAcheteur}% de la taxe est supportee par l'acheteur et ${incidenceVendeur}% par le vendeur. Cette repartition depend des elasticites relatives : le cote le plus inelastique (le moins sensible au prix) supporte la plus grande part. La recette fiscale est de ${recetteFiscale.toFixed(0)}\u20ac, mais la perte seche (triangle de Harberger) de ${pertSeche.toFixed(1)}\u20ac represente des echanges mutuellement avantageux qui n'ont plus lieu a cause de la taxe.`;
+  }
+
+  if (!marcheNonViable && taxe === 0 && coutProduction > 25) {
+    observation += ` Le cout de production eleve (${coutProduction}\u20ac) deplace la courbe d'offre vers la gauche : les producteurs exigent un prix plus eleve pour chaque unite, ce qui reduit la quantite echangee et augmente le prix d'equilibre.`;
   }
 
   if (!marcheNonViable && revenu > 3000) {
-    observation += ` Le revenu eleve (${revenu}\u20ac) stimule fortement la demande.`;
+    observation += ` Le revenu eleve (${revenu}\u20ac) deplace la courbe de demande vers la droite par l'effet-revenu : les consommateurs plus riches souhaitent acheter davantage a chaque niveau de prix, ce qui tire le prix d'equilibre vers le haut.`;
+  } else if (!marcheNonViable && revenu < 1000) {
+    observation += ` Le faible revenu (${revenu}\u20ac) limite la demande : la courbe de demande est deplacee vers la gauche, ce qui reduit a la fois le prix et la quantite d'equilibre.`;
+  }
+
+  if (!marcheNonViable && nbAcheteurs > 500) {
+    observation += ` Le grand nombre d'acheteurs (${nbAcheteurs}) amplifie la demande globale, poussant le prix d'equilibre a la hausse.`;
   }
 
   return {

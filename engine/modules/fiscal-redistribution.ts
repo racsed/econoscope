@@ -293,22 +293,41 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Narration
   const isProgressif = t1 < t2 && t2 < t3 && t3 < t4;
   const isFlat = t1 === t2 && t2 === t3 && t3 === t4;
-  const typeBareme = isFlat ? 'proportionnel (flat tax)' : isProgressif ? 'progressif' : 'non monotone';
+  const isRegressif = t1 > t2 || t2 > t3 || t3 > t4;
+  const typeBareme = isFlat ? 'proportionnel (flat tax)' : isProgressif ? 'progressif' : isRegressif ? 'regressif (les taux diminuent avec le revenu)' : 'non monotone';
 
-  const observation = `Avec un bareme ${typeBareme} et un transfert de ${transfertMensuel} EUR/mois, le Gini passe de ${giniAvant.toFixed(3)} (avant) a ${giniApres.toFixed(3)} (apres), soit une reduction de ${reductionGini.toFixed(1)}%. Le taux effectif net varie de ${tauxEffectifs[0].toFixed(1)}% (D1) a ${tauxEffectifs[9].toFixed(1)}% (D10). Les recettes fiscales totales s'elevent a ${(recettesFiscales / 12).toFixed(0)} EUR/mois.`;
+  const observation = `Avec un bareme ${typeBareme} (tranches : ${t1}%/${t2}%/${t3}%/${t4}%) et un transfert de ${transfertMensuel} EUR/mois, le Gini passe de ${giniAvant.toFixed(3)} (avant) a ${giniApres.toFixed(3)} (apres), soit une reduction de ${reductionGini.toFixed(1)}%. Le taux effectif net varie de ${tauxEffectifs[0].toFixed(1)}% (D1) a ${tauxEffectifs[9].toFixed(1)}% (D10). Les recettes fiscales totales s'elevent a ${(recettesFiscales / 12).toFixed(0)} EUR/mois.`;
 
   let interpretation: string;
 
   if (reductionGini > 30) {
-    interpretation = `Le systeme fiscal est fortement redistributif. La combinaison d'un bareme progressif et de transferts sociaux reduit les inegalites de ${reductionGini.toFixed(0)}%. Les premiers deciles sont beneficiaires nets (taux effectif negatif grace aux transferts).`;
+    interpretation = `Le systeme fiscal est fortement redistributif (reduction du Gini de ${reductionGini.toFixed(0)}%). Pourquoi ? La progressivite de l'impot fait que les hauts revenus contribuent proportionnellement plus : le D10 paie un taux effectif de ${tauxEffectifs[9].toFixed(1)}% tandis que le D1 a un taux effectif de ${tauxEffectifs[0].toFixed(1)}%. Les transferts forfaitaires amplifient l'effet : ils representent une part plus importante du revenu des menages modestes (effet redistributif "par le bas"). Les premiers deciles sont beneficiaires nets (taux effectif negatif).`;
   } else if (reductionGini > 10) {
-    interpretation = `Le systeme fiscal a un effet redistributif modere (reduction du Gini de ${reductionGini.toFixed(0)}%). La progressivite du bareme et les transferts attenuent les ecarts de revenus sans les supprimer.`;
+    interpretation = `Le systeme fiscal a un effet redistributif modere (reduction du Gini de ${reductionGini.toFixed(0)}%). La progressivite du bareme preleve davantage sur les hauts revenus, et les transferts completent les bas revenus, mais l'ecart entre D1 et D10 reste significatif. Pour une redistribution plus forte, il faudrait augmenter la progressivite (slider des tranches hautes) ou les transferts.`;
   } else {
-    interpretation = `Le systeme fiscal a un faible effet redistributif (reduction du Gini de ${reductionGini.toFixed(0)}% seulement). ${isFlat ? 'Un impot proportionnel sans forte progressivite redistribue peu.' : 'Les taux sont trop faibles ou les transferts insuffisants pour reduire significativement les inegalites.'}`;
+    interpretation = `Le systeme fiscal a un faible effet redistributif (reduction du Gini de ${reductionGini.toFixed(0)}% seulement). `;
+    if (isFlat) {
+      interpretation += `Un impot proportionnel (meme taux pour tous) ne redistribue que par les transferts : il preleve le meme pourcentage a chaque decile, donc l'ecart relatif entre riches et pauvres reste quasiment inchange.`;
+    } else if (isRegressif) {
+      interpretation += `Le bareme regressif accentue les inegalites au lieu de les reduire : les bas revenus paient un taux effectif plus eleve que les hauts revenus. Ce type de configuration est l'inverse de l'objectif redistributif.`;
+    } else {
+      interpretation += `Les taux sont trop faibles ou les transferts insuffisants pour reduire significativement les inegalites.`;
+    }
+  }
+
+  // Equity-efficiency trade-off
+  if (t4 > 50) {
+    interpretation += ` Attention a l'arbitrage equite-efficacite : un taux marginal superieur de ${t4}% peut decourager l'effort de travail, l'entrepreneuriat ou inciter a l'optimisation fiscale, reduisant l'assiette imposable (effet Laffer). Le gain redistributif doit etre mis en balance avec ces effets comportementaux.`;
+  }
+
+  if (transfertMensuel > 500 && t4 < 30) {
+    interpretation += ` Des transferts genereux (${transfertMensuel} EUR/mois) associes a un bareme peu progressif creent un deficit structurel et interrogent la soutenabilite du systeme.`;
   }
 
   if (soldeBudgetaire < 0) {
-    interpretation += ` Attention : le cout des transferts (${(coutTransferts / 12).toFixed(0)} EUR/mois) depasse les recettes fiscales, generant un deficit budgetaire de ${(-soldeBudgetaire / 12).toFixed(0)} EUR/mois.`;
+    interpretation += ` Le cout des transferts (${(coutTransferts / 12).toFixed(0)} EUR/mois) depasse les recettes fiscales, generant un deficit budgetaire de ${(-soldeBudgetaire / 12).toFixed(0)} EUR/mois. Ce systeme n'est pas soutenable sans emprunt ou creation monetaire.`;
+  } else if (soldeBudgetaire > 0) {
+    interpretation += ` Le systeme degage un excedent budgetaire de ${(soldeBudgetaire / 12).toFixed(0)} EUR/mois, ce qui pourrait permettre de financer d'autres politiques publiques ou de reduire la dette.`;
   }
 
   return {

@@ -305,25 +305,48 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Narration
   let observation = `L'equilibre macroeconomique se situe a Y = ${eq.y.toFixed(0)} Mds\u20ac avec un niveau des prix P = ${eq.p.toFixed(2)}.`;
   if (modeLongTerme) {
-    observation += ` Le PIB potentiel est de ${yPotential.toFixed(0)} Mds\u20ac. L'ecart de production (output gap) est de ${outputGap.toFixed(1)}%.`;
+    observation += ` Le PIB potentiel (LRAS) est de ${yPotential.toFixed(0)} Mds\u20ac. L'ecart de production (output gap) est de ${outputGap.toFixed(1)}%.`;
+    observation += ` La distinction SRAS/LRAS est essentielle : a court terme (SRAS), les prix des inputs (salaires, energie) sont rigides, donc la production peut s'ecarter du potentiel. A long terme (LRAS), tous les prix s'ajustent et l'economie revient au PIB potentiel.`;
   }
 
   let interpretation: string;
 
   if (outputGap > 2) {
-    interpretation = `L'economie est en surchauffe : la production depasse le potentiel de ${outputGap.toFixed(1)}%. Cela exerce une pression a la hausse sur les prix. A long terme, les salaires s'ajusteront a la hausse, deplacant SRAS vers la gauche jusqu'au retour au potentiel avec un niveau des prix plus eleve.`;
+    interpretation = `L'economie est en surchauffe : la production depasse le potentiel de ${outputGap.toFixed(1)}%. Les entreprises produisent au-dela de leurs capacites normales, ce qui exerce une pression a la hausse sur les couts (heures supplementaires, rarefaction des inputs). A long terme, les salaires s'ajusteront a la hausse, deplacant SRAS vers la gauche jusqu'au retour au potentiel avec un niveau des prix plus eleve - c'est le mecanisme d'ajustement automatique.`;
   } else if (outputGap < -2) {
-    interpretation = `L'economie est en recession : la production est inferieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Il existe des capacites inutilisees et du chomage conjoncturel. Une politique de relance (budgetaire ou monetaire) pourrait combler cet ecart.`;
+    interpretation = `L'economie est en recession : la production est inferieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Cela signifie que des usines tournent en sous-regime, des travailleurs sont au chomage conjoncturel. Une politique de relance budgetaire (hausse de G, deplacement d'AD) ou monetaire (hausse de M, deplacement d'AD) pourrait combler cet ecart en stimulant la demande globale.`;
   } else {
-    interpretation = `L'economie est proche de son potentiel. L'ecart de production est faible (${outputGap.toFixed(1)}%), indiquant un equilibre macroeconomique relativement sain.`;
+    interpretation = `L'economie est proche de son potentiel. L'ecart de production est faible (${outputGap.toFixed(1)}%), indiquant un equilibre macroeconomique relativement sain ou l'offre et la demande globales s'accordent pres du plein emploi.`;
   }
 
   if (prixPetrole > 150) {
-    interpretation += ` La hausse du prix du petrole (indice ${prixPetrole}) agit comme un choc d'offre negatif, deplacant SRAS vers la gauche et provoquant une situation de stagflation (hausse des prix et baisse de la production).`;
+    interpretation += ` Le prix du petrole eleve (indice ${prixPetrole}) agit comme un choc d'offre negatif : il augmente les couts de production de toutes les entreprises, deplacant SRAS vers la gauche. Le resultat est une stagflation - la production baisse ET les prix montent - un dilemme pour la politique economique car relancer la demande aggraverait l'inflation.`;
+  } else if (prixPetrole < 70) {
+    interpretation += ` Le faible prix du petrole (indice ${prixPetrole}) agit comme un choc d'offre positif : il reduit les couts de production, deplacant SRAS vers la droite. L'economie beneficie d'une croissance plus forte avec moins d'inflation - c'est la situation ideale.`;
+  }
+
+  if (productivite > 120) {
+    interpretation += ` La productivite elevee (indice ${productivite}) deplace a la fois SRAS et LRAS vers la droite : le PIB potentiel augmente a ${yPotential.toFixed(0)} Mds\u20ac. C'est le mecanisme de la croissance de long terme - le progres technique repousse les limites de l'economie.`;
+  } else if (productivite < 80) {
+    interpretation += ` La faible productivite (indice ${productivite}) contracte le PIB potentiel a ${yPotential.toFixed(0)} Mds\u20ac et deplace SRAS vers la gauche. L'economie produit moins avec les memes ressources.`;
+  }
+
+  if (salaire > 130) {
+    interpretation += ` Les salaires nominaux eleves (indice ${salaire}) deplacent SRAS vers la gauche sans affecter LRAS : les couts de production augmentent, ce qui pousse les prix a la hausse a court terme. C'est le mecanisme de la spirale prix-salaires.`;
+  } else if (salaire < 80) {
+    interpretation += ` Les faibles salaires nominaux (indice ${salaire}) deplacent SRAS vers la droite : les couts de production bas permettent de produire davantage a prix egal, mais cela peut refleter une compression des revenus des travailleurs.`;
   }
 
   if (g > 300) {
-    interpretation += ` Les depenses publiques elevees (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exercant une pression inflationniste.`;
+    interpretation += ` Les depenses publiques elevees (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exercant une pression inflationniste. L'ampleur de l'effet depend de la pente de SRAS : plus l'economie est proche du potentiel, plus la hausse de G se traduit en inflation plutot qu'en production.`;
+  } else if (g < 100) {
+    interpretation += ` Les faibles depenses publiques (${g} Mds\u20ac) positionnent AD plus a gauche, limitant la demande globale. C'est le choix de l'austerite budgetaire.`;
+  }
+
+  if (m > 1200) {
+    interpretation += ` L'offre de monnaie abondante (${m} Mds\u20ac) deplace AD vers la droite via la baisse des taux d'interet qui stimule l'investissement et la consommation. C'est le levier de la politique monetaire expansionniste.`;
+  } else if (m < 500) {
+    interpretation += ` L'offre de monnaie restreinte (${m} Mds\u20ac) limite la demande globale en maintenant des taux d'interet eleves. C'est une politique monetaire restrictive visant a contenir l'inflation.`;
   }
 
   return {

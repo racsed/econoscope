@@ -42,7 +42,7 @@ export default function Footer() {
               Projet
             </p>
             <p className="mt-3 text-sm text-text-secondary leading-relaxed">
-              Un projet open-source a vocation pedagogique.
+              Un projet a vocation pedagogique.
               Concu pour rendre l&apos;economie accessible a tous.
             </p>
           </div>

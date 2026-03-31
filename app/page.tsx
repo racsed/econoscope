@@ -27,7 +27,7 @@ export default function HomePage() {
     <main className="min-h-screen">
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Animated grid background */}
+        {/* Animated chart background */}
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 opacity-[0.03]"
@@ -37,6 +37,66 @@ export default function HomePage() {
               backgroundSize: '60px 60px',
             }}
           />
+          {/* Animated SVG line chart */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 1200 800"
+            preserveAspectRatio="xMidYMid slice"
+            style={{ opacity: 0.07 }}
+          >
+            <style>{`
+              @keyframes drawLine {
+                from { stroke-dashoffset: 2000; }
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes drawLineSecond {
+                from { stroke-dashoffset: 2000; }
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes pulse1 {
+                0%, 100% { r: 4; opacity: 0.6; }
+                50% { r: 7; opacity: 1; }
+              }
+              @keyframes pulse2 {
+                0%, 100% { r: 3; opacity: 0.5; }
+                50% { r: 6; opacity: 0.9; }
+              }
+              @keyframes pulse3 {
+                0%, 100% { r: 5; opacity: 0.4; }
+                50% { r: 8; opacity: 0.8; }
+              }
+              .hero-line-1 {
+                stroke-dasharray: 2000;
+                animation: drawLine 4s ease-in-out forwards, drawLine 4s ease-in-out 6s infinite;
+              }
+              .hero-line-2 {
+                stroke-dasharray: 2000;
+                animation: drawLineSecond 4s ease-in-out 1s forwards, drawLineSecond 4s ease-in-out 7s infinite;
+              }
+              .hero-dot-1 { animation: pulse1 3s ease-in-out infinite; }
+              .hero-dot-2 { animation: pulse2 3.5s ease-in-out 0.5s infinite; }
+              .hero-dot-3 { animation: pulse3 4s ease-in-out 1s infinite; }
+            `}</style>
+            <path
+              className="hero-line-1"
+              d="M 50 600 C 200 580, 300 400, 450 350 S 650 200, 800 280 S 1000 150, 1150 100"
+              fill="none"
+              stroke="#5B5EF4"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            <path
+              className="hero-line-2"
+              d="M 50 650 C 200 630, 350 550, 500 500 S 700 380, 850 420 S 1050 300, 1150 250"
+              fill="none"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <circle className="hero-dot-1" cx="450" cy="350" fill="#5B5EF4" />
+            <circle className="hero-dot-2" cx="800" cy="280" fill="#22D3EE" />
+            <circle className="hero-dot-3" cx="1050" cy="160" fill="#5B5EF4" />
+          </svg>
           {/* Gradient orbs */}
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent-indigo/5 blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#22D3EE]/5 blur-[120px]" />

@@ -25,6 +25,9 @@ export function RealiteBlock({ items, themeColor }: RealiteBlockProps) {
           Dans la realite
         </h3>
       </div>
+      <p className="text-sm text-text-secondary mb-3">
+        Voici comment ce mecanisme se manifeste dans le monde reel :
+      </p>
       <ul className="space-y-2">
         {items.map((item, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">

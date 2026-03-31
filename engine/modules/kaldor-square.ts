@@ -226,7 +226,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const best = sorted[0];
   const worst = sorted[sorted.length - 1];
 
-  const observation = `Le carre magique couvre ${scorePercent.toFixed(0)}% de la surface ideale. Le point fort est ${best.label} (${best.raw}${best.unit}), le point faible est ${worst.label} (${worst.raw}${worst.unit}).`;
+  let observation = `Le carre magique couvre ${scorePercent.toFixed(0)}% de la surface ideale. Le point fort est ${best.label} (${best.raw}${best.unit}), le point faible est ${worst.label} (${worst.raw}${worst.unit}).`;
 
   let interpretation = `Avec une croissance de ${croissance}%, un chomage de ${chomage}%, une inflation de ${inflation}% et un solde commercial de ${soldeCommercial}% du PIB, `;
 
@@ -247,6 +247,30 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   }
   if (soldeCommercial < -3) {
     interpretation += " Le deficit commercial important traduit un manque de competitivite ou une demande interieure excessive par rapport a l'offre domestique.";
+  }
+
+  // Coherence warnings
+  const coherenceWarnings: string[] = [];
+  if (chomage < 4 && inflation < 1) {
+    coherenceWarnings.push("Historiquement rare : un chomage si bas s'accompagne generalement d'une inflation plus elevee (courbe de Phillips)");
+  }
+  if (croissance > 5 && soldeCommercial < -3) {
+    coherenceWarnings.push("Une forte croissance tend a augmenter les importations et creuser le deficit commercial");
+  }
+  if (chomage < 3 && croissance < 0) {
+    coherenceWarnings.push("Incoherent : une recession s'accompagne generalement d'une hausse du chomage");
+  }
+  if (inflation > 10 && croissance > 5) {
+    coherenceWarnings.push("Combinaison possible mais instable : une croissance forte avec une inflation a deux chiffres suggere une surchauffe");
+  }
+  if (chomage > 15 && inflation > 8) {
+    coherenceWarnings.push("Situation de stagflation : combinaison rare en dehors de chocs d'offre majeurs");
+  }
+
+  if (coherenceWarnings.length > 0) {
+    const warningText = coherenceWarnings.map(w => `\u26a0 ${w}`).join('. ');
+    observation += ` ${warningText}.`;
+    interpretation += ` Attention : ${coherenceWarnings.join(' ; ')}.`;
   }
 
   return {

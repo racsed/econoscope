@@ -18,6 +18,7 @@ export type LevelType = keyof typeof LEVEL_LABELS;
 
 export const NAV_LINKS = [
   { href: '/explorer', label: 'Explorer' },
+  { href: '/faits', label: 'Faits' },
   { href: '/scenarios', label: 'Scenarios' },
   { href: '/glossaire', label: 'Glossaire' },
   { href: '/a-propos', label: 'A propos' },

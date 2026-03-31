@@ -14,7 +14,14 @@ interface BarCascadeProps {
   themeColor?: string;
 }
 
-const margin = { top: 30, right: 30, bottom: 50, left: 70 };
+const margin = { top: 30, right: 30, bottom: 50, left: 75 };
+
+function formatCompact(value: number): string {
+  const abs = Math.abs(value);
+  if (abs >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+  if (abs >= 1_000) return `${(value / 1_000).toFixed(0)}k`;
+  return String(value);
+}
 
 function BarCascadeInner({
   data,
@@ -158,6 +165,7 @@ function BarCascadeInner({
         <AxisLeft
           scale={yScale}
           numTicks={5}
+          tickFormat={(v) => formatCompact(v as number)}
           stroke={colors.axis}
           tickStroke={colors.axis}
           tickLabelProps={() => ({

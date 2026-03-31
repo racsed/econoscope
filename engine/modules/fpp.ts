@@ -204,15 +204,27 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   // Narration
   const allocPct = (allocA * 100).toFixed(0);
-  let observation = `Avec ${R} unites de ressources, l'economie produit ${qaFrontier.toFixed(0)} unites de bien A et ${qbFrontier.toFixed(0)} unites de bien B (allocation de ${allocPct}% au bien A).`;
-  let interpretation = `Le cout d'opportunite d'une unite supplementaire de bien A est de ${coutOpportunite.toFixed(2)} unites de bien B. `;
+  let observation = `Avec ${R} unites de ressources (productivite A = ${prodA}, productivite B = ${prodB}), l'economie produit ${qaFrontier.toFixed(0)} unites de bien A et ${qbFrontier.toFixed(0)} unites de bien B (allocation de ${allocPct}% au bien A). La capacite maximale est de ${maxQA.toFixed(0)} A ou ${maxQB.toFixed(0)} B en specialisation totale.`;
+  let interpretation = `Le cout d'opportunite marginal d'une unite supplementaire de bien A est de ${coutOpportunite.toFixed(2)} unites de bien B. Ce cout augmente a mesure qu'on se specialise dans A (concavite de la frontiere), car les ressources les moins adaptees a A sont mobilisees en dernier. `;
 
   if (allocA > 0.9) {
-    interpretation += "L'economie est fortement specialisee dans le bien A, ce qui implique un cout d'opportunite eleve pour produire davantage de A.";
+    interpretation += `L'economie est quasi specialisee dans le bien A (${allocPct}% des ressources). Le cout d'opportunite est tres eleve (${coutOpportunite.toFixed(2)} B par A supplementaire) : les dernieres unites de A "coutent" cher car il faut renoncer a beaucoup de B. Diversifier legerement la production reduirait ce cout et pourrait etre plus efficient.`;
   } else if (allocA < 0.1) {
-    interpretation += "L'economie est fortement specialisee dans le bien B, ce qui implique un cout d'opportunite faible pour produire davantage de A.";
+    interpretation += `L'economie est quasi specialisee dans le bien B (seulement ${allocPct}% des ressources au bien A). Le cout d'opportunite de A est faible (${coutOpportunite.toFixed(2)} B) : produire un peu plus de A ne sacrifierait presque rien en B. C'est le signe que la specialisation dans B est poussee au maximum.`;
+  } else if (allocA > 0.4 && allocA < 0.6) {
+    interpretation += `L'economie diversifie sa production de maniere equilibree. Le point se situe sur la frontiere, ce qui signifie que toutes les ressources sont utilisees efficacement (pas de chomage ni de gaspillage). Tout deplacement le long de la courbe implique un arbitrage : produire plus de A exige de renoncer a du B, et inversement.`;
   } else {
-    interpretation += "Le point de production se situe sur la frontiere, ce qui signifie que l'economie utilise efficacement toutes ses ressources. Tout deplacement le long de la courbe implique un arbitrage.";
+    interpretation += `Le point de production se situe sur la frontiere, ce qui signifie que l'economie utilise efficacement toutes ses ressources. Tout deplacement le long de la courbe implique un arbitrage : produire plus de A signifie renoncer a du B.`;
+  }
+
+  if (prodA > 7 || prodB > 7) {
+    interpretation += ` La productivite elevee ${prodA > 7 ? 'du bien A' : ''}${prodA > 7 && prodB > 7 ? ' et ' : ''}${prodB > 7 ? 'du bien B' : ''} repousse la frontiere vers l'exterieur, ce qui correspond a un progres technique : l'economie peut produire davantage avec les memes ressources.`;
+  }
+
+  if (R > 700) {
+    interpretation += ` Les ressources abondantes (${R}) etirent la frontiere : une economie plus grande dispose de plus de possibilites, mais les couts d'opportunite restent determines par les productivites relatives.`;
+  } else if (R < 250) {
+    interpretation += ` Avec des ressources limitees (${R}), la frontiere est etroite : les choix d'allocation sont d'autant plus cruciaux car la marge d'erreur est faible.`;
   }
 
   return {
