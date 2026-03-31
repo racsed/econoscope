@@ -13,7 +13,7 @@ export function clamp(value: number, min: number, max: number): number {
 }
 
 /**
- * Arrondit un nombre a un nombre donne de decimales.
+ * Arrondit un nombre à un nombre donne de decimales.
  */
 export function roundTo(value: number, decimals: number): number {
   const factor = Math.pow(10, decimals);
@@ -21,7 +21,7 @@ export function roundTo(value: number, decimals: number): number {
 }
 
 /**
- * Representation d'une equation lineaire y = slope * x + intercept.
+ * Représentation d'une equation lineaire y = slope * x + intercept.
  */
 interface LinearEquation {
   slope: number;

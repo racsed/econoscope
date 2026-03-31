@@ -19,10 +19,10 @@ export interface FiscalRedistributionScenario {
 
 export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
   {
-    id: 'systeme-francais',
-    title: 'Systeme francais (approx. IR 2024)',
+    id: 'système-français',
+    title: 'Système français (approx. IR 2024)',
     description:
-      'Bareme progressif inspire du bareme de l\'impot sur le revenu francais.',
+      'Barème progressif inspire du barème de l\'impot sur le revenu français.',
     revenuMedian: 2500,
     tauxTranche1: 0,
     tauxTranche2: 11,
@@ -30,7 +30,7 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 41,
     transfertSocial: 200,
     explanation:
-      'Le systeme fiscal francais est l\'un des plus redistributifs d\'Europe. Avec une premiere tranche a 0% (qui exonere la moitie des foyers), une progressivite marquee et des transferts sociaux significatifs (RSA, prime d\'activite, APL), il reduit le Gini d\'environ 45%. Cependant, ce modele genere aussi un taux de prelevement obligatoire parmi les plus eleves au monde (45% du PIB).',
+      'Le système fiscal français est l\'un des plus redistributifs d\'Europe. Avec une première tranche a 0% (qui exonere la moitie des foyers), une progressivité marquee et des transferts sociaux significatifs (RSA, prime d\'activité, APL), il réduit le Gini d\'environ 45%. Cependant, ce modèle génère aussi un taux de prélèvement obligatoire parmi les plus élevés au monde (45% du PIB).',
   },
   {
     id: 'flat-tax-20',
@@ -44,13 +44,13 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 20,
     transfertSocial: 200,
     explanation:
-      'La flat tax applique le meme taux a tous les revenus. Ses partisans avancent la simplicite, la transparence et la reduction de l\'evasion fiscale. Ses detracteurs soulignent la faible progressivite : les bas revenus paient proportionnellement autant que les hauts revenus. Plusieurs pays d\'Europe de l\'Est (Estonie, Bulgarie, Roumanie) ont adopte ce systeme.',
+      'La flat tax applique le même taux a tous les revenus. Ses partisans avancent la simplicite, la transparence et la réduction de l\'évasion fiscale. Ses detracteurs soulignent la faible progressivité : les bas revenus paient proportionnellement autant que les hauts revenus. Plusieurs pays d\'Europe de l\'Est (Estonie, Bulgarie, Roumanie) ont adopte ce système.',
   },
   {
     id: 'tres-progressif',
-    title: 'Systeme tres progressif',
+    title: 'Système tres progressif',
     description:
-      'Forte redistribution avec des taux eleves et des transferts genereux.',
+      'Forte redistribution avec des taux élevés et des transferts généreux.',
     revenuMedian: 2500,
     tauxTranche1: 0,
     tauxTranche2: 20,
@@ -58,7 +58,7 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 55,
     transfertSocial: 600,
     explanation:
-      'Un systeme tres progressif avec des taux marginaux eleves et des transferts genereux reduit fortement les inegalites. C\'est l\'approche des pays scandinaves (Danemark, Suede) qui combinent taux marginaux superieurs a 50% et prestations sociales universelles. Le risque est l\'effet desincitatif sur l\'offre de travail et l\'exil fiscal des hauts revenus.',
+      'Un système tres progressif avec des taux marginaux élevés et des transferts généreux réduit fortement les inégalités. C\'est l\'approche des pays scandinaves (Danemark, Suede) qui combinent taux marginaux supérieurs a 50% et prestations sociales universelles. Le risque est l\'effet desincitatif sur l\'offre de travail et l\'exil fiscal des hauts revenus.',
   },
   {
     id: 'zero-impot-transferts',
@@ -72,11 +72,11 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 0,
     transfertSocial: 0,
     explanation:
-      'Sans fiscalite ni transferts, les inegalites de marche sont intactes. Le Gini reste a son niveau initial (environ 0.45 en France). Ce scenario theorique illustre l\'ampleur de la redistribution operee par l\'Etat. Dans la realite, meme les pays les plus liberaux (Etats-Unis, Singapour) ont un minimum de redistribution.',
+      'Sans fiscalité ni transferts, les inégalités de marché sont intactes. Le Gini reste à son niveau initial (environ 0.45 en France). Ce scénario théorique illustre l\'ampleur de la redistribution opérée par l\'État. Dans la réalité, même les pays les plus liberaux (États-Unis, Singapour) ont un minimum de redistribution.',
   },
   {
-    id: 'impot-negatif',
-    title: 'Impot negatif (Friedman)',
+    id: 'impot-négatif',
+    title: 'Impot négatif (Friedman)',
     description:
       'Les bas revenus recoivent un complement plutot que de payer l\'impot.',
     revenuMedian: 2500,
@@ -86,7 +86,7 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 35,
     transfertSocial: 500,
     explanation:
-      'L\'impot negatif, propose par Milton Friedman, consiste a verser un complement de revenu aux menages en dessous d\'un seuil plutot que de les imposer. La prime d\'activite francaise s\'en inspire partiellement. Ce systeme preserve l\'incitation au travail tout en garantissant un revenu minimum. Le taux effectif devient negatif pour les premiers deciles.',
+      'L\'impot négatif, propose par Milton Friedman, consiste a verser un complement de revenu aux ménages en dessous d\'un seuil plutot que de les imposer. La prime d\'activité française s\'en inspire partiellement. Ce système preserve l\'incitation au travail tout en garantissant un revenu minimum. Le taux effectif devient négatif pour les premiers déciles.',
   },
 ];
 

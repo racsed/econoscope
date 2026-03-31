@@ -20,9 +20,9 @@ export default function AProposPage() {
           </div>
 
           <p className="text-lg text-text-secondary leading-relaxed mb-12">
-            Econoscope est un laboratoire interactif d&apos;economie. Pas un site de
+            Econoscope est un laboratoire interactif d&apos;économie. Pas un site de
             cours, pas un manuel numerise -- un instrument pour comprendre les
-            mecanismes economiques en les manipulant.
+            mécanismes économiques en les manipulant.
           </p>
 
           {/* Sections */}
@@ -33,15 +33,15 @@ export default function AProposPage() {
               color="#5B5EF4"
             >
               <p>
-                L&apos;economie est souvent enseignee de maniere abstraite : des
+                L&apos;économie est souvent enseignee de manière abstraite : des
                 equations, des graphiques statiques, des textes denses. Econoscope
                 prend le contrepied : chaque concept devient une simulation
                 interactive ou l&apos;utilisateur manipule directement les variables et
-                observe les effets en temps reel.
+                observe les effets en temps réel.
               </p>
               <p className="mt-3">
                 Ce que PhET (University of Colorado) fait pour la physique,
-                Econoscope le fait pour l&apos;economie -- avec un design premium, une
+                Econoscope le fait pour l&apos;économie -- avec un design premium, une
                 narration intelligente, et une ambition grand public.
               </p>
             </Section>
@@ -52,15 +52,15 @@ export default function AProposPage() {
               color="#FBBF24"
             >
               <p>
-                Chaque module affiche explicitement ses hypotheses et ses limites.
-                Les modeles economiques sont des simplifications utiles, pas des
+                Chaque module affiche explicitement ses hypothèses et ses limites.
+                Les modèles économiques sont des simplifications utiles, pas des
                 verites absolues. Econoscope ne vend pas une ideologie : il donne
                 des outils pour penser.
               </p>
               <p className="mt-3">
-                Les sections "Limites du modele" et "Dans la realite" sont
-                presentes dans chaque simulation pour ancrer la theorie dans le
-                reel.
+                Les sections "Limites du modèle" et "Dans la réalité" sont
+                presentes dans chaque simulation pour ancrer la théorie dans le
+                réel.
               </p>
             </Section>
 
@@ -81,14 +81,14 @@ export default function AProposPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] mt-2 flex-shrink-0" />
                   <span>
                     <strong>Enseignants</strong> (SES, eco-gestion, universite) qui
-                    veulent illustrer un mecanisme en classe
+                    veulent illustrer un mécanisme en classe
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] mt-2 flex-shrink-0" />
                   <span>
                     <strong>Curieux et autodidactes</strong> qui veulent comprendre
-                    l&apos;actualite economique
+                    l&apos;actualite économique
                   </span>
                 </li>
               </ul>
@@ -103,20 +103,20 @@ export default function AProposPage() {
                 Econoscope est construit avec Next.js, TypeScript, Tailwind CSS,
                 Framer Motion pour les animations, et D3.js/Visx pour les
                 visualisations. Le moteur de simulation est modulaire : chaque
-                module economique est un fichier independant avec ses equations,
+                module économique est un fichier independant avec ses equations,
                 ses scenarios et sa narration.
               </p>
             </Section>
 
             <Section
               icon={BookOpen}
-              title="Sources et references"
+              title="Sources et références"
               color="#EC4899"
             >
               <p>
-                Les modeles implementes s&apos;appuient sur les manuels de reference en
-                economie : Mankiw, Blanchard, Stiglitz, Krugman. Les donnees
-                reelles proviennent d&apos;Eurostat, de l&apos;INSEE, de la Banque mondiale
+                Les modèles implementes s&apos;appuient sur les manuels de référence en
+                économie : Mankiw, Blanchard, Stiglitz, Krugman. Les données
+                réelles proviennent d&apos;Eurostat, de l&apos;INSEE, de la Banque mondiale
                 et de l&apos;OCDE. Les scenarios historiques sont documentes.
               </p>
             </Section>

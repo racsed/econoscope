@@ -19,7 +19,7 @@ export function useSimulation(module: SimulationModule) {
   const setValue = useCallback((key: string, value: number | boolean | string) => {
     setAllValues(prev => {
       const next = { ...prev, [key]: value };
-      // Auto-switch to 'personnalise' if user changes a decile slider
+      // Auto-switch to 'personnalise' if user changes a décile slider
       if (key.match(/^d\d+$/) && prev.preset !== undefined && prev.preset !== 'personnalise') {
         next.preset = 'personnalise';
       }

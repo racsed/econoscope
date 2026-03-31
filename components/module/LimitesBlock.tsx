@@ -19,11 +19,11 @@ export function LimitesBlock({ limites, themeColor }: LimitesBlockProps) {
       <div className="flex items-center gap-2 mb-3">
         <AlertTriangle size={18} className="text-[#FBBF24]" />
         <h3 className="limites-title text-sm font-semibold uppercase tracking-wider text-[#92400E]">
-          Limites du modele
+          Limites du modèle
         </h3>
       </div>
       <p className="limites-text text-sm text-[#78716C] mb-3">
-        Ce modele repose sur des hypotheses simplificatrices :
+        Ce modèle repose sur des hypothèses simplificatrices :
       </p>
       <ul className="space-y-2">
         {limites.map((limite, i) => (

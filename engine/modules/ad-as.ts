@@ -13,36 +13,36 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'ad-as',
-  title: 'Modele AD-AS',
+  title: 'Modèle AD-AS',
   subtitle: "Demande globale et offre globale",
   theme: 'macro',
   level: 'advanced',
   introduction:
-    "Le modele AD-AS (Aggregate Demand - Aggregate Supply) determine simultanement le niveau des prix et la production. La courbe AD represente l'ensemble des equilibres IS-LM pour differents niveaux de prix. Les courbes AS (court et long terme) refletent les conditions d'offre de l'economie.",
+    "Le modèle AD-AS (Aggregate Demand - Aggregate Supply) détermine simultanément le niveau des prix et la production. La courbe AD représente l'ensemble des équilibres IS-LM pour différents niveaux de prix. Les courbes AS (court et long terme) refletent les conditions d'offre de l'économie.",
   limites: [
     "Simplification des ajustements dynamiques",
     "Les courbes sont supposees stables dans le temps",
     "Ne modelise pas explicitement les anticipations",
-    "LRAS suppose un PIB potentiel fixe a court terme",
+    "LRAS suppose un PIB potentiel fixe à court terme",
   ],
   realite: [
     "La crise Covid (2020) : choc d'offre ET de demande simultane",
-    "La hausse des prix de l'energie (2022) : deplacement de SRAS vers la gauche",
-    "Les plans de relance post-Covid : deplacement de AD vers la droite",
+    "La hausse des prix de l'énergie (2022) : déplacement de SRAS vers la gauche",
+    "Les plans de relance post-Covid : déplacement de AD vers la droite",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'depenses_publiques',
-    label: 'Depenses publiques',
+    label: 'Dépenses publiques',
     type: 'slider',
     min: 0,
     max: 500,
     step: 10,
     defaultValue: 200,
     unit: 'Mds\u20ac',
-    tooltip: "Augmenter G deplace AD vers la droite",
+    tooltip: "Augmenter G déplace AD vers la droite",
     group: 'Demande globale',
   },
   {
@@ -54,29 +54,29 @@ const inputs: SimulationInput[] = [
     step: 50,
     defaultValue: 800,
     unit: 'Mds\u20ac',
-    tooltip: "Augmenter M deplace AD vers la droite",
+    tooltip: "Augmenter M déplace AD vers la droite",
     group: 'Demande globale',
   },
   {
     id: 'prix_petrole',
-    label: 'Prix du petrole (indice)',
+    label: 'Prix du pétrole (indice)',
     type: 'slider',
     min: 50,
     max: 300,
     step: 10,
     defaultValue: 100,
-    tooltip: "Une hausse deplace SRAS vers la gauche (choc d'offre negatif)",
+    tooltip: "Une hausse déplace SRAS vers la gauche (choc d'offre négatif)",
     group: 'Offre globale',
   },
   {
-    id: 'productivite',
-    label: 'Productivite (indice)',
+    id: 'productivité',
+    label: 'Productivité (indice)',
     type: 'slider',
     min: 50,
     max: 200,
     step: 5,
     defaultValue: 100,
-    tooltip: "Une hausse deplace SRAS et LRAS vers la droite",
+    tooltip: "Une hausse déplace SRAS et LRAS vers la droite",
     group: 'Offre globale',
   },
   {
@@ -87,7 +87,7 @@ const inputs: SimulationInput[] = [
     max: 200,
     step: 5,
     defaultValue: 100,
-    tooltip: "Une hausse deplace SRAS vers la gauche",
+    tooltip: "Une hausse déplace SRAS vers la gauche",
     group: 'Offre globale',
   },
   {
@@ -103,33 +103,33 @@ const inputs: SimulationInput[] = [
 const scenarios: Scenario[] = [
   {
     id: 'equilibre_base',
-    label: 'Equilibre macroeconomique',
-    description: "Situation initiale de reference",
-    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 100, productivite: 100, salaire_nominal: 100, mode_long_terme: true },
+    label: 'Équilibre macroéconomique',
+    description: "Situation initiale de référence",
+    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 100, productivité: 100, salaire_nominal: 100, mode_long_terme: true },
   },
   {
     id: 'relance_budgetaire',
-    label: 'Relance budgetaire',
-    description: "Augmentation massive des depenses publiques",
-    values: { depenses_publiques: 350, offre_monnaie: 800, prix_petrole: 100, productivite: 100, salaire_nominal: 100, mode_long_terme: true },
+    label: 'Relance budgétaire',
+    description: "Augmentation massive des dépenses publiques",
+    values: { depenses_publiques: 350, offre_monnaie: 800, prix_petrole: 100, productivité: 100, salaire_nominal: 100, mode_long_terme: true },
   },
   {
     id: 'choc_petrolier',
-    label: 'Choc petrolier',
-    description: "Doublement du prix du petrole",
-    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 200, productivite: 100, salaire_nominal: 100, mode_long_terme: true },
+    label: 'Choc pétrolier',
+    description: "Doublement du prix du pétrole",
+    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 200, productivité: 100, salaire_nominal: 100, mode_long_terme: true },
   },
   {
     id: 'gains_productivite',
-    label: 'Gains de productivite',
-    description: "Progres technologique augmentant la productivite de 50%",
-    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 100, productivite: 150, salaire_nominal: 100, mode_long_terme: true },
+    label: 'Gains de productivité',
+    description: "Progrès technologique augmentant la productivité de 50%",
+    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 100, productivité: 150, salaire_nominal: 100, mode_long_terme: true },
   },
   {
     id: 'stagflation',
     label: 'Stagflation',
-    description: "Choc d'offre negatif combinant hausse des prix et baisse de production",
-    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 250, productivite: 85, salaire_nominal: 130, mode_long_terme: true },
+    description: "Choc d'offre négatif combinant hausse des prix et baisse de production",
+    values: { depenses_publiques: 200, offre_monnaie: 800, prix_petrole: 250, productivité: 85, salaire_nominal: 130, mode_long_terme: true },
   },
 ];
 
@@ -165,22 +165,22 @@ function srasPrice(
   y: number,
   yPotential: number,
   salaire: number,
-  productivite: number,
+  productivité: number,
   prixPetrole: number
 ): number {
-  const costFactor = (salaire / 100) * (prixPetrole / 100) / (productivite / 100);
+  const costFactor = (salaire / 100) * (prixPetrole / 100) / (productivité / 100);
   return P0_BASE * costFactor + GAMMA_SRAS * (y - yPotential) * costFactor;
 }
 
 function findAdAsEquilibrium(
-  g: number, m: number, salaire: number, productivite: number, prixPetrole: number
+  g: number, m: number, salaire: number, productivité: number, prixPetrole: number
 ): { y: number; p: number } {
   // Numerical solver: find intersection of AD and SRAS
   // AD: Y = K_G * G + K_M * M / P => P = K_M * M / (Y - K_G * G)
   // SRAS: P = srasPrice(Y, ...)
   // Set them equal and solve numerically
 
-  const yPotential = BASE_POTENTIAL * (productivite / 100);
+  const yPotential = BASE_POTENTIAL * (productivité / 100);
 
   // Newton-like bisection on Y
   let yLow = 100;
@@ -189,7 +189,7 @@ function findAdAsEquilibrium(
   for (let iter = 0; iter < 100; iter++) {
     const yMid = (yLow + yHigh) / 2;
     const pAD = yMid > K_G * g ? K_M * m / (yMid - K_G * g) : 100;
-    const pSRAS = srasPrice(yMid, yPotential, salaire, productivite, prixPetrole);
+    const pSRAS = srasPrice(yMid, yPotential, salaire, productivité, prixPetrole);
 
     if (pAD > pSRAS) {
       yLow = yMid;
@@ -201,7 +201,7 @@ function findAdAsEquilibrium(
   }
 
   const yEq = (yLow + yHigh) / 2;
-  const pEq = srasPrice(yEq, yPotential, salaire, productivite, prixPetrole);
+  const pEq = srasPrice(yEq, yPotential, salaire, productivité, prixPetrole);
   return { y: yEq, p: pEq };
 }
 
@@ -213,12 +213,12 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const g = clamp(Number(values.depenses_publiques) || 200, 0, 500);
   const m = clamp(Number(values.offre_monnaie) || 800, 100, 2000);
   const prixPetrole = clamp(Number(values.prix_petrole) || 100, 50, 300);
-  const productivite = clamp(Number(values.productivite) || 100, 50, 200);
+  const productivité = clamp(Number(values.productivité) || 100, 50, 200);
   const salaire = clamp(Number(values.salaire_nominal) || 100, 50, 200);
   const modeLongTerme = typeof values.mode_long_terme === 'boolean' ? values.mode_long_terme : true;
 
-  const yPotential = BASE_POTENTIAL * (productivite / 100);
-  const eq = findAdAsEquilibrium(g, m, salaire, productivite, prixPetrole);
+  const yPotential = BASE_POTENTIAL * (productivité / 100);
+  const eq = findAdAsEquilibrium(g, m, salaire, productivité, prixPetrole);
   const eqBase = findAdAsEquilibrium(200, 800, 100, 100, 100);
 
   // Build curves
@@ -242,7 +242,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     }
 
     // SRAS: P as function of Y
-    const pSRAS = srasPrice(y, yPotential, salaire, productivite, prixPetrole);
+    const pSRAS = srasPrice(y, yPotential, salaire, productivité, prixPetrole);
     if (pSRAS > 0 && pSRAS < 10) {
       srasCurve.push({ x: y, y: pSRAS });
     }
@@ -303,50 +303,50 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   };
 
   // Narration
-  let observation = `L'equilibre macroeconomique se situe a Y = ${eq.y.toFixed(0)} Mds\u20ac avec un niveau des prix P = ${eq.p.toFixed(2)}.`;
+  let observation = `L'équilibre macroéconomique se situe a Y = ${eq.y.toFixed(0)} Mds\u20ac avec un niveau des prix P = ${eq.p.toFixed(2)}.`;
   if (modeLongTerme) {
-    observation += ` Le PIB potentiel (LRAS) est de ${yPotential.toFixed(0)} Mds\u20ac. L'ecart de production (output gap) est de ${outputGap.toFixed(1)}%.`;
-    observation += ` La distinction SRAS/LRAS est essentielle : a court terme (SRAS), les prix des inputs (salaires, energie) sont rigides, donc la production peut s'ecarter du potentiel. A long terme (LRAS), tous les prix s'ajustent et l'economie revient au PIB potentiel.`;
+    observation += ` Le PIB potentiel (LRAS) est de ${yPotential.toFixed(0)} Mds\u20ac. L'écart de production (output gap) est de ${outputGap.toFixed(1)}%.`;
+    observation += ` La distinction SRAS/LRAS est essentielle : à court terme (SRAS), les prix des inputs (salaires, énergie) sont rigides, donc la production peut s'écarter du potentiel. A long terme (LRAS), tous les prix s'ajustent et l'économie revient au PIB potentiel.`;
   }
 
   let interpretation: string;
 
   if (outputGap > 2) {
-    interpretation = `L'economie est en surchauffe : la production depasse le potentiel de ${outputGap.toFixed(1)}%. Les entreprises produisent au-dela de leurs capacites normales, ce qui exerce une pression a la hausse sur les couts (heures supplementaires, rarefaction des inputs). A long terme, les salaires s'ajusteront a la hausse, deplacant SRAS vers la gauche jusqu'au retour au potentiel avec un niveau des prix plus eleve - c'est le mecanisme d'ajustement automatique.`;
+    interpretation = `L'économie est en surchauffe : la production dépasse le potentiel de ${outputGap.toFixed(1)}%. Les entreprises produisent au-dela de leurs capacités normales, ce qui exerce une pression à la hausse sur les coûts (heures supplémentaires, raréfaction des inputs). A long terme, les salaires s'ajusteront à la hausse, deplacant SRAS vers la gauche jusqu'au retour au potentiel avec un niveau des prix plus élevé - c'est le mécanisme d'ajustement automatique.`;
   } else if (outputGap < -2) {
-    interpretation = `L'economie est en recession : la production est inferieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Cela signifie que des usines tournent en sous-regime, des travailleurs sont au chomage conjoncturel. Une politique de relance budgetaire (hausse de G, deplacement d'AD) ou monetaire (hausse de M, deplacement d'AD) pourrait combler cet ecart en stimulant la demande globale.`;
+    interpretation = `L'économie est en récession : la production est inférieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Cela signifie que des usines tournent en sous-regime, des travailleurs sont au chômage conjoncturel. Une politique de relance budgétaire (hausse de G, déplacement d'AD) ou monétaire (hausse de M, déplacement d'AD) pourrait combler cet écart en stimulant la demande globale.`;
   } else {
-    interpretation = `L'economie est proche de son potentiel. L'ecart de production est faible (${outputGap.toFixed(1)}%), indiquant un equilibre macroeconomique relativement sain ou l'offre et la demande globales s'accordent pres du plein emploi.`;
+    interpretation = `L'économie est proche de son potentiel. L'écart de production est faible (${outputGap.toFixed(1)}%), indiquant un équilibre macroéconomique relativement sain ou l'offre et la demande globales s'accordent pres du plein emploi.`;
   }
 
   if (prixPetrole > 150) {
-    interpretation += ` Le prix du petrole eleve (indice ${prixPetrole}) agit comme un choc d'offre negatif : il augmente les couts de production de toutes les entreprises, deplacant SRAS vers la gauche. Le resultat est une stagflation - la production baisse ET les prix montent - un dilemme pour la politique economique car relancer la demande aggraverait l'inflation.`;
+    interpretation += ` Le prix du pétrole élevé (indice ${prixPetrole}) agit comme un choc d'offre négatif : il augmente les coûts de production de toutes les entreprises, deplacant SRAS vers la gauche. Le résultat est une stagflation - la production baisse ET les prix montent - un dilemme pour la politique économique car relancer la demande aggraverait l'inflation.`;
   } else if (prixPetrole < 70) {
-    interpretation += ` Le faible prix du petrole (indice ${prixPetrole}) agit comme un choc d'offre positif : il reduit les couts de production, deplacant SRAS vers la droite. L'economie beneficie d'une croissance plus forte avec moins d'inflation - c'est la situation ideale.`;
+    interpretation += ` Le faible prix du pétrole (indice ${prixPetrole}) agit comme un choc d'offre positif : il réduit les coûts de production, deplacant SRAS vers la droite. L'économie bénéficie d'une croissance plus forte avec moins d'inflation - c'est la situation ideale.`;
   }
 
-  if (productivite > 120) {
-    interpretation += ` La productivite elevee (indice ${productivite}) deplace a la fois SRAS et LRAS vers la droite : le PIB potentiel augmente a ${yPotential.toFixed(0)} Mds\u20ac. C'est le mecanisme de la croissance de long terme - le progres technique repousse les limites de l'economie.`;
-  } else if (productivite < 80) {
-    interpretation += ` La faible productivite (indice ${productivite}) contracte le PIB potentiel a ${yPotential.toFixed(0)} Mds\u20ac et deplace SRAS vers la gauche. L'economie produit moins avec les memes ressources.`;
+  if (productivité > 120) {
+    interpretation += ` La productivité élevée (indice ${productivité}) déplace à la fois SRAS et LRAS vers la droite : le PIB potentiel augmente a ${yPotential.toFixed(0)} Mds\u20ac. C'est le mécanisme de la croissance de long terme - le progrès technique repousse les limites de l'économie.`;
+  } else if (productivité < 80) {
+    interpretation += ` La faible productivité (indice ${productivité}) contracte le PIB potentiel a ${yPotential.toFixed(0)} Mds\u20ac et déplace SRAS vers la gauche. L'économie produit moins avec les memes ressources.`;
   }
 
   if (salaire > 130) {
-    interpretation += ` Les salaires nominaux eleves (indice ${salaire}) deplacent SRAS vers la gauche sans affecter LRAS : les couts de production augmentent, ce qui pousse les prix a la hausse a court terme. C'est le mecanisme de la spirale prix-salaires.`;
+    interpretation += ` Les salaires nominaux élevés (indice ${salaire}) deplacent SRAS vers la gauche sans affecter LRAS : les coûts de production augmentent, ce qui pousse les prix à la hausse à court terme. C'est le mécanisme de la spirale prix-salaires.`;
   } else if (salaire < 80) {
-    interpretation += ` Les faibles salaires nominaux (indice ${salaire}) deplacent SRAS vers la droite : les couts de production bas permettent de produire davantage a prix egal, mais cela peut refleter une compression des revenus des travailleurs.`;
+    interpretation += ` Les faibles salaires nominaux (indice ${salaire}) deplacent SRAS vers la droite : les coûts de production bas permettent de produire davantage à prix egal, mais cela peut refleter une compression des revenus des travailleurs.`;
   }
 
   if (g > 300) {
-    interpretation += ` Les depenses publiques elevees (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exercant une pression inflationniste. L'ampleur de l'effet depend de la pente de SRAS : plus l'economie est proche du potentiel, plus la hausse de G se traduit en inflation plutot qu'en production.`;
+    interpretation += ` Les dépenses publiques élevées (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exercant une pression inflationniste. L'ampleur de l'effet depend de la pente de SRAS : plus l'économie est proche du potentiel, plus la hausse de G se traduit en inflation plutot qu'en production.`;
   } else if (g < 100) {
-    interpretation += ` Les faibles depenses publiques (${g} Mds\u20ac) positionnent AD plus a gauche, limitant la demande globale. C'est le choix de l'austerite budgetaire.`;
+    interpretation += ` Les faibles dépenses publiques (${g} Mds\u20ac) positionnent AD plus a gauche, limitant la demande globale. C'est le choix de l'austerite budgétaire.`;
   }
 
   if (m > 1200) {
-    interpretation += ` L'offre de monnaie abondante (${m} Mds\u20ac) deplace AD vers la droite via la baisse des taux d'interet qui stimule l'investissement et la consommation. C'est le levier de la politique monetaire expansionniste.`;
+    interpretation += ` L'offre de monnaie abondante (${m} Mds\u20ac) déplace AD vers la droite via la baisse des taux d'intérêt qui stimule l'investissement et la consommation. C'est le levier de la politique monétaire expansionniste.`;
   } else if (m < 500) {
-    interpretation += ` L'offre de monnaie restreinte (${m} Mds\u20ac) limite la demande globale en maintenant des taux d'interet eleves. C'est une politique monetaire restrictive visant a contenir l'inflation.`;
+    interpretation += ` L'offre de monnaie restreinte (${m} Mds\u20ac) limite la demande globale en maintenant des taux d'intérêt élevés. C'est une politique monétaire restrictive visant a contenir l'inflation.`;
   }
 
   return {
@@ -354,7 +354,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       { id: 'production', label: 'Production (Y)', value: round2(eq.y), unit: 'Mds\u20ac', direction: eq.y > eqBase.y ? 'up' : eq.y < eqBase.y ? 'down' : 'neutral' },
       { id: 'niveau_prix', label: 'Niveau des prix (P)', value: round2(eq.p), direction: eq.p > eqBase.p ? 'up' : eq.p < eqBase.p ? 'down' : 'neutral' },
       { id: 'pib_potentiel', label: 'PIB potentiel', value: round2(yPotential), unit: 'Mds\u20ac' },
-      { id: 'output_gap', label: 'Ecart de production', value: round2(outputGap), unit: '%', direction: outputGap > 0 ? 'up' : outputGap < 0 ? 'down' : 'neutral' },
+      { id: 'output_gap', label: 'Écart de production', value: round2(outputGap), unit: '%', direction: outputGap > 0 ? 'up' : outputGap < 0 ? 'down' : 'neutral' },
     ],
     chartData,
     narration: { observation, interpretation },

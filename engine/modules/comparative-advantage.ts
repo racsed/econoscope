@@ -18,24 +18,24 @@ const meta: ModuleMeta = {
   theme: 'international',
   level: 'intermediate',
   introduction:
-    "La theorie des avantages comparatifs de David Ricardo (1817) demontre que meme si un pays est moins productif que l'autre dans tous les domaines, le libre-echange reste mutuellement benefique. Chaque pays a interet a se specialiser dans le bien pour lequel son cout d'opportunite est le plus faible.",
+    "La théorie des avantages comparatifs de David Ricardo (1817) demontre que même si un pays est moins productif que l'autre dans tous les domaines, le libre-échange reste mutuellement bénéfique. Chaque pays a intérêt à se spécialiser dans le bien pour lequel son coût d'opportunité est le plus faible.",
   limites: [
-    'Modele simplifie a 2 pays et 2 biens',
-    "Pas de couts de transport ni de barrieres douanieres",
-    "Hypothese de specialisation complete",
+    'Modèle simplifie a 2 pays et 2 biens',
+    "Pas de coûts de transport ni de barrieres douanières",
+    "Hypothese de spécialisation complete",
     "Ignore les effets redistributifs au sein des pays",
   ],
   realite: [
-    "Le commerce France-Chine illustre la specialisation : luxe/aeronautique vs manufacturier",
-    "La specialisation agricole de la Nouvelle-Zelande (lait, viande) est un cas ricardien classique",
-    "Les accords de libre-echange (UE-Canada, CETA) reposent sur cette logique d'avantages mutuels",
+    "Le commerce France-Chine illustre la spécialisation : luxe/aeronautique vs manufacturier",
+    "La spécialisation agricole de la Nouvelle-Zelande (lait, viande) est un cas ricardien classique",
+    "Les accords de libre-échange (UE-Canada, CETA) reposent sur cette logique d'avantages mutuels",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'productivite_pays1_bienA',
-    label: 'Pays 1 - Productivite bien A',
+    label: 'Pays 1 - Productivité bien A',
     type: 'slider',
     min: 1,
     max: 20,
@@ -46,7 +46,7 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'productivite_pays1_bienB',
-    label: 'Pays 1 - Productivite bien B',
+    label: 'Pays 1 - Productivité bien B',
     type: 'slider',
     min: 1,
     max: 20,
@@ -57,7 +57,7 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'productivite_pays2_bienA',
-    label: 'Pays 2 - Productivite bien A',
+    label: 'Pays 2 - Productivité bien A',
     type: 'slider',
     min: 1,
     max: 20,
@@ -68,7 +68,7 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'productivite_pays2_bienB',
-    label: 'Pays 2 - Productivite bien B',
+    label: 'Pays 2 - Productivité bien B',
     type: 'slider',
     min: 1,
     max: 20,
@@ -78,14 +78,14 @@ const inputs: SimulationInput[] = [
     group: 'Pays 2',
   },
   {
-    id: 'specialisation',
+    id: 'spécialisation',
     label: 'Regime commercial',
     type: 'toggle',
     defaultValue: 'autarcie',
-    tooltip: "Autarcie : chaque pays produit seul. Libre-echange : specialisation selon l'avantage comparatif.",
+    tooltip: "Autarcie : chaque pays produit seul. Libre-échange : spécialisation selon l'avantage comparatif.",
     options: [
       { value: 'autarcie', label: 'Autarcie' },
-      { value: 'libre-echange', label: 'Libre-echange' },
+      { value: 'libre-échange', label: 'Libre-échange' },
     ],
   },
 ];
@@ -94,26 +94,26 @@ const scenarios: Scenario[] = [
   {
     id: 'avantage-absolu-mutuel',
     label: 'Avantage absolu mutuel',
-    description: "Chaque pays est meilleur dans un bien different",
-    values: { productivite_pays1_bienA: 10, productivite_pays1_bienB: 4, productivite_pays2_bienA: 3, productivite_pays2_bienB: 12, specialisation: 'libre-echange' },
+    description: "Chaque pays est meilleur dans un bien différent",
+    values: { productivite_pays1_bienA: 10, productivite_pays1_bienB: 4, productivite_pays2_bienA: 3, productivite_pays2_bienB: 12, spécialisation: 'libre-échange' },
   },
   {
     id: 'ricardo-classique',
     label: 'Ricardo classique',
-    description: "Un pays est plus productif partout, mais le commerce reste benefique",
-    values: { productivite_pays1_bienA: 10, productivite_pays1_bienB: 5, productivite_pays2_bienA: 4, productivite_pays2_bienB: 8, specialisation: 'libre-echange' },
+    description: "Un pays est plus productif partout, mais le commerce reste bénéfique",
+    values: { productivite_pays1_bienA: 10, productivite_pays1_bienB: 5, productivite_pays2_bienA: 4, productivite_pays2_bienB: 8, spécialisation: 'libre-échange' },
   },
   {
-    id: 'productivite-egale',
-    label: 'Productivite egale',
-    description: "Les deux pays ont les memes productivites : pas de gain a l'echange",
-    values: { productivite_pays1_bienA: 6, productivite_pays1_bienB: 6, productivite_pays2_bienA: 6, productivite_pays2_bienB: 6, specialisation: 'libre-echange' },
+    id: 'productivité-égale',
+    label: 'Productivité égale',
+    description: "Les deux pays ont les memes productivités : pas de gain à l'échange",
+    values: { productivite_pays1_bienA: 6, productivite_pays1_bienB: 6, productivite_pays2_bienA: 6, productivite_pays2_bienB: 6, spécialisation: 'libre-échange' },
   },
   {
     id: 'avantage-ecrasant',
     label: 'Avantage ecrasant',
     description: "Un pays domine fortement dans les deux biens",
-    values: { productivite_pays1_bienA: 20, productivite_pays1_bienB: 15, productivite_pays2_bienA: 2, productivite_pays2_bienB: 3, specialisation: 'libre-echange' },
+    values: { productivite_pays1_bienA: 20, productivite_pays1_bienB: 15, productivite_pays2_bienA: 2, productivite_pays2_bienB: 3, spécialisation: 'libre-échange' },
   },
 ];
 
@@ -130,7 +130,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const p1B = clamp(Number(values.productivite_pays1_bienB) || 5, 1, 20);
   const p2A = clamp(Number(values.productivite_pays2_bienA) || 4, 1, 20);
   const p2B = clamp(Number(values.productivite_pays2_bienB) || 8, 1, 20);
-  const regime = String(values.specialisation || 'autarcie');
+  const regime = String(values.spécialisation || 'autarcie');
 
   // Total labor endowment (hours) for each country
   const L = 100;
@@ -152,7 +152,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Comparative advantage: country with lower opportunity cost for A specializes in A
   const pays1SpecialiseA = coutOpp1A < coutOpp2A;
   const pays1SpecialiseB = coutOpp1A > coutOpp2A;
-  const parite = Math.abs(coutOpp1A - coutOpp2A) < 0.001;
+  const parité = Math.abs(coutOpp1A - coutOpp2A) < 0.001;
 
   // PPF curves
   const ppfPays1: Point[] = [];
@@ -175,7 +175,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let trade1A: number, trade1B: number, trade2A: number, trade2B: number;
   let totalTradeA: number, totalTradeB: number;
 
-  if (parite) {
+  if (parité) {
     // No gains from trade
     trade1A = autarky1A;
     trade1B = autarky1B;
@@ -201,7 +201,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const gainB = totalTradeB - totalAutarkyB;
 
   // Determine which production points to show based on regime
-  const isLibreEchange = regime === 'libre-echange';
+  const isLibreEchange = regime === 'libre-échange';
   const currentA1 = isLibreEchange ? trade1A : autarky1A;
   const currentB1 = isLibreEchange ? trade1B : autarky1B;
   const currentA2 = isLibreEchange ? trade2A : autarky2A;
@@ -247,8 +247,8 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const chartData: ChartData = {
     type: 'line',
     series,
-    xLabel: 'Quantite bien A',
-    yLabel: 'Quantite bien B',
+    xLabel: 'Quantité bien A',
+    yLabel: 'Quantité bien B',
     xDomain: [0, maxX],
     yDomain: [0, maxY],
     annotations,
@@ -264,40 +264,40 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const pays1AvanAbsTotal = pays1AvanAbsA && pays1AvanAbsB;
   const pays2AvanAbsTotal = !pays1AvanAbsA && !pays1AvanAbsB;
 
-  if (parite) {
-    observation = `Les deux pays ont des couts d'opportunite identiques (${coutOpp1A.toFixed(2)} B pour 1 A dans les deux cas). Il n'y a pas d'avantage comparatif.`;
-    interpretation = "Le libre-echange n'apporte aucun gain dans cette configuration. Les deux pays ont exactement les memes productivites relatives, donc aucune specialisation n'est mutuellement avantageuse. Pour que des gains a l'echange existent, il faut que les ratios de productivite different entre les deux pays.";
+  if (parité) {
+    observation = `Les deux pays ont des coûts d'opportunité identiques (${coutOpp1A.toFixed(2)} B pour 1 A dans les deux cas). Il n'y a pas d'avantage comparatif.`;
+    interpretation = "Le libre-échange n'apporte aucun gain dans cette configuration. Les deux pays ont exactement les memes productivités relatives, donc aucune spécialisation n'est mutuellement avantageuse. Pour que des gains à l'échange existent, il faut que les ratios de productivité différent entre les deux pays.";
   } else {
     const specA = pays1SpecialiseA ? 'Pays 1' : 'Pays 2';
     const specB = pays1SpecialiseA ? 'Pays 2' : 'Pays 1';
     const coutOppSpecA = pays1SpecialiseA ? coutOpp1A : coutOpp2A;
     const coutOppAutreA = pays1SpecialiseA ? coutOpp2A : coutOpp1A;
 
-    observation = `${specA} a l'avantage comparatif dans le bien A : son cout d'opportunite est de ${coutOppSpecA.toFixed(2)} B par unite de A, contre ${coutOppAutreA.toFixed(2)} pour ${specB}. Autrement dit, ${specA} renonce a moins de B pour produire une unite de A, c'est donc lui qui doit se specialiser dans A.`;
+    observation = `${specA} à l'avantage comparatif dans le bien A : son coût d'opportunité est de ${coutOppSpecA.toFixed(2)} B par unite de A, contre ${coutOppAutreA.toFixed(2)} pour ${specB}. Autrement dit, ${specA} renonce à moins de B pour produire une unite de A, c'est donc lui qui doit se spécialiser dans A.`;
 
     // Key Ricardian insight
     if (pays1AvanAbsTotal || pays2AvanAbsTotal) {
       const paysDominant = pays1AvanAbsTotal ? 'Pays 1' : 'Pays 2';
       const paysDomini = pays1AvanAbsTotal ? 'Pays 2' : 'Pays 1';
-      observation += ` Resultat contre-intuitif de Ricardo : ${paysDominant} est plus productif que ${paysDomini} dans les DEUX biens (avantage absolu dans A et B), pourtant le commerce reste benefique pour les deux. Ce qui compte n'est pas la productivite absolue, mais la productivite RELATIVE (les couts d'opportunite).`;
+      observation += ` Resultat contre-intuitif de Ricardo : ${paysDominant} est plus productif que ${paysDomini} dans les DEUX biens (avantage absolu dans A et B), pourtant le commerce reste bénéfique pour les deux. Ce qui compte n'est pas la productivité absolue, mais la productivité RELATIVE (les coûts d'opportunité).`;
     }
 
     if (isLibreEchange) {
-      interpretation = `Avec le libre-echange et la specialisation complete, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Ce gain net est cree "a partir de rien" : les memes ressources, mieux allouees par la specialisation, produisent davantage au niveau mondial. Chaque pays consomme ensuite les deux biens en echangeant a un prix compris entre les deux couts d'opportunite.`;
+      interpretation = `Avec le libre-échange et la spécialisation complete, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Ce gain net est crée "a partir de rien" : les memes ressources, mieux allouees par la spécialisation, produisent davantage au niveau mondial. Chaque pays consomme ensuite les deux biens en echangeant à un prix compris entre les deux coûts d'opportunité.`;
       if (gainA < 0 && gainB > 0) {
-        interpretation += ` La production de A diminue mais celle de B augmente davantage : le gain global est positif car les ressources liberees dans A sont utilisees plus efficacement dans B.`;
+        interpretation += ` La production de A diminue mais celle de B augmente davantage : le gain global est positif car les ressources libérées dans A sont utilisées plus efficacement dans B.`;
       } else if (gainA > 0 && gainB < 0) {
-        interpretation += ` La production de B diminue mais celle de A augmente davantage : le gain global est positif car les ressources liberees dans B sont utilisees plus efficacement dans A.`;
+        interpretation += ` La production de B diminue mais celle de A augmente davantage : le gain global est positif car les ressources libérées dans B sont utilisées plus efficacement dans A.`;
       }
     } else {
-      interpretation = `En autarcie (sans commerce), chaque pays doit produire les deux biens par lui-meme. La production mondiale totale est de ${totalAutarkyA.toFixed(0)} unites de A et ${totalAutarkyB.toFixed(0)} unites de B. Le passage au libre-echange permettrait un gain de production grace a la specialisation selon l'avantage comparatif. Chaque pays se concentrerait sur le bien pour lequel il a le cout d'opportunite le plus faible.`;
+      interpretation = `En autarcie (sans commerce), chaque pays doit produire les deux biens par lui-même. La production mondiale totale est de ${totalAutarkyA.toFixed(0)} unites de A et ${totalAutarkyB.toFixed(0)} unites de B. Le passage au libre-échange permettrait un gain de production grâce à la spécialisation selon l'avantage comparatif. Chaque pays se concentrerait sur le bien pour lequel il à le coût d'opportunité le plus faible.`;
     }
   }
 
   return {
     outputs: [
-      { id: 'cout_opp_pays1_A', label: "Cout d'opp. Pays 1 pour A (en B)", value: round2(coutOpp1A) },
-      { id: 'cout_opp_pays2_A', label: "Cout d'opp. Pays 2 pour A (en B)", value: round2(coutOpp2A) },
+      { id: 'cout_opp_pays1_A', label: "Coût d'opp. Pays 1 pour A (en B)", value: round2(coutOpp1A) },
+      { id: 'cout_opp_pays2_A', label: "Coût d'opp. Pays 2 pour A (en B)", value: round2(coutOpp2A) },
       { id: 'production_totale_A', label: 'Production mondiale A', value: round2(isLibreEchange ? totalTradeA : totalAutarkyA) },
       { id: 'production_totale_B', label: 'Production mondiale B', value: round2(isLibreEchange ? totalTradeB : totalAutarkyB) },
       { id: 'gain_echange_A', label: 'Gain du commerce (A)', value: round2(gainA), direction: gainA > 0 ? 'up' : gainA < 0 ? 'down' : 'neutral' },

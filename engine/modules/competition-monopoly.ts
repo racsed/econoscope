@@ -14,21 +14,21 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'concurrence-monopole',
   title: 'Concurrence parfaite vs Monopole',
-  subtitle: 'Structures de marche et bien-etre collectif',
+  subtitle: 'Structures de marché et bien-etre collectif',
   theme: 'micro',
   level: 'intermediate',
   introduction:
-    "Ce module compare les equilibres de marche en concurrence parfaite et en monopole. En concurrence parfaite, le prix egal le cout marginal et la quantite produite est maximale. Le monopole restreint la production pour augmenter son prix, generant un profit mais aussi une perte seche (deadweight loss) pour la societe. L'ecart entre les deux equilibres mesure le cout social du pouvoir de marche.",
+    "Ce module compare les équilibres de marché en concurrence parfaite et en monopole. En concurrence parfaite, le prix egal le coût marginal et la quantité produite est maximale. Le monopole restreint la production pour augmenter son prix, generant un profit mais aussi une perte seche (deadweight loss) pour la société. L'écart entre les deux équilibres mesure le coût social du pouvoir de marché.",
   limites: [
-    'Demande lineaire supposee, ce qui simplifie la realite',
-    'Cout marginal constant (pas d\'economies d\'echelle)',
-    'Marche pour un seul produit homogene',
+    'Demande lineaire supposee, ce qui simplifie la réalité',
+    'Coût marginal constant (pas d\'économies d\'échelle)',
+    'Marché pour un seul produit homogène',
     'Pas de discrimination par les prix ni de concurrence monopolistique',
   ],
   realite: [
-    'La SNCF detient un monopole historique sur le rail longue distance en France',
-    'Les brevets pharmaceutiques creent des monopoles temporaires (ex. vaccins COVID)',
-    'La regulation des telecoms a brise le monopole de France Telecom en 1998',
+    'La SNCF détient un monopole historique sur le rail longue distance en France',
+    'Les brevets pharmaceutiques créent des monopoles temporaires (ex. vaccins COVID)',
+    'La régulation des telecoms a brisé le monopole de France Telecom en 1998',
     'Les GAFAM illustrent des situations de quasi-monopole sur le numerique',
   ],
 };
@@ -43,7 +43,7 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 100,
     unit: 'EUR',
-    tooltip: 'Prix auquel la quantite demandee tombe a zero',
+    tooltip: 'Prix auquel la quantité demandee tombe a zero',
     group: 'Demande',
   },
   {
@@ -54,43 +54,43 @@ const inputs: SimulationInput[] = [
     max: 5,
     step: 0.1,
     defaultValue: 1,
-    tooltip: 'Sensibilite de la quantite au prix (plus eleve = demande plus rigide)',
+    tooltip: 'Sensibilite de la quantité au prix (plus élevé = demande plus rigide)',
     group: 'Demande',
   },
   {
     id: 'cout_marginal',
-    label: 'Cout marginal',
+    label: 'Coût marginal',
     type: 'slider',
     min: 5,
     max: 50,
     step: 1,
     defaultValue: 20,
     unit: 'EUR',
-    tooltip: 'Cout de production d\'une unite supplementaire (constant)',
-    group: 'Couts',
+    tooltip: 'Coût de production d\'une unite supplémentaire (constant)',
+    group: 'Coûts',
   },
   {
     id: 'cout_fixe',
-    label: 'Cout fixe',
+    label: 'Coût fixe',
     type: 'slider',
     min: 0,
     max: 500,
     step: 10,
     defaultValue: 100,
     unit: 'EUR',
-    tooltip: 'Couts fixes de production (independants de la quantite)',
-    group: 'Couts',
+    tooltip: 'Coûts fixes de production (independants de la quantité)',
+    group: 'Coûts',
   },
   {
     id: 'mode',
-    label: 'Structure de marche',
+    label: 'Structure de marché',
     type: 'toggle',
     defaultValue: 'monopole',
     options: [
       { value: 'concurrence', label: 'Concurrence parfaite' },
       { value: 'monopole', label: 'Monopole' },
     ],
-    tooltip: 'Comparer les deux structures de marche',
+    tooltip: 'Comparer les deux structures de marché',
     group: 'Marche',
   },
 ];
@@ -99,25 +99,25 @@ const scenarios: Scenario[] = [
   {
     id: 'concurrence-pure',
     label: 'Concurrence pure et parfaite',
-    description: 'Marche atomise, prix = cout marginal, profit nul a long terme',
+    description: 'Marché atomise, prix = coût marginal, profit nul à long terme',
     values: { demande_intercept: 100, pente_demande: 1, cout_marginal: 20, cout_fixe: 0, mode: 'concurrence' },
   },
   {
     id: 'monopole-naturel',
     label: 'Monopole naturel',
-    description: 'Couts fixes tres eleves, un seul producteur efficace',
+    description: 'Coûts fixes tres élevés, un seul producteur efficace',
     values: { demande_intercept: 100, pente_demande: 1, cout_marginal: 10, cout_fixe: 400, mode: 'monopole' },
   },
   {
-    id: 'monopole-couts-eleves',
-    label: 'Monopole a couts eleves',
-    description: 'Cout marginal eleve, marge reduite meme en monopole',
+    id: 'monopole-coûts-élevés',
+    label: 'Monopole a coûts élevés',
+    description: 'Coût marginal élevé, marge reduite même en monopole',
     values: { demande_intercept: 100, pente_demande: 1, cout_marginal: 45, cout_fixe: 100, mode: 'monopole' },
   },
   {
     id: 'quasi-concurrence',
     label: 'Quasi-concurrence',
-    description: 'Demande tres elastique, le monopole a peu de pouvoir de marche',
+    description: 'Demande tres élastique, le monopole a peu de pouvoir de marché',
     values: { demande_intercept: 60, pente_demande: 0.5, cout_marginal: 20, cout_fixe: 50, mode: 'monopole' },
   },
 ];
@@ -182,7 +182,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     },
     {
       id: 'cout_marginal',
-      label: 'Cout marginal (Cm)',
+      label: 'Coût marginal (Cm)',
       color: '#10b981',
       data: cmLine,
       strokeWidth: 2,
@@ -203,7 +203,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   const annotations: Annotation[] = [];
 
-  // Equilibre concurrence
+  // Équilibre concurrence
   annotations.push({
     type: 'point',
     x: Q_c,
@@ -213,7 +213,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   });
 
   if (mode === 'monopole') {
-    // Equilibre monopole
+    // Équilibre monopole
     annotations.push({
       type: 'point',
       x: Q_m,
@@ -249,7 +249,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const chartData: ChartData = {
     type: 'line',
     series,
-    xLabel: 'Quantite (Q)',
+    xLabel: 'Quantité (Q)',
     yLabel: 'Prix (EUR)',
     xDomain: [0, maxQ],
     yDomain: [0, maxPrice],
@@ -262,31 +262,31 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (mode === 'concurrence') {
-    observation = `En concurrence parfaite, le prix s'etablit au cout marginal (${Cm} EUR) car la libre entree des firmes elimine tout profit economique. La quantite echangee est de ${Q_c.toFixed(1)} unites. Le surplus du consommateur atteint ${surplusConsoConcurrence.toFixed(0)} EUR.`;
-    interpretation = `La concurrence parfaite maximise le surplus total (consommateur + producteur) de la societe. Aucune perte seche n'existe car toutes les unites dont la valeur pour le consommateur depasse le cout de production sont echangees. Le prix egal au cout marginal est la condition d'efficacite allocative.`;
+    observation = `En concurrence parfaite, le prix s'établit au coût marginal (${Cm} EUR) car la libre entree des firmes élimine tout profit économique. La quantité échangée est de ${Q_c.toFixed(1)} unites. Le surplus du consommateur atteint ${surplusConsoConcurrence.toFixed(0)} EUR.`;
+    interpretation = `La concurrence parfaite maximisé le surplus total (consommateur + producteur) de la société. Aucune perte seche n'existe car toutes les unites dont la valeur pour le consommateur dépasse le coût de production sont échangées. Le prix egal au coût marginal est la condition d'efficacité allocative.`;
     if (CF > 200) {
-      interpretation += ` Attention : des couts fixes de ${CF} EUR rendent cette structure de marche difficile a maintenir. Si les prix restent au cout marginal, les entreprises ne couvrent pas leurs couts fixes et quittent le marche. En pratique, un marche avec des couts fixes eleves tend naturellement vers le monopole ou l'oligopole.`;
+      interpretation += ` Attention : des coûts fixes de ${CF} EUR rendent cette structure de marché difficile à maintenir. Si les prix restent au coût marginal, les entreprises ne couvrent pas leurs coûts fixes et quittent le marché. En pratique, un marché avec des coûts fixes élevés tend naturellement vers le monopole ou l'oligopole.`;
     }
   } else {
     const pctPrixHausse = ((P_m - P_c) / P_c * 100);
     const pctQteBaisse = ((Q_c - Q_m) / Q_c * 100);
     const markup = ((P_m - Cm) / P_m * 100);
-    observation = `Le monopole fixe un prix de ${P_m.toFixed(0)} EUR (+${pctPrixHausse.toFixed(0)}% vs concurrence) pour une quantite de ${Q_m.toFixed(1)} unites (-${pctQteBaisse.toFixed(0)}%). Son taux de marge est de ${markup.toFixed(0)}%. La perte seche s'eleve a ${DWL.toFixed(0)} EUR et le profit a ${profitMonopole.toFixed(0)} EUR.`;
-    interpretation = `Le monopoleur egalise recette marginale et cout marginal (Rm = Cm), pas prix et Cm. Comme la recette marginale est inferieure au prix (vendre plus exige de baisser le prix sur toutes les unites), le monopoleur restreint volontairement la production. Le surplus du consommateur chute de ${surplusConsoConcurrence.toFixed(0)} a ${surplusConsoMonopole.toFixed(0)} EUR. La perte seche de ${DWL.toFixed(0)} EUR represente des echanges mutuellement avantageux qui n'ont pas lieu : des consommateurs prets a payer plus que le cout marginal sont exclus du marche.`;
+    observation = `Le monopole fixe un prix de ${P_m.toFixed(0)} EUR (+${pctPrixHausse.toFixed(0)}% vs concurrence) pour une quantité de ${Q_m.toFixed(1)} unites (-${pctQteBaisse.toFixed(0)}%). Son taux de marge est de ${markup.toFixed(0)}%. La perte seche s'élevé a ${DWL.toFixed(0)} EUR et le profit a ${profitMonopole.toFixed(0)} EUR.`;
+    interpretation = `Le monopoleur egalise recette marginale et coût marginal (Rm = Cm), pas prix et Cm. Comme la recette marginale est inférieure au prix (vendre plus exige de baisser le prix sur toutes les unites), le monopoleur restreint volontairement la production. Le surplus du consommateur chute de ${surplusConsoConcurrence.toFixed(0)} a ${surplusConsoMonopole.toFixed(0)} EUR. La perte seche de ${DWL.toFixed(0)} EUR représente des échanges mutuellement avantageux qui n'ont pas lieu : des consommateurs prêts à payer plus que le coût marginal sont exclus du marché.`;
 
     if (profitMonopole < 0) {
-      interpretation += ` Malgre le pouvoir de marche, les couts fixes de ${CF} EUR sont si eleves que le monopole est deficitaire. C'est le cas typique du monopole naturel (reseau ferroviaire, distribution d'eau) ou les couts fixes sont enormes mais le cout marginal est bas : une seule entreprise est plus efficace que plusieurs, mais elle ne peut pas couvrir ses couts au prix concurrentiel. D'ou la necessite d'une regulation publique (tarification au cout moyen, subvention).`;
+      interpretation += ` Malgre le pouvoir de marché, les coûts fixes de ${CF} EUR sont si élevés que le monopole est déficitaire. C'est le cas typique du monopole naturel (réseau ferroviaire, distribution d'eau) ou les coûts fixes sont énormes mais le coût marginal est bas : une seule entreprise est plus efficace que plusieurs, mais elle ne peut pas couvrir ses coûts au prix concurrentiel. D'ou la nécessité d'une régulation publique (tarification au coût moyen, subvention).`;
     } else if (profitMonopole > 0 && markup > 50) {
-      interpretation += ` Le taux de marge de ${markup.toFixed(0)}% est tres eleve, signe d'un fort pouvoir de marche. En pratique, une telle rente attire des concurrents potentiels : seules des barrieres a l'entree (brevets, monopole legal, effets de reseau) peuvent maintenir cette situation.`;
+      interpretation += ` Le taux de marge de ${markup.toFixed(0)}% est tres élevé, signe d'un fort pouvoir de marché. En pratique, une telle rente attire des concurrents potentiels : seules des barrieres à l'entree (brevets, monopole legal, effets de réseau) peuvent maintenir cette situation.`;
     }
   }
 
   return {
     outputs: [
       { id: 'prix_concurrence', label: 'Prix concurrence', value: round2(P_c), unit: 'EUR' },
-      { id: 'quantite_concurrence', label: 'Quantite concurrence', value: round2(Q_c) },
+      { id: 'quantite_concurrence', label: 'Quantité concurrence', value: round2(Q_c) },
       { id: 'prix_monopole', label: 'Prix monopole', value: round2(P_m), unit: 'EUR' },
-      { id: 'quantite_monopole', label: 'Quantite monopole', value: round2(Q_m) },
+      { id: 'quantite_monopole', label: 'Quantité monopole', value: round2(Q_m) },
       { id: 'profit_monopole', label: 'Profit monopole', value: round2(profitMonopole), unit: 'EUR' },
       { id: 'perte_seche', label: 'Perte seche (DWL)', value: round2(DWL), unit: 'EUR' },
       { id: 'surplus_conso_cpp', label: 'Surplus conso. (CPP)', value: round2(surplusConsoConcurrence), unit: 'EUR' },

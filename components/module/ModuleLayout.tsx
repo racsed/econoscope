@@ -153,7 +153,7 @@ export function ModuleLayout({
           </div>
         </div>
 
-        {/* Scenarios */}
+        {/* Scénarios */}
         <div className="mb-8">{scenarios}</div>
 
         {/* Narration blocks */}

@@ -12,7 +12,7 @@ export function InterpretationBlock({ content, themeColor }: InterpretationBlock
   return (
     <NarrationBlock
       icon={Brain}
-      title="Interpretation economique"
+      title="Interpretation économique"
       content={content}
       themeColor={themeColor}
     />

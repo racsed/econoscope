@@ -14,22 +14,22 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'taux-de-change',
   title: 'Taux de change et balance commerciale',
-  subtitle: 'Competitivite-prix et condition de Marshall-Lerner',
+  subtitle: 'Compétitivité-prix et condition de Marshall-Lerner',
   theme: 'international',
   level: 'intermediate',
   introduction:
-    "Le taux de change reel mesure la competitivite-prix d'une economie. Une depreciation rend les exportations moins cheres et les importations plus couteuses. Selon la condition de Marshall-Lerner, une depreciation ameliore la balance commerciale si la somme des elasticites des exportations et des importations depasse 1. Ce module simule l'impact du taux de change sur les flux commerciaux.",
+    "Le taux de change réel mesure la compétitivité-prix d'une économie. Une dépréciation rend les exportations moins cheres et les importations plus couteuses. Selon la condition de Marshall-Lerner, une dépréciation ameliore la balance commerciale si la somme des elasticites des exportations et des importations dépasse 1. Ce module simule l'impact du taux de change sur les flux commerciaux.",
   limites: [
-    'Pas de modele dynamique de courbe en J (effets instantanes)',
+    'Pas de modèle dynamique de courbe en J (effets instantanes)',
     'Elasticites supposees constantes sur toute la plage',
-    'Modele a deux pays seulement (domestique vs etranger)',
+    'Modèle à deux pays seulement (domestique vs etranger)',
     'Pas de prise en compte des flux de capitaux ni de la balance financiere',
   ],
   realite: [
-    'La depreciation de l\'euro de 20% en 2022 a rencheri les importations energetiques',
-    'L\'excedent commercial allemand repose en partie sur un euro sous-evalue pour l\'Allemagne',
-    'Le deficit commercial francais atteint 164 milliards EUR en 2022',
-    'La Chine a longtemps maintenu un yuan sous-evalue pour doper ses exportations',
+    'La dépréciation de l\'euro de 20% en 2022 a renchéri les importations energetiques',
+    'L\'excédent commercial allemand repose en partie sur un euro sous-évalué pour l\'Allemagne',
+    'Le déficit commercial français atteint 164 milliards EUR en 2022',
+    'La Chine a longtemps maintenu un yuan sous-évalué pour doper ses exportations',
   ],
 };
 
@@ -46,7 +46,7 @@ const inputs: SimulationInput[] = [
     step: 0.01,
     defaultValue: 1.0,
     unit: 'EUR/USD',
-    tooltip: 'Nombre d\'EUR pour 1 USD. Une hausse = depreciation de l\'euro',
+    tooltip: 'Nombre d\'EUR pour 1 USD. Une hausse = dépréciation de l\'euro',
     group: 'Change',
   },
   {
@@ -62,35 +62,35 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'prix_etrangers',
-    label: 'Niveau des prix etrangers',
+    label: 'Niveau des prix étrangers',
     type: 'slider',
     min: 80,
     max: 120,
     step: 1,
     defaultValue: 100,
-    tooltip: 'Indice des prix etrangers en USD (base 100)',
+    tooltip: 'Indice des prix étrangers en USD (base 100)',
     group: 'Prix',
   },
   {
     id: 'elasticite_export',
-    label: 'Elasticite des exportations',
+    label: 'Élasticité des exportations',
     type: 'slider',
     min: 0.5,
     max: 3,
     step: 0.1,
     defaultValue: 1.5,
-    tooltip: 'Sensibilite des exportations au taux de change reel',
+    tooltip: 'Sensibilite des exportations au taux de change réel',
     group: 'Elasticites',
   },
   {
     id: 'elasticite_import',
-    label: 'Elasticite des importations',
+    label: 'Élasticité des importations',
     type: 'slider',
     min: 0.5,
     max: 3,
     step: 0.1,
     defaultValue: 1.2,
-    tooltip: 'Sensibilite des importations au taux de change reel',
+    tooltip: 'Sensibilite des importations au taux de change réel',
     group: 'Elasticites',
   },
 ];
@@ -99,7 +99,7 @@ const scenarios: Scenario[] = [
   {
     id: 'euro-fort',
     label: 'Euro fort',
-    description: 'Euro apprecie, importations bon marche mais exportations penalisees',
+    description: 'Euro apprecie, importations bon marché mais exportations pénalisées',
     values: { taux_change: 0.7, prix_domestiques: 100, prix_etrangers: 100, elasticite_export: 1.5, elasticite_import: 1.2 },
   },
   {
@@ -109,15 +109,15 @@ const scenarios: Scenario[] = [
     values: { taux_change: 1.4, prix_domestiques: 100, prix_etrangers: 100, elasticite_export: 1.5, elasticite_import: 1.2 },
   },
   {
-    id: 'choc-petrolier',
-    label: 'Choc petrolier',
-    description: 'Hausse des prix etrangers (energie), balance degradee',
+    id: 'choc-pétrolier',
+    label: 'Choc pétrolier',
+    description: 'Hausse des prix étrangers (énergie), balance dégradée',
     values: { taux_change: 1.0, prix_domestiques: 100, prix_etrangers: 120, elasticite_export: 1.5, elasticite_import: 0.8 },
   },
   {
-    id: 'desinflation-competitive',
-    label: 'Desinflation competitive',
-    description: 'Baisse des prix domestiques pour gagner en competitivite',
+    id: 'désinflation-competitive',
+    label: 'Désinflation competitive',
+    description: 'Baisse des prix domestiques pour gagner en compétitivité',
     values: { taux_change: 1.0, prix_domestiques: 85, prix_etrangers: 100, elasticite_export: 1.5, elasticite_import: 1.2 },
   },
 ];
@@ -131,12 +131,12 @@ function round2(v: number): number {
 }
 
 function computeExports(tcr: number, elX: number): number {
-  // Exports increase when TCR increases (depreciation)
+  // Exports increase when TCR increases (dépréciation)
   return X0 * Math.pow(tcr, elX);
 }
 
 function computeImports(tcr: number, elM: number): number {
-  // Imports decrease when TCR increases (depreciation = imports more expensive)
+  // Imports decrease when TCR increases (dépréciation = imports more expensive)
   if (tcr <= 0) return M0 * 1000; // guard
   return M0 * Math.pow(1 / tcr, elM);
 }
@@ -148,7 +148,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const elX = clamp(Number(values.elasticite_export) || 1.5, 0.5, 3);
   const elM = clamp(Number(values.elasticite_import) || 1.2, 0.5, 3);
 
-  // Taux de change reel = e * P* / P
+  // Taux de change réel = e * P* / P
   const TCR = (e * Pstar) / P;
 
   // Current values
@@ -246,7 +246,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       y1: 0,
       x2: eMax,
       y2: 0,
-      label: 'Equilibre (BC = 0)',
+      label: 'Équilibre (BC = 0)',
       color: '#94a3b8',
     },
   ];
@@ -263,30 +263,30 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   };
 
   // Narration
-  const directionChange = e > 1 ? 'deprecie' : e < 1 ? 'apprecie' : 'a parite';
-  const observation = `Avec un taux de change de ${e.toFixed(2)} EUR/USD (euro ${directionChange}), le taux de change reel est de ${TCR.toFixed(2)}. Les exportations atteignent ${exports.toFixed(0)} et les importations ${imports.toFixed(0)}, soit une balance commerciale de ${balance >= 0 ? '+' : ''}${balance.toFixed(0)}.`;
+  const directionChange = e > 1 ? 'deprecie' : e < 1 ? 'apprecie' : 'a parité';
+  const observation = `Avec un taux de change de ${e.toFixed(2)} EUR/USD (euro ${directionChange}), le taux de change réel est de ${TCR.toFixed(2)}. Les exportations atteignent ${exports.toFixed(0)} et les importations ${imports.toFixed(0)}, soit une balance commerciale de ${balance >= 0 ? '+' : ''}${balance.toFixed(0)}.`;
 
-  let interpretation = `La condition de Marshall-Lerner (somme des elasticites = ${marshallLerner.toFixed(1)}) est ${conditionRemplie ? 'remplie (> 1)' : 'non remplie (< 1)'} : une depreciation de l'euro ${conditionRemplie ? 'ameliore' : 'degrade paradoxalement'} la balance commerciale. `;
+  let interpretation = `La condition de Marshall-Lerner (somme des elasticites = ${marshallLerner.toFixed(1)}) est ${conditionRemplie ? 'remplie (> 1)' : 'non remplie (< 1)'} : une dépréciation de l'euro ${conditionRemplie ? 'ameliore' : 'degrade paradoxalement'} la balance commerciale. `;
 
   if (balance > 0) {
-    interpretation += `L'economie degage un excedent commercial de ${balance.toFixed(0)}. La competitivite-prix est favorable grace a ${TCR > 1 ? 'un taux de change reel deprecie qui rend les produits domestiques relativement bon marche a l\'etranger' : 'des prix domestiques relativement bas par rapport aux prix etrangers convertis'}.`;
+    interpretation += `L'économie dégage un excédent commercial de ${balance.toFixed(0)}. La compétitivité-prix est favorable grâce à ${TCR > 1 ? 'un taux de change réel deprecie qui rend les produits domestiques relativement bon marché a l\'etranger' : 'des prix domestiques relativement bas par rapport aux prix étrangers convertis'}.`;
   } else if (balance < 0) {
-    interpretation += `L'economie est en deficit commercial de ${Math.abs(balance).toFixed(0)}. ${TCR < 1 ? 'L\'appreciation reelle de la monnaie rend les produits domestiques plus chers a l\'etranger et les importations meilleur marche : les exportations chutent et les importations augmentent.' : 'Malgre un change nominalement favorable, d\'autres facteurs (prix domestiques eleves, elasticites faibles) maintiennent un deficit.'} A court terme, la courbe en J suggere qu'une depreciation aggrave d'abord le deficit (les volumes s'ajustent lentement) avant de l'ameliorer.`;
+    interpretation += `L'économie est en déficit commercial de ${Math.abs(balance).toFixed(0)}. ${TCR < 1 ? 'L\'appreciation réelle de la monnaie rend les produits domestiques plus chers a l\'etranger et les importations meilleur marche : les exportations chutent et les importations augmentent.' : 'Malgre un change nominalement favorable, d\'autres facteurs (prix domestiques élevés, elasticites faibles) maintiennent un déficit.'} A court terme, la courbe en J suggere qu'une dépréciation aggrave d'abord le déficit (les volumes s'ajustent lentement) avant de l'ameliorer.`;
   } else {
-    interpretation += 'La balance commerciale est a l\'equilibre : les exportations financent exactement les importations.';
+    interpretation += 'La balance commerciale est a l\'équilibre : les exportations financent exactement les importations.';
   }
 
   if (P > 110) {
-    interpretation += ` Les prix domestiques eleves (indice ${P}) reduisent la competitivite : meme sans variation du taux de change nominal, l'inflation interieure apprecie la monnaie en termes reels.`;
+    interpretation += ` Les prix domestiques élevés (indice ${P}) reduisent la compétitivité : même sans variation du taux de change nominal, l'inflation intérieure apprecie la monnaie en termes réels.`;
   }
 
   if (elX + elM < 1.2 && elX + elM > 1) {
-    interpretation += ` La condition de Marshall-Lerner est tout juste satisfaite (somme = ${marshallLerner.toFixed(1)}). L'effet d'une depreciation sur la balance sera modeste et lent a se materialiser.`;
+    interpretation += ` La condition de Marshall-Lerner est tout juste satisfaite (somme = ${marshallLerner.toFixed(1)}). L'effet d'une dépréciation sur la balance sera modeste et lent à se materialiser.`;
   }
 
   return {
     outputs: [
-      { id: 'taux_change_reel', label: 'Taux de change reel', value: round2(TCR) },
+      { id: 'taux_change_reel', label: 'Taux de change réel', value: round2(TCR) },
       { id: 'exportations', label: 'Exportations', value: round2(exports) },
       { id: 'importations', label: 'Importations', value: round2(imports) },
       { id: 'balance_commerciale', label: 'Balance commerciale', value: round2(balance) },

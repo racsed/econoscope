@@ -75,7 +75,7 @@ export function ProjectionMode({
       {/* Compact bottom bar: scenarios + controls side by side */}
       <div className="border-t border-border px-6 py-3 shrink-0">
         <div className="flex items-center gap-6 max-w-6xl mx-auto">
-          {/* Scenarios on the left */}
+          {/* Scénarios on the left */}
           <div className="shrink-0">{scenarios}</div>
           {/* Divider */}
           <div className="w-px h-8 bg-border shrink-0" />

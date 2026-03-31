@@ -11,59 +11,59 @@ export interface FppScenario {
 
 export const fppScenarios: FppScenario[] = [
   {
-    id: 'equilibre-initial',
-    title: 'Equilibre 50/50',
-    description: "Repartition egale des ressources entre les deux biens.",
+    id: 'équilibre-initial',
+    title: 'Équilibre 50/50',
+    description: "Repartition égale des ressources entre les deux biens.",
     ressourcesTotales: 500,
     productiviteA: 5,
     productiviteB: 3,
     allocationA: 50,
     explanation:
-      "Avec une allocation egale, l'economie produit les deux biens de maniere equilibree. Le cout d'opportunite est modere dans les deux directions.",
+      "Avec une allocation égale, l'économie produit les deux biens de manière equilibree. Le coût d'opportunité est modere dans les deux directions.",
   },
   {
-    id: 'specialisation-bien-a',
-    title: 'Specialisation dans le bien A',
-    description: "L'economie consacre la quasi-totalite de ses ressources au bien A.",
+    id: 'spécialisation-bien-a',
+    title: 'Spécialisation dans le bien A',
+    description: "L'économie consacre la quasi-totalite de ses ressources au bien A.",
     ressourcesTotales: 500,
     productiviteA: 5,
     productiviteB: 3,
     allocationA: 95,
     explanation:
-      "Proche de la specialisation totale, le cout d'opportunite de chaque unite supplementaire de A est tres eleve car il faut renoncer a beaucoup de B. La concavite de la FPP illustre ce rendement decroissant.",
+      "Proche de la spécialisation totale, le coût d'opportunité de chaque unite supplémentaire de A est tres élevé car il faut renoncer a beaucoup de B. La concavite de la FPP illustre ce rendement decroissant.",
   },
   {
     id: 'sous-utilisation',
     title: 'Sous-utilisation des ressources',
-    description: "Faible allocation (chomage ou gaspillage des ressources).",
+    description: "Faible allocation (chômage ou gaspillage des ressources).",
     ressourcesTotales: 500,
     productiviteA: 5,
     productiviteB: 3,
     allocationA: 15,
     explanation:
-      "Avec seulement 15% des ressources allouees au bien A, la production de A est faible. Si le point se situe a l'interieur de la frontiere, cela revele une inefficience (chomage, sous-emploi des capacites).",
+      "Avec seulement 15% des ressources allouees au bien A, la production de A est faible. Si le point se situe à l'intérieur de la frontiere, cela révèle une inefficience (chômage, sous-emploi des capacités).",
   },
   {
-    id: 'progres-technique',
-    title: 'Progres technique (FPP elargie)',
-    description: "Une innovation technologique augmente les productivites.",
+    id: 'progrès-technique',
+    title: 'Progrès technique (FPP élargie)',
+    description: "Une innovation technologique augmente les productivités.",
     ressourcesTotales: 500,
     productiviteA: 8,
     productiviteB: 6,
     allocationA: 50,
     explanation:
-      "Le progres technique deplace la FPP vers l'exterieur : l'economie peut produire davantage des deux biens avec les memes ressources. C'est le moteur de la croissance economique a long terme.",
+      "Le progrès technique déplace la FPP vers l'exterieur : l'économie peut produire davantage des deux biens avec les memes ressources. C'est le moteur de la croissance économique à long terme.",
   },
   {
-    id: 'economie-de-guerre',
-    title: 'Economie de guerre',
+    id: 'économie-de-guerre',
+    title: 'Économie de guerre',
     description: "Ressources abondantes mais fortement orientees vers un seul bien.",
     ressourcesTotales: 1000,
     productiviteA: 7,
     productiviteB: 2,
     allocationA: 85,
     explanation:
-      "En periode de guerre, l'economie realloue massivement ses ressources vers la production militaire (bien A), sacrifiant la production civile (bien B). Le cout d'opportunite de cette reallocation est visible sur la FPP.",
+      "En période de guerre, l'économie realloue massivement ses ressources vers la production militaire (bien A), sacrifiant la production civile (bien B). Le coût d'opportunité de cette reallocation est visible sur la FPP.",
   },
 ];
 

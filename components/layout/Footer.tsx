@@ -12,8 +12,8 @@ export default function Footer() {
               Econoscope
             </p>
             <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-              L&apos;economie rendue visible, interactive et comprehensible.
-              Un laboratoire numerique pour explorer les mecanismes economiques.
+              L&apos;économie rendue visible, interactive et comprehensible.
+              Un laboratoire numerique pour explorer les mécanismes économiques.
             </p>
           </div>
 
@@ -42,15 +42,15 @@ export default function Footer() {
               Projet
             </p>
             <p className="mt-3 text-sm text-text-secondary leading-relaxed">
-              Un projet a vocation pedagogique.
-              Concu pour rendre l&apos;economie accessible a tous.
+              Un projet a vocation pédagogique.
+              Concu pour rendre l&apos;économie accessible a tous.
             </p>
           </div>
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center">
           <p className="text-xs text-text-secondary/60">
-            Econoscope -- Laboratoire interactif d&apos;economie
+            Econoscope -- Laboratoire interactif d&apos;économie
           </p>
         </div>
       </div>

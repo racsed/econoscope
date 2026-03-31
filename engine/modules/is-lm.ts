@@ -13,38 +13,38 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'is-lm',
-  title: 'Modele IS-LM',
-  subtitle: "L'equilibre simultane sur les marches des biens et de la monnaie",
+  title: 'Modèle IS-LM',
+  subtitle: "L'équilibre simultane sur les marchés des biens et de la monnaie",
   theme: 'macro',
   level: 'advanced',
   introduction:
-    "Le modele IS-LM (Hicks-Hansen, 1937) represente l'equilibre macroeconomique simultanee sur le marche des biens (courbe IS) et le marche monetaire (courbe LM). Il permet d'analyser les effets des politiques budgetaire et monetaire sur le revenu national et le taux d'interet.",
+    "Le modèle IS-LM (Hicks-Hansen, 1937) représente l'équilibre macroéconomique simultanee sur le marché des biens (courbe IS) et le marché monétaire (courbe LM). Il permet d'analyser les effets des politiques budgétaire et monétaire sur le revenu national et le taux d'intérêt.",
   limites: [
-    "Modele a prix fixes (court terme keynesien)",
-    "Ignore le marche du travail et l'offre globale",
-    "Economie fermee dans la version de base",
+    "Modèle à prix fixes (court terme keynesien)",
+    "Ignore le marché du travail et l'offre globale",
+    "Économie fermee dans la version de base",
     "Les courbes sont supposees lineaires",
     "Ne tient pas compte des anticipations",
   ],
   realite: [
     "La BCE fixe les taux directeurs, influencant la position de LM",
-    "Le plan de relance europeen (2020) illustre un deplacement de IS vers la droite",
-    "L'effet d'eviction est visible quand la relance budgetaire fait monter les taux",
+    "Le plan de relance européen (2020) illustre un déplacement de IS vers la droite",
+    "L'effet d'éviction est visible quand la relance budgétaire fait monter les taux",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'depenses_publiques',
-    label: 'Depenses publiques (G)',
+    label: 'Dépenses publiques (G)',
     type: 'slider',
     min: 0,
     max: 500,
     step: 10,
     defaultValue: 200,
     unit: 'Mds\u20ac',
-    tooltip: "Les depenses de l'Etat deplacent IS vers la droite",
-    group: 'Politique budgetaire',
+    tooltip: "Les dépenses de l'État deplacent IS vers la droite",
+    group: 'Politique budgétaire',
   },
   {
     id: 'taux_imposition',
@@ -54,8 +54,8 @@ const inputs: SimulationInput[] = [
     max: 0.6,
     step: 0.05,
     defaultValue: 0.2,
-    tooltip: "Un taux plus eleve reduit le multiplicateur et aplatit IS",
-    group: 'Politique budgetaire',
+    tooltip: "Un taux plus élevé réduit le multiplicateur et aplatit IS",
+    group: 'Politique budgétaire',
   },
   {
     id: 'investissement_autonome',
@@ -66,7 +66,7 @@ const inputs: SimulationInput[] = [
     step: 10,
     defaultValue: 200,
     unit: 'Mds\u20ac',
-    tooltip: "Composante de l'investissement independante du taux d'interet",
+    tooltip: "Composante de l'investissement independante du taux d'intérêt",
     group: 'Investissement',
   },
   {
@@ -77,7 +77,7 @@ const inputs: SimulationInput[] = [
     max: 100,
     step: 1,
     defaultValue: 30,
-    tooltip: "Plus b est grand, plus l'investissement reagit au taux d'interet",
+    tooltip: "Plus b est grand, plus l'investissement réagit au taux d'intérêt",
     group: 'Investissement',
   },
   {
@@ -89,19 +89,19 @@ const inputs: SimulationInput[] = [
     step: 50,
     defaultValue: 800,
     unit: 'Mds\u20ac',
-    tooltip: "Masse monetaire controlee par la banque centrale",
-    group: 'Politique monetaire',
+    tooltip: "Masse monétaire contrôlée par la banque centrale",
+    group: 'Politique monétaire',
   },
   {
     id: 'niveau_prix',
-    label: 'Niveau general des prix (P)',
+    label: 'Niveau général des prix (P)',
     type: 'slider',
     min: 1,
     max: 5,
     step: 0.1,
     defaultValue: 1,
-    tooltip: "Offre reelle de monnaie = M / P",
-    group: 'Politique monetaire',
+    tooltip: "Offre réelle de monnaie = M / P",
+    group: 'Politique monétaire',
   },
   {
     id: 'sensibilite_monnaie',
@@ -112,39 +112,39 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 40,
     tooltip: "Plus h est grand, plus LM est plate (trappe a liquidite)",
-    group: 'Politique monetaire',
+    group: 'Politique monétaire',
   },
 ];
 
 const scenarios: Scenario[] = [
   {
     id: 'equilibre_base',
-    label: 'Equilibre de base',
-    description: "Parametres standard, equilibre initial",
+    label: 'Équilibre de base',
+    description: "Paramètres standard, équilibre initial",
     values: { depenses_publiques: 200, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 800, niveau_prix: 1, sensibilite_monnaie: 40 },
   },
   {
     id: 'relance_budgetaire',
-    label: 'Relance budgetaire',
-    description: "Augmentation des depenses publiques de 50%",
+    label: 'Relance budgétaire',
+    description: "Augmentation des dépenses publiques de 50%",
     values: { depenses_publiques: 300, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 800, niveau_prix: 1, sensibilite_monnaie: 40 },
   },
   {
     id: 'relance_monetaire',
-    label: 'Relance monetaire',
+    label: 'Relance monétaire',
     description: "Expansion de l'offre de monnaie",
     values: { depenses_publiques: 200, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 1200, niveau_prix: 1, sensibilite_monnaie: 40 },
   },
   {
     id: 'policy_mix',
     label: 'Policy mix expansionniste',
-    description: "Combinaison de relance budgetaire et monetaire",
+    description: "Combinaison de relance budgétaire et monétaire",
     values: { depenses_publiques: 300, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 1200, niveau_prix: 1, sensibilite_monnaie: 40 },
   },
   {
     id: 'trappe_liquidite',
     label: 'Trappe a liquidite',
-    description: "Sensibilite monetaire tres elevee, LM quasi-plate",
+    description: "Sensibilite monétaire tres élevée, LM quasi-plate",
     values: { depenses_publiques: 200, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 800, niveau_prix: 1, sensibilite_monnaie: 95 },
   },
 ];
@@ -216,7 +216,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   const eq = findEquilibrium(g, t, i0, b, m, p, h);
 
-  // Base equilibrium (for comparison / eviction calculation)
+  // Base equilibrium (for comparison / éviction calculation)
   const eqBase = findEquilibrium(200, 0.2, 200, 30, 800, 1, 40);
 
   // Y range for plotting
@@ -238,14 +238,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'is',
-      label: 'IS (marche des biens)',
+      label: 'IS (marché des biens)',
       color: '#3b82f6',
       data: isCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'lm',
-      label: 'LM (marche monetaire)',
+      label: 'LM (marché monétaire)',
       color: '#ef4444',
       data: lmCurve,
       strokeWidth: 2.5,
@@ -265,7 +265,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Eviction effect: with more G, Y increases but r also increases, crowding out private I
   const investissement = i0 - b * eq.r;
   const investissementBase = i0 - b * eqBase.r;
-  const eviction = investissementBase - investissement;
+  const éviction = investissementBase - investissement;
 
   // Multiplier with monetary feedback
   const s = 1 - C1 * (1 - t);
@@ -278,7 +278,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     type: 'line',
     series,
     xLabel: 'Revenu national Y (Mds\u20ac)',
-    yLabel: "Taux d'interet r (%)",
+    yLabel: "Taux d'intérêt r (%)",
     xDomain: [0, yMax],
     yDomain: [-2, 20],
     equilibrium: { x: eq.y, y: eq.r },
@@ -286,7 +286,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   };
 
   // Narration
-  let observation = `L'equilibre IS-LM se situe a Y* = ${eq.y.toFixed(0)} Mds\u20ac avec un taux d'interet r* = ${eq.r.toFixed(1)}%. L'investissement prive est de ${investissement.toFixed(0)} Mds\u20ac.`;
+  let observation = `L'équilibre IS-LM se situe a Y* = ${eq.y.toFixed(0)} Mds\u20ac avec un taux d'intérêt r* = ${eq.r.toFixed(1)}%. L'investissement privé est de ${investissement.toFixed(0)} Mds\u20ac.`;
 
   // Dynamic narration: compare current equilibrium to baseline
   const deltaY = eq.y - eqBase.y;
@@ -299,34 +299,34 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (Math.abs(deltaY) > 10 || Math.abs(deltaR) > 0.2) {
     // Describe what changed relative to baseline
     if (deltaY > 10) {
-      changes.push(`le revenu augmente de ${deltaY.toFixed(0)} Mds\u20ac par rapport a l'equilibre de reference`);
+      changes.push(`le revenu augmente de ${deltaY.toFixed(0)} Mds\u20ac par rapport à l'équilibre de référence`);
     } else if (deltaY < -10) {
-      changes.push(`le revenu diminue de ${Math.abs(deltaY).toFixed(0)} Mds\u20ac par rapport a l'equilibre de reference`);
+      changes.push(`le revenu diminué de ${Math.abs(deltaY).toFixed(0)} Mds\u20ac par rapport à l'équilibre de référence`);
     }
 
     if (deltaR > 0.2) {
-      changes.push(`le taux d'interet monte de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
+      changes.push(`le taux d'intérêt monte de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
     } else if (deltaR < -0.2) {
-      changes.push(`le taux d'interet baisse de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
+      changes.push(`le taux d'intérêt baisse de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
     }
 
-    interpretation = `Par rapport a l'equilibre de reference, ${changes.join(' et ')}. `;
+    interpretation = `Par rapport à l'équilibre de référence, ${changes.join(' et ')}. `;
 
     // Explain the causes based on what parameters diverged from defaults
     const causes: string[] = [];
     if (g !== 200) {
       const deltaG = g - 200;
       causes.push(deltaG > 0
-        ? `les depenses publiques plus elevees (+${deltaG} Mds\u20ac) deplacent IS vers la droite`
-        : `les depenses publiques plus faibles (${deltaG} Mds\u20ac) deplacent IS vers la gauche`);
+        ? `les dépenses publiques plus élevées (+${deltaG} Mds\u20ac) deplacent IS vers la droite`
+        : `les dépenses publiques plus faibles (${deltaG} Mds\u20ac) deplacent IS vers la gauche`);
     }
     if (m !== 800 || p !== 1) {
       const mReelCurrent = m / p;
       const mReelBase = 800 / 1;
       if (mReelCurrent > mReelBase * 1.05) {
-        causes.push(`l'offre reelle de monnaie plus abondante deplace LM vers la droite`);
+        causes.push(`l'offre réelle de monnaie plus abondante déplace LM vers la droite`);
       } else if (mReelCurrent < mReelBase * 0.95) {
-        causes.push(`l'offre reelle de monnaie plus faible deplace LM vers la gauche`);
+        causes.push(`l'offre réelle de monnaie plus faible déplace LM vers la gauche`);
       }
     }
     if (causes.length > 0) {
@@ -334,34 +334,34 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     }
 
     // Eviction effect
-    if (eviction > 5) {
-      interpretation += `L'effet d'eviction est de ${eviction.toFixed(0)} Mds\u20ac : la hausse du taux d'interet reduit l'investissement prive, attenuant partiellement l'effet de la relance.`;
+    if (éviction > 5) {
+      interpretation += `L'effet d'éviction est de ${éviction.toFixed(0)} Mds\u20ac : la hausse du taux d'intérêt réduit l'investissement privé, atténuant partiellement l'effet de la relance.`;
     } else if (deltaI > 5) {
-      interpretation += `L'investissement prive augmente de ${deltaI.toFixed(0)} Mds\u20ac grace a la baisse du taux d'interet.`;
+      interpretation += `L'investissement privé augmente de ${deltaI.toFixed(0)} Mds\u20ac grace à la baisse du taux d'intérêt.`;
     }
 
     // Liquidity trap detection (dynamic: LM slope is K_MONEY/h, very flat when h is high relative to b)
     if (h > 3 * b) {
-      interpretation += ` Avec h = ${h} (bien superieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidite. La politique monetaire perd en efficacite au profit de la politique budgetaire.`;
+      interpretation += ` Avec h = ${h} (bien supérieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidite. La politique monétaire perd en efficacité au profit de la politique budgétaire.`;
     }
   } else {
-    interpretation = `A l'equilibre, le marche des biens (IS) et le marche monetaire (LM) sont simultanement en equilibre. Le multiplicateur budgetaire effectif (tenant compte de l'eviction) est de ${multiplicateurEffectif.toFixed(2)}, inferieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}. Pourquoi cette difference ? Parce que la hausse du revenu augmente la demande de monnaie, ce qui fait monter le taux d'interet et freine l'investissement prive : c'est l'effet d'eviction (crowding out).`;
+    interpretation = `A l'équilibre, le marché des biens (IS) et le marché monétaire (LM) sont simultanément en équilibre. Le multiplicateur budgétaire effectif (tenant compte de l'éviction) est de ${multiplicateurEffectif.toFixed(2)}, inférieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}. Pourquoi cette différence ? Parce que la hausse du revenu augmente la demande de monnaie, ce qui fait monter le taux d'intérêt et freine l'investissement privé : c'est l'effet d'éviction (crowding out).`;
   }
 
   if (t > 0.4) {
-    interpretation += ` Le taux d'imposition eleve (${(t * 100).toFixed(0)}%) aplatit la courbe IS car il reduit le multiplicateur : chaque euro de revenu supplementaire est davantage preleve, limitant la propagation de la depense.`;
+    interpretation += ` Le taux d'imposition élevé (${(t * 100).toFixed(0)}%) aplatit la courbe IS car il réduit le multiplicateur : chaque euro de revenu supplémentaire est davantage prélevé, limitant la propagation de la dépense.`;
   }
 
   if (b > 60 && h < 20) {
-    interpretation += ` Avec un investissement tres sensible au taux (b = ${b}) et une demande de monnaie peu sensible (h = ${h}), l'effet d'eviction est maximal : toute relance budgetaire fait fortement monter les taux, annulant une grande partie de l'effet sur Y.`;
+    interpretation += ` Avec un investissement tres sensible au taux (b = ${b}) et une demande de monnaie peu sensible (h = ${h}), l'effet d'éviction est maximal : toute relance budgétaire fait fortement monter les taux, annulant une grande partie de l'effet sur Y.`;
   }
 
   return {
     outputs: [
-      { id: 'revenu_equilibre', label: "Revenu d'equilibre (Y*)", value: round2(eq.y), unit: 'Mds\u20ac' },
-      { id: 'taux_interet', label: "Taux d'interet (r*)", value: round2(eq.r), unit: '%' },
-      { id: 'investissement', label: 'Investissement prive', value: round2(investissement), unit: 'Mds\u20ac' },
-      { id: 'eviction', label: "Effet d'eviction", value: round2(Math.max(0, eviction)), unit: 'Mds\u20ac' },
+      { id: 'revenu_equilibre', label: "Revenu d'équilibre (Y*)", value: round2(eq.y), unit: 'Mds\u20ac' },
+      { id: 'taux_interet', label: "Taux d'intérêt (r*)", value: round2(eq.r), unit: '%' },
+      { id: 'investissement', label: 'Investissement privé', value: round2(investissement), unit: 'Mds\u20ac' },
+      { id: 'éviction', label: "Effet d'éviction", value: round2(Math.max(0, éviction)), unit: 'Mds\u20ac' },
       { id: 'multiplicateur_effectif', label: 'Multiplicateur effectif', value: round2(multiplicateurEffectif) },
     ],
     chartData,

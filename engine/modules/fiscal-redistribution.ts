@@ -13,23 +13,23 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'fiscalite-redistribution',
-  title: 'Fiscalite et redistribution',
-  subtitle: 'Progressivite, prelevements et reduction des inegalites',
+  title: 'Fiscalité et redistribution',
+  subtitle: 'Progressivité, prélèvements et réduction des inégalités',
   theme: 'fiscal',
   level: 'intermediate',
   introduction:
-    "Ce module compare les effets de differents baremes fiscaux sur la distribution des revenus. L'impot progressif preleve davantage sur les hauts revenus, tandis qu'un impot proportionnel (flat tax) applique le meme taux a tous. En combinant prelevements et transferts sociaux, on mesure l'effet redistributif a travers le coefficient de Gini avant et apres intervention publique.",
+    "Ce module compare les effets de différents barèmes fiscaux sur la distribution des revenus. L'impot progressif prélevé davantage sur les hauts revenus, tandis qu'un impot proportionnel (flat tax) applique le même taux a tous. En combinant prélèvements et transferts sociaux, on mesure l'effet redistributif à travers le coefficient de Gini avant et après intervention publique.",
   limites: [
-    'Pas d\'effets comportementaux (offre de travail, evasion fiscale)',
-    'Pas de TVA ni de cotisations sociales dans le modele',
+    'Pas d\'effets comportementaux (offre de travail, évasion fiscale)',
+    'Pas de TVA ni de cotisations sociales dans le modèle',
     'Distribution des revenus simplifiee (approximation log-normale)',
     'Transferts sociaux forfaitaires, pas de ciblage selon la situation familiale',
   ],
   realite: [
-    'Le bareme de l\'IR francais 2024 comporte 5 tranches (0%, 11%, 30%, 41%, 45%)',
-    'Le RSA socle s\'eleve a 635 EUR/mois pour une personne seule en 2024',
-    'La prime d\'activite complete les revenus des travailleurs modestes',
-    'La France reduit son Gini de 0.52 (avant redistribution) a 0.29 (apres)',
+    'Le barème de l\'IR français 2024 comporte 5 tranches (0%, 11%, 30%, 41%, 45%)',
+    'Le RSA socle s\'élevé a 635 EUR/mois pour une personne seule en 2024',
+    'La prime d\'activité complete les revenus des travailleurs modestes',
+    'La France réduit son Gini de 0.52 (avant redistribution) a 0.29 (après)',
   ],
 };
 
@@ -55,8 +55,8 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 0,
     unit: '%',
-    tooltip: 'Taux marginal sur les revenus annuels de 0 a 10 000 EUR',
-    group: 'Bareme fiscal',
+    tooltip: 'Taux marginal sur les revenus annuels de 0 à 10 000 EUR',
+    group: 'Barème fiscal',
   },
   {
     id: 'taux_tranche2',
@@ -67,8 +67,8 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 14,
     unit: '%',
-    tooltip: 'Taux marginal sur les revenus annuels de 10 000 a 25 000 EUR',
-    group: 'Bareme fiscal',
+    tooltip: 'Taux marginal sur les revenus annuels de 10 000 à 25 000 EUR',
+    group: 'Barème fiscal',
   },
   {
     id: 'taux_tranche3',
@@ -79,8 +79,8 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 30,
     unit: '%',
-    tooltip: 'Taux marginal sur les revenus annuels de 25 000 a 50 000 EUR',
-    group: 'Bareme fiscal',
+    tooltip: 'Taux marginal sur les revenus annuels de 25 000 à 50 000 EUR',
+    group: 'Barème fiscal',
   },
   {
     id: 'taux_tranche4',
@@ -91,8 +91,8 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 41,
     unit: '%',
-    tooltip: 'Taux marginal sur les revenus annuels superieurs a 50 000 EUR',
-    group: 'Bareme fiscal',
+    tooltip: 'Taux marginal sur les revenus annuels supérieurs a 50 000 EUR',
+    group: 'Barème fiscal',
   },
   {
     id: 'transfert_social',
@@ -103,34 +103,34 @@ const inputs: SimulationInput[] = [
     step: 10,
     defaultValue: 200,
     unit: 'EUR/mois',
-    tooltip: 'Montant forfaitaire verse a chaque menage (RSA, prime activite...)',
+    tooltip: 'Montant forfaitaire verse à chaque ménage (RSA, prime activité...)',
     group: 'Transferts',
   },
 ];
 
 const scenarios: Scenario[] = [
   {
-    id: 'systeme-francais',
-    label: 'Systeme francais (approx.)',
-    description: 'Bareme progressif inspire de l\'IR francais 2024',
+    id: 'système-français',
+    label: 'Système français (approx.)',
+    description: 'Barème progressif inspire de l\'IR français 2024',
     values: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 11, taux_tranche3: 30, taux_tranche4: 41, transfert_social: 200 },
   },
   {
     id: 'flat-tax-20',
     label: 'Flat tax a 20%',
-    description: 'Impot proportionnel unique, meme taux pour tous',
+    description: 'Impot proportionnel unique, même taux pour tous',
     values: { revenu_median: 2500, taux_tranche1: 20, taux_tranche2: 20, taux_tranche3: 20, taux_tranche4: 20, transfert_social: 200 },
   },
   {
     id: 'tres-progressif',
-    label: 'Systeme tres progressif',
-    description: 'Forte redistribution avec transferts eleves',
+    label: 'Système tres progressif',
+    description: 'Forte redistribution avec transferts élevés',
     values: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 20, taux_tranche3: 40, taux_tranche4: 55, transfert_social: 600 },
   },
   {
     id: 'zero-impot-transferts',
     label: 'Zero impot, zero transfert',
-    description: 'Etat minimal, pas d\'intervention fiscale',
+    description: 'État minimal, pas d\'intervention fiscale',
     values: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 0, taux_tranche3: 0, taux_tranche4: 0, transfert_social: 0 },
   },
 ];
@@ -144,12 +144,12 @@ function round2(v: number): number {
 }
 
 /**
- * Generate 10 income deciles from the median using a log-normal-ish distribution.
+ * Generate 10 income déciles from the median using a log-normal-ish distribution.
  * Returns annual incomes sorted ascending.
  */
 function generateDeciles(medianMensuel: number): number[] {
   const medianAnnuel = medianMensuel * 12;
-  // Approximate decile multipliers based on French income distribution
+  // Approximate décile multipliers based on French income distribution
   const multipliers = [0.25, 0.45, 0.60, 0.75, 0.90, 1.10, 1.35, 1.70, 2.30, 4.00];
   return multipliers.map((m) => Math.max(0, medianAnnuel * m));
 }
@@ -207,25 +207,25 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const transfertMensuel = clamp(Number(values.transfert_social) || 200, 0, 800);
   const transfertAnnuel = transfertMensuel * 12;
 
-  const deciles = generateDeciles(medianMensuel);
+  const déciles = generateDeciles(medianMensuel);
 
   // Compute taxes and net incomes
-  const taxes = deciles.map((rev) => computeTax(rev, t1, t2, t3, t4));
-  const revenusApres = deciles.map((rev, i) => Math.max(0, rev - taxes[i] + transfertAnnuel));
-  const tauxEffectifs = deciles.map((rev, i) => (rev > 0 ? ((taxes[i] - transfertAnnuel) / rev) * 100 : 0));
+  const taxes = déciles.map((rev) => computeTax(rev, t1, t2, t3, t4));
+  const revenusApres = déciles.map((rev, i) => Math.max(0, rev - taxes[i] + transfertAnnuel));
+  const tauxEffectifs = déciles.map((rev, i) => (rev > 0 ? ((taxes[i] - transfertAnnuel) / rev) * 100 : 0));
 
   // Gini before and after
-  const giniAvant = computeGini([...deciles].sort((a, b) => a - b));
+  const giniAvant = computeGini([...déciles].sort((a, b) => a - b));
   const giniApres = computeGini([...revenusApres].sort((a, b) => a - b));
   const reductionGini = giniAvant > 0 ? ((giniAvant - giniApres) / giniAvant) * 100 : 0;
 
   // Total tax revenue
   const recettesFiscales = taxes.reduce((a, b) => a + b, 0);
-  const coutTransferts = transfertAnnuel * 10; // 10 deciles
+  const coutTransferts = transfertAnnuel * 10; // 10 déciles
   const soldeBudgetaire = recettesFiscales - coutTransferts;
 
-  // Chart: deciles on X, bars for revenu avant/apres, line for taux effectif
-  const revenuAvantSeries: Point[] = deciles.map((rev, i) => ({ x: i + 1, y: rev / 12 }));
+  // Chart: déciles on X, bars for revenu avant/après, line for taux effectif
+  const revenuAvantSeries: Point[] = déciles.map((rev, i) => ({ x: i + 1, y: rev / 12 }));
   const revenuApresSeries: Point[] = revenusApres.map((rev, i) => ({ x: i + 1, y: rev / 12 }));
   const tauxEffectifSeries: Point[] = tauxEffectifs.map((t, i) => ({ x: i + 1, y: t }));
 
@@ -241,7 +241,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     },
     {
       id: 'revenu_apres',
-      label: 'Revenu net apres redistribution',
+      label: 'Revenu net après redistribution',
       color: '#3b82f6',
       data: revenuApresSeries,
       strokeWidth: 2.5,
@@ -258,7 +258,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     },
   ];
 
-  const maxRevenuMensuel = Math.max(...deciles, ...revenusApres) / 12;
+  const maxRevenuMensuel = Math.max(...déciles, ...revenusApres) / 12;
   const maxTaux = Math.max(...tauxEffectifs.map(Math.abs));
 
   const annotations: Annotation[] = [
@@ -275,7 +275,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       type: 'label',
       x: 5,
       y: maxRevenuMensuel * 0.95,
-      label: `Gini avant: ${giniAvant.toFixed(3)} / apres: ${giniApres.toFixed(3)}`,
+      label: `Gini avant: ${giniAvant.toFixed(3)} / après: ${giniApres.toFixed(3)}`,
       color: '#6b7280',
     },
   ];
@@ -283,7 +283,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const chartData: ChartData = {
     type: 'line',
     series,
-    xLabel: 'Decile de revenu',
+    xLabel: 'Décile de revenu',
     yLabel: 'Revenu mensuel (EUR) / Taux effectif (%)',
     xDomain: [1, 10],
     yDomain: [Math.min(-200, ...tauxEffectifSeries.map((p) => p.y) as number[]), maxRevenuMensuel * 1.1],
@@ -294,50 +294,50 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const isProgressif = t1 < t2 && t2 < t3 && t3 < t4;
   const isFlat = t1 === t2 && t2 === t3 && t3 === t4;
   const isRegressif = t1 > t2 || t2 > t3 || t3 > t4;
-  const typeBareme = isFlat ? 'proportionnel (flat tax)' : isProgressif ? 'progressif' : isRegressif ? 'regressif (les taux diminuent avec le revenu)' : 'non monotone';
+  const typeBareme = isFlat ? 'proportionnel (flat tax)' : isProgressif ? 'progressif' : isRegressif ? 'régressif (les taux diminuent avec le revenu)' : 'non monotone';
 
-  const observation = `Avec un bareme ${typeBareme} (tranches : ${t1}%/${t2}%/${t3}%/${t4}%) et un transfert de ${transfertMensuel} EUR/mois, le Gini passe de ${giniAvant.toFixed(3)} (avant) a ${giniApres.toFixed(3)} (apres), soit une reduction de ${reductionGini.toFixed(1)}%. Le taux effectif net varie de ${tauxEffectifs[0].toFixed(1)}% (D1) a ${tauxEffectifs[9].toFixed(1)}% (D10). Les recettes fiscales totales s'elevent a ${(recettesFiscales / 12).toFixed(0)} EUR/mois.`;
+  const observation = `Avec un barème ${typeBareme} (tranches : ${t1}%/${t2}%/${t3}%/${t4}%) et un transfert de ${transfertMensuel} EUR/mois, le Gini passe de ${giniAvant.toFixed(3)} (avant) a ${giniApres.toFixed(3)} (après), soit une réduction de ${reductionGini.toFixed(1)}%. Le taux effectif net varie de ${tauxEffectifs[0].toFixed(1)}% (D1) a ${tauxEffectifs[9].toFixed(1)}% (D10). Les recettes fiscales totales s'elevent a ${(recettesFiscales / 12).toFixed(0)} EUR/mois.`;
 
   let interpretation: string;
 
   if (reductionGini > 30) {
-    interpretation = `Le systeme fiscal est fortement redistributif (reduction du Gini de ${reductionGini.toFixed(0)}%). Pourquoi ? La progressivite de l'impot fait que les hauts revenus contribuent proportionnellement plus : le D10 paie un taux effectif de ${tauxEffectifs[9].toFixed(1)}% tandis que le D1 a un taux effectif de ${tauxEffectifs[0].toFixed(1)}%. Les transferts forfaitaires amplifient l'effet : ils representent une part plus importante du revenu des menages modestes (effet redistributif "par le bas"). Les premiers deciles sont beneficiaires nets (taux effectif negatif).`;
+    interpretation = `Le système fiscal est fortement redistributif (réduction du Gini de ${reductionGini.toFixed(0)}%). Pourquoi ? La progressivité de l'impot fait que les hauts revenus contribuent proportionnellement plus : le D10 paie un taux effectif de ${tauxEffectifs[9].toFixed(1)}% tandis que le D1 à un taux effectif de ${tauxEffectifs[0].toFixed(1)}%. Les transferts forfaitaires amplifient l'effet : ils representent une part plus importante du revenu des ménages modestes (effet redistributif "par le bas"). Les premiers déciles sont bénéficiaires nets (taux effectif négatif).`;
   } else if (reductionGini > 10) {
-    interpretation = `Le systeme fiscal a un effet redistributif modere (reduction du Gini de ${reductionGini.toFixed(0)}%). La progressivite du bareme preleve davantage sur les hauts revenus, et les transferts completent les bas revenus, mais l'ecart entre D1 et D10 reste significatif. Pour une redistribution plus forte, il faudrait augmenter la progressivite (slider des tranches hautes) ou les transferts.`;
+    interpretation = `Le système fiscal à un effet redistributif modere (réduction du Gini de ${reductionGini.toFixed(0)}%). La progressivité du barème prélevé davantage sur les hauts revenus, et les transferts completent les bas revenus, mais l'écart entre D1 et D10 reste significatif. Pour une redistribution plus forte, il faudrait augmenter la progressivité (slider des tranches hautes) ou les transferts.`;
   } else {
-    interpretation = `Le systeme fiscal a un faible effet redistributif (reduction du Gini de ${reductionGini.toFixed(0)}% seulement). `;
+    interpretation = `Le système fiscal à un faible effet redistributif (réduction du Gini de ${reductionGini.toFixed(0)}% seulement). `;
     if (isFlat) {
-      interpretation += `Un impot proportionnel (meme taux pour tous) ne redistribue que par les transferts : il preleve le meme pourcentage a chaque decile, donc l'ecart relatif entre riches et pauvres reste quasiment inchange.`;
+      interpretation += `Un impot proportionnel (même taux pour tous) ne redistribue que par les transferts : il prélevé le même pourcentage à chaque décile, donc l'écart relatif entre riches et pauvres reste quasiment inchange.`;
     } else if (isRegressif) {
-      interpretation += `Le bareme regressif accentue les inegalites au lieu de les reduire : les bas revenus paient un taux effectif plus eleve que les hauts revenus. Ce type de configuration est l'inverse de l'objectif redistributif.`;
+      interpretation += `Le barème régressif accentue les inégalités au lieu de les réduire : les bas revenus paient un taux effectif plus élevé que les hauts revenus. Ce type de configuration est l'inverse de l'objectif redistributif.`;
     } else {
-      interpretation += `Les taux sont trop faibles ou les transferts insuffisants pour reduire significativement les inegalites.`;
+      interpretation += `Les taux sont trop faibles ou les transferts insuffisants pour réduire significativement les inégalités.`;
     }
   }
 
   // Equity-efficiency trade-off
   if (t4 > 50) {
-    interpretation += ` Attention a l'arbitrage equite-efficacite : un taux marginal superieur de ${t4}% peut decourager l'effort de travail, l'entrepreneuriat ou inciter a l'optimisation fiscale, reduisant l'assiette imposable (effet Laffer). Le gain redistributif doit etre mis en balance avec ces effets comportementaux.`;
+    interpretation += ` Attention à l'arbitrage equite-efficacité : un taux marginal supérieur de ${t4}% peut décourager l'effort de travail, l'entrepreneuriat ou inciter à l'optimisation fiscale, réduisant l'assiette imposable (effet Laffer). Le gain redistributif doit etre mis en balance avec ces effets comportementaux.`;
   }
 
   if (transfertMensuel > 500 && t4 < 30) {
-    interpretation += ` Des transferts genereux (${transfertMensuel} EUR/mois) associes a un bareme peu progressif creent un deficit structurel et interrogent la soutenabilite du systeme.`;
+    interpretation += ` Des transferts généreux (${transfertMensuel} EUR/mois) associes à un barème peu progressif créent un déficit structurel et interrogent la soutenabilité du système.`;
   }
 
   if (soldeBudgetaire < 0) {
-    interpretation += ` Le cout des transferts (${(coutTransferts / 12).toFixed(0)} EUR/mois) depasse les recettes fiscales, generant un deficit budgetaire de ${(-soldeBudgetaire / 12).toFixed(0)} EUR/mois. Ce systeme n'est pas soutenable sans emprunt ou creation monetaire.`;
+    interpretation += ` Le coût des transferts (${(coutTransferts / 12).toFixed(0)} EUR/mois) dépasse les recettes fiscales, generant un déficit budgétaire de ${(-soldeBudgetaire / 12).toFixed(0)} EUR/mois. Ce système n'est pas soutenable sans emprunt ou création monétaire.`;
   } else if (soldeBudgetaire > 0) {
-    interpretation += ` Le systeme degage un excedent budgetaire de ${(soldeBudgetaire / 12).toFixed(0)} EUR/mois, ce qui pourrait permettre de financer d'autres politiques publiques ou de reduire la dette.`;
+    interpretation += ` Le système dégage un excédent budgétaire de ${(soldeBudgetaire / 12).toFixed(0)} EUR/mois, ce qui pourrait permettre de financer d'autres politiques publiques ou de réduire la dette.`;
   }
 
   return {
     outputs: [
       { id: 'gini_avant', label: 'Gini avant redistribution', value: round2(giniAvant) },
-      { id: 'gini_apres', label: 'Gini apres redistribution', value: round2(giniApres) },
-      { id: 'reduction_gini', label: 'Reduction du Gini', value: round2(reductionGini), unit: '%' },
+      { id: 'gini_apres', label: 'Gini après redistribution', value: round2(giniApres) },
+      { id: 'reduction_gini', label: 'Réduction du Gini', value: round2(reductionGini), unit: '%' },
       { id: 'recettes_fiscales', label: 'Recettes fiscales mensuelles', value: round2(recettesFiscales / 12), unit: 'EUR' },
-      { id: 'cout_transferts', label: 'Cout transferts mensuel', value: round2(coutTransferts / 12), unit: 'EUR' },
-      { id: 'solde_budgetaire', label: 'Solde budgetaire mensuel', value: round2(soldeBudgetaire / 12), unit: 'EUR' },
+      { id: 'cout_transferts', label: 'Coût transferts mensuel', value: round2(coutTransferts / 12), unit: 'EUR' },
+      { id: 'solde_budgetaire', label: 'Solde budgétaire mensuel', value: round2(soldeBudgetaire / 12), unit: 'EUR' },
       { id: 'taux_effectif_d1', label: 'Taux effectif D1', value: round2(tauxEffectifs[0]), unit: '%' },
       { id: 'taux_effectif_d10', label: 'Taux effectif D10', value: round2(tauxEffectifs[9]), unit: '%' },
     ],

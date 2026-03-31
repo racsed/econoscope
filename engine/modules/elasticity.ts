@@ -13,21 +13,21 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'elasticite-prix',
-  title: 'Elasticite-prix de la demande',
-  subtitle: 'Mesurer la sensibilite des consommateurs au prix',
+  title: 'Élasticité-prix de la demande',
+  subtitle: 'Mesurer la sensibilité des consommateurs au prix',
   theme: 'micro',
   level: 'accessible',
   introduction:
-    "L'elasticite-prix de la demande mesure la variation en pourcentage de la quantite demandee en reponse a une variation de 1% du prix. Elle determine si la demande est elastique (|e| > 1), unitaire (|e| = 1) ou inelastique (|e| < 1).",
+    "L'élasticité-prix de la demande mesure la variation en pourcentage de la quantité demandée en réponse à une variation de 1% du prix. Elle détermine si la demande est élastique (|e| > 1), unitaire (|e| = 1) ou inélastique (|e| < 1).",
   limites: [
-    "Elasticite supposee constante le long de la courbe (modele iso-elastique)",
+    "Élasticité supposée constante le long de la courbe (modèle iso-élastique)",
     "Ne tient pas compte des effets de substitution entre biens",
     "Analyse statique : pas de dimension temporelle",
   ],
   realite: [
-    "L'elasticite-prix de l'essence est d'environ -0.3 a court terme",
-    "Les biens de luxe ont une elasticite-prix generalement superieure a 1",
-    "Le tabac a une elasticite d'environ -0.4, justifiant la taxation",
+    "L'élasticité-prix de l'essence est d'environ -0.3 à court terme",
+    "Les biens de luxe ont une élasticité-prix généralement supérieure à 1",
+    "Le tabac à une élasticité d'environ -0.4, justifiant la taxation",
   ],
 };
 
@@ -41,18 +41,18 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 50,
     unit: '\u20ac',
-    group: 'Parametres',
+    group: 'Paramètres',
   },
   {
     id: 'elasticite',
-    label: 'Elasticite-prix',
+    label: 'Élasticité-prix',
     type: 'slider',
     min: -5,
     max: -0.1,
     step: 0.1,
     defaultValue: -1,
-    tooltip: 'Valeur negative : quand le prix monte, la demande baisse',
-    group: 'Parametres',
+    tooltip: 'Valeur négative : quand le prix monte, la demande baisse',
+    group: 'Paramètres',
   },
   {
     id: 'type_bien',
@@ -60,11 +60,11 @@ const inputs: SimulationInput[] = [
     type: 'select',
     defaultValue: 'normal',
     options: [
-      { value: 'necessaire', label: 'Bien necessaire (|e| < 1)' },
+      { value: 'necessaire', label: 'Bien nécessaire (|e| < 1)' },
       { value: 'normal', label: 'Bien normal (|e| ~ 1)' },
       { value: 'luxe', label: 'Bien de luxe (|e| > 1)' },
     ],
-    group: 'Parametres',
+    group: 'Paramètres',
   },
   {
     id: 'variation_prix',
@@ -75,7 +75,7 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 20,
     unit: '%',
-    tooltip: 'Variation appliquee au prix initial',
+    tooltip: 'Variation appliquée au prix initial',
     group: 'Simulation',
   },
 ];
@@ -83,63 +83,63 @@ const inputs: SimulationInput[] = [
 const scenarios: Scenario[] = [
   {
     id: 'essence',
-    label: 'Essence (inelastique)',
+    label: 'Essence (inélastique)',
     description: "Demande peu sensible au prix, bien indispensable",
     values: { prix_initial: 80, elasticite: -0.3, type_bien: 'necessaire', variation_prix: 20 },
   },
   {
     id: 'restaurant_luxe',
     label: 'Restaurant gastronomique',
-    description: "Demande tres sensible au prix, bien substituable",
+    description: "Demande très sensible au prix, bien substituable",
     values: { prix_initial: 150, elasticite: -2.5, type_bien: 'luxe', variation_prix: 10 },
   },
   {
     id: 'elasticite_unitaire',
-    label: 'Elasticite unitaire',
-    description: "La recette totale est maximisee",
+    label: 'Élasticité unitaire',
+    description: "La recette totale est maximisée",
     values: { prix_initial: 50, elasticite: -1, type_bien: 'normal', variation_prix: 0 },
   },
   {
     id: 'tabac',
     label: 'Tabac',
-    description: "Demande peu elastique, forte dependance",
+    description: "Demande peu élastique, forte dépendance",
     values: { prix_initial: 12, elasticite: -0.4, type_bien: 'necessaire', variation_prix: 30 },
   },
   {
     id: 'electricite',
-    label: 'Electricite (inelastique)',
-    description: "Bien essentiel, peu de substituts a court terme",
+    label: 'Électricité (inélastique)',
+    description: "Bien essentiel, peu de substituts à court terme",
     values: { prix_initial: 150, elasticite: -0.2, type_bien: 'necessaire', variation_prix: 15 },
   },
   {
     id: 'netflix',
     label: 'Abonnement Netflix',
-    description: "Loisir substituable, demande elastique",
+    description: "Loisir substituable, demande élastique",
     values: { prix_initial: 14, elasticite: -1.8, type_bien: 'luxe', variation_prix: 20 },
   },
   {
     id: 'baguette',
     label: 'Baguette de pain',
-    description: "Bien de premiere necessite, tres inelastique",
+    description: "Bien de première nécessité, très inélastique",
     values: { prix_initial: 1.2, elasticite: -0.15, type_bien: 'necessaire', variation_prix: 25 },
   },
   {
     id: 'vol_low_cost',
     label: 'Vol low-cost',
-    description: "Tres substituable, demande tres elastique",
+    description: "Très substituable, demande très élastique",
     values: { prix_initial: 50, elasticite: -3.5, type_bien: 'luxe', variation_prix: 10 },
   },
   {
     id: 'medicament_vital',
-    label: 'Medicament vital',
-    description: "Aucun substitut, demande parfaitement inelastique",
+    label: 'Médicament vital',
+    description: "Aucun substitut, demande parfaitement inélastique",
     values: { prix_initial: 30, elasticite: -0.05, type_bien: 'necessaire', variation_prix: 50 },
   },
 ];
 
 /**
  * Iso-elastic demand: Q(P) = Q0 * (P / P0)^e
- * where Q0 = 1000 (normalised base quantity), P0 = prix_initial, e = elasticite
+ * where Q0 = 1000 (normalised base quantity), P0 = prix_initial, e = élasticité
  * Total revenue: RT(P) = P * Q(P)
  */
 function demandAtPrice(price: number, prixInitial: number, elasticite: number, q0: number): number {
@@ -244,7 +244,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       },
     ],
     xLabel: 'Prix (\u20ac)',
-    yLabel: 'Quantite demandee',
+    yLabel: 'Quantité demandée',
     xDomain: [pMin, pMax],
     annotations: demandAnnotations,
   };
@@ -269,47 +269,47 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   // Narration
   const typeBien = String(values.type_bien || 'normal');
-  const typeBienLabel = typeBien === 'necessaire' ? 'bien necessaire' : typeBien === 'luxe' ? 'bien de luxe' : 'bien normal';
+  const typeBienLabel = typeBien === 'necessaire' ? 'bien nécessaire' : typeBien === 'luxe' ? 'bien de luxe' : 'bien normal';
   let observation: string;
   let interpretation: string;
 
   if (variationPrix === 0) {
-    observation = `Au prix initial de ${prixInitial}\u20ac, la quantite demandee est de ${q0} unites pour ce ${typeBienLabel}, generant une recette totale de ${recetteInitiale.toFixed(0)}\u20ac.`;
-    interpretation = `Avec une elasticite de ${elasticite.toFixed(1)}, la demande est ${classifyElasticity(elasticite)}. ${elasticityImplication(elasticite)}`;
+    observation = `Au prix initial de ${prixInitial}\u20ac, la quantité demandée est de ${q0} unités pour ce ${typeBienLabel}, générant une recette totale de ${recetteInitiale.toFixed(0)}\u20ac.`;
+    interpretation = `Avec une élasticité de ${elasticite.toFixed(1)}, la demande est ${classifyElasticity(elasticite)}. ${elasticityImplication(elasticite)}`;
     if (typeBien === 'necessaire') {
-      interpretation += ` Pour un bien necessaire (alimentation de base, energie, medicaments), les consommateurs n'ont pas de substitut : ils continuent d'acheter meme si le prix augmente, d'ou une faible elasticite.`;
+      interpretation += ` Pour un bien nécessaire (alimentation de base, énergie, médicaments), les consommateurs n'ont pas de substitut : ils continuent d'acheter même si le prix augmente, d'où une faible elasticite.`;
     } else if (typeBien === 'luxe') {
-      interpretation += ` Pour un bien de luxe (restaurants gastronomiques, voyages, biens de marque), les consommateurs peuvent facilement s'en passer ou se tourner vers des substituts, d'ou une forte elasticite.`;
+      interpretation += ` Pour un bien de luxe (restaurants gastronomiques, voyages, biens de marque), les consommateurs peuvent facilement s'en passer ou se tourner vers des substituts, d'où une forte elasticite.`;
     }
   } else {
     const directionPrix = variationPrix > 0 ? 'hausse' : 'baisse';
     const directionQuantite = variationQuantite > 0 ? 'hausse' : 'baisse';
-    observation = `Une ${directionPrix} du prix de ${Math.abs(variationPrix)}% (de ${prixInitial}\u20ac a ${prixNouveau.toFixed(0)}\u20ac) entraine une ${directionQuantite} de la quantite de ${Math.abs(variationQuantite).toFixed(1)}% (de ${q0} a ${quantiteNouvelle.toFixed(0)} unites) pour ce ${typeBienLabel}.`;
-    interpretation = `La recette totale passe de ${recetteInitiale.toFixed(0)}\u20ac a ${recetteNouvelle.toFixed(0)}\u20ac (${variationRecette >= 0 ? '+' : ''}${variationRecette.toFixed(0)}\u20ac). ${elasticityImplication(elasticite)}`;
+    observation = `Une ${directionPrix} du prix de ${Math.abs(variationPrix)}% (de ${prixInitial}\u20ac à ${prixNouveau.toFixed(0)}\u20ac) entraîne une ${directionQuantite} de la quantité de ${Math.abs(variationQuantite).toFixed(1)}% (de ${q0} à ${quantiteNouvelle.toFixed(0)} unités) pour ce ${typeBienLabel}.`;
+    interpretation = `La recette totale passe de ${recetteInitiale.toFixed(0)}\u20ac à ${recetteNouvelle.toFixed(0)}\u20ac (${variationRecette >= 0 ? '+' : ''}${variationRecette.toFixed(0)}\u20ac). ${elasticityImplication(elasticite)}`;
 
     // Mid-range commentary
     if (Math.abs(elasticite) > 0.8 && Math.abs(elasticite) < 1.2) {
-      interpretation += ` Pres de l'elasticite unitaire, la recette totale est quasi insensible aux variations de prix : l'effet-prix et l'effet-volume se compensent presque parfaitement.`;
+      interpretation += ` Près de l'élasticité unitaire, la recette totale est quasi insensible aux variations de prix : l'effet-prix et l'effet-volume se compensent presque parfaitement.`;
     }
 
     if (variationPrix < 0 && variationRecette > 0 && Math.abs(elasticite) > 1) {
-      interpretation += ` La baisse du prix fait augmenter la recette : c'est la strategie de volume, efficace quand la demande est elastique.`;
+      interpretation += ` La baisse du prix fait augmenter la recette : c'est la stratégie de volume, efficace quand la demande est élastique.`;
     } else if (variationPrix > 0 && variationRecette > 0 && Math.abs(elasticite) < 1) {
-      interpretation += ` La hausse du prix fait augmenter la recette malgre la perte de volume : c'est la strategie de marge, efficace quand la demande est inelastique (typique des ${typeBien === 'necessaire' ? 'biens de premiere necessite' : 'marches captifs'}).`;
+      interpretation += ` La hausse du prix fait augmenter la recette malgré la perte de volume : c'est la stratégie de marge, efficace quand la demande est inélastique (typique des ${typeBien === 'necessaire' ? 'biens de première nécessité' : 'marchés captifs'}).`;
     }
 
     if (variationPrix > 50) {
-      interpretation += ` Attention : une variation de prix aussi importante (${variationPrix}%) rend l'hypothese d'elasticite constante moins realiste. En pratique, l'elasticite change le long de la courbe de demande.`;
+      interpretation += ` Attention : une variation de prix aussi importante (${variationPrix}%) rend l'hypothèse d'élasticité constante moins réaliste. En pratique, l'élasticité change le long de la courbe de demande.`;
     }
   }
 
   return {
     outputs: [
-      { id: 'quantite_nouvelle', label: 'Quantite apres variation', value: round2(quantiteNouvelle), direction: quantiteNouvelle > q0 ? 'up' : quantiteNouvelle < q0 ? 'down' : 'neutral' },
-      { id: 'variation_quantite', label: 'Variation de la quantite', value: round2(variationQuantite), unit: '%', direction: variationQuantite > 0 ? 'up' : variationQuantite < 0 ? 'down' : 'neutral' },
+      { id: 'quantite_nouvelle', label: 'Quantité après variation', value: round2(quantiteNouvelle), direction: quantiteNouvelle > q0 ? 'up' : quantiteNouvelle < q0 ? 'down' : 'neutral' },
+      { id: 'variation_quantite', label: 'Variation de la quantité', value: round2(variationQuantite), unit: '%', direction: variationQuantite > 0 ? 'up' : variationQuantite < 0 ? 'down' : 'neutral' },
       { id: 'recette_initiale', label: 'Recette totale initiale', value: round2(recetteInitiale), unit: '\u20ac' },
       { id: 'recette_nouvelle', label: 'Recette totale nouvelle', value: round2(recetteNouvelle), unit: '\u20ac', direction: recetteNouvelle > recetteInitiale ? 'up' : recetteNouvelle < recetteInitiale ? 'down' : 'neutral' },
-      { id: 'elasticite_valeur', label: 'Elasticite-prix', value: round2(elasticite) },
+      { id: 'elasticite_valeur', label: 'Élasticité-prix', value: round2(elasticite) },
       { id: 'type_demande', label: 'Type de demande', value: Math.abs(elasticite) },
     ],
     chartData,
@@ -320,22 +320,22 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
 function classifyElasticity(e: number): string {
   const abs = Math.abs(e);
-  if (abs < 0.5) return 'tres inelastique';
-  if (abs < 1) return 'inelastique';
+  if (abs < 0.5) return 'très inélastique';
+  if (abs < 1) return 'inélastique';
   if (Math.abs(abs - 1) < 0.05) return 'unitaire';
-  if (abs < 2) return 'elastique';
-  return 'tres elastique';
+  if (abs < 2) return 'élastique';
+  return 'très élastique';
 }
 
 function elasticityImplication(e: number): string {
   const abs = Math.abs(e);
   if (abs < 1) {
-    return "Avec une demande inelastique, une hausse des prix augmente la recette totale : l'effet-prix domine l'effet-volume. Le producteur a interet a augmenter ses prix.";
+    return "Avec une demande inélastique, une hausse des prix augmente la recette totale : l'effet-prix domine l'effet-volume. Le producteur a intérêt à augmenter ses prix.";
   }
   if (Math.abs(abs - 1) < 0.05) {
-    return "Avec une elasticite unitaire, la recette totale est insensible aux variations de prix : l'effet-prix compense exactement l'effet-volume.";
+    return "Avec une élasticité unitaire, la recette totale est insensible aux variations de prix : l'effet-prix compense exactement l'effet-volume.";
   }
-  return "Avec une demande elastique, une hausse des prix reduit la recette totale : l'effet-volume domine l'effet-prix. Le producteur a interet a baisser ses prix pour augmenter ses ventes.";
+  return "Avec une demande élastique, une hausse des prix réduit la recette totale : l'effet-volume domine l'effet-prix. Le producteur a intérêt à baisser ses prix pour augmenter ses ventes.";
 }
 
 function round2(v: number): number {

@@ -14,35 +14,35 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'courbe-de-phillips',
   title: 'Courbe de Phillips',
-  subtitle: "L'arbitrage inflation-chomage",
+  subtitle: "L'arbitrage inflation-chômage",
   theme: 'macro',
   level: 'intermediate',
   introduction:
-    "La courbe de Phillips illustre la relation inverse entre inflation et chomage. Dans sa version originale (1958), elle suggere un arbitrage stable. La version augmentee des anticipations (Friedman-Phelps) montre que cet arbitrage n'existe qu'a court terme : a long terme, l'economie revient au NAIRU.",
+    "La courbe de Phillips illustre la relation inverse entre inflation et chômage. Dans sa version originale (1958), elle suggere un arbitrage stable. La version augmentee des anticipations (Friedman-Phelps) montre que cet arbitrage n'existe qu'a court terme : à long terme, l'économie revient au NAIRU.",
   limites: [
-    "Relation instable dans le temps (stagflation des annees 1970)",
-    "Le NAIRU est difficile a estimer avec precision",
+    "Relation instable dans le temps (stagflation des années 1970)",
+    "Le NAIRU est difficile a estimer avec précision",
     "Ignore les chocs d'offre dans la version originale",
-    "Les anticipations rationnelles remettent en cause l'arbitrage meme a court terme",
+    "Les anticipations rationnelles remettent en cause l'arbitrage même à court terme",
   ],
   realite: [
-    "La stagflation des annees 1970 a invalide la version originale",
+    "La stagflation des années 1970 a invalide la version originale",
     "Le NAIRU de la France est estime autour de 7-8% par l'OCDE",
-    "La courbe de Phillips semble s'etre aplatie depuis les annees 2000",
+    "La courbe de Phillips semble s'etre aplatie depuis les années 2000",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'nairu',
-    label: 'NAIRU (taux de chomage naturel)',
+    label: 'NAIRU (taux de chômage naturel)',
     type: 'slider',
     min: 2,
     max: 12,
     step: 0.5,
     defaultValue: 7,
     unit: '%',
-    tooltip: "Taux de chomage en dessous duquel l'inflation accelere",
+    tooltip: "Taux de chômage en dessous duquel l'inflation accélère",
     group: 'Structure',
   },
   {
@@ -54,7 +54,7 @@ const inputs: SimulationInput[] = [
     step: 0.5,
     defaultValue: 2,
     unit: '%',
-    tooltip: "Taux d'inflation anticipe par les agents economiques",
+    tooltip: "Taux d'inflation anticipe par les agents économiques",
     group: 'Anticipations',
   },
   {
@@ -66,7 +66,7 @@ const inputs: SimulationInput[] = [
     step: 0.5,
     defaultValue: 0,
     unit: '%',
-    tooltip: "Choc exogene (ex: choc petrolier = valeur positive)",
+    tooltip: "Choc exogene (ex: choc pétrolier = valeur positive)",
     group: 'Chocs',
   },
   {
@@ -83,7 +83,7 @@ const inputs: SimulationInput[] = [
     type: 'toggle',
     defaultValue: true,
     tooltip: "Integre les anticipations d'inflation dans la courbe",
-    group: 'Modele',
+    group: 'Modèle',
   },
 ];
 
@@ -102,14 +102,14 @@ const scenarios: Scenario[] = [
   },
   {
     id: 'choc_petrolier',
-    label: 'Choc petrolier (1973)',
+    label: 'Choc pétrolier (1973)',
     description: "Choc d'offre positif, stagflation",
     values: { nairu: 6, anticipations_inflation: 4, choc_offre: 3, mode_long_terme: true, version_augmentee: true },
   },
   {
-    id: 'desinflation',
-    label: 'Politique de desinflation',
-    description: "Anticipations elevees, politique restrictive pour les reduire",
+    id: 'désinflation',
+    label: 'Politique de désinflation',
+    description: "Anticipations élevées, politique restrictive pour les réduire",
     values: { nairu: 7, anticipations_inflation: 8, choc_offre: 0, mode_long_terme: true, version_augmentee: true },
   },
 ];
@@ -126,14 +126,14 @@ const scenarios: Scenario[] = [
 const SLOPE_COEFFICIENT = 0.5;
 
 function phillipsCurve(
-  chomage: number,
+  chômage: number,
   nairu: number,
   anticipations: number,
   chocOffre: number,
   augmentee: boolean
 ): number {
   const base = augmentee ? anticipations : 0;
-  return base - SLOPE_COEFFICIENT * (chomage - nairu) + chocOffre;
+  return base - SLOPE_COEFFICIENT * (chômage - nairu) + chocOffre;
 }
 
 function clamp(val: number, min: number, max: number): number {
@@ -159,7 +159,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     shortRunCurve.push({ x: u, y: inflation });
   }
 
-  // If augmented, show a second curve with different anticipations for comparison
+  // If augmented, show a second curve with différent anticipations for comparison
   const altAnticipations = anticipations + 3;
   const altCurve: Point[] = [];
   if (versionAugmentee) {
@@ -254,7 +254,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const chartData: ChartData = {
     type: 'line',
     series,
-    xLabel: 'Taux de chomage (%)',
+    xLabel: 'Taux de chômage (%)',
     yLabel: "Taux d'inflation (%)",
     xDomain: [uMin, uMax],
     yDomain: [-5, 15],
@@ -271,38 +271,38 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (!versionAugmentee) {
-    observation = `La courbe de Phillips originale montre une relation inverse stable : au NAIRU de ${nairu}%, l'inflation serait de ${inflationEquilibre.toFixed(1)}%. Reduire le chomage de 1 point augmenterait l'inflation de ${SLOPE_COEFFICIENT} point.`;
-    interpretation = "Cette version suppose que les agents ne forment pas d'anticipations d'inflation. Elle a ete remise en cause par la stagflation des annees 1970 : l'inflation et le chomage augmentaient simultanement, ce qui etait impossible selon la courbe originale.";
+    observation = `La courbe de Phillips originale montre une relation inverse stable : au NAIRU de ${nairu}%, l'inflation serait de ${inflationEquilibre.toFixed(1)}%. Reduire le chômage de 1 point augmenterait l'inflation de ${SLOPE_COEFFICIENT} point.`;
+    interpretation = "Cette version suppose que les agents ne forment pas d'anticipations d'inflation. Elle a été remise en cause par la stagflation des années 1970 : l'inflation et le chômage augmentaient simultanément, ce qui était impossible selon la courbe originale.";
     if (nairu > 8) {
-      interpretation += ` Un NAIRU eleve de ${nairu}% suggere des rigidites structurelles du marche du travail (protection de l'emploi, salaire minimum eleve, inadequation des qualifications). La politique de demande ne peut pas reduire durablement le chomage en dessous de ce seuil.`;
+      interpretation += ` Un NAIRU élevé de ${nairu}% suggere des rigidites structurelles du marché du travail (protection de l'emploi, salaire minimum élevé, inadéquation des qualifications). La politique de demande ne peut pas réduire durablement le chômage en dessous de ce seuil.`;
     } else if (nairu < 4) {
-      interpretation += ` Un NAIRU bas de ${nairu}% indique un marche du travail flexible, ou le chomage frictionnel est le seul irreductible.`;
+      interpretation += ` Un NAIRU bas de ${nairu}% indique un marché du travail flexible, ou le chômage frictionnel est le seul irreductible.`;
     }
   } else {
-    observation = `Avec des anticipations d'inflation a ${anticipations}%, la courbe de Phillips de court terme se deplace vers le haut. Au NAIRU (${nairu}%), l'inflation effective est de ${inflationEquilibre.toFixed(1)}%. Chaque point de chomage en dessous du NAIRU ajoute ${SLOPE_COEFFICIENT} point d'inflation.`;
-    interpretation = `Le ratio de sacrifice est de ${ratioSacrifice.toFixed(1)} : pour reduire l'inflation de 1 point, il faut accepter une hausse du chomage de ${ratioSacrifice.toFixed(1)} point au-dessus du NAIRU pendant un an. C'est le "prix" de la desinflation.`;
+    observation = `Avec des anticipations d'inflation a ${anticipations}%, la courbe de Phillips de court terme se déplace vers le haut. Au NAIRU (${nairu}%), l'inflation effective est de ${inflationEquilibre.toFixed(1)}%. Chaque point de chômage en dessous du NAIRU ajoute ${SLOPE_COEFFICIENT} point d'inflation.`;
+    interpretation = `Le ratio de sacrifice est de ${ratioSacrifice.toFixed(1)} : pour réduire l'inflation de 1 point, il faut accepter une hausse du chômage de ${ratioSacrifice.toFixed(1)} point au-dessus du NAIRU pendant un an. C'est le "prix" de la désinflation.`;
 
     if (anticipations > 5) {
-      interpretation += ` Les anticipations elevees (${anticipations}%) creent une inertie inflationniste : meme au NAIRU, l'inflation reste a ${anticipations}% car les agents integ la hausse des prix future dans leurs decisions salariales et contractuelles. Reduire ces anticipations necessite une politique restrictive couteuse en chomage (credibilite de la banque centrale).`;
+      interpretation += ` Les anticipations élevées (${anticipations}%) créent une inertie inflationniste : même au NAIRU, l'inflation reste a ${anticipations}% car les agents intèg la hausse des prix future dans leurs décisions salariales et contractuelles. Reduire ces anticipations nécessité une politique restrictive couteuse en chômage (credibilite de la banque centrale).`;
     } else if (anticipations >= 1.5 && anticipations <= 3) {
-      interpretation += ` Les anticipations d'inflation sont bien ancrees autour de la cible de la banque centrale (environ 2%). C'est la situation ideale ou la politique monetaire est credible.`;
+      interpretation += ` Les anticipations d'inflation sont bien ancrees autour de la cible de la banque centrale (environ 2%). C'est la situation ideale ou la politique monétaire est credible.`;
     }
 
     if (chocOffre > 0) {
-      interpretation += ` Le choc d'offre positif de ${chocOffre}% (hausse des couts de production, ex. petrole) deplace la courbe vers le haut : c'est le mecanisme de la stagflation. La banque centrale fait face a un dilemme : lutter contre l'inflation aggraverait le chomage, et stimuler l'emploi alimenterait l'inflation.`;
+      interpretation += ` Le choc d'offre positif de ${chocOffre}% (hausse des coûts de production, ex. pétrole) déplace la courbe vers le haut : c'est le mécanisme de la stagflation. La banque centrale fait face à un dilemme : lutter contre l'inflation aggraverait le chômage, et stimuler l'emploi alimenterait l'inflation.`;
     } else if (chocOffre < 0) {
-      interpretation += ` Le choc d'offre favorable de ${Math.abs(chocOffre)}% (baisse des couts, progres technique) deplace la courbe vers le bas, permettant une desinflation sans cout en chomage - c'est la situation revee des banques centrales.`;
+      interpretation += ` Le choc d'offre favorable de ${Math.abs(chocOffre)}% (baisse des coûts, progrès technique) déplace la courbe vers le bas, permettant une désinflation sans coût en chômage - c'est la situation rêvée des banques centrales.`;
     }
 
     if (modeLongTerme) {
-      interpretation += ` A long terme, la courbe est verticale au NAIRU (${nairu}%) : les anticipations s'ajustent a l'inflation reelle et il n'y a pas d'arbitrage permanent entre inflation et chomage. Toute tentative de maintenir le chomage sous le NAIRU se traduit par une acceleration indefinie de l'inflation (accelerationniste de Friedman).`;
+      interpretation += ` A long terme, la courbe est verticale au NAIRU (${nairu}%) : les anticipations s'ajustent à l'inflation réelle et il n'y a pas d'arbitrage permanent entre inflation et chômage. Toute tentative de maintenir le chômage sous le NAIRU se traduit par une accélération indefinie de l'inflation (accélérationniste de Friedman).`;
     }
   }
 
   return {
     outputs: [
       { id: 'nairu', label: 'NAIRU', value: nairu, unit: '%' },
-      { id: 'inflation_equilibre', label: "Inflation a l'equilibre", value: round2(inflationEquilibre), unit: '%' },
+      { id: 'inflation_equilibre', label: "Inflation à l'équilibre", value: round2(inflationEquilibre), unit: '%' },
       { id: 'ratio_sacrifice', label: 'Ratio de sacrifice', value: round2(ratioSacrifice) },
       { id: 'pente', label: 'Pente de la courbe', value: round2(SLOPE_COEFFICIENT) },
     ],

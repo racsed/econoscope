@@ -11,37 +11,37 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'creation-monetaire',
-  title: 'Creation monetaire',
+  title: 'Création monétaire',
   subtitle: "Le multiplicateur de credit bancaire",
   theme: 'monetary',
   level: 'intermediate',
   introduction:
-    "Les banques commerciales creent de la monnaie par le credit. Quand une banque accorde un pret, elle cree un depot du meme montant. Ce depot est partiellement conserve en reserves, partiellement retire en billets, et le reste est reprete. Le processus se repete, multipliant le depot initial. La banque centrale controle ce processus par le taux de reserves obligatoires.",
+    "Les banques commerciales créent de la monnaie par le credit. Quand une banque accorde un pret, elle crée un dépôt du même montant. Ce dépôt est partiellement conserve en reserves, partiellement retire en billets, et le reste est reprêté. Le processus se repete, multipliant le dépôt initial. La banque centrale contrôle ce processus par le taux de reserves obligatoires.",
   limites: [
-    "Suppose que les banques pretent tout ce qu'elles peuvent (pas de reserves excedentaires)",
+    "Suppose que les banques prêtent tout ce qu'elles peuvent (pas de reserves excedentaires)",
     "Ignore les contraintes de demande de credit",
     "Taux de fuite en billets suppose constant",
     "Ne tient pas compte des ratios prudentiels (Bale III)",
   ],
   realite: [
     "Le taux de reserves obligatoires de la BCE est de 1% depuis 2012",
-    "En pratique, les banques detiennent des reserves excedentaires importantes",
-    "La creation monetaire depend aussi de la demande de credit des entreprises et menages",
-    "Le multiplicateur theorique surestime la creation monetaire reelle",
+    "En pratique, les banques détiennent des reserves excedentaires importantes",
+    "La création monétaire depend aussi de la demande de credit des entreprises et ménages",
+    "Le multiplicateur théorique surestime la création monétaire réelle",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'depot_initial',
-    label: 'Depot initial',
+    label: 'Dépôt initial',
     type: 'slider',
     min: 1000,
     max: 100000,
     step: 1000,
     defaultValue: 10000,
     unit: '\u20ac',
-    tooltip: "Montant du depot initial dans le systeme bancaire",
+    tooltip: "Montant du dépôt initial dans le système bancaire",
     group: 'Injection',
   },
   {
@@ -53,8 +53,8 @@ const inputs: SimulationInput[] = [
     step: 0.5,
     defaultValue: 10,
     unit: '%',
-    tooltip: "Pourcentage des depots que les banques doivent garder en reserves",
-    group: 'Reglementation',
+    tooltip: "Pourcentage des dépôts que les banques doivent garder en reserves",
+    group: 'Réglementation',
   },
   {
     id: 'taux_fuite_billets',
@@ -65,7 +65,7 @@ const inputs: SimulationInput[] = [
     step: 1,
     defaultValue: 10,
     unit: '%',
-    tooltip: "Pourcentage des depots retires sous forme de billets par les menages",
+    tooltip: "Pourcentage des dépôts retires sous forme de billets par les ménages",
     group: 'Comportement',
   },
   {
@@ -95,8 +95,8 @@ const scenarios: Scenario[] = [
   },
   {
     id: 'reserves_elevees',
-    label: 'Reserves elevees',
-    description: "Reglementation stricte, multiplicateur faible",
+    label: 'Reserves élevées',
+    description: "Réglementation stricte, multiplicateur faible",
     values: { depot_initial: 10000, taux_reserves: 20, taux_fuite_billets: 15, nb_tours: 15 },
   },
   {
@@ -173,37 +173,37 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const convergencePercent = asymptote > 0 ? (cumulativeDepots / asymptote) * 100 : 100;
   const monnaieCreee = cumulativeDepots - depotInitial;
 
-  let observation = `A partir d'un depot initial de ${depotInitial.toLocaleString('fr-FR')}\u20ac, le systeme bancaire cree ${round2(monnaieCreee).toLocaleString('fr-FR')}\u20ac de monnaie supplementaire apres ${nbTours} tours (total des depots : ${round2(cumulativeDepots).toLocaleString('fr-FR')}\u20ac). L'asymptote theorique est de ${round2(asymptote).toLocaleString('fr-FR')}\u20ac.`;
+  let observation = `A partir d'un dépôt initial de ${depotInitial.toLocaleString('fr-FR')}\u20ac, le système bancaire crée ${round2(monnaieCreee).toLocaleString('fr-FR')}\u20ac de monnaie supplémentaire après ${nbTours} tours (total des dépôts : ${round2(cumulativeDepots).toLocaleString('fr-FR')}\u20ac). L'asymptote théorique est de ${round2(asymptote).toLocaleString('fr-FR')}\u20ac.`;
 
-  let interpretation = `Le multiplicateur monetaire est de ${round2(multiplicateur)}, avec un coefficient de propagation de ${round2(alpha)}. `;
+  let interpretation = `Le multiplicateur monétaire est de ${round2(multiplicateur)}, avec un coefficient de propagation de ${round2(alpha)}. `;
 
   if (r + b > 0.5) {
-    interpretation += `Les fuites sont elevees (reserves ${(r * 100).toFixed(0)}% + billets ${(b * 100).toFixed(0)}% = ${((r + b) * 100).toFixed(0)}%), limitant fortement la creation monetaire. `;
+    interpretation += `Les fuites sont élevées (reserves ${(r * 100).toFixed(0)}% + billets ${(b * 100).toFixed(0)}% = ${((r + b) * 100).toFixed(0)}%), limitant fortement la création monétaire. `;
   }
 
-  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du depot est reprete, ${(r * 100).toFixed(0)}% est garde en reserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
+  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du dépôt est reprêté, ${(r * 100).toFixed(0)}% est garde en reserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
 
   if (r <= 0.02) {
-    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE a 1% depuis 2012), le multiplicateur theorique est tres eleve. En pratique, d'autres contraintes (ratios prudentiels Bale III, demande de credit des entreprises, risk appetite des banques) limitent la creation monetaire effective bien en deca du maximum theorique.";
+    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE a 1% depuis 2012), le multiplicateur théorique est tres élevé. En pratique, d'autres contraintes (ratios prudentiels Bale III, demande de credit des entreprises, risk appetite des banques) limitent la création monétaire effective bien en deca du maximum théorique.";
   }
 
   if (b > 0.2) {
-    interpretation += ` La forte preference pour les billets (${(b * 100).toFixed(0)}%) reduit considerablement le multiplicateur : a chaque tour, une part importante de la monnaie "sort" du circuit bancaire sous forme de billets et ne peut plus etre repretee. C'est une fuite definitive du processus de creation monetaire.`;
+    interpretation += ` La forte préférence pour les billets (${(b * 100).toFixed(0)}%) réduit considérablement le multiplicateur : à chaque tour, une part importante de la monnaie "sort" du circuit bancaire sous forme de billets et ne peut plus etre reprêtée. C'est une fuite definitive du processus de création monétaire.`;
   }
 
   if (multiplicateur > 5 && multiplicateur < 20) {
-    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} signifie que chaque euro de depot initial genere theoriquement ${round2(multiplicateur)} euros de depots dans l'ensemble du systeme bancaire. C'est le pouvoir de creation monetaire des banques commerciales, sous controle de la banque centrale via le taux de reserves.`;
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} signifie que chaque euro de dépôt initial génère theoriquement ${round2(multiplicateur)} euros de dépôts dans l'ensemble du système bancaire. C'est le pouvoir de création monétaire des banques commerciales, sous contrôle de la banque centrale via le taux de reserves.`;
   }
 
   if (r > 0.15) {
-    interpretation += ` Le taux de reserves eleve (${(r * 100).toFixed(0)}%) bride fortement la creation monetaire. C'est un outil de politique monetaire restrictive utilise notamment par la Banque de Chine ou en Inde pour controler l'expansion du credit.`;
+    interpretation += ` Le taux de reserves élevé (${(r * 100).toFixed(0)}%) bride fortement la création monétaire. C'est un outil de politique monétaire restrictive utilise notamment par la Banque de Chine ou en Inde pour contrôler l'expansion du credit.`;
   }
 
   return {
     outputs: [
-      { id: 'multiplicateur', label: 'Multiplicateur monetaire', value: round2(multiplicateur) },
-      { id: 'total_depots', label: 'Total des depots', value: round2(cumulativeDepots), unit: '\u20ac' },
-      { id: 'monnaie_creee', label: 'Monnaie creee', value: round2(monnaieCreee), unit: '\u20ac' },
+      { id: 'multiplicateur', label: 'Multiplicateur monétaire', value: round2(multiplicateur) },
+      { id: 'total_depots', label: 'Total des dépôts', value: round2(cumulativeDepots), unit: '\u20ac' },
+      { id: 'monnaie_creee', label: 'Monnaie créée', value: round2(monnaieCreee), unit: '\u20ac' },
       { id: 'total_reserves', label: 'Total des reserves', value: round2(cumulativeReserves), unit: '\u20ac' },
       { id: 'total_billets', label: 'Fuite en billets', value: round2(cumulativeBillets), unit: '\u20ac' },
       { id: 'convergence', label: 'Convergence', value: round2(convergencePercent), unit: '%' },

@@ -1,7 +1,7 @@
 const frLocale = 'fr-FR';
 
 /**
- * Formate un nombre avec le format francais (espace pour les milliers, virgule decimale).
+ * Formate un nombre avec le format français (espace pour les milliers, virgule decimale).
  */
 export function formatNumber(
   value: number,

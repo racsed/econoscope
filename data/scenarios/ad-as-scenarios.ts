@@ -4,13 +4,13 @@ export interface ADASScenario {
   description: string;
   /** Niveau de prix initial */
   initialPriceLevel: number;
-  /** PIB reel initial */
+  /** PIB réel initial */
   initialOutput: number;
   /** PIB potentiel (offre agregee de long terme) */
   potentialOutput: number;
-  /** Deplacement de la demande agregee (positif = droite, negatif = gauche) */
+  /** Deplacement de la demande agregee (positif = droite, négatif = gauche) */
   adShift: number;
-  /** Deplacement de l'offre agregee de court terme (positif = droite, negatif = gauche) */
+  /** Deplacement de l'offre agregee de court terme (positif = droite, négatif = gauche) */
   asShift: number;
   /** Pente de la courbe AS de court terme */
   asSlope: number;
@@ -22,7 +22,7 @@ export const adasScenarios: ADASScenario[] = [
     id: 'choc-demande-positif',
     title: 'Choc de demande positif',
     description:
-      'Une relance budgetaire ou monetaire deplace la demande agregee vers la droite.',
+      'Une relance budgétaire ou monétaire déplace la demande agregee vers la droite.',
     initialPriceLevel: 100,
     initialOutput: 1000,
     potentialOutput: 1000,
@@ -30,13 +30,13 @@ export const adasScenarios: ADASScenario[] = [
     asShift: 0,
     asSlope: 0.15,
     explanation:
-      'Un choc de demande positif (hausse des depenses publiques, baisse des impots, politique monetaire expansionniste) deplace la courbe AD vers la droite. A court terme, le PIB reel et le niveau des prix augmentent. L\'economie passe au-dessus de son potentiel, creant des tensions inflationnistes. A long terme, les salaires s\'ajustent et l\'offre agregee se deplace vers la gauche, ramenant le PIB a son niveau potentiel a un prix plus eleve.',
+      'Un choc de demande positif (hausse des dépenses publiques, baisse des impots, politique monétaire expansionniste) déplace la courbe AD vers la droite. A court terme, le PIB réel et le niveau des prix augmentent. L\'économie passe au-dessus de son potentiel, creant des tensions inflationnistes. A long terme, les salaires s\'ajustent et l\'offre agregee se déplace vers la gauche, ramenant le PIB à son niveau potentiel à un prix plus élevé.',
   },
   {
-    id: 'choc-offre-negatif',
-    title: 'Choc d\'offre negatif (choc petrolier)',
+    id: 'choc-offre-négatif',
+    title: 'Choc d\'offre négatif (choc pétrolier)',
     description:
-      'Une hausse brutale des couts de production deplace l\'offre agregee vers la gauche.',
+      'Une hausse brutale des coûts de production déplace l\'offre agregee vers la gauche.',
     initialPriceLevel: 100,
     initialOutput: 1000,
     potentialOutput: 1000,
@@ -44,13 +44,13 @@ export const adasScenarios: ADASScenario[] = [
     asShift: -150,
     asSlope: 0.15,
     explanation:
-      'Un choc d\'offre negatif (hausse du prix du petrole, catastrophe naturelle, pandemie) deplace la courbe AS de court terme vers la gauche. Le PIB reel diminue tandis que le niveau des prix augmente : c\'est la stagflation. Le dilemme pour les decideurs est aigu : stimuler la demande aggrave l\'inflation, la restreindre aggrave la recession.',
+      'Un choc d\'offre négatif (hausse du prix du pétrole, catastrophe naturelle, pandemie) déplace la courbe AS de court terme vers la gauche. Le PIB réel diminue tandis que le niveau des prix augmente : c\'est la stagflation. Le dilemme pour les decideurs est aigu : stimuler la demande aggrave l\'inflation, la restreindre aggrave la récession.',
   },
   {
-    id: 'ecart-recessionniste',
-    title: 'Ecart recessionniste',
+    id: 'écart-recessionniste',
+    title: 'Écart recessionniste',
     description:
-      'L\'economie produit en dessous de son potentiel, avec du chomage involontaire.',
+      'L\'économie produit en dessous de son potentiel, avec du chômage involontaire.',
     initialPriceLevel: 100,
     initialOutput: 850,
     potentialOutput: 1000,
@@ -58,13 +58,13 @@ export const adasScenarios: ADASScenario[] = [
     asShift: 0,
     asSlope: 0.15,
     explanation:
-      'Quand le PIB reel est inferieur au PIB potentiel, l\'economie est en ecart recessionniste. Le chomage est superieur a son taux naturel. Les keynesiens preconisent une intervention de l\'Etat pour deplacer la courbe AD vers la droite. Les classiques estiment que les salaires flexibles rameneront l\'equilibre a long terme.',
+      'Quand le PIB réel est inférieur au PIB potentiel, l\'économie est en écart recessionniste. Le chômage est supérieur à son taux naturel. Les keynesiens preconisent une intervention de l\'État pour deplacer la courbe AD vers la droite. Les classiques estiment que les salaires flexibles rameneront l\'équilibre à long terme.',
   },
   {
     id: 'surchauffe',
-    title: 'Surchauffe economique',
+    title: 'Surchauffe économique',
     description:
-      'L\'economie produit au-dessus de son potentiel, generant des tensions inflationnistes.',
+      'L\'économie produit au-dessus de son potentiel, generant des tensions inflationnistes.',
     initialPriceLevel: 100,
     initialOutput: 1150,
     potentialOutput: 1000,
@@ -72,7 +72,7 @@ export const adasScenarios: ADASScenario[] = [
     asShift: 0,
     asSlope: 0.15,
     explanation:
-      'En surchauffe, le PIB reel depasse le PIB potentiel. Le chomage est inferieur a son taux naturel et les entreprises peinent a recruter. Les salaires et les prix augmentent. La banque centrale doit intervenir en relevant les taux d\'interet pour ramener la demande agregee a un niveau soutenable et eviter une spirale inflationniste.',
+      'En surchauffe, le PIB réel dépasse le PIB potentiel. Le chômage est inférieur à son taux naturel et les entreprises peinent a recruter. Les salaires et les prix augmentent. La banque centrale doit intervenir en relevant les taux d\'intérêt pour ramener la demande agregee à un niveau soutenable et eviter une spirale inflationniste.',
   },
 ];
 

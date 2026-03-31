@@ -12,46 +12,46 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'multiplicateur-keynesien',
   title: 'Multiplicateur keynesien',
-  subtitle: "L'effet amplificateur de la depense publique",
+  subtitle: "L'effet amplificateur de la dépense publique",
   theme: 'macro',
   level: 'accessible',
   introduction:
-    "Le multiplicateur keynesien montre comment une injection initiale de depenses se propage dans l'economie par des tours successifs de consommation. Chaque euro depense genere des revenus qui sont a leur tour partiellement depenses, creant un effet en cascade.",
+    "Le multiplicateur keynesien montre comment une injection initiale de dépenses se propage dans l'économie par des tours successifs de consommation. Chaque euro dépense génère des revenus qui sont à leur tour partiellement dépenses, creant un effet en cascade.",
   limites: [
-    "Suppose des capacites de production inutilisees (pas de plein-emploi)",
-    "Ignore les effets sur les taux d'interet (pas d'eviction financiere)",
+    "Suppose des capacités de production inutilisees (pas de plein-emploi)",
+    "Ignore les effets sur les taux d'intérêt (pas d'éviction financiere)",
     "Ne tient pas compte du delai de propagation",
     "Propensions marginales supposees constantes",
   ],
   realite: [
-    "Le FMI estime le multiplicateur budgetaire entre 0.4 et 2.5 selon le contexte",
-    "En recession, le multiplicateur est generalement plus eleve (>1)",
-    "Les depenses d'infrastructures ont un multiplicateur plus fort que les baisses d'impots",
+    "Le FMI estime le multiplicateur budgétaire entre 0.4 et 2.5 selon le contexte",
+    "En récession, le multiplicateur est généralement plus élevé (>1)",
+    "Les dépenses d'infrastructures ont un multiplicateur plus fort que les baisses d'impots",
   ],
 };
 
 const inputs: SimulationInput[] = [
   {
     id: 'depense_initiale',
-    label: 'Depense initiale',
+    label: 'Dépense initiale',
     type: 'slider',
     min: 1,
     max: 100,
     step: 1,
     defaultValue: 10,
     unit: 'Mds\u20ac',
-    tooltip: "Montant de la depense publique initiale injectee dans l'economie",
+    tooltip: "Montant de la dépense publique initiale injectee dans l'économie",
     group: 'Injection',
   },
   {
     id: 'propension_consommer',
-    label: 'Propension marginale a consommer (c)',
+    label: 'Propension marginale à consommer (c)',
     type: 'slider',
     min: 0.1,
     max: 0.95,
     step: 0.05,
     defaultValue: 0.8,
-    tooltip: "Part de chaque euro supplementaire de revenu qui est consommee",
+    tooltip: "Part de chaque euro supplémentaire de revenu qui est consommee",
     group: 'Comportement',
   },
   {
@@ -62,18 +62,18 @@ const inputs: SimulationInput[] = [
     max: 0.5,
     step: 0.01,
     defaultValue: 0.2,
-    tooltip: "Part prelevee sous forme de taxes a chaque tour",
+    tooltip: "Part prélevée sous forme de taxes à chaque tour",
     group: 'Fuites',
   },
   {
     id: 'propension_importer',
-    label: "Propension marginale a importer (m)",
+    label: "Propension marginale à importer (m)",
     type: 'slider',
     min: 0,
     max: 0.4,
     step: 0.01,
     defaultValue: 0.1,
-    tooltip: "Part de la consommation supplementaire consacree aux importations",
+    tooltip: "Part de la consommation supplémentaire consacree aux importations",
     group: 'Fuites',
   },
   {
@@ -92,31 +92,31 @@ const scenarios: Scenario[] = [
   {
     id: 'keynes_simple',
     label: 'Multiplicateur simple',
-    description: "Economie fermee sans impots, propension de 0.8",
+    description: "Économie fermee sans impots, propension de 0.8",
     values: { depense_initiale: 10, propension_consommer: 0.8, taux_imposition: 0, propension_importer: 0, nb_tours: 15 },
   },
   {
     id: 'economie_ouverte',
-    label: 'Economie ouverte',
-    description: "Avec impots et importations, multiplicateur reduit",
+    label: 'Économie ouverte',
+    description: "Avec impots et importations, multiplicateur réduit",
     values: { depense_initiale: 10, propension_consommer: 0.8, taux_imposition: 0.2, propension_importer: 0.15, nb_tours: 15 },
   },
   {
     id: 'relance_france',
-    label: 'Relance budgetaire France',
-    description: "Parametres proches de l'economie francaise",
+    label: 'Relance budgétaire France',
+    description: "Paramètres proches de l'économie française",
     values: { depense_initiale: 20, propension_consommer: 0.85, taux_imposition: 0.25, propension_importer: 0.2, nb_tours: 15 },
   },
   {
     id: 'multiplicateur_faible',
     label: 'Multiplicateur faible',
-    description: "Fortes fuites : epargne elevee, impots eleves, importations",
+    description: "Fortes fuites : épargne élevée, impots élevés, importations",
     values: { depense_initiale: 10, propension_consommer: 0.5, taux_imposition: 0.3, propension_importer: 0.2, nb_tours: 15 },
   },
 ];
 
 /**
- * Multiplicateur en economie ouverte avec impots:
+ * Multiplicateur en économie ouverte avec impots:
  * k = 1 / (1 - c*(1-t) + m)
  *
  * A chaque tour n :
@@ -128,7 +128,7 @@ const scenarios: Scenario[] = [
  * Round n: income_n = G * alpha^n where alpha = c * (1 - t) * (1 - m)
  *   - consumption_n = income_n * c * (1 - t)   (but part goes to imports)
  *   - domestic consumption = income_n * c * (1 - t) * (1 - m)
- *   - taxes_n = income_n * t  (from the previous round's income before consumption decision)
+ *   - taxes_n = income_n * t  (from the previous round's income before consumption décision)
  *
  * More carefully:
  * Round 0: spending = G, no tax/savings/import breakdown (it's the injection)
@@ -217,29 +217,29 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   // Narration
   const fuites = 1 - alpha;
-  const observation = `Une injection initiale de ${depenseInitiale} Mds\u20ac genere, apres ${nbTours} tours, un revenu cumule de ${round2(cumulative)} Mds\u20ac (soit ${(cumulative / depenseInitiale * 100).toFixed(0)}% de l'injection initiale). L'asymptote theorique est de ${round2(asymptote)} Mds\u20ac.`;
+  const observation = `Une injection initiale de ${depenseInitiale} Mds\u20ac génère, après ${nbTours} tours, un revenu cumule de ${round2(cumulative)} Mds\u20ac (soit ${(cumulative / depenseInitiale * 100).toFixed(0)}% de l'injection initiale). L'asymptote théorique est de ${round2(asymptote)} Mds\u20ac.`;
 
   let interpretation = `Le multiplicateur est de ${round2(multiplicateur)}, avec un coefficient de propagation alpha = ${round2(alpha)}. `;
-  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du revenu est redepense localement. Les fuites totales representent ${(fuites * 100).toFixed(0)}% : `;
+  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du revenu est redépensé localement. Les fuites totales representent ${(fuites * 100).toFixed(0)}% : `;
 
   const fuitesDetail: string[] = [];
   if (t > 0) fuitesDetail.push(`impots (${(t * 100).toFixed(0)}%)`);
-  if (1 - c > 0.01) fuitesDetail.push(`epargne (${((1 - c) * 100).toFixed(0)}% du disponible)`);
+  if (1 - c > 0.01) fuitesDetail.push(`épargne (${((1 - c) * 100).toFixed(0)}% du disponible)`);
   if (m > 0) fuitesDetail.push(`importations (${(m * 100).toFixed(0)}% de la consommation)`);
   interpretation += fuitesDetail.join(', ') + '.';
 
   if (multiplicateur < 1.2) {
-    interpretation += " Le multiplicateur est tres faible : les fuites absorbent l'essentiel de l'injection. La politique budgetaire serait peu efficace dans ce contexte. L'essentiel de la depense publique \"fuit\" vers l'epargne, les impots ou l'etranger des le premier tour.";
+    interpretation += " Le multiplicateur est tres faible : les fuites absorbent l'essentiel de l'injection. La politique budgétaire serait peu efficace dans ce contexte. L'essentiel de la dépense publique \"fuit\" vers l'épargne, les impots ou l'étranger des le premier tour.";
   } else if (multiplicateur > 3) {
-    interpretation += " Le multiplicateur est tres eleve : l'economie amplifie fortement l'impulsion budgetaire. Cela suppose toutefois des capacites productives inutilisees (chomage, usines en sous-regime), sinon l'effet se dissipe en inflation plutot qu'en production reelle.";
+    interpretation += " Le multiplicateur est tres élevé : l'économie amplifie fortement l'impulsion budgétaire. Cela suppose toutefois des capacités productives inutilisees (chômage, usines en sous-regime), sinon l'effet se dissipe en inflation plutot qu'en production réelle.";
   } else if (multiplicateur > 1.5 && multiplicateur <= 3) {
-    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} est dans la fourchette typique des economies developpees en recession. Chaque euro de depense publique genere environ ${round2(multiplicateur)} euros de revenu total, l'effet en cascade etant modere par les fuites.`;
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} est dans la fourchette typique des économies developpees en récession. Chaque euro de dépense publique génère environ ${round2(multiplicateur)} euros de revenu total, l'effet en cascade etant modere par les fuites.`;
   }
 
   if (c > 0.85) {
-    interpretation += ` La forte propension a consommer (${(c * 100).toFixed(0)}%) indique une population qui depense rapidement ses revenus supplementaires, amplifiant la propagation. C'est typique des menages a bas revenus.`;
+    interpretation += ` La forte propension à consommer (${(c * 100).toFixed(0)}%) indique une population qui dépense rapidement ses revenus supplémentaires, amplifiant la propagation. C'est typique des ménages a bas revenus.`;
   } else if (c < 0.5) {
-    interpretation += ` La faible propension a consommer (${(c * 100).toFixed(0)}%) signifie que les menages epargnent l'essentiel de leur revenu supplementaire, freinant la propagation. Le multiplicateur s'en trouve considerablement reduit.`;
+    interpretation += ` La faible propension à consommer (${(c * 100).toFixed(0)}%) signifie que les ménages epargnent l'essentiel de leur revenu supplémentaire, freinant la propagation. Le multiplicateur s'en trouve considérablement réduit.`;
   }
 
   return {
@@ -247,7 +247,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       { id: 'multiplicateur', label: 'Multiplicateur', value: round2(multiplicateur) },
       { id: 'alpha', label: 'Coefficient de propagation', value: round2(alpha) },
       { id: 'effet_total', label: 'Effet total (asymptote)', value: round2(asymptote), unit: 'Mds\u20ac' },
-      { id: 'cumul_apres_n', label: `Cumul apres ${nbTours} tours`, value: round2(cumulative), unit: 'Mds\u20ac' },
+      { id: 'cumul_apres_n', label: `Cumul après ${nbTours} tours`, value: round2(cumulative), unit: 'Mds\u20ac' },
       { id: 'convergence', label: 'Convergence', value: round2((cumulative / asymptote) * 100), unit: '%' },
     ],
     chartData: cascadeData,

@@ -20,15 +20,15 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
   return (
     <Tooltip.Provider delayDuration={300}>
       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none snap-x snap-mandatory">
-        {scenarios.map((scenario) => {
-          const isActive = scenario.id === activeId;
+        {scenarios.map((scénario) => {
+          const isActive = scénario.id === activeId;
 
           return (
-            <Tooltip.Root key={scenario.id}>
+            <Tooltip.Root key={scénario.id}>
               <Tooltip.Trigger asChild>
                 <button
                   type="button"
-                  onClick={() => onSelect(scenario.id)}
+                  onClick={() => onSelect(scénario.id)}
                   className={`relative shrink-0 snap-start rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                     isActive
                       ? "text-white"
@@ -37,12 +37,12 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                 >
                   {isActive && (
                     <motion.span
-                      layoutId="scenario-active-pill"
+                      layoutId="scénario-active-pill"
                       className="absolute inset-0 rounded-full bg-accent-indigo"
                       transition={{ type: "spring", stiffness: 500, damping: 35 }}
                     />
                   )}
-                  <span className="relative z-10">{scenario.label}</span>
+                  <span className="relative z-10">{scénario.label}</span>
                 </button>
               </Tooltip.Trigger>
               <Tooltip.Portal>
@@ -51,7 +51,7 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                   sideOffset={8}
                   className="max-w-xs rounded-lg bg-bg-card px-3 py-2 text-xs text-text-secondary shadow-lg border border-border"
                 >
-                  {scenario.description}
+                  {scénario.description}
                   <Tooltip.Arrow className="fill-bg-card" />
                 </Tooltip.Content>
               </Tooltip.Portal>

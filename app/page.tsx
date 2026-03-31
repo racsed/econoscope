@@ -15,7 +15,7 @@ import { THEME_COLORS, type ThemeType } from '@/lib/constants';
 const featuredSlugs = [
   'offre-et-demande',
   'multiplicateur-keynesien',
-  'carre-magique-kaldor',
+  'carré-magique-kaldor',
 ];
 
 export default function HomePage() {
@@ -116,7 +116,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-text-primary">L&apos;economie,</span>
+              <span className="text-text-primary">L&apos;économie,</span>
               <br />
               <span className="bg-gradient-to-r from-accent-indigo to-[#22D3EE] bg-clip-text text-transparent">
                 enfin visible.
@@ -124,7 +124,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Un laboratoire interactif pour comprendre les mecanismes economiques.
+              Un laboratoire interactif pour comprendre les mécanismes économiques.
               Manipulez les variables, observez les effets, construisez votre intuition.
             </p>
 
@@ -133,7 +133,7 @@ export default function HomePage() {
                 href="/explorer"
                 className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full hover:bg-[#4F52E0] transition-all duration-200 hover:shadow-lg hover:shadow-accent-indigo/25"
               >
-                Explorer les mecanismes
+                Explorer les mécanismes
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-1 transition-transform"
@@ -166,16 +166,16 @@ export default function HomePage() {
             {[
               {
                 icon: SlidersHorizontal,
-                title: 'Choisis un mecanisme',
+                title: 'Choisis un mécanisme',
                 description:
-                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept economique.',
+                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept économique.',
                 color: '#5B5EF4',
               },
               {
                 icon: Eye,
                 title: 'Manipule les variables',
                 description:
-                  'Deplace les curseurs, change les parametres. Les graphiques reagissent en temps reel.',
+                  'Deplace les curseurs, change les paramètres. Les graphiques reagissent en temps réel.',
                 color: '#22D3EE',
               },
               {
@@ -225,7 +225,7 @@ export default function HomePage() {
               Modules en vedette
             </h2>
             <p className="text-text-secondary">
-              Commencez par ces trois mecanismes fondamentaux
+              Commencez par ces trois mécanismes fondamentaux
             </p>
           </motion.div>
 
@@ -305,7 +305,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '10', label: 'Modules interactifs' },
-              { value: '40+', label: 'Scenarios reels' },
+              { value: '40+', label: 'Scénarios réels' },
               { value: '100%', label: 'Gratuit et ouvert' },
               { value: '0', label: 'Cookie de tracking' },
             ].map((stat) => (

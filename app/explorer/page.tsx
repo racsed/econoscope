@@ -12,17 +12,17 @@ const themes = [
   { key: 'all', label: 'Tous' },
   { key: 'micro', label: 'Micro' },
   { key: 'macro', label: 'Macro' },
-  { key: 'monetary', label: 'Monetaire' },
-  { key: 'fiscal', label: 'Fiscalite' },
-  { key: 'inequality', label: 'Inegalites' },
+  { key: 'monetary', label: 'Monétaire' },
+  { key: 'fiscal', label: 'Fiscalité' },
+  { key: 'inequality', label: 'Inégalités' },
   { key: 'international', label: 'International' },
 ];
 
 const levels = [
   { key: 'all', label: 'Tous niveaux' },
   { key: 'accessible', label: 'Accessible' },
-  { key: 'intermediate', label: 'Intermediaire' },
-  { key: 'advanced', label: 'Avance' },
+  { key: 'intermediate', label: 'Intermédiaire' },
+  { key: 'advanced', label: 'Avancé' },
 ];
 
 export default function ExplorerPage() {
@@ -55,10 +55,10 @@ export default function ExplorerPage() {
           className="mb-10"
         >
           <h1 className="text-3xl sm:text-4xl font-bold text-text-primary mb-3">
-            Explorer les mecanismes
+            Explorer les mécanismes
           </h1>
           <p className="text-text-secondary text-lg">
-            {modulesCatalog.length} modules economiques interactifs
+            {modulesCatalog.length} modules économiques interactifs
           </p>
         </motion.div>
 

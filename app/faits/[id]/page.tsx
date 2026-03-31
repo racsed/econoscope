@@ -18,9 +18,9 @@ import type { SimulationModule, ComputeResult } from '@/engine/types';
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
   crise: { label: 'Crise', color: '#EF4444' },
-  politique: { label: 'Politique economique', color: '#5B5EF4' },
+  politique: { label: 'Politique économique', color: '#5B5EF4' },
   commerce: { label: 'Commerce', color: '#F59E0B' },
-  monetaire: { label: 'Monetaire', color: '#0EA5E9' },
+  monétaire: { label: 'Monétaire', color: '#0EA5E9' },
   social: { label: 'Social', color: '#EC4899' },
   histoire: { label: 'Histoire', color: '#8B5CF6' },
 };
@@ -49,7 +49,7 @@ export default function FactArticlePage() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-text-primary mb-2">Fait introuvable</h1>
           <Link href="/faits" className="text-accent-indigo hover:underline">
-            Retour aux faits economiques
+            Retour aux faits économiques
           </Link>
         </div>
       </div>
@@ -86,9 +86,9 @@ function FactArticle({
   }, [initialValues]);
 
   const applyScenario = useCallback((scenarioId: string) => {
-    const scenario = module.scenarios.find(s => s.id === scenarioId);
-    if (scenario) {
-      setAllValues({ ...getDefaults(module), ...scenario.values });
+    const scénario = module.scenarios.find(s => s.id === scenarioId);
+    if (scénario) {
+      setAllValues({ ...getDefaults(module), ...scénario.values });
       setActiveScenarioId(scenarioId);
     }
   }, [module]);
@@ -113,7 +113,7 @@ function FactArticle({
           className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-6"
         >
           <ArrowLeft size={14} />
-          Retour aux faits economiques
+          Retour aux faits économiques
         </Link>
 
         {/* Hero image + Article header */}
@@ -217,7 +217,7 @@ function FactArticle({
             </div>
 
             <p className="text-sm text-text-muted mb-4">
-              Le simulateur est preconfigure avec les parametres correspondant a cet evenement.
+              Le simulateur est préconfiguré avec les paramètres correspondant a cet événement.
               Modifiez les curseurs pour explorer des scenarios alternatifs.
             </p>
 
@@ -249,7 +249,7 @@ function FactArticle({
               </div>
             </div>
 
-            {/* Scenarios */}
+            {/* Scénarios */}
             <div className="mt-4">
               <ScenarioBar
                 scenarios={module.scenarios}

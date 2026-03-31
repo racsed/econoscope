@@ -14,9 +14,9 @@ export interface SupplyDemandScenario {
 
 export const supplyDemandScenarios: SupplyDemandScenario[] = [
   {
-    id: 'equilibre-initial',
-    title: 'Equilibre initial',
-    description: 'Un marche en equilibre sans intervention exterieure.',
+    id: 'équilibre-initial',
+    title: 'Équilibre initial',
+    description: 'Un marché en équilibre sans intervention exterieure.',
     demandIntercept: 100,
     demandSlope: -2,
     supplyIntercept: 10,
@@ -25,12 +25,12 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'Le prix d\'equilibre se situe a l\'intersection des courbes d\'offre et de demande. A ce prix, la quantite offerte egale la quantite demandee : le marche est en equilibre.',
+      'Le prix d\'équilibre se situe a l\'intersection des courbes d\'offre et de demande. A ce prix, la quantité offerte égale la quantité demandee : le marché est en équilibre.',
   },
   {
     id: 'hausse-revenu',
-    title: 'Hausse du revenu des menages',
-    description: 'Une augmentation du pouvoir d\'achat deplace la demande vers la droite.',
+    title: 'Hausse du revenu des ménages',
+    description: 'Une augmentation du pouvoir d\'achat déplace la demande vers la droite.',
     demandIntercept: 130,
     demandSlope: -2,
     supplyIntercept: 10,
@@ -39,12 +39,12 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'Lorsque le revenu des menages augmente, la demande pour les biens normaux se deplace vers la droite. Le nouveau prix d\'equilibre est plus eleve, et la quantite echangee augmente egalement.',
+      'Lorsque le revenu des ménages augmente, la demande pour les biens normaux se déplace vers la droite. Le nouveau prix d\'équilibre est plus élevé, et la quantité échangée augmente également.',
   },
   {
-    id: 'hausse-couts',
-    title: 'Hausse des couts de production',
-    description: 'Une augmentation des matieres premieres deplace l\'offre vers la gauche.',
+    id: 'hausse-coûts',
+    title: 'Hausse des coûts de production',
+    description: 'Une augmentation des matières premières déplace l\'offre vers la gauche.',
     demandIntercept: 100,
     demandSlope: -2,
     supplyIntercept: 30,
@@ -53,12 +53,12 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'La hausse des couts de production (matieres premieres, salaires, energie) deplace la courbe d\'offre vers la gauche. Le prix d\'equilibre augmente tandis que la quantite echangee diminue.',
+      'La hausse des coûts de production (matières premières, salaires, énergie) déplace la courbe d\'offre vers la gauche. Le prix d\'équilibre augmente tandis que la quantité échangée diminue.',
   },
   {
     id: 'introduction-taxe',
     title: 'Introduction d\'une taxe',
-    description: 'L\'Etat impose une taxe unitaire de 8 euros sur chaque unite vendue.',
+    description: 'L\'État impose une taxe unitaire de 8 euros sur chaque unite vendue.',
     demandIntercept: 100,
     demandSlope: -2,
     supplyIntercept: 10,
@@ -67,12 +67,12 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'La taxe cree un ecart entre le prix paye par l\'acheteur et le prix recu par le vendeur. La quantite echangee diminue et une perte seche apparait : c\'est le cout social de la taxe.',
+      'La taxe crée un écart entre le prix paye par l\'acheteur et le prix recu par le vendeur. La quantité échangée diminue et une perte seche apparait : c\'est le coût social de la taxe.',
   },
   {
     id: 'prix-plafond',
     title: 'Prix plafond (loyer encadre)',
-    description: 'L\'Etat fixe un prix maximum en dessous du prix d\'equilibre.',
+    description: 'L\'État fixe un prix maximum en dessous du prix d\'équilibre.',
     demandIntercept: 100,
     demandSlope: -2,
     supplyIntercept: 10,
@@ -81,12 +81,12 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: 20,
     explanation:
-      'Un prix plafond fixe en dessous du prix d\'equilibre cree une penurie : la quantite demandee depasse la quantite offerte. Des files d\'attente ou des marches noirs peuvent apparaitre, comme dans le cas de l\'encadrement des loyers.',
+      'Un prix plafond fixe en dessous du prix d\'équilibre crée une pénurie : la quantité demandee dépasse la quantité offerte. Des files d\'attente ou des marchés noirs peuvent apparaitre, comme dans le cas de l\'encadrement des loyers.',
   },
   {
     id: 'prix-plancher',
     title: 'Prix plancher (salaire minimum)',
-    description: 'L\'Etat fixe un prix minimum au-dessus du prix d\'equilibre.',
+    description: 'L\'État fixe un prix minimum au-dessus du prix d\'équilibre.',
     demandIntercept: 100,
     demandSlope: -2,
     supplyIntercept: 10,
@@ -95,7 +95,7 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: 35,
     priceCeiling: null,
     explanation:
-      'Un prix plancher fixe au-dessus du prix d\'equilibre cree un surplus : la quantite offerte depasse la quantite demandee. Sur le marche du travail, cela correspond au salaire minimum, qui peut generer du chomage si fixe trop haut, mais protege les travailleurs les plus vulnerables.',
+      'Un prix plancher fixe au-dessus du prix d\'équilibre crée un surplus : la quantité offerte dépasse la quantité demandee. Sur le marché du travail, cela correspond au salaire minimum, qui peut générer du chômage si fixe trop haut, mais protege les travailleurs les plus vulnerables.',
   },
 ];
 

@@ -47,7 +47,7 @@ export default function GlossairePage() {
             <h1 className="text-3xl font-bold text-text-primary">Glossaire</h1>
           </div>
           <p className="text-text-secondary">
-            {glossary.length} termes economiques expliques simplement
+            {glossary.length} termes économiques expliques simplement
           </p>
         </motion.div>
 

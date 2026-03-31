@@ -12,14 +12,14 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
   crise: { label: 'Crise', color: '#EF4444' },
-  politique: { label: 'Politique economique', color: '#5B5EF4' },
+  politique: { label: 'Politique économique', color: '#5B5EF4' },
   commerce: { label: 'Commerce', color: '#F59E0B' },
-  monetaire: { label: 'Monetaire', color: '#0EA5E9' },
+  monétaire: { label: 'Monétaire', color: '#0EA5E9' },
   social: { label: 'Social', color: '#EC4899' },
   histoire: { label: 'Histoire', color: '#8B5CF6' },
 };
 
-const categories = ['all', 'histoire', 'crise', 'politique', 'commerce', 'monetaire', 'social'];
+const categories = ['all', 'histoire', 'crise', 'politique', 'commerce', 'monétaire', 'social'];
 
 export default function FaitsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -39,10 +39,10 @@ export default function FaitsPage() {
         >
           <div className="flex items-center gap-3 mb-3">
             <History size={24} className="text-accent-indigo" />
-            <h1 className="text-3xl font-bold text-text-primary">Faits economiques</h1>
+            <h1 className="text-3xl font-bold text-text-primary">Faits économiques</h1>
           </div>
           <p className="text-text-secondary text-lg">
-            Des evenements reels illustres par les modeles. Cliquez pour explorer avec les parametres historiques.
+            Des événements réels illustres par les modèles. Cliquez pour explorer avec les paramètres historiques.
           </p>
         </motion.div>
 
@@ -103,7 +103,7 @@ function FactCard({
   const catInfo = categoryLabels[fact.category];
   const Icon = iconMap[fact.icon] || History;
 
-  // Build URL with scenario values as query params
+  // Build URL with scénario values as query params
   const params = new URLSearchParams();
   for (const [key, value] of Object.entries(fact.scenarioValues)) {
     params.set(key, String(value));

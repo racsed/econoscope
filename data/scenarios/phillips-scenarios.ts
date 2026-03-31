@@ -3,7 +3,7 @@ export interface PhillipsScenario {
   title: string;
   period: string;
   description: string;
-  /** Points de donnees [chomage %, inflation %] */
+  /** Points de données [chômage %, inflation %] */
   dataPoints: Array<{ year: number; unemployment: number; inflation: number }>;
   nairu: number | null;
   explanation: string;
@@ -11,11 +11,11 @@ export interface PhillipsScenario {
 
 export const phillipsScenarios: PhillipsScenario[] = [
   {
-    id: 'annees-60',
-    title: 'Le compromis stable des annees 1960',
+    id: 'années-60',
+    title: 'Le compromis stable des années 1960',
     period: '1960-1969',
     description:
-      'La relation inverse entre inflation et chomage semble stable et exploitable.',
+      'La relation inverse entre inflation et chômage semble stable et exploitable.',
     dataPoints: [
       { year: 1960, unemployment: 5.5, inflation: 1.5 },
       { year: 1961, unemployment: 6.7, inflation: 1.0 },
@@ -30,14 +30,14 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: null,
     explanation:
-      'Dans les annees 1960, la courbe de Phillips semblait offrir un compromis stable aux decideurs : accepter plus d\'inflation pour reduire le chomage, ou inversement. Ce modele a guide les politiques keynesiennes de cette epoque.',
+      'Dans les années 1960, la courbe de Phillips semblait offrir un compromis stable aux decideurs : accepter plus d\'inflation pour réduire le chômage, ou inversement. Ce modèle a guide les politiques keynesiennes de cette epoque.',
   },
   {
     id: 'stagflation-70s',
-    title: 'La stagflation des annees 1970',
+    title: 'La stagflation des années 1970',
     period: '1970-1982',
     description:
-      'Les chocs petroliers brisent la relation : inflation et chomage augmentent simultanement.',
+      'Les chocs petroliers brisent la relation : inflation et chômage augmentent simultanément.',
     dataPoints: [
       { year: 1970, unemployment: 4.9, inflation: 5.7 },
       { year: 1971, unemployment: 5.9, inflation: 4.4 },
@@ -55,14 +55,14 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: null,
     explanation:
-      'Les chocs petroliers de 1973 et 1979 ont provoque une stagflation : hausse simultanee de l\'inflation et du chomage. Friedman et Phelps avaient predit ce phenomene en distinguant la courbe de Phillips de court terme (qui se deplace) et l\'absence de compromis a long terme. Les anticipations d\'inflation jouent un role central.',
+      'Les chocs petroliers de 1973 et 1979 ont provoque une stagflation : hausse simultanee de l\'inflation et du chômage. Friedman et Phelps avaient predit ce phénomène en distinguant la courbe de Phillips de court terme (qui se déplace) et l\'absence de compromis à long terme. Les anticipations d\'inflation jouent un role central.',
   },
   {
-    id: 'desinflation-volcker',
-    title: 'La desinflation Volcker',
+    id: 'désinflation-volcker',
+    title: 'La désinflation Volcker',
     period: '1979-1986',
     description:
-      'Paul Volcker, president de la Fed, impose une politique monetaire restrictive brutale.',
+      'Paul Volcker, president de la Fed, impose une politique monétaire restrictive brutale.',
     dataPoints: [
       { year: 1979, unemployment: 5.8, inflation: 11.3 },
       { year: 1980, unemployment: 7.1, inflation: 13.5 },
@@ -75,14 +75,14 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: 6.0,
     explanation:
-      'Paul Volcker a eleve les taux d\'interet au-dessus de 20 % pour briser les anticipations inflationnistes. Le cout a ete une severe recession avec un chomage a presque 10 %. Mais l\'inflation est passee de 13,5 % a moins de 2 %. Ce sacrifice illustre le "ratio de sacrifice" : le cout en chomage pour chaque point d\'inflation elimine.',
+      'Paul Volcker a élevé les taux d\'intérêt au-dessus de 20 % pour briser les anticipations inflationnistes. Le coût a été une sévère récession avec un chômage a presque 10 %. Mais l\'inflation est passee de 13,5 % à moins de 2 %. Ce sacrifice illustre le "ratio de sacrifice" : le coût en chômage pour chaque point d\'inflation élimine.',
   },
   {
     id: 'phillips-morte-2010s',
     title: 'La courbe de Phillips est-elle morte ?',
     period: '2010-2023',
     description:
-      'Le chomage baisse mais l\'inflation reste faible, puis bondit apres le Covid.',
+      'Le chômage baisse mais l\'inflation reste faible, puis bondit après le Covid.',
     dataPoints: [
       { year: 2010, unemployment: 9.6, inflation: 1.6 },
       { year: 2012, unemployment: 8.1, inflation: 2.1 },
@@ -97,7 +97,7 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: 4.0,
     explanation:
-      'Depuis 2010, la relation entre chomage et inflation semble affaiblie, voire inexistante. Le chomage a fortement baisse aux Etats-Unis sans generer d\'inflation notable -- jusqu\'au choc post-Covid de 2021-2022. Ce retour brutal de l\'inflation relance le debat : la courbe de Phillips n\'est pas morte, mais elle est devenue non lineaire et tres sensible aux chocs d\'offre.',
+      'Depuis 2010, la relation entre chômage et inflation semble affaiblie, voire inexistante. Le chômage a fortement baisse aux États-Unis sans générer d\'inflation notable -- jusqu\'au choc post-Covid de 2021-2022. Ce retour brutal de l\'inflation relance le debat : la courbe de Phillips n\'est pas morte, mais elle est devenue non lineaire et tres sensible aux chocs d\'offre.',
   },
 ];
 
