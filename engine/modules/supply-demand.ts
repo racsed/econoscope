@@ -176,12 +176,16 @@ function findEquilibrium(
   }
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const revenu = values.revenu as number;
-  const nbAcheteurs = values.nb_acheteurs as number;
-  const coutProduction = values.cout_production as number;
-  const taxe = values.taxe as number;
-  const taxeSurVendeur = values.taxe_side as boolean;
+  const revenu = clamp(Number(values.revenu) || 2000, 500, 5000);
+  const nbAcheteurs = clamp(Number(values.nb_acheteurs) || 200, 10, 1000);
+  const coutProduction = clamp(Number(values.cout_production) || 10, 1, 50);
+  const taxe = clamp(Number(values.taxe) || 0, 0, 30);
+  const taxeSurVendeur = typeof values.taxe_side === 'boolean' ? values.taxe_side : true;
 
   // Equilibrium without tax
   const eqBase = findEquilibrium(revenu, nbAcheteurs, coutProduction, 0, true);

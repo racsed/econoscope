@@ -1,78 +1,57 @@
 'use client';
 
-import { useMemo, useCallback, useEffect } from 'react';
-import { useSimulationStore } from '@/stores/simulation-store';
+import { useState, useMemo, useCallback } from 'react';
 import type { SimulationModule, ComputeResult } from '@/engine/types';
 
-export function useSimulation(module: SimulationModule) {
-  const {
-    values,
-    activeScenarioId,
-    comparisonValues,
-    isComparing,
-    isProjectionMode,
-    setValues,
-    setValue,
-    setActiveScenario,
-    toggleComparison,
-    toggleProjectionMode,
-    reset,
-  } = useSimulationStore();
+function getDefaults(module: SimulationModule): Record<string, number | boolean | string> {
+  const defaults: Record<string, number | boolean | string> = {};
+  for (const input of module.inputs) {
+    defaults[input.id] = input.defaultValue;
+  }
+  return defaults;
+}
 
-  // Initialize with defaults on mount
-  useEffect(() => {
-    const defaults: Record<string, number | boolean | string> = {};
-    for (const input of module.inputs) {
-      defaults[input.id] = input.defaultValue;
-    }
-    setValues(defaults);
-  }, [module.inputs, setValues]);
+export function useSimulation(module: SimulationModule) {
+  const [values, setAllValues] = useState(() => getDefaults(module));
+  const [activeScenarioId, setActiveScenarioId] = useState<string | null>(null);
+  const [isProjectionMode, setIsProjectionMode] = useState(false);
+
+  const setValue = useCallback((key: string, value: number | boolean | string) => {
+    setAllValues(prev => ({ ...prev, [key]: value }));
+    setActiveScenarioId(null);
+  }, []);
 
   const result: ComputeResult = useMemo(() => {
-    if (Object.keys(values).length === 0) {
-      // Return with defaults before store is initialized
-      const defaults: Record<string, number | boolean | string> = {};
-      for (const input of module.inputs) {
-        defaults[input.id] = input.defaultValue;
-      }
-      return module.compute(defaults);
+    try {
+      return module.compute(values);
+    } catch {
+      // Fallback to defaults if compute crashes
+      return module.compute(getDefaults(module));
     }
-    return module.compute(values);
   }, [values, module]);
 
-  const comparisonResult: ComputeResult | null = useMemo(() => {
-    if (!isComparing || !comparisonValues) return null;
-    return module.compute(comparisonValues);
-  }, [isComparing, comparisonValues, module]);
-
-  const applyScenario = useCallback(
-    (scenarioId: string) => {
-      const scenario = module.scenarios.find((s) => s.id === scenarioId);
-      if (scenario) {
-        const defaults: Record<string, number | boolean | string> = {};
-        for (const input of module.inputs) {
-          defaults[input.id] = input.defaultValue;
-        }
-        setValues({ ...defaults, ...scenario.values });
-        setActiveScenario(scenarioId);
-      }
-    },
-    [module, setValues, setActiveScenario]
-  );
+  const applyScenario = useCallback((scenarioId: string) => {
+    const scenario = module.scenarios.find(s => s.id === scenarioId);
+    if (scenario) {
+      setAllValues({ ...getDefaults(module), ...scenario.values });
+      setActiveScenarioId(scenarioId);
+    }
+  }, [module]);
 
   const resetToDefaults = useCallback(() => {
-    const defaults: Record<string, number | boolean | string> = {};
-    for (const input of module.inputs) {
-      defaults[input.id] = input.defaultValue;
-    }
-    reset(defaults);
-  }, [module.inputs, reset]);
+    setAllValues(getDefaults(module));
+    setActiveScenarioId(null);
+  }, [module]);
+
+  const toggleProjectionMode = useCallback(() => {
+    setIsProjectionMode(prev => !prev);
+  }, []);
 
   return {
     inputs: module.inputs,
     values,
     setValue,
-    setValues,
+    setValues: setAllValues,
     outputs: result.outputs,
     chartData: result.chartData,
     narration: result.narration,
@@ -80,9 +59,6 @@ export function useSimulation(module: SimulationModule) {
     activeScenarioId,
     applyScenario,
     resetToDefaults,
-    comparisonResult,
-    isComparing,
-    toggleComparison,
     isProjectionMode,
     toggleProjectionMode,
     meta: module.meta,

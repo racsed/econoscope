@@ -190,21 +190,29 @@ function findEquilibrium(
   // (C0 + I0 + G)/b - Y*s/b = K*Y/h - (M/P)/h   where s = 1 - C1*(1-t)
   // (C0 + I0 + G)/b + (M/P)/h = Y * (s/b + K/h)
   const s = 1 - C1 * (1 - t);
-  const numerator = (C0 + i0 + g) / b + (m / p) / h;
-  const denominator = s / b + K_MONEY / h;
+  const safeb = b || 1;
+  const safeh = h || 1;
+  const safep = p || 1;
+  const numerator = (C0 + i0 + g) / safeb + (m / safep) / safeh;
+  const denominator = s / safeb + K_MONEY / safeh;
+  if (denominator === 0) return { y: 0, r: 0 };
   const yEq = numerator / denominator;
-  const rEq = lmRate(yEq, m, p, h);
+  const rEq = lmRate(yEq, m, safep, safeh);
   return { y: yEq, r: rEq };
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const g = values.depenses_publiques as number;
-  const t = values.taux_imposition as number;
-  const i0 = values.investissement_autonome as number;
-  const b = values.sensibilite_investissement as number;
-  const m = values.offre_monnaie as number;
-  const p = values.niveau_prix as number;
-  const h = values.sensibilite_monnaie as number;
+  const g = clamp(Number(values.depenses_publiques) || 200, 0, 500);
+  const t = clamp(Number(values.taux_imposition) || 0.2, 0, 0.6);
+  const i0 = clamp(Number(values.investissement_autonome) || 200, 50, 500);
+  const b = clamp(Number(values.sensibilite_investissement) || 30, 1, 100);
+  const m = clamp(Number(values.offre_monnaie) || 800, 100, 2000);
+  const p = clamp(Number(values.niveau_prix) || 1, 1, 5);
+  const h = clamp(Number(values.sensibilite_monnaie) || 40, 1, 100);
 
   const eq = findEquilibrium(g, t, i0, b, m, p, h);
 

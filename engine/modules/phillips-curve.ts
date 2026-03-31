@@ -136,12 +136,16 @@ function phillipsCurve(
   return base - SLOPE_COEFFICIENT * (chomage - nairu) + chocOffre;
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const nairu = values.nairu as number;
-  const anticipations = values.anticipations_inflation as number;
-  const chocOffre = values.choc_offre as number;
-  const modeLongTerme = values.mode_long_terme as boolean;
-  const versionAugmentee = values.version_augmentee as boolean;
+  const nairu = clamp(Number(values.nairu) || 7, 2, 12);
+  const anticipations = clamp(Number(values.anticipations_inflation) || 2, 0, 10);
+  const chocOffre = clamp(Number(values.choc_offre) || 0, -5, 5);
+  const modeLongTerme = typeof values.mode_long_terme === 'boolean' ? values.mode_long_terme : false;
+  const versionAugmentee = typeof values.version_augmentee === 'boolean' ? values.version_augmentee : true;
 
   const uMin = 0;
   const uMax = 20;

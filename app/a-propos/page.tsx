@@ -13,13 +13,13 @@ export default function AProposPage() {
         >
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
-            <FlaskConical size={28} className="text-[#5B5EF4]" />
-            <h1 className="text-3xl font-bold text-[#1A1D26]">
+            <FlaskConical size={28} className="text-accent-indigo" />
+            <h1 className="text-3xl font-bold text-text-primary">
               A propos d&apos;Econoscope
             </h1>
           </div>
 
-          <p className="text-lg text-[#5F6980] leading-relaxed mb-12">
+          <p className="text-lg text-text-secondary leading-relaxed mb-12">
             Econoscope est un laboratoire interactif d&apos;economie. Pas un site de
             cours, pas un manuel numerise -- un instrument pour comprendre les
             mecanismes economiques en les manipulant.
@@ -69,7 +69,7 @@ export default function AProposPage() {
               title="Pour qui ?"
               color="#22D3EE"
             >
-              <ul className="space-y-2 text-[#1A1D26]/70">
+              <ul className="space-y-2 text-text-primary/70">
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] mt-2 flex-shrink-0" />
                   <span>
@@ -146,9 +146,9 @@ function Section({
     >
       <div className="flex items-center gap-2 mb-3">
         <Icon size={18} style={{ color }} />
-        <h2 className="text-xl font-semibold text-[#1A1D26]">{title}</h2>
+        <h2 className="text-xl font-semibold text-text-primary">{title}</h2>
       </div>
-      <div className="text-sm text-[#5F6980] leading-relaxed pl-7">
+      <div className="text-sm text-text-secondary leading-relaxed pl-7">
         {children}
       </div>
     </motion.div>

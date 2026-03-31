@@ -152,14 +152,18 @@ const scenarios: Scenario[] = [
  *
  * Multiplier k = 1 / (1 - alpha) = 1 / (1 - c*(1-t)*(1-m))
  */
-function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const depenseInitiale = values.depense_initiale as number;
-  const c = values.propension_consommer as number;
-  const t = values.taux_imposition as number;
-  const m = values.propension_importer as number;
-  const nbTours = values.nb_tours as number;
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
 
-  const alpha = c * (1 - t) * (1 - m);
+function compute(values: Record<string, number | boolean | string>): ComputeResult {
+  const depenseInitiale = clamp(Number(values.depense_initiale) || 10, 1, 100);
+  const c = clamp(Number(values.propension_consommer) || 0.8, 0.1, 0.95);
+  const t = clamp(Number(values.taux_imposition) || 0.2, 0, 0.5);
+  const m = clamp(Number(values.propension_importer) || 0.1, 0, 0.4);
+  const nbTours = clamp(Number(values.nb_tours) || 10, 1, 20);
+
+  const alpha = Math.min(c * (1 - t) * (1 - m), 0.999);
   const multiplicateur = 1 / (1 - alpha);
   const asymptote = depenseInitiale * multiplicateur;
 

@@ -205,13 +205,17 @@ function findAdAsEquilibrium(
   return { y: yEq, p: pEq };
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const g = values.depenses_publiques as number;
-  const m = values.offre_monnaie as number;
-  const prixPetrole = values.prix_petrole as number;
-  const productivite = values.productivite as number;
-  const salaire = values.salaire_nominal as number;
-  const modeLongTerme = values.mode_long_terme as boolean;
+  const g = clamp(Number(values.depenses_publiques) || 200, 0, 500);
+  const m = clamp(Number(values.offre_monnaie) || 800, 100, 2000);
+  const prixPetrole = clamp(Number(values.prix_petrole) || 100, 50, 300);
+  const productivite = clamp(Number(values.productivite) || 100, 50, 200);
+  const salaire = clamp(Number(values.salaire_nominal) || 100, 50, 200);
+  const modeLongTerme = typeof values.mode_long_terme === 'boolean' ? values.mode_long_terme : true;
 
   const yPotential = BASE_POTENTIAL * (productivite / 100);
   const eq = findAdAsEquilibrium(g, m, salaire, productivite, prixPetrole);

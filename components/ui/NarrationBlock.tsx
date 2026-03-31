@@ -46,13 +46,13 @@ export function NarrationBlock({
 
   return (
     <div
-      className="rounded-xl bg-[#F8F9FB] p-5"
+      className="rounded-xl bg-bg-narration p-5"
       style={{ borderLeft: `3px solid ${themeColor}` }}
     >
       {/* Header */}
       <div className="mb-3 flex items-center gap-2">
         <Icon size={18} style={{ color: themeColor }} />
-        <span className="text-sm font-semibold text-[#1A1D26]">{title}</span>
+        <span className="text-sm font-semibold text-text-primary">{title}</span>
       </div>
 
       {/* Animated content */}
@@ -63,7 +63,7 @@ export function NarrationBlock({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.25 }}
-          className="text-sm leading-relaxed text-[#5F6980]"
+          className="text-sm leading-relaxed text-text-secondary"
         >
           {renderNarration(content, themeColor)}
         </motion.p>

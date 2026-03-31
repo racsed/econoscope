@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
-import { useSimulationStore } from '@/stores/simulation-store';
+import { useState, useEffect, useCallback } from 'react';
 
 export function useProjectionMode() {
-  const { isProjectionMode, toggleProjectionMode } = useSimulationStore();
+  const [isProjectionMode, setIsProjectionMode] = useState(false);
 
   // Toggle with keyboard shortcut (F11 or Cmd+Shift+P)
   useEffect(() => {
@@ -14,13 +13,13 @@ export function useProjectionMode() {
         ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'p')
       ) {
         e.preventDefault();
-        toggleProjectionMode();
+        setIsProjectionMode(prev => !prev);
       }
     }
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [toggleProjectionMode]);
+  }, []);
 
   // Add body class for global styling
   useEffect(() => {
@@ -36,8 +35,8 @@ export function useProjectionMode() {
   }, [isProjectionMode]);
 
   const toggle = useCallback(() => {
-    toggleProjectionMode();
-  }, [toggleProjectionMode]);
+    setIsProjectionMode(prev => !prev);
+  }, []);
 
   return {
     isProjectionMode,

@@ -43,10 +43,10 @@ export default function GlossairePage() {
           className="mb-10"
         >
           <div className="flex items-center gap-3 mb-3">
-            <BookOpen size={24} className="text-[#5B5EF4]" />
-            <h1 className="text-3xl font-bold text-[#1A1D26]">Glossaire</h1>
+            <BookOpen size={24} className="text-accent-indigo" />
+            <h1 className="text-3xl font-bold text-text-primary">Glossaire</h1>
           </div>
-          <p className="text-[#5F6980]">
+          <p className="text-text-secondary">
             {glossary.length} termes economiques expliques simplement
           </p>
         </motion.div>
@@ -55,14 +55,14 @@ export default function GlossairePage() {
         <div className="mb-6 relative max-w-md">
           <Search
             size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3B4]"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"
           />
           <input
             type="text"
             placeholder="Rechercher un terme..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#E2E4E9] rounded-xl text-[#1A1D26] placeholder:text-[#9CA3B4] focus:outline-none focus:border-[#5B5EF4]/50 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 bg-bg-card border border-border rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-indigo/50 transition-colors"
           />
         </div>
 
@@ -72,12 +72,11 @@ export default function GlossairePage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className="px-3 py-1.5 rounded-full text-xs font-medium border transition-all"
-              style={{
-                borderColor: selectedCategory === cat ? '#5B5EF4' : '#E2E4E9',
-                backgroundColor: selectedCategory === cat ? '#5B5EF412' : 'white',
-                color: selectedCategory === cat ? '#5B5EF4' : '#5F6980',
-              }}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                selectedCategory === cat
+                  ? 'border-accent-indigo bg-accent-indigo/[0.07] text-accent-indigo'
+                  : 'border-border bg-bg-card text-text-secondary'
+              }`}
             >
               {cat === 'all' ? 'Toutes categories' : cat}
             </button>
@@ -92,7 +91,7 @@ export default function GlossairePage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.02 }}
-              className="bg-white border border-[#E2E4E9] rounded-xl overflow-hidden"
+              className="bg-bg-card border border-border rounded-xl overflow-hidden"
             >
               <button
                 onClick={() =>
@@ -100,19 +99,19 @@ export default function GlossairePage() {
                     expandedTerm === term.term ? null : term.term
                   )
                 }
-                className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-[#F8F9FB] transition-colors"
+                className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-bg-narration transition-colors"
               >
                 <div>
-                  <span className="font-semibold text-[#1A1D26]">
+                  <span className="font-semibold text-text-primary">
                     {term.term}
                   </span>
-                  <span className="ml-3 text-xs text-[#9CA3B4]">
+                  <span className="ml-3 text-xs text-text-muted">
                     {term.category}
                   </span>
                 </div>
                 <ChevronRight
                   size={16}
-                  className={`text-[#9CA3B4] transition-transform ${
+                  className={`text-text-muted transition-transform ${
                     expandedTerm === term.term ? 'rotate-90' : ''
                   }`}
                 />
@@ -125,22 +124,22 @@ export default function GlossairePage() {
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="border-t border-[#EDEEF1]"
+                    className="border-t border-border-subtle"
                   >
-                    <div className="px-5 py-4 bg-[#F8F9FB]">
-                      <p className="text-sm text-[#1A1D26]/80 leading-relaxed mb-3">
+                    <div className="px-5 py-4 bg-bg-narration">
+                      <p className="text-sm text-text-primary/80 leading-relaxed mb-3">
                         {term.definition}
                       </p>
                       {term.relatedModules.length > 0 && (
                         <div className="flex flex-wrap gap-2">
-                          <span className="text-xs text-[#9CA3B4]">
+                          <span className="text-xs text-text-muted">
                             Modules lies :
                           </span>
                           {term.relatedModules.map((slug) => (
                             <Link
                               key={slug}
                               href={`/module/${slug}`}
-                              className="text-xs text-[#5B5EF4] hover:underline"
+                              className="text-xs text-accent-indigo hover:underline"
                             >
                               {slug}
                             </Link>
@@ -156,7 +155,7 @@ export default function GlossairePage() {
         </div>
 
         {filteredTerms.length === 0 && (
-          <div className="text-center py-16 text-[#9CA3B4]">
+          <div className="text-center py-16 text-text-muted">
             Aucun terme ne correspond a votre recherche.
           </div>
         )}

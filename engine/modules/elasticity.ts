@@ -117,10 +117,14 @@ function demandAtPrice(price: number, prixInitial: number, elasticite: number, q
   return q0 * Math.pow(price / prixInitial, elasticite);
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const prixInitial = values.prix_initial as number;
-  const elasticite = values.elasticite as number;
-  const variationPrix = values.variation_prix as number;
+  const prixInitial = clamp(Number(values.prix_initial) || 50, 10, 200);
+  const elasticite = clamp(Number(values.elasticite) || -1, -5, -0.1);
+  const variationPrix = clamp(Number(values.variation_prix) || 20, -50, 100);
   const q0 = 1000;
 
   const prixNouveau = prixInitial * (1 + variationPrix / 100);

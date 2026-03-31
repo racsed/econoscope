@@ -122,14 +122,19 @@ const scenarios: Scenario[] = [
  * Total deposits: sum_{n=0}^{inf} D_n = D / (r + b)
  * Multiplier: k = 1 / (r + b)
  */
-function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const depotInitial = values.depot_initial as number;
-  const r = (values.taux_reserves as number) / 100;
-  const b = (values.taux_fuite_billets as number) / 100;
-  const nbTours = values.nb_tours as number;
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
 
-  const alpha = 1 - r - b;
-  const multiplicateur = alpha >= 1 ? Infinity : 1 / (r + b);
+function compute(values: Record<string, number | boolean | string>): ComputeResult {
+  const depotInitial = clamp(Number(values.depot_initial) || 10000, 1000, 100000);
+  const r = clamp(Number(values.taux_reserves) || 10, 1, 25) / 100;
+  const b = clamp(Number(values.taux_fuite_billets) || 10, 0, 30) / 100;
+  const nbTours = clamp(Number(values.nb_tours) || 15, 1, 30);
+
+  const alpha = Math.max(0, Math.min(1 - r - b, 0.999));
+  const divisor = r + b;
+  const multiplicateur = divisor > 0 ? 1 / divisor : 100;
   const asymptote = depotInitial * multiplicateur;
 
   const bars: CascadeBar[] = [];

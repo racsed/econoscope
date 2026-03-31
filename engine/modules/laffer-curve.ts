@@ -113,9 +113,13 @@ function taxableIncome(taux: number, elasticite: number): number {
   return Y0 * Math.pow(1 - t, elasticite);
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const taux = values.taux_imposition as number;
-  const elasticite = values.elasticite_assiette as number;
+  const taux = clamp(Number(values.taux_imposition) || 40, 0, 100);
+  const elasticite = clamp(Number(values.elasticite_assiette) || 1, 0.1, 3);
 
   const tauxOptimal = 100 / (1 + elasticite);
   const recetteOptimale = taxRevenue(tauxOptimal, elasticite);

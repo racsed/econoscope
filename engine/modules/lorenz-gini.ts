@@ -148,10 +148,10 @@ function getDeciles(values: Record<string, number | boolean | string>): number[]
     return [...PRESETS[preset]];
   }
   return [
-    values.d1 as number, values.d2 as number, values.d3 as number,
-    values.d4 as number, values.d5 as number, values.d6 as number,
-    values.d7 as number, values.d8 as number, values.d9 as number,
-    values.d10 as number,
+    Number(values.d1) || 10, Number(values.d2) || 10, Number(values.d3) || 10,
+    Number(values.d4) || 10, Number(values.d5) || 10, Number(values.d6) || 10,
+    Number(values.d7) || 10, Number(values.d8) || 10, Number(values.d9) || 10,
+    Number(values.d10) || 10,
   ];
 }
 
@@ -230,12 +230,19 @@ function applyRedistribution(
   return afterRedistribution;
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const rawDeciles = getDeciles(values);
-  const tauxTranche1 = values.taux_tranche1 as number;
-  const tauxTranche2 = values.taux_tranche2 as number;
-  const tauxTranche3 = values.taux_tranche3 as number;
-  const transferts = values.transferts as number;
+  const rawDeciles = getDeciles(values).map((d, i) => {
+    const maxVal = i === 7 ? 25 : i === 8 ? 30 : i === 9 ? 50 : 20;
+    return clamp(Number(d) || 10, 0, maxVal);
+  });
+  const tauxTranche1 = clamp(Number(values.taux_tranche1) || 5, 0, 50);
+  const tauxTranche2 = clamp(Number(values.taux_tranche2) || 20, 0, 60);
+  const tauxTranche3 = clamp(Number(values.taux_tranche3) || 35, 0, 70);
+  const transferts = clamp(Number(values.transferts) || 2, 0, 10);
 
   const hasRedistribution = tauxTranche1 > 0 || tauxTranche2 > 0 || tauxTranche3 > 0 || transferts > 0;
 

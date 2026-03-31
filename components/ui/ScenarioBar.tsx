@@ -32,13 +32,13 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                   className={`relative shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                     isActive
                       ? "text-white"
-                      : "border border-[#E2E4E9] text-[#5F6980] hover:border-[#CBD5E1] hover:text-[#1A1D26]"
+                      : "border border-border text-text-secondary hover:border-axis hover:text-text-primary"
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="scenario-active-pill"
-                      className="absolute inset-0 rounded-full bg-[#5B5EF4]"
+                      className="absolute inset-0 rounded-full bg-accent-indigo"
                       transition={{ type: "spring", stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -49,10 +49,10 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                 <Tooltip.Content
                   side="bottom"
                   sideOffset={8}
-                  className="max-w-xs rounded-lg bg-white px-3 py-2 text-xs text-[#5F6980] shadow-lg border border-[#E2E4E9]"
+                  className="max-w-xs rounded-lg bg-bg-card px-3 py-2 text-xs text-text-secondary shadow-lg border border-border"
                 >
                   {scenario.description}
-                  <Tooltip.Arrow className="fill-white" />
+                  <Tooltip.Arrow className="fill-bg-card" />
                 </Tooltip.Content>
               </Tooltip.Portal>
             </Tooltip.Root>

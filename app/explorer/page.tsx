@@ -54,10 +54,10 @@ export default function ExplorerPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-10"
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#1A1D26] mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-text-primary mb-3">
             Explorer les mecanismes
           </h1>
-          <p className="text-[#5F6980] text-lg">
+          <p className="text-text-secondary text-lg">
             {modulesCatalog.length} modules economiques interactifs
           </p>
         </motion.div>
@@ -68,14 +68,14 @@ export default function ExplorerPage() {
           <div className="relative max-w-md">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3B4]"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"
             />
             <input
               type="text"
               placeholder="Rechercher un module..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#E2E4E9] rounded-xl text-[#1A1D26] placeholder:text-[#9CA3B4] focus:outline-none focus:border-[#5B5EF4]/50 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-bg-card border border-border rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-indigo/50 transition-colors"
             />
           </div>
 
@@ -92,20 +92,29 @@ export default function ExplorerPage() {
                       ? theme.key === 'all'
                         ? '#5B5EF4'
                         : THEME_COLORS[theme.key as ThemeType] ?? '#5B5EF4'
-                      : '#E2E4E9',
+                      : undefined,
                   backgroundColor:
                     selectedTheme === theme.key
                       ? `${theme.key === 'all' ? '#5B5EF4' : THEME_COLORS[theme.key as ThemeType] ?? '#5B5EF4'}12`
-                      : 'white',
+                      : undefined,
                   color:
                     selectedTheme === theme.key
                       ? theme.key === 'all'
                         ? '#5B5EF4'
                         : THEME_COLORS[theme.key as ThemeType] ?? '#5B5EF4'
-                      : '#5F6980',
+                      : undefined,
                 }}
               >
-                {theme.label}
+                <span
+                  className={
+                    selectedTheme !== theme.key
+                      ? 'text-text-secondary'
+                      : ''
+                  }
+                  style={selectedTheme === theme.key ? { color: 'inherit' } : undefined}
+                >
+                  {theme.label}
+                </span>
               </button>
             ))}
           </div>
@@ -116,12 +125,11 @@ export default function ExplorerPage() {
               <button
                 key={level.key}
                 onClick={() => setSelectedLevel(level.key)}
-                className="px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border"
-                style={{
-                  borderColor: selectedLevel === level.key ? '#5F6980' : '#E2E4E9',
-                  backgroundColor: selectedLevel === level.key ? '#5F698012' : 'white',
-                  color: selectedLevel === level.key ? '#1A1D26' : '#9CA3B4',
-                }}
+                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
+                  selectedLevel === level.key
+                    ? 'border-text-secondary bg-text-secondary/[0.07] text-text-primary'
+                    : 'border-border bg-bg-card text-text-muted'
+                }`}
               >
                 {level.label}
               </button>
@@ -137,7 +145,7 @@ export default function ExplorerPage() {
         </div>
 
         {filteredModules.length === 0 && (
-          <div className="text-center py-20 text-[#9CA3B4]">
+          <div className="text-center py-20 text-text-muted">
             Aucun module ne correspond a votre recherche.
           </div>
         )}
@@ -161,20 +169,20 @@ function ModuleCard({
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className={`relative bg-white border border-[#E2E4E9] rounded-2xl p-5 h-full shadow-sm transition-all duration-300 ${
+      className={`relative bg-bg-card border border-border rounded-2xl p-5 h-full shadow-sm transition-all duration-300 ${
         isAvailable
           ? 'hover:shadow-md cursor-pointer'
           : 'opacity-50 cursor-default'
       }`}
       onMouseEnter={(e) => {
         if (isAvailable) {
-          (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+          (e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card-hover)';
           (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
         }
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 1px 2px rgba(0,0,0,0.05)';
-        (e.currentTarget as HTMLElement).style.borderColor = '#E2E4E9';
+        (e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card)';
+        (e.currentTarget as HTMLElement).style.borderColor = '';
       }}
     >
       {/* Top row */}
@@ -203,10 +211,10 @@ function ModuleCard({
       </div>
 
       {/* Content */}
-      <h3 className="text-base font-semibold text-[#1A1D26] mb-1.5">
+      <h3 className="text-base font-semibold text-text-primary mb-1.5">
         {mod.title}
       </h3>
-      <p className="text-sm text-[#5F6980] leading-relaxed mb-4">
+      <p className="text-sm text-text-secondary leading-relaxed mb-4">
         {mod.description}
       </p>
 
@@ -220,7 +228,7 @@ function ModuleCard({
           <ArrowRight size={14} />
         </div>
       ) : (
-        <div className="text-xs text-[#9CA3B4] font-medium">
+        <div className="text-xs text-text-muted font-medium">
           Bientot disponible
         </div>
       )}

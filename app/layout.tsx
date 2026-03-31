@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -31,11 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased bg-[#FAFBFC] text-[#1A1D26]">
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
+    <html lang="fr" data-theme="light" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen flex flex-col antialiased bg-bg-primary text-text-primary">
+        <ThemeProvider>
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

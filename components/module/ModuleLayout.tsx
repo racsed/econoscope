@@ -1,8 +1,11 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Maximize2 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
+import { ExportButton } from '@/components/charts/ExportButton';
+import { ProjectionMode } from '@/components/module/ProjectionMode';
 import { THEME_COLORS, LEVEL_LABELS, type ThemeType, type LevelType } from '@/lib/constants';
 
 interface ModuleLayoutProps {
@@ -36,84 +39,103 @@ export function ModuleLayout({
   realite,
   dataTable,
   comparison,
-  isProjectionMode = false,
+  isProjectionMode: _isProjectionMode = false,
 }: ModuleLayoutProps) {
   const themeColor = THEME_COLORS[theme];
+  const chartRef = useRef<HTMLDivElement>(null);
+  const [projectionActive, setProjectionActive] = useState(false);
 
-  if (isProjectionMode) {
-    return (
-      <div className="fixed inset-0 z-50 bg-white flex flex-col">
-        <div className="flex-1 p-8">{visualization}</div>
-        <div className="p-4 border-t border-[#E2E4E9]">
-          <div className="flex gap-4 items-center justify-center">
-            {scenarios}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Generate a slug-friendly filename from the title
+  const exportFilename = `econoscope-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24"
-    >
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <Badge label={theme} color={themeColor} size="sm" />
-          <Badge label={LEVEL_LABELS[level]} color="#9CA3B4" size="sm" />
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#1A1D26] mb-2">
-          {title}
-        </h1>
-        <p className="text-lg text-[#5F6980]">{subtitle}</p>
-        <p className="mt-4 text-[#5F6980] max-w-3xl leading-relaxed">
-          {introduction}
-        </p>
-      </div>
+    <>
+      {/* Projection Mode overlay */}
+      <ProjectionMode
+        isActive={projectionActive}
+        onClose={() => setProjectionActive(false)}
+        visualization={visualization}
+        scenarios={scenarios}
+        controls={controls}
+        title={title}
+      />
 
-      {/* Main: Controls + Visualization */}
-      <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 mb-8">
-        {/* Control Panel */}
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-2xl p-5 space-y-1">
-            <h2
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
-              style={{ color: themeColor }}
-            >
-              Variables
-            </h2>
-            {controls}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24"
+      >
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <Badge label={theme} color={themeColor} size="sm" />
+            <Badge label={LEVEL_LABELS[level]} color="#9CA3B4" size="sm" />
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-text-primary mb-2">
+            {title}
+          </h1>
+          <p className="text-lg text-text-secondary">{subtitle}</p>
+          <p className="mt-4 text-text-secondary max-w-3xl leading-relaxed">
+            {introduction}
+          </p>
+        </div>
+
+        {/* Main: Controls + Visualization */}
+        <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 mb-8">
+          {/* Control Panel */}
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 space-y-1">
+              <h2
+                className="text-sm font-semibold uppercase tracking-wider mb-4"
+                style={{ color: themeColor }}
+              >
+                Variables
+              </h2>
+              {controls}
+            </div>
+          </div>
+
+          {/* Visualization */}
+          <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[400px] flex flex-col">
+            {/* Toolbar row */}
+            <div className="flex items-center justify-end gap-2 mb-2">
+              <ExportButton targetRef={chartRef} filename={exportFilename} />
+              <button
+                onClick={() => setProjectionActive(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-lg hover:bg-bg-hover hover:text-text-primary transition-colors"
+                title="Mode projection"
+              >
+                <Maximize2 size={14} />
+                Projection
+              </button>
+            </div>
+            {/* Chart container with ref for PNG export */}
+            <div ref={chartRef} className="flex-1 flex items-center justify-center">
+              {visualization}
+            </div>
           </div>
         </div>
 
-        {/* Visualization */}
-        <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-2xl p-5 min-h-[400px] flex items-center justify-center">
-          {visualization}
-        </div>
-      </div>
+        {/* Scenarios */}
+        <div className="mb-8">{scenarios}</div>
 
-      {/* Scenarios */}
-      <div className="mb-8">{scenarios}</div>
+        {/* Narration blocks */}
+        <div className="space-y-6 mb-8">{narration}</div>
 
-      {/* Narration blocks */}
-      <div className="space-y-6 mb-8">{narration}</div>
+        {/* Limites */}
+        <div className="mb-8">{limites}</div>
 
-      {/* Limites */}
-      <div className="mb-8">{limites}</div>
+        {/* Realite */}
+        <div className="mb-8">{realite}</div>
 
-      {/* Realite */}
-      <div className="mb-8">{realite}</div>
+        {/* Data Table */}
+        {dataTable && <div className="mb-8">{dataTable}</div>}
 
-      {/* Data Table */}
-      {dataTable && <div className="mb-8">{dataTable}</div>}
-
-      {/* Comparison */}
-      {comparison && <div className="mb-8">{comparison}</div>}
-    </motion.div>
+        {/* Comparison */}
+        {comparison && <div className="mb-8">{comparison}</div>}
+      </motion.div>
+    </>
   );
 }
 

@@ -13,13 +13,29 @@ function easeOutExpo(t: number): number {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 }
 
+function safeFormat(n: number, format: (n: number) => string): string {
+  try {
+    if (typeof n !== 'number' || isNaN(n) || !isFinite(n)) return '—';
+    return format(n);
+  } catch {
+    return '—';
+  }
+}
+
 export function AnimatedNumber({
   value,
   format = (n) => n.toLocaleString(),
   duration = 500,
   className = "",
 }: AnimatedNumberProps) {
-  const [display, setDisplay] = useState(format(value));
+  // Guard: if value is not a valid number, render fallback immediately
+  if (typeof value !== 'number' || isNaN(value) || !isFinite(value)) {
+    return (
+      <span className={`font-mono ${className}`}>—</span>
+    );
+  }
+
+  const [display, setDisplay] = useState(() => safeFormat(value, format));
   const [flash, setFlash] = useState<"up" | "down" | null>(null);
   const prevValue = useRef(value);
   const rafRef = useRef<number>(0);
@@ -43,12 +59,12 @@ export function AnimatedNumber({
       const eased = easeOutExpo(progress);
       const current = from + (to - from) * eased;
 
-      setDisplay(format(current));
+      setDisplay(safeFormat(current, format));
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(animate);
       } else {
-        setDisplay(format(to));
+        setDisplay(safeFormat(to, format));
       }
     };
 

@@ -149,11 +149,15 @@ function computeRadarArea(values: number[]): number {
   return Math.abs(area) / 2;
 }
 
+function clamp(val: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, val));
+}
+
 function compute(values: Record<string, number | boolean | string>): ComputeResult {
-  const croissance = values.croissance as number;
-  const chomage = values.chomage as number;
-  const inflation = values.inflation as number;
-  const soldeCommercial = values.solde_commercial as number;
+  const croissance = clamp(Number(values.croissance) || 1.5, -5, 10);
+  const chomage = clamp(Number(values.chomage) || 7.5, 0, 25);
+  const inflation = clamp(Number(values.inflation) || 2.5, -2, 20);
+  const soldeCommercial = clamp(Number(values.solde_commercial) || -1.5, -10, 10);
 
   const axes = [
     { id: 'croissance', label: 'Croissance (%)', min: -5, max: 10, invert: false },

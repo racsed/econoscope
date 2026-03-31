@@ -38,7 +38,7 @@ export default function HomePage() {
             }}
           />
           {/* Gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#5B5EF4]/5 blur-[120px]" />
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent-indigo/5 blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#22D3EE]/5 blur-[120px]" />
         </div>
 
@@ -49,21 +49,21 @@ export default function HomePage() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <div className="flex items-center justify-center gap-2 mb-6">
-              <FlaskConical className="text-[#5B5EF4]" size={20} />
-              <span className="text-sm font-medium text-[#5B5EF4] uppercase tracking-widest">
+              <FlaskConical className="text-accent-indigo" size={20} />
+              <span className="text-sm font-medium text-accent-indigo uppercase tracking-widest">
                 Econoscope
               </span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-[#1A1D26]">L&apos;economie,</span>
+              <span className="text-text-primary">L&apos;economie,</span>
               <br />
-              <span className="bg-gradient-to-r from-[#5B5EF4] to-[#22D3EE] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent-indigo to-[#22D3EE] bg-clip-text text-transparent">
                 enfin visible.
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#5F6980] max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
               Un laboratoire interactif pour comprendre les mecanismes economiques.
               Manipulez les variables, observez les effets, construisez votre intuition.
             </p>
@@ -71,7 +71,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/explorer"
-                className="group flex items-center gap-2 px-8 py-3.5 bg-[#5B5EF4] text-white font-semibold rounded-full hover:bg-[#4F52E0] transition-all duration-200 hover:shadow-lg hover:shadow-[#5B5EF4]/25"
+                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full hover:bg-[#4F52E0] transition-all duration-200 hover:shadow-lg hover:shadow-accent-indigo/25"
               >
                 Explorer les mecanismes
                 <ArrowRight
@@ -81,7 +81,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/a-propos"
-                className="px-8 py-3.5 border border-[#E2E4E9] text-[#5F6980] font-medium rounded-full hover:border-[#5B5EF4]/30 hover:text-[#1A1D26] transition-all duration-200"
+                className="px-8 py-3.5 border border-border text-text-secondary font-medium rounded-full hover:border-accent-indigo/30 hover:text-text-primary transition-all duration-200"
               >
                 En savoir plus
               </Link>
@@ -97,7 +97,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-16 text-[#1A1D26]"
+            className="text-3xl font-bold text-center mb-16 text-text-primary"
           >
             Comment ca marche
           </motion.h2>
@@ -140,10 +140,10 @@ export default function HomePage() {
                 >
                   <step.icon size={24} style={{ color: step.color }} />
                 </div>
-                <h3 className="text-lg font-semibold text-[#1A1D26] mb-2">
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#5F6980] leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {step.description}
                 </p>
               </motion.div>
@@ -153,7 +153,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Modules */}
-      <section className="py-24 px-4 border-t border-[#E2E4E9]">
+      <section className="py-24 px-4 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -161,10 +161,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold text-[#1A1D26] mb-4">
+            <h2 className="text-3xl font-bold text-text-primary mb-4">
               Modules en vedette
             </h2>
-            <p className="text-[#5F6980]">
+            <p className="text-text-secondary">
               Commencez par ces trois mecanismes fondamentaux
             </p>
           </motion.div>
@@ -183,12 +183,12 @@ export default function HomePage() {
                 >
                   <Link
                     href={`/module/${mod.slug}`}
-                    className="block bg-white border border-[#E2E4E9] rounded-2xl p-6 h-full shadow-sm transition-all duration-300 hover:shadow-md"
+                    className="block bg-bg-card border border-border rounded-2xl p-6 h-full shadow-sm transition-all duration-300 hover:shadow-md"
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.borderColor = '#E2E4E9';
+                      (e.currentTarget as HTMLElement).style.borderColor = '';
                     }}
                   >
                     <div className="flex items-start justify-between mb-4">
@@ -211,10 +211,10 @@ export default function HomePage() {
                         {mod.theme}
                       </span>
                     </div>
-                    <h3 className="text-lg font-semibold text-[#1A1D26] mb-2">
+                    <h3 className="text-lg font-semibold text-text-primary mb-2">
                       {mod.title}
                     </h3>
-                    <p className="text-sm text-[#5F6980] leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed">
                       {mod.description}
                     </p>
                     <div className="mt-4 flex items-center gap-1 text-sm font-medium" style={{ color }}>
@@ -230,7 +230,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link
               href="/explorer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-[#E2E4E9] text-[#5F6980] font-medium rounded-full hover:border-[#5B5EF4]/30 hover:text-[#1A1D26] transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary font-medium rounded-full hover:border-accent-indigo/30 hover:text-text-primary transition-all duration-200"
             >
               Voir tous les modules
               <ArrowRight size={16} />
@@ -240,7 +240,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats/Trust */}
-      <section className="py-20 px-4 bg-[#F4F5F7] border-t border-[#E2E4E9]">
+      <section className="py-20 px-4 bg-bg-elevated border-t border-border">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -250,10 +250,10 @@ export default function HomePage() {
               { value: '0', label: 'Cookie de tracking' },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="text-2xl font-bold font-mono text-[#5B5EF4] mb-1">
+                <div className="text-2xl font-bold font-mono text-accent-indigo mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#5F6980]">{stat.label}</div>
+                <div className="text-sm text-text-secondary">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -19,14 +19,14 @@ export function Toggle({
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <span className="text-sm text-[#5F6980]">{label}</span>
+        <span className="text-sm text-text-secondary">{label}</span>
       )}
-      <div className="relative inline-flex h-9 rounded-full bg-[#F4F5F7] p-0.5">
+      <div className="relative inline-flex h-9 rounded-full bg-bg-elevated p-0.5">
         {/* Sliding indicator */}
         <motion.div
           layout
           transition={{ type: "spring", stiffness: 500, damping: 35 }}
-          className="absolute inset-y-0.5 w-[calc(50%-2px)] rounded-full bg-[#5B5EF4]"
+          className="absolute inset-y-0.5 w-[calc(50%-2px)] rounded-full bg-accent-indigo"
           style={{ [checked ? "right" : "left"]: "2px" }}
         />
 
@@ -34,7 +34,7 @@ export function Toggle({
           type="button"
           onClick={() => onChange(false)}
           className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-colors ${
-            !checked ? "text-white" : "text-[#5F6980]"
+            !checked ? "text-white" : "text-text-secondary"
           }`}
         >
           {options[0]}
@@ -43,7 +43,7 @@ export function Toggle({
           type="button"
           onClick={() => onChange(true)}
           className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-colors ${
-            checked ? "text-white" : "text-[#5F6980]"
+            checked ? "text-white" : "text-text-secondary"
           }`}
         >
           {options[1]}

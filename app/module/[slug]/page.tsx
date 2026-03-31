@@ -4,7 +4,6 @@ import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { getModule } from '@/engine/init';
 import { useSimulation } from '@/hooks/useSimulation';
-import { useProjectionMode } from '@/hooks/useProjectionMode';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
 import { ModuleLayout } from '@/components/module/ModuleLayout';
 import { ControlPanel } from '@/components/module/ControlPanel';
@@ -27,7 +26,7 @@ export default function ModulePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-[#E8E8ED] mb-2">Module introuvable</h1>
-          <p className="text-[#5F6980]">Le module "{slug}" n&apos;existe pas encore.</p>
+          <p className="text-[#5F6980]">Le module &quot;{slug}&quot; n&apos;existe pas encore.</p>
         </div>
       </div>
     );
@@ -36,9 +35,7 @@ export default function ModulePage() {
   return <ModuleContent module={simulationModule} />;
 }
 
-function ModuleContent({ module }: { module: ReturnType<typeof getModule> }) {
-  if (!module) return null;
-
+function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getModule>> }) {
   const {
     inputs,
     values,
@@ -53,7 +50,6 @@ function ModuleContent({ module }: { module: ReturnType<typeof getModule> }) {
     isProjectionMode,
   } = useSimulation(module);
 
-  const { toggle: toggleProjection } = useProjectionMode();
   const themeColor = THEME_COLORS[meta.theme as ThemeType] ?? '#6366F1';
 
   return (
