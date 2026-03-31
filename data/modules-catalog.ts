@@ -144,7 +144,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Visualisez les arbitrages entre deux biens lorsque les ressources sont limitees. Comprenez les couts d\'opportunite et l\'efficacite productive.',
     icon: 'Maximize2',
     tier: 2,
-    available: false,
+    available: true,
   },
   {
     slug: 'avantages-comparatifs',
@@ -156,7 +156,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Decouvrez le theoreme de Ricardo et comprenez pourquoi le commerce international est mutuellement benefique, meme lorsqu\'un pays est plus productif dans tous les domaines.',
     icon: 'ArrowLeftRight',
     tier: 2,
-    available: false,
+    available: true,
   },
   {
     slug: 'externalites',
@@ -168,7 +168,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Analysez les situations ou l\'activite economique genere des effets non compenses sur des tiers. Explorez les solutions par la taxation, la subvention ou la reglementation.',
     icon: 'Cloud',
     tier: 2,
-    available: false,
+    available: true,
   },
   {
     slug: 'concurrence-monopole',
@@ -180,7 +180,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Comparez les equilibres en concurrence parfaite et en monopole. Mesurez la perte seche et comprenez les politiques de regulation de la concurrence.',
     icon: 'Scale',
     tier: 2,
-    available: false,
+    available: true,
   },
   {
     slug: 'taux-de-change',
@@ -192,7 +192,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Explorez les determinants du taux de change et ses effets sur les exportations, les importations et la competitivite. Simulez des devaluations et des politiques de change.',
     icon: 'RefreshCw',
     tier: 2,
-    available: false,
+    available: true,
   },
   {
     slug: 'fiscalite-redistribution',
@@ -204,7 +204,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
       'Analysez les effets redistributifs des differents types d\'imposition. Comparez les systemes progressifs, proportionnels et regressifs sur les inegalites de revenus.',
     icon: 'Scale',
     tier: 2,
-    available: false,
+    available: true,
   },
 ];
 

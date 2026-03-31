@@ -54,6 +54,7 @@ export function useSimulation(module: SimulationModule) {
     setValues: setAllValues,
     outputs: result.outputs,
     chartData: result.chartData,
+    secondaryChartData: result.secondaryChartData,
     narration: result.narration,
     scenarios: module.scenarios,
     activeScenarioId,

@@ -29,13 +29,15 @@ export function ComparisonMode({
         onClick={onToggle}
         className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200"
         style={{
-          borderColor: isComparing ? themeColor : '#E2E4E9',
+          borderColor: isComparing ? themeColor : undefined,
           backgroundColor: isComparing ? `${themeColor}15` : 'transparent',
-          color: isComparing ? themeColor : '#5F6980',
+          color: isComparing ? themeColor : undefined,
         }}
       >
-        <GitCompareArrows size={16} />
-        Mode comparaison
+        <span className={isComparing ? '' : 'text-text-secondary'}>
+          <GitCompareArrows size={16} />
+        </span>
+        <span className={isComparing ? '' : 'text-text-secondary'}>Mode comparaison</span>
       </button>
 
       <AnimatePresence>
@@ -47,13 +49,13 @@ export function ComparisonMode({
             transition={{ duration: 0.3 }}
             className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4"
           >
-            <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-xl p-4">
-              <h4 className="text-xs font-medium uppercase tracking-wider text-[#5F6980] mb-3">
+            <div className="bg-bg-card border border-border shadow-sm rounded-xl p-4">
+              <h4 className="text-xs font-medium uppercase tracking-wider text-text-secondary mb-3">
                 {labelA}
               </h4>
               {renderA()}
             </div>
-            <div className="bg-white border border-[#E2E4E9] shadow-sm rounded-xl p-4">
+            <div className="bg-bg-card border border-border shadow-sm rounded-xl p-4">
               <h4 className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: themeColor }}>
                 {labelB}
               </h4>

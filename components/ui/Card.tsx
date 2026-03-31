@@ -24,14 +24,14 @@ export function Card({
 }: CardProps) {
   const content = (
     <div
-      className="relative overflow-hidden rounded-2xl border border-[#E2E4E9] bg-white p-5 shadow-sm transition-all duration-300"
+      className="relative overflow-hidden rounded-2xl border border-border bg-bg-card p-5 shadow-sm transition-all duration-300"
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-card-hover)";
         (e.currentTarget as HTMLDivElement).style.borderColor = `${themeColor}66`;
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#E2E4E9";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-card)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "";
       }}
     >
       {/* Badge */}
@@ -53,9 +53,9 @@ export function Card({
       )}
 
       {/* Title & subtitle */}
-      <h3 className="text-base font-semibold text-[#1A1D26]">{title}</h3>
+      <h3 className="text-base font-semibold text-text-primary">{title}</h3>
       {subtitle && (
-        <p className="mt-1 text-sm text-[#5F6980]">{subtitle}</p>
+        <p className="mt-1 text-sm text-text-secondary">{subtitle}</p>
       )}
 
       {/* Children */}

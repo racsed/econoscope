@@ -142,22 +142,22 @@ export const glossary: GlossaryTerm[] = [
   {
     term: 'Externalite',
     definition:
-      'Effet positif ou negatif de l\'activite d\'un agent economique sur le bien-etre d\'un tiers, sans que cet effet soit compense par le marche. La pollution est une externalite negative ; la vaccination une externalite positive.',
-    relatedModules: ['offre-et-demande'],
+      'Effet d\'une activite economique sur un tiers non implique dans la transaction. La pollution est une externalite negative ; la vaccination une externalite positive.',
+    relatedModules: ['offre-et-demande', 'externalites'],
     category: 'Microeconomie',
   },
   {
     term: 'Bien public',
     definition:
-      'Bien non rival (la consommation par un agent ne reduit pas celle des autres) et non excluable (on ne peut empecher quiconque d\'en beneficier). Exemples : eclairage public, defense nationale. Le marche ne les produit pas en quantite optimale.',
-    relatedModules: ['offre-et-demande'],
+      'Bien non rival et non excludable, comme la defense nationale ou l\'eclairage public. Le marche ne les produit pas en quantite optimale.',
+    relatedModules: ['offre-et-demande', 'externalites'],
     category: 'Microeconomie',
   },
   {
     term: 'Avantage comparatif',
     definition:
-      'Un pays possede un avantage comparatif dans la production d\'un bien s\'il peut le produire a un cout d\'opportunite plus faible que ses partenaires commerciaux. Theorise par David Ricardo, ce concept fonde le libre-echange.',
-    relatedModules: [],
+      'Capacite d\'un pays a produire un bien a un cout d\'opportunite inferieur a celui d\'un autre pays. Theorise par David Ricardo, ce concept fonde le libre-echange.',
+    relatedModules: ['avantages-comparatifs'],
     category: 'Economie internationale',
   },
   {
@@ -182,10 +182,10 @@ export const glossary: GlossaryTerm[] = [
     category: 'Microeconomie',
   },
   {
-    term: 'Perte seche',
+    term: 'Perte seche (deadweight loss)',
     definition:
-      'Reduction du surplus total (consommateur + producteur) due a une distorsion du marche (taxe, monopole, prix plancher ou plafond). C\'est le cout social net de l\'intervention, qui ne profite a personne.',
-    relatedModules: ['offre-et-demande', 'courbe-de-laffer'],
+      'Perte de bien-etre economique qui n\'est recuperee par aucun agent, resultant d\'une distorsion du marche (taxe, monopole, prix plancher ou plafond).',
+    relatedModules: ['offre-et-demande', 'courbe-de-laffer', 'concurrence-monopole', 'externalites'],
     category: 'Microeconomie',
   },
   {
@@ -250,6 +250,83 @@ export const glossary: GlossaryTerm[] = [
       'Baisse generalisee et durable du niveau general des prix. Elle peut provoquer un cercle vicieux : les agents reportent leurs achats en anticipant des prix plus bas, ce qui reduit la demande et accentue la baisse des prix.',
     relatedModules: ['courbe-de-phillips', 'ad-as', 'creation-monetaire'],
     category: 'Macroeconomie',
+  },
+  {
+    term: 'Frontiere des possibilites de production (FPP)',
+    definition:
+      'La courbe montrant les combinaisons maximales de deux biens qu\'une economie peut produire avec ses ressources disponibles.',
+    relatedModules: ['frontiere-possibilites-production'],
+    category: 'Microeconomie',
+  },
+  {
+    term: 'Cout d\'opportunite',
+    definition:
+      'La valeur de la meilleure alternative sacrifiee lorsqu\'on fait un choix.',
+    relatedModules: ['frontiere-possibilites-production'],
+    category: 'Microeconomie',
+  },
+  {
+    term: 'Avantage absolu',
+    definition:
+      'Capacite d\'un pays a produire un bien en utilisant moins de ressources qu\'un autre pays.',
+    relatedModules: ['avantages-comparatifs'],
+    category: 'Commerce international',
+  },
+  {
+    term: 'Taxe pigouvienne',
+    definition:
+      'Taxe visant a corriger une externalite negative en internalisant le cout social dans le prix de marche.',
+    relatedModules: ['externalites'],
+    category: 'Microeconomie',
+  },
+  {
+    term: 'Monopole',
+    definition:
+      'Structure de marche ou un seul producteur controle l\'ensemble de l\'offre d\'un bien sans substitut proche.',
+    relatedModules: ['concurrence-monopole'],
+    category: 'Microeconomie',
+  },
+  {
+    term: 'Recette marginale',
+    definition:
+      'Supplement de recette obtenu par la vente d\'une unite supplementaire. En monopole, elle est inferieure au prix.',
+    relatedModules: ['concurrence-monopole'],
+    category: 'Microeconomie',
+  },
+  {
+    term: 'Taux de change reel',
+    definition:
+      'Taux de change nominal ajuste des niveaux de prix relatifs entre deux pays, mesurant la competitivite-prix.',
+    relatedModules: ['taux-de-change'],
+    category: 'Commerce international',
+  },
+  {
+    term: 'Condition de Marshall-Lerner',
+    definition:
+      'Une devaluation ameliore la balance commerciale si la somme des elasticites export et import est superieure a 1.',
+    relatedModules: ['taux-de-change'],
+    category: 'Commerce international',
+  },
+  {
+    term: 'Impot progressif',
+    definition:
+      'Systeme fiscal ou le taux d\'imposition augmente avec le revenu. L\'impot sur le revenu en France est progressif.',
+    relatedModules: ['fiscalite-redistribution', 'courbe-de-laffer'],
+    category: 'Fiscalite',
+  },
+  {
+    term: 'Taux effectif d\'imposition',
+    definition:
+      'Rapport entre l\'impot effectivement paye et le revenu total, qui differe du taux marginal en raison de la progressivite.',
+    relatedModules: ['fiscalite-redistribution'],
+    category: 'Fiscalite',
+  },
+  {
+    term: 'Competitivite-prix',
+    definition:
+      'Capacite d\'un pays a vendre ses produits a des prix inferieurs a ceux de ses concurrents, influencee par le taux de change et les couts de production.',
+    relatedModules: ['taux-de-change', 'avantages-comparatifs'],
+    category: 'Commerce international',
   },
 ];
 

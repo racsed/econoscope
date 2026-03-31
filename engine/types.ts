@@ -111,6 +111,7 @@ export interface ModuleMeta {
 export interface ComputeResult {
   outputs: SimulationOutput[];
   chartData: ChartData | CascadeData | RadarData;
+  secondaryChartData?: ChartData;
   narration: Narration;
 }
 

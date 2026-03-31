@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import type { RadarData } from '@/engine/types';
 import { ChartContainer } from './ChartContainer';
+import { useChartColors } from '@/hooks/useChartColors';
 
 interface RadarChartProps {
   data: RadarData;
@@ -34,6 +35,7 @@ function RadarChartInner({
   const radius = Math.min(width, height) / 2 - 50;
   const numAxes = data.axes.length;
   const angleStep = 360 / numAxes;
+  const colors = useChartColors();
 
   // Concentric rings
   const rings = [0.2, 0.4, 0.6, 0.8, 1.0];
@@ -78,7 +80,7 @@ function RadarChartInner({
             key={`ring-${ringScale}`}
             points={points}
             fill="none"
-            stroke="#F1F3F5"
+            stroke={colors.radarRing}
             strokeWidth={1}
           />
         );
@@ -97,13 +99,13 @@ function RadarChartInner({
               y1={cy}
               x2={end.x}
               y2={end.y}
-              stroke="#E2E4E9"
+              stroke={colors.radarAxis}
               strokeWidth={1}
             />
             <text
               x={labelPos.x}
               y={labelPos.y}
-              fill="#5F6980"
+              fill={colors.legendText}
               fontSize={11}
               fontWeight={500}
               textAnchor="middle"
@@ -141,7 +143,7 @@ function RadarChartInner({
                 cy={p.y}
                 r={4}
                 fill={ds.color}
-                stroke="#FFFFFF"
+                stroke={colors.equilibriumDot}
                 strokeWidth={2}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -184,7 +186,7 @@ function RadarChartInner({
           {polygonsData.map((ds, i) => (
             <g key={ds.label} transform={`translate(${i * 140}, 0)`}>
               <rect width={12} height={12} rx={3} fill={ds.color} opacity={0.6} />
-              <text x={18} y={10} fill="#5F6980" fontSize={11}>
+              <text x={18} y={10} fill={colors.legendText} fontSize={11}>
                 {ds.label}
               </text>
             </g>

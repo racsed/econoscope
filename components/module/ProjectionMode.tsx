@@ -32,7 +32,6 @@ export function ProjectionMode({
     }
   }, [isActive]);
 
-  // Listen for fullscreen exit (e.g. Escape key) to sync state
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (!document.fullscreenElement && isActive) {
@@ -48,35 +47,42 @@ export function ProjectionMode({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[100] bg-bg-primary flex flex-col"
+      className="fixed inset-0 z-[100] bg-bg-primary flex flex-col overflow-hidden"
     >
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-8 py-4 border-b border-border">
-        <h2 className="text-xl font-bold text-text-primary">{title}</h2>
+      {/* Compact top bar */}
+      <div className="flex items-center justify-between px-6 py-2 border-b border-border shrink-0">
+        <h2 className="text-lg font-semibold text-text-primary">{title}</h2>
         <button
           onClick={onClose}
-          className="p-2.5 rounded-xl hover:bg-bg-hover text-text-secondary transition-colors"
-          title="Fermer le mode projection"
+          className="p-2 rounded-lg hover:bg-bg-hover text-text-secondary transition-colors"
+          title="Fermer (Echap)"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
       </div>
 
-      {/* Main chart area */}
+      {/* Chart area - fills all available space */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="flex-1 p-8 flex items-center justify-center min-h-0"
+        className="flex-1 min-h-0 p-4"
+        style={{ height: 'calc(100vh - 160px)' }}
       >
-        <div className="w-full h-full">{visualization}</div>
+        <div className="w-full h-full [&_svg]:w-full [&_svg]:h-full">{visualization}</div>
       </motion.div>
 
-      {/* Bottom: scenarios + key controls */}
-      <div className="border-t border-border px-8 py-5 space-y-4">
-        <div className="flex justify-center">{scenarios}</div>
-        <div className="flex gap-8 justify-center max-w-4xl mx-auto text-base [&_label]:text-sm [&_input]:h-2">
-          {controls}
+      {/* Compact bottom bar: scenarios + controls side by side */}
+      <div className="border-t border-border px-6 py-3 shrink-0">
+        <div className="flex items-center gap-6 max-w-6xl mx-auto">
+          {/* Scenarios on the left */}
+          <div className="shrink-0">{scenarios}</div>
+          {/* Divider */}
+          <div className="w-px h-8 bg-border shrink-0" />
+          {/* Controls spread horizontally */}
+          <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2">
+            {controls}
+          </div>
         </div>
       </div>
     </div>

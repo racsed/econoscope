@@ -8,10 +8,11 @@ import { RadarChart } from '@/components/charts/RadarChart';
 
 interface VisualizationPaneProps {
   chartData: ChartData | CascadeData | RadarData;
+  secondaryChartData?: ChartData;
   themeColor: string;
 }
 
-export function VisualizationPane({ chartData, themeColor }: VisualizationPaneProps) {
+function renderChart(chartData: ChartData | CascadeData | RadarData, themeColor: string) {
   if (chartData.type === 'bar-cascade') {
     return <BarCascade data={chartData as CascadeData} themeColor={themeColor} />;
   }
@@ -24,8 +25,22 @@ export function VisualizationPane({ chartData, themeColor }: VisualizationPanePr
     return <AreaChart data={chartData as ChartData} themeColor={themeColor} />;
   }
 
-  // Default: line chart (handles 'line' and 'scatter')
   return <LineChart data={chartData as ChartData} themeColor={themeColor} />;
+}
+
+export function VisualizationPane({ chartData, secondaryChartData, themeColor }: VisualizationPaneProps) {
+  if (!secondaryChartData) {
+    return renderChart(chartData, themeColor);
+  }
+
+  return (
+    <div className="flex flex-col gap-4 w-full">
+      <div className="flex-1">{renderChart(chartData, themeColor)}</div>
+      <div className="flex-1 border-t border-border pt-4">
+        {renderChart(secondaryChartData, themeColor)}
+      </div>
+    </div>
+  );
 }
 
 export default VisualizationPane;

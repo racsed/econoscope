@@ -162,10 +162,6 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // If e = -1, RT is constant
 
   const absElasticite = Math.abs(elasticite);
-  let prixOptimalRecette: number | null = null;
-  if (Math.abs(elasticite + 1) < 0.05) {
-    prixOptimalRecette = null; // any price yields same revenue
-  }
 
   const demandAnnotations: Annotation[] = [
     {
@@ -207,33 +203,40 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     });
   }
 
-  // We return two charts in one ChartData using two pairs of series
-  const series: Series[] = [
-    {
-      id: 'demande',
-      label: 'Courbe de demande Q(P)',
-      color: '#3b82f6',
-      data: demandCurve,
-      strokeWidth: 2.5,
-    },
-    {
-      id: 'recette_totale',
-      label: 'Recette totale RT(P)',
-      color: '#10b981',
-      data: revenueCurve,
-      strokeWidth: 2.5,
-    },
-  ];
-
-  const annotations = [...demandAnnotations, ...revenueAnnotations];
-
+  // Primary chart: demand curve only
   const chartData: ChartData = {
     type: 'line',
-    series,
+    series: [
+      {
+        id: 'demande',
+        label: 'Courbe de demande Q(P)',
+        color: '#3b82f6',
+        data: demandCurve,
+        strokeWidth: 2.5,
+      },
+    ],
     xLabel: 'Prix (\u20ac)',
-    yLabel: 'Quantite / Recette',
+    yLabel: 'Quantite demandee',
     xDomain: [pMin, pMax],
-    annotations,
+    annotations: demandAnnotations,
+  };
+
+  // Secondary chart: revenue curve
+  const secondaryChartData: ChartData = {
+    type: 'line',
+    series: [
+      {
+        id: 'recette_totale',
+        label: 'Recette totale RT(P)',
+        color: '#10b981',
+        data: revenueCurve,
+        strokeWidth: 2.5,
+      },
+    ],
+    xLabel: 'Prix (\u20ac)',
+    yLabel: 'Recette totale (\u20ac)',
+    xDomain: [pMin, pMax],
+    annotations: revenueAnnotations,
   };
 
   // Narration
@@ -258,6 +261,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       { id: 'type_demande', label: 'Type de demande', value: Math.abs(elasticite) },
     ],
     chartData,
+    secondaryChartData,
     narration: { observation, interpretation },
   };
 }

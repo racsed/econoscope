@@ -183,18 +183,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
         cumulative,
       });
     } else {
-      const income = depenseInitiale * Math.pow(alpha, n);
-      const taxes = income / (alpha) * t * c * (1 - m); // wait, let me simplify
-
-      // income entering round n
-      const incomeN = depenseInitiale * Math.pow(alpha, n - 1) * alpha;
-      // That's the domestic spending from previous round = income this round
-      // Actually let me track properly:
-      const prevDomesticSpending = depenseInitiale * Math.pow(alpha, n);
-      // No wait. Round 0 spending = G. Round 1 income = G.
-      // Round 1 domestic spending = G * alpha. Round 2 income = G * alpha.
       // Round n income = G * alpha^(n-1). Round n domestic spending = G * alpha^n.
-
       const roundIncome = depenseInitiale * Math.pow(alpha, n - 1);
       const roundTaxes = roundIncome * t;
       const roundDisposable = roundIncome * (1 - t);

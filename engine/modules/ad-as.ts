@@ -184,7 +184,7 @@ function findAdAsEquilibrium(
 
   // Newton-like bisection on Y
   let yLow = 100;
-  let yHigh = 3000;
+  let yHigh = Math.max(5000, K_G * g + K_M * m / 0.5 + 2000);
 
   for (let iter = 0; iter < 100; iter++) {
     const yMid = (yLow + yHigh) / 2;

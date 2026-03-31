@@ -25,8 +25,8 @@ export default function ModulePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#E8E8ED] mb-2">Module introuvable</h1>
-          <p className="text-[#5F6980]">Le module &quot;{slug}&quot; n&apos;existe pas encore.</p>
+          <h1 className="text-2xl font-bold text-text-primary mb-2">Module introuvable</h1>
+          <p className="text-text-secondary">Le module &quot;{slug}&quot; n&apos;existe pas encore.</p>
         </div>
       </div>
     );
@@ -42,6 +42,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
     setValue,
     outputs,
     chartData,
+    secondaryChartData,
     narration,
     scenarios,
     activeScenarioId,
@@ -69,7 +70,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
         />
       }
       visualization={
-        <VisualizationPane chartData={chartData} themeColor={themeColor} />
+        <VisualizationPane chartData={chartData} secondaryChartData={secondaryChartData} themeColor={themeColor} />
       }
       scenarios={
         <ScenarioBar

@@ -9,5 +9,11 @@ import './modules/kaldor-square';
 import './modules/laffer-curve';
 import './modules/lorenz-gini';
 import './modules/money-creation';
+import './modules/fpp';
+import './modules/comparative-advantage';
+import './modules/externalities';
+import './modules/competition-monopoly';
+import './modules/exchange-rate';
+import './modules/fiscal-redistribution';
 
 export { getModule, getAllModules, getModuleSlugs } from './core/registry';

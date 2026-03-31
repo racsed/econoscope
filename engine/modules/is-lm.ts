@@ -288,18 +288,62 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Narration
   let observation = `L'equilibre IS-LM se situe a Y* = ${eq.y.toFixed(0)} Mds\u20ac avec un taux d'interet r* = ${eq.r.toFixed(1)}%. L'investissement prive est de ${investissement.toFixed(0)} Mds\u20ac.`;
 
-  let interpretation: string;
+  // Dynamic narration: compare current equilibrium to baseline
+  const deltaY = eq.y - eqBase.y;
+  const deltaR = eq.r - eqBase.r;
+  const deltaI = investissement - investissementBase;
 
-  if (g > 200) {
-    const deltaG = g - 200;
-    interpretation = `L'augmentation des depenses publiques de ${deltaG} Mds\u20ac deplace IS vers la droite. Le revenu augmente mais le taux d'interet monte egalement de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%. `;
-    if (eviction > 0) {
-      interpretation += `L'effet d'eviction est de ${eviction.toFixed(0)} Mds\u20ac : la hausse du taux d'interet reduit l'investissement prive, attenuant partiellement l'effet de la relance.`;
+  let interpretation: string;
+  const changes: string[] = [];
+
+  if (Math.abs(deltaY) > 10 || Math.abs(deltaR) > 0.2) {
+    // Describe what changed relative to baseline
+    if (deltaY > 10) {
+      changes.push(`le revenu augmente de ${deltaY.toFixed(0)} Mds\u20ac par rapport a l'equilibre de reference`);
+    } else if (deltaY < -10) {
+      changes.push(`le revenu diminue de ${Math.abs(deltaY).toFixed(0)} Mds\u20ac par rapport a l'equilibre de reference`);
     }
-  } else if (m > 800) {
-    interpretation = `L'expansion monetaire deplace LM vers la droite : le taux d'interet baisse a ${eq.r.toFixed(1)}%, stimulant l'investissement (+${(investissement - investissementBase).toFixed(0)} Mds\u20ac) et donc le revenu.`;
-  } else if (h > 80) {
-    interpretation = `Avec une sensibilite monetaire de ${h}, LM est quasi-horizontale : c'est la trappe a liquidite. La politique monetaire est inefficace car la monnaie supplementaire est absorbee par la speculation. Seule la politique budgetaire peut relancer l'economie.`;
+
+    if (deltaR > 0.2) {
+      changes.push(`le taux d'interet monte de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
+    } else if (deltaR < -0.2) {
+      changes.push(`le taux d'interet baisse de ${eqBase.r.toFixed(1)}% a ${eq.r.toFixed(1)}%`);
+    }
+
+    interpretation = `Par rapport a l'equilibre de reference, ${changes.join(' et ')}. `;
+
+    // Explain the causes based on what parameters diverged from defaults
+    const causes: string[] = [];
+    if (g !== 200) {
+      const deltaG = g - 200;
+      causes.push(deltaG > 0
+        ? `les depenses publiques plus elevees (+${deltaG} Mds\u20ac) deplacent IS vers la droite`
+        : `les depenses publiques plus faibles (${deltaG} Mds\u20ac) deplacent IS vers la gauche`);
+    }
+    if (m !== 800 || p !== 1) {
+      const mReelCurrent = m / p;
+      const mReelBase = 800 / 1;
+      if (mReelCurrent > mReelBase * 1.05) {
+        causes.push(`l'offre reelle de monnaie plus abondante deplace LM vers la droite`);
+      } else if (mReelCurrent < mReelBase * 0.95) {
+        causes.push(`l'offre reelle de monnaie plus faible deplace LM vers la gauche`);
+      }
+    }
+    if (causes.length > 0) {
+      interpretation += causes.join(', et ') + '. ';
+    }
+
+    // Eviction effect
+    if (eviction > 5) {
+      interpretation += `L'effet d'eviction est de ${eviction.toFixed(0)} Mds\u20ac : la hausse du taux d'interet reduit l'investissement prive, attenuant partiellement l'effet de la relance.`;
+    } else if (deltaI > 5) {
+      interpretation += `L'investissement prive augmente de ${deltaI.toFixed(0)} Mds\u20ac grace a la baisse du taux d'interet.`;
+    }
+
+    // Liquidity trap detection (dynamic: LM slope is K_MONEY/h, very flat when h is high relative to b)
+    if (h > 3 * b) {
+      interpretation += ` Avec h = ${h} (bien superieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidite. La politique monetaire perd en efficacite au profit de la politique budgetaire.`;
+    }
   } else {
     interpretation = `A l'equilibre, le marche des biens (IS) et le marche monetaire (LM) sont simultanement en equilibre. Le multiplicateur budgetaire effectif (tenant compte de l'eviction) est de ${multiplicateurEffectif.toFixed(2)}, inferieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}.`;
   }

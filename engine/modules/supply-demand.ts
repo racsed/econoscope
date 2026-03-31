@@ -190,7 +190,11 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Equilibrium without tax
   const eqBase = findEquilibrium(revenu, nbAcheteurs, coutProduction, 0, true);
   // Equilibrium with tax
-  const eqTax = findEquilibrium(revenu, nbAcheteurs, coutProduction, taxe, taxeSurVendeur);
+  const eqTaxRaw = findEquilibrium(revenu, nbAcheteurs, coutProduction, taxe, taxeSurVendeur);
+  const marcheNonViable = eqTaxRaw.quantity < 0;
+  const eqTax = marcheNonViable
+    ? { price: Math.max(0, eqTaxRaw.price), quantity: 0 }
+    : eqTaxRaw;
 
   // Price range for curves
   const maxPrice = Math.max(eqBase.price, eqTax.price) * 1.8;
@@ -224,11 +228,6 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   demandCurve.sort((a, b) => a.x - b.x);
   supplyCurve.sort((a, b) => a.x - b.x);
   shiftedCurve.sort((a, b) => a.x - b.x);
-
-  // Consumer surplus = area between demand curve and equilibrium price, up to Q*
-  const consumerSurplus = eqTax.quantity > 0
-    ? 0.5 * eqTax.quantity * Math.abs(demandQuantity(0, revenu, nbAcheteurs) > 0 ? (100 + 0.05 * revenu * (nbAcheteurs / 100)) / 2 - eqTax.price : 0)
-    : 0;
 
   // Simplified surplus calculations
   const demandPriceIntercept = (100 + 0.05 * revenu * (nbAcheteurs / 100)) / 2;
@@ -319,17 +318,25 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   };
 
   // Narration
-  let observation = `Au prix d'equilibre de ${eqBase.price.toFixed(1)}\u20ac, la quantite echangee est de ${eqBase.quantity.toFixed(0)} unites.`;
-  let interpretation = `Le surplus du consommateur est de ${Math.max(0, surplusConsommateur).toFixed(0)}\u20ac et le surplus du producteur de ${Math.max(0, surplusProducteur).toFixed(0)}\u20ac.`;
+  let observation: string;
+  let interpretation: string;
 
-  if (taxe > 0) {
+  if (marcheNonViable) {
+    observation = `Avec ces parametres, le marche n'est pas viable : les couts sont trop eleves par rapport a la demande.`;
+    interpretation = `La quantite d'equilibre calculee est negative, ce qui signifie qu'aucun echange n'est possible. Il faudrait reduire les couts de production, la taxation, ou augmenter le revenu des consommateurs pour rendre le marche viable.`;
+  } else {
+    observation = `Au prix d'equilibre de ${eqBase.price.toFixed(1)}\u20ac, la quantite echangee est de ${eqBase.quantity.toFixed(0)} unites.`;
+    interpretation = `Le surplus du consommateur est de ${Math.max(0, surplusConsommateur).toFixed(0)}\u20ac et le surplus du producteur de ${Math.max(0, surplusProducteur).toFixed(0)}\u20ac.`;
+  }
+
+  if (!marcheNonViable && taxe > 0) {
     const prixAcheteur = taxeSurVendeur ? eqTax.price : eqTax.price + taxe;
     const prixVendeur = taxeSurVendeur ? eqTax.price - taxe : eqTax.price;
     observation = `La taxe de ${taxe}\u20ac deplace l'equilibre : le prix passe de ${eqBase.price.toFixed(1)}\u20ac a ${eqTax.price.toFixed(1)}\u20ac et la quantite de ${eqBase.quantity.toFixed(0)} a ${eqTax.quantity.toFixed(0)} unites.`;
     interpretation = `L'acheteur paie ${prixAcheteur.toFixed(1)}\u20ac, le vendeur recoit ${prixVendeur.toFixed(1)}\u20ac. La recette fiscale est de ${recetteFiscale.toFixed(0)}\u20ac mais la perte seche de ${pertSeche.toFixed(1)}\u20ac reduit le bien-etre global. L'incidence de la taxe se repartit entre acheteurs et vendeurs selon les elasticites relatives.`;
   }
 
-  if (revenu > 3000) {
+  if (!marcheNonViable && revenu > 3000) {
     observation += ` Le revenu eleve (${revenu}\u20ac) stimule fortement la demande.`;
   }
 

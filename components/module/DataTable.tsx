@@ -18,9 +18,9 @@ export function DataTable({ outputs, themeColor }: DataTableProps) {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
-      className="bg-white border border-[#E2E4E9] shadow-sm rounded-xl overflow-hidden"
+      className="bg-bg-card border border-border shadow-sm rounded-xl overflow-hidden"
     >
-      <div className="flex items-center gap-2 p-4 border-b border-[#EDEEF1]">
+      <div className="flex items-center gap-2 p-4 border-b border-border-subtle">
         <Table size={16} style={{ color: themeColor }} />
         <h3
           className="text-sm font-semibold uppercase tracking-wider"
@@ -29,20 +29,20 @@ export function DataTable({ outputs, themeColor }: DataTableProps) {
           Synthese
         </h3>
       </div>
-      <div className="divide-y divide-[#EDEEF1]">
+      <div className="divide-y divide-border-subtle">
         {outputs.map((output) => (
           <div
             key={output.id}
             className="flex items-center justify-between px-4 py-3"
           >
-            <span className="text-sm text-[#5F6980]">{output.label}</span>
+            <span className="text-sm text-text-secondary">{output.label}</span>
             <div className="flex items-center gap-2">
               <AnimatedNumber
                 value={output.value}
-                className="text-sm font-mono font-medium text-[#1A1D26]"
+                className="text-sm font-mono font-medium text-text-primary"
               />
               {output.unit && (
-                <span className="text-xs text-[#9CA3B4]">{output.unit}</span>
+                <span className="text-xs text-text-muted">{output.unit}</span>
               )}
               {output.direction && output.direction !== 'neutral' && (
                 <span

@@ -14,7 +14,7 @@ export function RealiteBlock({ items, themeColor }: RealiteBlockProps) {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="bg-[#F8F9FB] border border-[#E2E4E9] rounded-xl p-5"
+      className="bg-bg-narration border border-border rounded-xl p-5"
     >
       <div className="flex items-center gap-2 mb-3">
         <Globe size={18} style={{ color: themeColor }} />
@@ -27,7 +27,7 @@ export function RealiteBlock({ items, themeColor }: RealiteBlockProps) {
       </div>
       <ul className="space-y-2">
         {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-[#5F6980]">
+          <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
             <span
               className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
               style={{ backgroundColor: themeColor, opacity: 0.5 }}
