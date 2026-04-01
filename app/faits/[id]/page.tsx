@@ -5,6 +5,7 @@ import { useMemo, useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, SlidersHorizontal, RotateCcw, Share2 } from 'lucide-react';
+import { FactIllustration } from '@/components/ui/FactIllustration';
 import { economicFacts } from '@/data/economic-facts';
 import { getModule } from '@/engine/init';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
@@ -174,6 +175,10 @@ function FactArticle({
               border: `1px solid ${catInfo.color}20`,
             }}
           >
+            {/* Decorative illustration */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 opacity-[0.15] pointer-events-none">
+              <FactIllustration category={fact.category} size={100} />
+            </div>
             <div className="flex items-center gap-3 mb-4">
               <span
                 className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"

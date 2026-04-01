@@ -65,3 +65,89 @@ export const isoToNumeric: Record<string, string> = {
 export const numericToIso: Record<string, string> = Object.fromEntries(
   Object.entries(isoToNumeric).map(([iso, num]) => [num, iso])
 );
+
+// Historical GDP growth data (% annual, real)
+// Sources: World Bank, IMF World Economic Outlook
+export interface CountryHistoricalData {
+  iso: string;
+  gdpGrowthByYear: Record<number, number>;
+}
+
+export const HISTORICAL_YEARS = [2000, 2005, 2008, 2009, 2010, 2015, 2019, 2020, 2021, 2022, 2023] as const;
+
+export const historicalData: CountryHistoricalData[] = [
+  {
+    iso: 'FRA',
+    gdpGrowthByYear: {
+      2000: 3.9, 2005: 1.7, 2008: 0.3, 2009: -2.9, 2010: 1.9,
+      2015: 1.1, 2019: 1.8, 2020: -7.9, 2021: 6.4, 2022: 2.5, 2023: 0.9,
+    },
+  },
+  {
+    iso: 'USA',
+    gdpGrowthByYear: {
+      2000: 4.1, 2005: 3.5, 2008: -0.1, 2009: -2.5, 2010: 2.6,
+      2015: 2.7, 2019: 2.3, 2020: -2.8, 2021: 5.9, 2022: 2.1, 2023: 2.5,
+    },
+  },
+  {
+    iso: 'DEU',
+    gdpGrowthByYear: {
+      2000: 3.0, 2005: 0.7, 2008: 1.0, 2009: -5.7, 2010: 4.2,
+      2015: 1.5, 2019: 1.1, 2020: -3.8, 2021: 3.2, 2022: 1.8, 2023: -0.3,
+    },
+  },
+  {
+    iso: 'CHN',
+    gdpGrowthByYear: {
+      2000: 8.5, 2005: 11.4, 2008: 9.7, 2009: 9.4, 2010: 10.6,
+      2015: 7.0, 2019: 6.0, 2020: 2.2, 2021: 8.4, 2022: 3.0, 2023: 5.2,
+    },
+  },
+  {
+    iso: 'JPN',
+    gdpGrowthByYear: {
+      2000: 2.8, 2005: 1.7, 2008: -1.1, 2009: -5.7, 2010: 4.1,
+      2015: 1.6, 2019: -0.4, 2020: -4.2, 2021: 2.1, 2022: 1.0, 2023: 1.9,
+    },
+  },
+  {
+    iso: 'GBR',
+    gdpGrowthByYear: {
+      2000: 3.5, 2005: 3.1, 2008: -0.3, 2009: -4.2, 2010: 1.9,
+      2015: 2.4, 2019: 1.4, 2020: -11.0, 2021: 7.6, 2022: 4.3, 2023: 0.1,
+    },
+  },
+  {
+    iso: 'BRA',
+    gdpGrowthByYear: {
+      2000: 4.4, 2005: 3.2, 2008: 5.1, 2009: -0.1, 2010: 7.5,
+      2015: -3.5, 2019: 1.2, 2020: -3.3, 2021: 5.3, 2022: 3.0, 2023: 2.9,
+    },
+  },
+  {
+    iso: 'IND',
+    gdpGrowthByYear: {
+      2000: 3.8, 2005: 9.3, 2008: 3.9, 2009: 8.5, 2010: 8.5,
+      2015: 8.0, 2019: 3.9, 2020: -5.8, 2021: 9.1, 2022: 7.2, 2023: 7.8,
+    },
+  },
+  {
+    iso: 'RUS',
+    gdpGrowthByYear: {
+      2000: 10.0, 2005: 6.4, 2008: 5.2, 2009: -7.8, 2010: 4.5,
+      2015: -2.0, 2019: 2.2, 2020: -2.7, 2021: 5.6, 2022: -2.1, 2023: 3.6,
+    },
+  },
+  {
+    iso: 'ZAF',
+    gdpGrowthByYear: {
+      2000: 4.2, 2005: 5.3, 2008: 3.2, 2009: -1.5, 2010: 3.0,
+      2015: 1.2, 2019: 0.3, 2020: -6.0, 2021: 4.9, 2022: 1.9, 2023: 0.7,
+    },
+  },
+];
+
+// Lookup map by ISO for historical data
+export const historicalByIso = new Map<string, CountryHistoricalData>();
+historicalData.forEach((c) => historicalByIso.set(c.iso, c));

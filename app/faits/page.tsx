@@ -3,12 +3,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { History, ArrowRight, Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train, Globe, Factory, Crown, Ship, Wheat, Coins, Building, Zap, Shield, Smartphone } from 'lucide-react';
+import { History, ArrowRight } from 'lucide-react';
 import { economicFacts, type EconomicFact } from '@/data/economic-facts';
-
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
-  Flame, TrendingDown, Landmark, ArrowUpCircle, Scale, Banknote, Receipt, Euro, Train, Globe, Factory, Crown, Ship, Wheat, Coins, Building, Zap, Shield, Smartphone,
-};
+import { FactIllustration } from '@/components/ui/FactIllustration';
 
 const categoryLabels: Record<string, { label: string; color: string }> = {
   crise: { label: 'Crise', color: '#EF4444' },
@@ -101,13 +98,6 @@ function FactCard({
   onToggle: () => void;
 }) {
   const catInfo = categoryLabels[fact.category];
-  const Icon = iconMap[fact.icon] || History;
-
-  // Build URL with scénario values as query params
-  const params = new URLSearchParams();
-  for (const [key, value] of Object.entries(fact.scenarioValues)) {
-    params.set(key, String(value));
-  }
   const articleUrl = `/faits/${fact.id}`;
 
   return (
@@ -129,15 +119,9 @@ function FactCard({
       >
         <div className="p-5">
           <div className="flex items-start gap-4">
-            {/* Gradient icon badge */}
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-              style={{
-                background: `linear-gradient(135deg, ${catInfo.color}20, ${catInfo.color}08)`,
-                border: `1px solid ${catInfo.color}20`,
-              }}
-            >
-              <Icon size={20} style={{ color: catInfo.color }} />
+            {/* Mobile illustration badge */}
+            <div className="md:hidden shrink-0">
+              <FactIllustration category={fact.category} size={40} />
             </div>
 
             <div className="flex-1 min-w-0">
@@ -156,6 +140,11 @@ function FactCard({
 
               <h3 className="text-base font-semibold text-text-primary mb-1">{fact.title}</h3>
               <p className="text-sm text-text-secondary leading-relaxed">{fact.summary}</p>
+            </div>
+
+            {/* Desktop illustration */}
+            <div className="hidden md:block shrink-0">
+              <FactIllustration category={fact.category} size={60} />
             </div>
           </div>
 

@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, ChevronDown } from 'lucide-react';
+import { Globe, ChevronDown, Play, Pause } from 'lucide-react';
 import {
   ComposableMap,
   Geographies,
@@ -10,7 +10,7 @@ import {
   ZoomableGroup,
 } from 'react-simple-maps';
 import { scaleLinear } from '@visx/scale';
-import { worldData, numericToIso, type CountryData } from '@/data/world-data';
+import { worldData, numericToIso, historicalByIso, HISTORICAL_YEARS, type CountryData } from '@/data/world-data';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
@@ -87,6 +87,46 @@ export default function CartePage() {
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // Year slider state
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const isTimelineActive = indicator === 'pibGrowth' && selectedYear !== null;
+
+  // Auto-play logic
+  useEffect(() => {
+    if (!isPlaying) {
+      if (playIntervalRef.current) {
+        clearInterval(playIntervalRef.current);
+        playIntervalRef.current = null;
+      }
+      return;
+    }
+    playIntervalRef.current = setInterval(() => {
+      setSelectedYear((prev) => {
+        if (prev === null) return HISTORICAL_YEARS[0];
+        const idx = HISTORICAL_YEARS.indexOf(prev as typeof HISTORICAL_YEARS[number]);
+        if (idx === -1 || idx >= HISTORICAL_YEARS.length - 1) {
+          setIsPlaying(false);
+          return HISTORICAL_YEARS[HISTORICAL_YEARS.length - 1];
+        }
+        return HISTORICAL_YEARS[idx + 1];
+      });
+    }, 1500);
+    return () => {
+      if (playIntervalRef.current) clearInterval(playIntervalRef.current);
+    };
+  }, [isPlaying]);
+
+  // Reset year when switching away from pibGrowth
+  useEffect(() => {
+    if (indicator !== 'pibGrowth') {
+      setSelectedYear(null);
+      setIsPlaying(false);
+    }
+  }, [indicator]);
+
   const config = useMemo(
     () => INDICATORS.find((i) => i.key === indicator)!,
     [indicator]
@@ -108,11 +148,21 @@ export default function CartePage() {
       if (!iso) return '#D1D5DB';
       const country = dataByIso.get(iso);
       if (!country) return '#D1D5DB';
+
+      // If we have a year selected and indicator is pibGrowth, use historical data
+      if (indicator === 'pibGrowth' && selectedYear !== null) {
+        const hist = historicalByIso.get(iso);
+        if (!hist) return '#E5E7EB'; // gray for no data
+        const val = hist.gdpGrowthByYear[selectedYear];
+        if (val === undefined) return '#E5E7EB';
+        return colorScale(val) as string;
+      }
+
       const value = country[config.key];
       if (value === undefined) return '#D1D5DB';
       return colorScale(value) as string;
     },
-    [config.key, colorScale]
+    [config.key, colorScale, indicator, selectedYear]
   );
 
   // Close dropdown on outside click
