@@ -75,7 +75,7 @@ export function ChartContainer({
   return (
     <div
       ref={containerRef}
-      className={`w-full ${className}`}
+      className={`w-full flex items-center justify-center ${className}`}
       style={{ height: minHeight }}
     >
       {dims && dims.width > 0 && children(dims)}
