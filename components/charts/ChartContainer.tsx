@@ -1,13 +1,11 @@
 'use client';
 
-import { ReactNode } from 'react';
-import { ParentSize } from '@visx/responsive';
+import { ReactNode, useRef, useState, useEffect } from 'react';
 
 interface ChartContainerProps {
   children: (dimensions: { width: number; height: number }) => ReactNode;
   aspectRatio?: number;
   minHeight?: number;
-  maxHeight?: number;
   className?: string;
 }
 
@@ -15,28 +13,52 @@ export function ChartContainer({
   children,
   aspectRatio,
   minHeight = 350,
-  maxHeight = 600,
   className = '',
 }: ChartContainerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const rect = el.getBoundingClientRect();
+      const w = Math.floor(rect.width);
+      // Use parent height if available (e.g., projection mode), else calculate
+      const parentH = Math.floor(rect.height);
+      let h: number;
+      if (parentH > minHeight + 10) {
+        // Parent has explicit height (projection mode) - use it
+        h = parentH;
+      } else if (aspectRatio) {
+        h = Math.max(Math.round(w / aspectRatio), minHeight);
+      } else {
+        h = minHeight;
+      }
+      setDimensions((prev) => {
+        if (prev && prev.width === w && prev.height === h) return prev;
+        return { width: w, height: h };
+      });
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(() => {
+      requestAnimationFrame(measure);
+    });
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [aspectRatio, minHeight]);
+
   return (
     <div
-      className={`w-full ${className}`}
-      style={{ height: minHeight, maxHeight }}
+      ref={containerRef}
+      className={`w-full h-full ${className}`}
+      style={{ minHeight }}
     >
-      <ParentSize debounceTime={100}>
-        {({ width, height: parentHeight }) => {
-          if (width <= 0) return null;
-          // Use a stable height: either from aspect ratio or the fixed minHeight
-          // Never grow beyond maxHeight to prevent infinite growth loops
-          let height: number;
-          if (aspectRatio) {
-            height = Math.min(Math.max(width / aspectRatio, minHeight), maxHeight);
-          } else {
-            height = Math.min(Math.max(parentHeight, minHeight), maxHeight);
-          }
-          return <>{children({ width, height })}</>;
-        }}
-      </ParentSize>
+      {dimensions && dimensions.width > 0 && children(dimensions)}
     </div>
   );
 }
