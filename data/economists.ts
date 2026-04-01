@@ -7,6 +7,7 @@ export interface Economist {
   quoteContext?: string;
   relatedModules: string[];
   portrait?: string;
+  portraitPosition?: string; // CSS object-position for face centering
 }
 
 export const economists: Economist[] = [
@@ -19,6 +20,7 @@ export const economists: Economist[] = [
     quoteContext: "Extrait de La Richesse des nations (1776), où Smith explique que l'intérêt personnel, guidé par la \"main invisible\" du marché, conduit à l'intérêt général.",
     relatedModules: ['offre-et-demande', 'avantages-comparatifs'],
     portrait: '/images/economists/adam-smith.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'david-ricardo',
@@ -29,6 +31,7 @@ export const economists: Economist[] = [
     quoteContext: "Tiré des Principes de l'économie politique et de l'impôt (1817), où Ricardo formalise la théorie des avantages comparatifs qui fonde le libre-échange.",
     relatedModules: ['avantages-comparatifs', 'courbe-de-laffer'],
     portrait: '/images/economists/david-ricardo.jpg',
+    portraitPosition: 'center 30%',
   },
   {
     id: 'john-maynard-keynes',
@@ -39,6 +42,7 @@ export const economists: Economist[] = [
     quoteContext: "Publié dans le Tract on Monetary Reform (1923). Keynes critique les économistes classiques qui promettent un retour automatique à l'équilibre \"à long terme\", alors que les gens souffrent maintenant.",
     relatedModules: ['multiplicateur-keynesien', 'is-lm', 'ad-as'],
     portrait: '/images/economists/john-maynard-keynes.jpg',
+    portraitPosition: 'center 30%',
   },
   {
     id: 'milton-friedman',
@@ -49,6 +53,7 @@ export const economists: Economist[] = [
     quoteContext: "Formulé dans A Monetary History of the United States (1963, avec Anna Schwartz). Friedman soutient que seule l'expansion excessive de la masse monétaire cause l'inflation durable.",
     relatedModules: ['courbe-de-phillips', 'creation-monetaire'],
     portrait: '/images/economists/milton-friedman.jpg',
+    portraitPosition: 'center 30%',
   },
   {
     id: 'arthur-laffer',
@@ -59,6 +64,7 @@ export const economists: Economist[] = [
     quoteContext: "Laffer aurait dessiné sa célèbre courbe sur une serviette de restaurant en 1974, lors d'un dîner avec Dick Cheney et Donald Rumsfeld, pour convaincre de baisser les impôts.",
     relatedModules: ['courbe-de-laffer'],
     portrait: '/images/economists/arthur-laffer.jpg',
+    portraitPosition: 'center 30%',
   },
   {
     id: 'alban-william-phillips',
@@ -69,6 +75,7 @@ export const economists: Economist[] = [
     quoteContext: "Article fondateur de 1958, où Phillips analyse 97 ans de données britanniques (1861-1957) et découvre la relation inverse entre chômage et inflation salariale.",
     relatedModules: ['courbe-de-phillips'],
     portrait: '/images/economists/aw-phillips.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'john-hicks',
@@ -79,6 +86,7 @@ export const economists: Economist[] = [
     quoteContext: "Hicks crée le modèle IS-LM en 1937, dans l'article \"Mr. Keynes and the Classics\", pour synthétiser la pensée keynésienne dans un cadre graphique accessible. Prix Nobel 1972.",
     relatedModules: ['is-lm'],
     portrait: '/images/economists/john-hicks.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'nicholas-kaldor',
@@ -89,6 +97,7 @@ export const economists: Economist[] = [
     quoteContext: "Kaldor propose en 1971 ce cadre d'analyse des performances macroéconomiques, devenu un outil pédagogique majeur en économie.",
     relatedModules: ['carre-magique-kaldor'],
     portrait: '/images/economists/nicholas-kaldor.jpg',
+    portraitPosition: 'center 20%',
   },
   {
     id: 'vilfredo-pareto',
@@ -99,6 +108,7 @@ export const economists: Economist[] = [
     quoteContext: "Dans son Cours d'économie politique (1896), Pareto observe que la distribution des richesses suit une loi de puissance : 20% de la population détient environ 80% des richesses.",
     relatedModules: ['courbe-de-lorenz-gini'],
     portrait: '/images/economists/vilfredo-pareto.jpg',
+    portraitPosition: 'center 20%',
   },
   {
     id: 'max-lorenz',
@@ -118,6 +128,7 @@ export const economists: Economist[] = [
     quoteContext: "En 1912, le statisticien italien Corrado Gini publie \"Variabilità e mutabilità\", où il propose le coefficient qui porte son nom, devenu la mesure d'inégalité la plus utilisée au monde.",
     relatedModules: ['courbe-de-lorenz-gini'],
     portrait: '/images/economists/corrado-gini.jpg',
+    portraitPosition: 'center 20%',
   },
   {
     id: 'arthur-cecil-pigou',
@@ -128,6 +139,7 @@ export const economists: Economist[] = [
     quoteContext: "Dans The Economics of Welfare (1920), Pigou formalise le concept d'externalité et propose la taxe corrective qui porte son nom, fondement de la politique environnementale moderne.",
     relatedModules: ['externalites'],
     portrait: '/images/economists/arthur-pigou.jpg',
+    portraitPosition: 'center 20%',
   },
   {
     id: 'alfred-marshall',
@@ -138,6 +150,7 @@ export const economists: Economist[] = [
     quoteContext: "Tiré de ses Principes d'économie politique (1890), où Marshall formalise le modèle de l'offre et de la demande avec le célèbre diagramme en croix qui porte son nom.",
     relatedModules: ['offre-et-demande', 'taux-de-change', 'elasticite-prix'],
     portrait: '/images/economists/alfred-marshall.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'joseph-schumpeter',
@@ -148,6 +161,7 @@ export const economists: Economist[] = [
     quoteContext: "Publié dans Capitalisme, Socialisme et Démocratie (1942). Schumpeter décrit comment l'innovation détruit les anciennes structures pour en créer de nouvelles, repoussant la frontière des possibilités.",
     relatedModules: ['frontiere-possibilites-production'],
     portrait: '/images/economists/joseph-schumpeter.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'friedrich-hayek',
@@ -158,6 +172,7 @@ export const economists: Economist[] = [
     quoteContext: "Tiré de La Route de la servitude (1944) et de ses travaux sur la connaissance dispersée. Hayek défend la concurrence comme mécanisme d'information supérieur à la planification. Prix Nobel 1974.",
     relatedModules: ['concurrence-monopole'],
     portrait: '/images/economists/friedrich-hayek.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'karl-marx',
@@ -168,6 +183,7 @@ export const economists: Economist[] = [
     quoteContext: "Extrait du Capital (1867, Livre I). Marx analyse la tendance inhérente au capitalisme à concentrer le capital entre quelques mains, creusant les inégalités.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     portrait: '/images/economists/karl-marx.jpg',
+    portraitPosition: 'center 20%',
   },
   {
     id: 'thomas-piketty',
@@ -188,6 +204,7 @@ export const economists: Economist[] = [
     quoteContext: "Samuelson unifie la macroéconomie keynésienne et la microéconomie néoclassique dans son manuel Economics (1948), le plus vendu de l'histoire. Premier Prix Nobel d'économie américain (1970).",
     relatedModules: ['is-lm', 'ad-as'],
     portrait: '/images/economists/paul-samuelson.jpg',
+    portraitPosition: 'center 25%',
   },
   {
     id: 'irving-fisher',
@@ -198,6 +215,7 @@ export const economists: Economist[] = [
     quoteContext: "Dans The Purchasing Power of Money (1911), Fisher formalise l'équation quantitative de la monnaie (MV = PT), fondement de la théorie monétaire moderne.",
     relatedModules: ['creation-monetaire'],
     portrait: '/images/economists/irving-fisher.jpg',
+    portraitPosition: 'center 30%',
   },
   {
     id: 'jean-baptiste-say',
@@ -208,6 +226,7 @@ export const economists: Economist[] = [
     quoteContext: "Tiré du Traité d'économie politique (1803). La \"loi de Say\" affirme que toute production génère un revenu équivalent, excluant les crises de surproduction. Keynes la contestera frontalement.",
     relatedModules: ['ad-as'],
     portrait: '/images/economists/jean-baptiste-say.jpg',
+    portraitPosition: 'center 25%',
   },
 ];
 

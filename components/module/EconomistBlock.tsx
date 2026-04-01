@@ -39,7 +39,8 @@ function EconomistCard({ economist, themeColor }: { economist: Economist; themeC
             src={economist.portrait}
             alt={`Portrait de ${economist.name}`}
             loading="lazy"
-            className="w-12 h-12 rounded-full object-cover object-top flex-shrink-0 border border-border"
+            className="w-12 h-12 rounded-full object-cover flex-shrink-0 border border-border"
+            style={{ objectPosition: economist.portraitPosition || 'center 25%' }}
           />
         ) : (
           <div
