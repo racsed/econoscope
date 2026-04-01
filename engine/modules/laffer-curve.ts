@@ -191,6 +191,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     yLabel: 'Montant',
     xDomain: [0, 100],
     yDomain: [0, Math.max(recetteOptimale, Y0) * 1.1],
+    equilibrium: { x: taux, y: recetteActuelle },
     annotations,
   };
 

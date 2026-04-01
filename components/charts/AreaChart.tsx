@@ -10,6 +10,7 @@ import { line, area, curveMonotoneX } from 'd3-shape';
 import { motion } from 'framer-motion';
 import type { ChartData, Point } from '@/engine/types';
 import { ChartContainer } from './ChartContainer';
+import { EquilibriumPoint } from './EquilibriumPoint';
 import { useChartColors } from '@/hooks/useChartColors';
 import { useAnimatedPath } from '@/hooks/useAnimatedPath';
 
@@ -405,6 +406,16 @@ function AreaChartInner({
                 />
               ))}
             </>
+          )}
+
+          {/* Equilibrium point */}
+          {data.equilibrium && (
+            <EquilibriumPoint
+              cx={xScale(data.equilibrium.x) as number}
+              cy={yScale(data.equilibrium.y) as number}
+              color={themeColor}
+              label={`(${data.equilibrium.x.toFixed(0)}, ${data.equilibrium.y.toFixed(1)})`}
+            />
           )}
 
           {/* Axes */}
