@@ -281,7 +281,13 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Revenu national Y (Mds\u20ac)',
     yLabel: "Taux d'intérêt r (%)",
     xDomain: [0, yMax],
-    yDomain: [Math.min(-2, eq.r - 3), Math.max(eq.r + 5, 10)],
+    yDomain: (() => {
+      const allY = [...isCurve, ...lmCurve].map(p => p.y);
+      const minY = Math.min(...allY);
+      const maxY = Math.max(...allY);
+      const pad = (maxY - minY) * 0.1;
+      return [Math.floor(minY - pad), Math.ceil(maxY + pad)];
+    })(),
     equilibrium: { x: eq.y, y: eq.r },
     annotations,
   };

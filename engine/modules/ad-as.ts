@@ -298,7 +298,11 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Production Y (Mds\u20ac)',
     yLabel: 'Niveau des prix P',
     xDomain: [yMin, yMax],
-    yDomain: [0, Math.max(eq.p * 1.5, 3)],
+    yDomain: (() => {
+      const allY = series.flatMap(s => s.data.map(p => p.y));
+      const maxY = Math.max(...allY);
+      return [0, Math.min(maxY * 1.1, 10)];
+    })(),
     equilibrium: { x: eq.y, y: eq.p },
     annotations,
   };

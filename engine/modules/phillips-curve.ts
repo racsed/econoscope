@@ -258,7 +258,13 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Taux de chômage (%)',
     yLabel: "Taux d'inflation (%)",
     xDomain: [uMin, uMax],
-    yDomain: [Math.min(-3, inflationAtNairu - 4), Math.max(inflationAtNairu + 6, 12)],
+    yDomain: (() => {
+      const allY = series.flatMap(s => s.data.map(p => p.y));
+      const minY = Math.min(...allY);
+      const maxY = Math.max(...allY);
+      const pad = Math.max((maxY - minY) * 0.15, 1);
+      return [Math.floor(minY - pad), Math.ceil(maxY + pad)];
+    })(),
     annotations,
     equilibrium: { x: nairu, y: inflationAtNairu },
   };
