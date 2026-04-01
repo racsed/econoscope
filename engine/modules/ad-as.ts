@@ -21,12 +21,13 @@ const meta: ModuleMeta = {
     "Le modèle AD-AS (Aggregate Demand - Aggregate Supply) détermine simultanément le niveau des prix et la production. La courbe AD représente l'ensemble des équilibres IS-LM pour différents niveaux de prix. Les courbes AS (court et long terme) refletent les conditions d'offre de l'économie.",
   limites: [
     "Simplification des ajustements dynamiques",
-    "Les courbes sont supposees stables dans le temps",
+    "Les courbes sont supposées stables dans le temps",
     "Ne modelise pas explicitement les anticipations",
     "LRAS suppose un PIB potentiel fixe à court terme",
   ],
+  economists: ['john-maynard-keynes', 'jean-baptiste-say', 'paul-samuelson'],
   realite: [
-    "La crise Covid (2020) : choc d'offre ET de demande simultane",
+    "La crise Covid (2020) : choc d'offre ET de demande simultané",
     "La hausse des prix de l'énergie (2022) : déplacement de SRAS vers la gauche",
     "Les plans de relance post-Covid : déplacement de AD vers la droite",
   ],
@@ -138,7 +139,7 @@ const scenarios: Scenario[] = [
  *   Y_AD(P) = A_d / P + B_d
  *   More specifically, from IS-LM equilibrium Y = f(M/P, G, ...)
  *   Simplified: Y_AD = alpha * (G + I0) + beta * M/P
- *   where alpha and beta depend on IS-LM parameters
+ *   where alpha and beta dépend on IS-LM parameters
  *
  *   We use: Y_AD(P) = k_g * G + k_m * (M / P)
  *   where k_g = 2.0, k_m = 1.5
@@ -314,7 +315,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (outputGap > 2) {
     interpretation = `L'économie est en surchauffe : la production dépasse le potentiel de ${outputGap.toFixed(1)}%. Les entreprises produisent au-dela de leurs capacités normales, ce qui exerce une pression à la hausse sur les coûts (heures supplémentaires, raréfaction des inputs). A long terme, les salaires s'ajusteront à la hausse, deplacant SRAS vers la gauche jusqu'au retour au potentiel avec un niveau des prix plus élevé - c'est le mécanisme d'ajustement automatique.`;
   } else if (outputGap < -2) {
-    interpretation = `L'économie est en récession : la production est inférieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Cela signifie que des usines tournent en sous-regime, des travailleurs sont au chômage conjoncturel. Une politique de relance budgétaire (hausse de G, déplacement d'AD) ou monétaire (hausse de M, déplacement d'AD) pourrait combler cet écart en stimulant la demande globale.`;
+    interpretation = `L'économie est en récession : la production est inférieure au potentiel de ${Math.abs(outputGap).toFixed(1)}%. Cela signifie que des usines tournent en sous-régime, des travailleurs sont au chômage conjoncturel. Une politique de relance budgétaire (hausse de G, déplacement d'AD) ou monétaire (hausse de M, déplacement d'AD) pourrait combler cet écart en stimulant la demande globale.`;
   } else {
     interpretation = `L'économie est proche de son potentiel. L'écart de production est faible (${outputGap.toFixed(1)}%), indiquant un équilibre macroéconomique relativement sain ou l'offre et la demande globales s'accordent pres du plein emploi.`;
   }
@@ -328,7 +329,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (productivité > 120) {
     interpretation += ` La productivité élevée (indice ${productivité}) déplace à la fois SRAS et LRAS vers la droite : le PIB potentiel augmente a ${yPotential.toFixed(0)} Mds\u20ac. C'est le mécanisme de la croissance de long terme - le progrès technique repousse les limites de l'économie.`;
   } else if (productivité < 80) {
-    interpretation += ` La faible productivité (indice ${productivité}) contracte le PIB potentiel a ${yPotential.toFixed(0)} Mds\u20ac et déplace SRAS vers la gauche. L'économie produit moins avec les memes ressources.`;
+    interpretation += ` La faible productivité (indice ${productivité}) contracte le PIB potentiel a ${yPotential.toFixed(0)} Mds\u20ac et déplace SRAS vers la gauche. L'économie produit moins avec les mêmes ressources.`;
   }
 
   if (salaire > 130) {
@@ -338,9 +339,9 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   }
 
   if (g > 300) {
-    interpretation += ` Les dépenses publiques élevées (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exercant une pression inflationniste. L'ampleur de l'effet depend de la pente de SRAS : plus l'économie est proche du potentiel, plus la hausse de G se traduit en inflation plutot qu'en production.`;
+    interpretation += ` Les dépenses publiques élevées (${g} Mds\u20ac) deplacent AD vers la droite, stimulant la production mais exerçant une pression inflationniste. L'ampleur de l'effet dépend de la pente de SRAS : plus l'économie est proche du potentiel, plus la hausse de G se traduit en inflation plutôt qu'en production.`;
   } else if (g < 100) {
-    interpretation += ` Les faibles dépenses publiques (${g} Mds\u20ac) positionnent AD plus a gauche, limitant la demande globale. C'est le choix de l'austerite budgétaire.`;
+    interpretation += ` Les faibles dépenses publiques (${g} Mds\u20ac) positionnent AD plus a gauche, limitant la demande globale. C'est le choix de l'austérité budgétaire.`;
   }
 
   if (m > 1200) {

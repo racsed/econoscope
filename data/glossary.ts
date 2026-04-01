@@ -9,84 +9,84 @@ export const glossary: GlossaryTerm[] = [
   {
     term: 'PIB (Produit Intérieur Brut)',
     definition:
-      'Valeur totale des biens et services finaux produits sur le territoire d\'un pays au cours d\'une période donnée (généralement un an). C\'est l\'indicateur le plus utilise pour mesurer la richesse nationale et la croissance économique.',
-    relatedModules: ['multiplicateur-keynesien', 'ad-as', 'carré-magique-kaldor', 'is-lm'],
+      'Valeur totale des biens et services finaux produits sur le territoire d\'un pays au cours d\'une période donnée (généralement un an). C\'est l\'indicateur le plus utilisé pour mesurer la richesse nationale et la croissance économique.',
+    relatedModules: ['multiplicateur-keynesien', 'ad-as', 'carre-magique-kaldor', 'is-lm'],
     category: 'Macroéconomie',
   },
   {
     term: 'Inflation',
     definition:
       'Hausse généralisée et durable du niveau général des prix. Elle réduit le pouvoir d\'achat de la monnaie. On la mesure généralement par l\'indice des prix à la consommation (IPC).',
-    relatedModules: ['courbe-de-phillips', 'carré-magique-kaldor', 'ad-as', 'création-monétaire'],
+    relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'ad-as', 'creation-monetaire'],
     category: 'Macroéconomie',
   },
   {
     term: 'Chômage',
     definition:
       'Situation d\'une personne en age de travailler, sans emploi, disponible et en recherche active d\'emploi. Le taux de chômage est le rapport entre le nombre de chômeurs et la population active.',
-    relatedModules: ['courbe-de-phillips', 'carré-magique-kaldor', 'ad-as'],
+    relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'ad-as'],
     category: 'Macroéconomie',
   },
   {
     term: 'Taux d\'intérêt',
     definition:
       'Prix de l\'emprunt ou rémunération de l\'épargne, exprimé en pourcentage du capital. Le taux directeur fixe par la banque centrale influence l\'ensemble des taux de l\'économie.',
-    relatedModules: ['is-lm', 'création-monétaire', 'multiplicateur-keynesien'],
+    relatedModules: ['is-lm', 'creation-monetaire', 'multiplicateur-keynesien'],
     category: 'Monnaie et finance',
   },
   {
     term: 'Politique monétaire',
     definition:
-      'Ensemble des actions de la banque centrale visant a réguler la quantité de monnaie en circulation et le niveau des taux d\'intérêt. Elle peut etre expansionniste (baisse des taux) ou restrictive (hausse des taux).',
-    relatedModules: ['is-lm', 'création-monétaire', 'courbe-de-phillips', 'ad-as'],
+      'Ensemble des actions de la banque centrale visant a réguler la quantité de monnaie en circulation et le niveau des taux d\'intérêt. Elle peut être expansionniste (baisse des taux) ou restrictive (hausse des taux).',
+    relatedModules: ['is-lm', 'creation-monetaire', 'courbe-de-phillips', 'ad-as'],
     category: 'Monnaie et finance',
   },
   {
     term: 'Politique budgétaire',
     definition:
-      'Utilisation du budget de l\'État (dépenses publiques et impots) pour influencer l\'activité économique. Une politique expansionniste augmente les dépenses ou baisse les impots, une politique restrictive fait l\'inverse.',
+      'Utilisation du budget de l\'État (dépenses publiques et impôts) pour influencer l\'activité économique. Une politique expansionniste augmente les dépenses ou baisse les impôts, une politique restrictive fait l\'inverse.',
     relatedModules: ['is-lm', 'multiplicateur-keynesien', 'courbe-de-laffer', 'ad-as'],
     category: 'Politique économique',
   },
   {
     term: 'Multiplicateur',
     definition:
-      'Mécanisme par lequel une variation initiale de dépenses entraîne une variation plus que proportionnelle du revenu national. Le multiplicateur keynesien depend de la propension marginale à consommer.',
+      'Mécanisme par lequel une variation initiale de dépenses entraîne une variation plus que proportionnelle du revenu national. Le multiplicateur keynésien dépend de la propension marginale à consommer.',
     relatedModules: ['multiplicateur-keynesien', 'is-lm'],
     category: 'Macroéconomie',
   },
   {
     term: 'Élasticité',
     definition:
-      'Mesure de la sensibilite d\'une variable par rapport à une autre. L\'élasticité-prix de la demande mesure la variation en pourcentage de la quantité demandee en réponse à une variation de 1 % du prix.',
-    relatedModules: ['élasticité-prix', 'offre-et-demande', 'courbe-de-laffer'],
+      'Mesure de la sensibilité d\'une variable par rapport à une autre. L\'élasticité-prix de la demande mesure la variation en pourcentage de la quantité demandée en réponse à une variation de 1 % du prix.',
+    relatedModules: ['elasticite-prix', 'offre-et-demande', 'courbe-de-laffer'],
     category: 'Microéconomie',
   },
   {
     term: 'Équilibre de marché',
     definition:
-      'Situation ou la quantité offerte égale la quantité demandee. Le prix d\'équilibre est celui qui "vide" le marché : aucun agent n\'a intérêt a modifier son comportement.',
+      'Situation où la quantité offerte égale la quantité demandée. Le prix d\'équilibre est celui qui "vide" le marché : aucun agent n\'a intérêt a modifier son comportement.',
     relatedModules: ['offre-et-demande', 'ad-as'],
     category: 'Microéconomie',
   },
   {
-    term: 'Offre agregee',
+    term: 'Offre agrégée',
     definition:
       'Quantité totale de biens et services que l\'ensemble des entreprises d\'une économie sont disposées à produire pour chaque niveau de prix. A court terme, la courbe AS est croissante ; à long terme, elle est verticale au niveau du PIB potentiel.',
     relatedModules: ['ad-as'],
     category: 'Macroéconomie',
   },
   {
-    term: 'Demande agregee',
+    term: 'Demande agrégée',
     definition:
-      'Quantité totale de biens et services demandes dans une économie pour chaque niveau de prix. Elle comprend la consommation, l\'investissement, les dépenses publiques et les exportations nettes. La courbe AD est décroissante.',
+      'Quantité totale de biens et services demandés dans une économie pour chaque niveau de prix. Elle comprend la consommation, l\'investissement, les dépenses publiques et les exportations nettes. La courbe AD est décroissante.',
     relatedModules: ['ad-as', 'is-lm', 'multiplicateur-keynesien'],
     category: 'Macroéconomie',
   },
   {
     term: 'Modèle IS-LM',
     definition:
-      'Modèle macroéconomique de Hicks-Hansen representant l\'équilibre simultane sur le marché des biens (courbe IS) et le marché de la monnaie (courbe LM). Il détermine le revenu national et le taux d\'intérêt d\'équilibre.',
+      'Modèle macroéconomique de Hicks-Hansen représentant l\'équilibre simultané sur le marché des biens (courbe IS) et le marché de la monnaie (courbe LM). Il détermine le revenu national et le taux d\'intérêt d\'équilibre.',
     relatedModules: ['is-lm'],
     category: 'Macroéconomie',
   },
@@ -121,28 +121,28 @@ export const glossary: GlossaryTerm[] = [
   {
     term: 'Masse monétaire',
     definition:
-      'Quantité totale de monnaie en circulation dans une économie. On distingue M1 (billets, pieces, dépôts a vue), M2 (M1 + dépôts a terme < 2 ans) et M3 (M2 + titres négociables à court terme).',
-    relatedModules: ['création-monétaire', 'is-lm'],
+      'Quantité totale de monnaie en circulation dans une économie. On distingue M1 (billets, pièces, dépôts a vue), M2 (M1 + dépôts a terme < 2 ans) et M3 (M2 + titres négociables à court terme).',
+    relatedModules: ['creation-monetaire', 'is-lm'],
     category: 'Monnaie et finance',
   },
   {
-    term: 'Reserve obligatoire',
+    term: 'Réserve obligatoire',
     definition:
-      'Fraction des dépôts que les banques commerciales sont tenues de conserver aupres de la banque centrale. C\'est un instrument de politique monétaire qui limite la création de monnaie par le credit.',
-    relatedModules: ['création-monétaire'],
+      'Fraction des dépôts que les banques commerciales sont tenues de conserver auprès de la banque centrale. C\'est un instrument de politique monétaire qui limite la création de monnaie par le crédit.',
+    relatedModules: ['creation-monetaire'],
     category: 'Monnaie et finance',
   },
   {
     term: 'Effet d\'éviction',
     definition:
-      'Phenomene par lequel une hausse des dépenses publiques provoque une hausse du taux d\'intérêt, qui réduit l\'investissement privé. Dans le modèle IS-LM, l\'effet d\'éviction est total dans le cas classique et nul en trappe a liquidite.',
+      'Phénomène par lequel une hausse des dépenses publiques provoque une hausse du taux d\'intérêt, qui réduit l\'investissement privé. Dans le modèle IS-LM, l\'effet d\'éviction est total dans le cas classique et nul en trappe a liquidité.',
     relatedModules: ['is-lm', 'multiplicateur-keynesien'],
     category: 'Macroéconomie',
   },
   {
-    term: 'Externalite',
+    term: 'Externalité',
     definition:
-      'Effet d\'une activité économique sur un tiers non implique dans la transaction. La pollution est une externalite négative ; la vaccination une externalite positive.',
+      'Effet d\'une activité économique sur un tiers non impliqué dans la transaction. La pollution est une externalité négative ; la vaccination une externalité positive.',
     relatedModules: ['offre-et-demande', 'externalites'],
     category: 'Microéconomie',
   },
@@ -164,62 +164,62 @@ export const glossary: GlossaryTerm[] = [
     term: 'Coût marginal',
     definition:
       'Coût supplémentaire engendré par la production d\'une unite additionnelle d\'un bien. En concurrence parfaite, les entreprises fixent leur prix au niveau du coût marginal.',
-    relatedModules: ['offre-et-demande', 'élasticité-prix'],
+    relatedModules: ['offre-et-demande', 'elasticite-prix'],
     category: 'Microéconomie',
   },
   {
     term: 'Utilite marginale',
     definition:
       'Satisfaction supplémentaire procurée par la consommation d\'une unite additionnelle d\'un bien. L\'utilite marginale est généralement décroissante : chaque unite supplémentaire apporte moins de satisfaction que la précédente.',
-    relatedModules: ['offre-et-demande', 'élasticité-prix'],
+    relatedModules: ['offre-et-demande', 'elasticite-prix'],
     category: 'Microéconomie',
   },
   {
     term: 'Surplus du consommateur',
     definition:
       'Difference entre le prix maximum qu\'un consommateur est disposé à payer et le prix qu\'il paie effectivement. Graphiquement, c\'est l\'aire entre la courbe de demande et la ligne de prix, au-dessus du prix d\'équilibre.',
-    relatedModules: ['offre-et-demande', 'élasticité-prix'],
+    relatedModules: ['offre-et-demande', 'elasticite-prix'],
     category: 'Microéconomie',
   },
   {
-    term: 'Perte seche (deadweight loss)',
+    term: 'Perte sèche (deadweight loss)',
     definition:
-      'Perte de bien-etre économique qui n\'est récupérée par aucun agent, résultant d\'une distorsion du marché (taxe, monopole, prix plancher ou plafond).',
+      'Perte de bien-être économique qui n\'est récupérée par aucun agent, résultant d\'une distorsion du marché (taxe, monopole, prix plancher ou plafond).',
     relatedModules: ['offre-et-demande', 'courbe-de-laffer', 'concurrence-monopole', 'externalites'],
     category: 'Microéconomie',
   },
   {
     term: 'Stagflation',
     definition:
-      'Situation combinant stagnation économique (faible croissance, chômage élevé) et inflation élevée. Observée dans les années 1970 après les chocs petroliers, elle contredit la courbe de Phillips simple.',
-    relatedModules: ['courbe-de-phillips', 'ad-as', 'carré-magique-kaldor'],
+      'Situation combinant stagnation économique (faible croissance, chômage élevé) et inflation élevée. Observée dans les années 1970 après les chocs pétroliers, elle contredit la courbe de Phillips simple.',
+    relatedModules: ['courbe-de-phillips', 'ad-as', 'carre-magique-kaldor'],
     category: 'Macroéconomie',
   },
   {
-    term: 'Trappe a liquidite',
+    term: 'Trappe a liquidité',
     definition:
-      'Situation ou le taux d\'intérêt est si bas que la politique monétaire devient inefficace : les agents preferent conserver la monnaie plutot que d\'acheter des obligations. Théorisée par Keynes, cette situation a été observée au Japon dans les années 1990 et en zone euro après 2014.',
-    relatedModules: ['is-lm', 'création-monétaire'],
+      'Situation où le taux d\'intérêt est si bas que la politique monétaire devient inefficace : les agents préfèrent conserver la monnaie plutôt que d\'acheter des obligations. Théorisée par Keynes, cette situation a été observée au Japon dans les années 1990 et en zone euro après 2014.',
+    relatedModules: ['is-lm', 'creation-monetaire'],
     category: 'Monnaie et finance',
   },
   {
     term: 'Propension marginale à consommer',
     definition:
-      'Part de chaque euro de revenu supplémentaire qui est consacree à la consommation (le reste etant épargne). Si la PMC est de 0,8, chaque euro de revenu supplémentaire génère 80 centimes de consommation. Elle détermine la valeur du multiplicateur keynesien.',
+      'Part de chaque euro de revenu supplémentaire qui est consacrée à la consommation (le reste étant épargne). Si la PMC est de 0,8, chaque euro de revenu supplémentaire génère 80 centimes de consommation. Elle détermine la valeur du multiplicateur keynésien.',
     relatedModules: ['multiplicateur-keynesien', 'is-lm'],
     category: 'Macroéconomie',
   },
   {
     term: 'Assiette fiscale',
     definition:
-      'Base sur laquelle est calculé l\'impot. Pour l\'impot sur le revenu, c\'est le revenu imposable. La courbe de Laffer montre que l\'assiette fiscale peut se réduire si le taux d\'imposition est trop élevé (désincitation, évasion).',
+      'Base sur laquelle est calculé l\'impôt. Pour l\'impôt sur le revenu, c\'est le revenu imposable. La courbe de Laffer montre que l\'assiette fiscale peut se réduire si le taux d\'imposition est trop élevé (désincitation, évasion).',
     relatedModules: ['courbe-de-laffer'],
     category: 'Fiscalité',
   },
   {
     term: 'Courbe de Laffer',
     definition:
-      'Relation en cloche entre le taux d\'imposition et les recettes fiscales. A un taux de 0 % et de 100 %, les recettes sont nulles. Il existe un taux optimal qui maximisé les recettes. Au-dela, toute hausse d\'impot réduit les recettes.',
+      'Relation en cloche entre le taux d\'imposition et les recettes fiscales. A un taux de 0 % et de 100 %, les recettes sont nulles. Il existe un taux optimal qui maximisé les recettes. Au-dela, toute hausse d\'impôt réduit les recettes.',
     relatedModules: ['courbe-de-laffer'],
     category: 'Fiscalité',
   },
@@ -227,32 +227,32 @@ export const glossary: GlossaryTerm[] = [
     term: 'Carré magique de Kaldor',
     definition:
       'Représentation graphique sur quatre axes des quatre grands objectifs de la politique économique : croissance (PIB), plein emploi (chômage bas), stabilité des prix (inflation faible) et équilibre exterieur (balance commerciale). Plus le quadrilatere est grand, meilleure est la performance.',
-    relatedModules: ['carré-magique-kaldor'],
+    relatedModules: ['carre-magique-kaldor'],
     category: 'Macroéconomie',
   },
   {
     term: 'Balance commerciale',
     definition:
       'Difference entre la valeur des exportations et des importations de biens et services d\'un pays. Un excédent signifie que le pays exporte plus qu\'il n\'importe. Un déficit signifie l\'inverse.',
-    relatedModules: ['carré-magique-kaldor'],
+    relatedModules: ['carre-magique-kaldor'],
     category: 'Économie internationale',
   },
   {
-    term: 'Multiplicateur de credit',
+    term: 'Multiplicateur de crédit',
     definition:
-      'Mécanisme par lequel le système bancaire crée de la monnaie scripturale à partir d\'un dépôt initial. Si le taux de reserves obligatoires est de 10 %, un dépôt de 100 euros peut theoriquement générer 1 000 euros de monnaie au total.',
-    relatedModules: ['création-monétaire'],
+      'Mécanisme par lequel le système bancaire crée de la monnaie scripturale à partir d\'un dépôt initial. Si le taux de réserves obligatoires est de 10 %, un dépôt de 100 euros peut theoriquement générer 1 000 euros de monnaie au total.',
+    relatedModules: ['creation-monetaire'],
     category: 'Monnaie et finance',
   },
   {
     term: 'Déflation',
     definition:
       'Baisse généralisée et durable du niveau général des prix. Elle peut provoquer un cercle vicieux : les agents reportent leurs achats en anticipant des prix plus bas, ce qui réduit la demande et accentue la baisse des prix.',
-    relatedModules: ['courbe-de-phillips', 'ad-as', 'création-monétaire'],
+    relatedModules: ['courbe-de-phillips', 'ad-as', 'creation-monetaire'],
     category: 'Macroéconomie',
   },
   {
-    term: 'Frontiere des possibilites de production (FPP)',
+    term: 'Frontière des possibilités de production (FPP)',
     definition:
       'La courbe montrant les combinaisons maximales de deux biens qu\'une économie peut produire avec ses ressources disponibles.',
     relatedModules: ['frontiere-possibilites-production'],
@@ -275,7 +275,7 @@ export const glossary: GlossaryTerm[] = [
   {
     term: 'Taxe pigouvienne',
     definition:
-      'Taxe visant a corriger une externalite négative en internalisant le coût social dans le prix de marché.',
+      'Taxe visant a corriger une externalité négative en internalisant le coût social dans le prix de marché.',
     relatedModules: ['externalites'],
     category: 'Microéconomie',
   },
@@ -310,15 +310,15 @@ export const glossary: GlossaryTerm[] = [
   {
     term: 'Impot progressif',
     definition:
-      'Système fiscal ou le taux d\'imposition augmente avec le revenu. L\'impot sur le revenu en France est progressif.',
-    relatedModules: ['fiscalité-redistribution', 'courbe-de-laffer'],
+      'Système fiscal ou le taux d\'imposition augmente avec le revenu. L\'impôt sur le revenu en France est progressif.',
+    relatedModules: ['fiscalite-redistribution', 'courbe-de-laffer'],
     category: 'Fiscalité',
   },
   {
     term: 'Taux effectif d\'imposition',
     definition:
-      'Rapport entre l\'impot effectivement paye et le revenu total, qui differe du taux marginal en raison de la progressivité.',
-    relatedModules: ['fiscalité-redistribution'],
+      'Rapport entre l\'impôt effectivement paye et le revenu total, qui differe du taux marginal en raison de la progressivité.',
+    relatedModules: ['fiscalite-redistribution'],
     category: 'Fiscalité',
   },
   {

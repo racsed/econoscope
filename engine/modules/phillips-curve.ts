@@ -18,17 +18,18 @@ const meta: ModuleMeta = {
   theme: 'macro',
   level: 'intermediate',
   introduction:
-    "La courbe de Phillips illustre la relation inverse entre inflation et chômage. Dans sa version originale (1958), elle suggere un arbitrage stable. La version augmentee des anticipations (Friedman-Phelps) montre que cet arbitrage n'existe qu'a court terme : à long terme, l'économie revient au NAIRU.",
+    "La courbe de Phillips illustre la relation inverse entre inflation et chômage. Dans sa version originale (1958), elle suggere un arbitrage stable. La version augmentée des anticipations (Friedman-Phelps) montre que cet arbitrage n'existe qu'a court terme : à long terme, l'économie revient au NAIRU.",
   limites: [
     "Relation instable dans le temps (stagflation des années 1970)",
     "Le NAIRU est difficile a estimer avec précision",
     "Ignore les chocs d'offre dans la version originale",
     "Les anticipations rationnelles remettent en cause l'arbitrage même à court terme",
   ],
+  economists: ['alban-william-phillips', 'milton-friedman'],
   realite: [
     "La stagflation des années 1970 a invalide la version originale",
     "Le NAIRU de la France est estime autour de 7-8% par l'OCDE",
-    "La courbe de Phillips semble s'etre aplatie depuis les années 2000",
+    "La courbe de Phillips semble s'être aplatie depuis les années 2000",
   ],
 };
 
@@ -79,7 +80,7 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'version_augmentee',
-    label: 'Version augmentee (Friedman-Phelps)',
+    label: 'Version augmentée (Friedman-Phelps)',
     type: 'toggle',
     defaultValue: true,
     tooltip: "Integre les anticipations d'inflation dans la courbe",
@@ -118,7 +119,7 @@ const scenarios: Scenario[] = [
  * Phillips originale: pi = -a * (u - u*) + epsilon
  *   where a is the slope coefficient, u* is NAIRU, epsilon is supply shock
  *
- * Phillips augmentee: pi = pi_e - a * (u - u*) + epsilon
+ * Phillips augmentée: pi = pi_e - a * (u - u*) + epsilon
  *   where pi_e is expected inflation
  *
  * We use a = 0.5 as default slope coefficient
@@ -130,9 +131,9 @@ function phillipsCurve(
   nairu: number,
   anticipations: number,
   chocOffre: number,
-  augmentee: boolean
+  augmentée: boolean
 ): number {
-  const base = augmentee ? anticipations : 0;
+  const base = augmentée ? anticipations : 0;
   return base - SLOPE_COEFFICIENT * (chômage - nairu) + chocOffre;
 }
 
@@ -274,9 +275,9 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     observation = `La courbe de Phillips originale montre une relation inverse stable : au NAIRU de ${nairu}%, l'inflation serait de ${inflationEquilibre.toFixed(1)}%. Reduire le chômage de 1 point augmenterait l'inflation de ${SLOPE_COEFFICIENT} point.`;
     interpretation = "Cette version suppose que les agents ne forment pas d'anticipations d'inflation. Elle a été remise en cause par la stagflation des années 1970 : l'inflation et le chômage augmentaient simultanément, ce qui était impossible selon la courbe originale.";
     if (nairu > 8) {
-      interpretation += ` Un NAIRU élevé de ${nairu}% suggere des rigidites structurelles du marché du travail (protection de l'emploi, salaire minimum élevé, inadéquation des qualifications). La politique de demande ne peut pas réduire durablement le chômage en dessous de ce seuil.`;
+      interpretation += ` Un NAIRU élevé de ${nairu}% suggere des rigidités structurelles du marché du travail (protection de l'emploi, salaire minimum élevé, inadéquation des qualifications). La politique de demande ne peut pas réduire durablement le chômage en dessous de ce seuil.`;
     } else if (nairu < 4) {
-      interpretation += ` Un NAIRU bas de ${nairu}% indique un marché du travail flexible, ou le chômage frictionnel est le seul irreductible.`;
+      interpretation += ` Un NAIRU bas de ${nairu}% indique un marché du travail flexible, ou le chômage frictionnel est le seul irréductible.`;
     }
   } else {
     observation = `Avec des anticipations d'inflation a ${anticipations}%, la courbe de Phillips de court terme se déplace vers le haut. Au NAIRU (${nairu}%), l'inflation effective est de ${inflationEquilibre.toFixed(1)}%. Chaque point de chômage en dessous du NAIRU ajoute ${SLOPE_COEFFICIENT} point d'inflation.`;

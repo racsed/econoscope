@@ -15,6 +15,7 @@ import { InterpretationBlock } from '@/components/module/InterpretationBlock';
 import { LimitesBlock } from '@/components/module/LimitesBlock';
 import { RealiteBlock } from '@/components/module/RealiteBlock';
 import { DataTable } from '@/components/module/DataTable';
+import { EconomistBlock } from '@/components/module/EconomistBlock';
 import { ScenarioBar } from '@/components/ui/ScenarioBar';
 
 export default function ModulePage() {
@@ -35,7 +36,7 @@ export default function ModulePage() {
           </h1>
           <p className="text-text-secondary mb-8 leading-relaxed">
             Le module &quot;{slug}&quot; n&apos;existe pas encore.
-            Il sera peut-etre disponible prochainement.
+            Il sera peut-être disponible prochainement.
           </p>
           <Link
             href="/explorer"
@@ -104,6 +105,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
       }
       limites={<LimitesBlock limites={meta.limites} themeColor={themeColor} />}
       realite={<RealiteBlock items={meta.realite} themeColor={themeColor} />}
+      economists={meta.economists ? <EconomistBlock economistIds={meta.economists} themeColor={themeColor} /> : undefined}
       dataTable={<DataTable outputs={outputs} themeColor={themeColor} />}
     />
   );

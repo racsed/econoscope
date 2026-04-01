@@ -15,5 +15,6 @@ import './modules/externalities';
 import './modules/competition-monopoly';
 import './modules/exchange-rate';
 import './modules/fiscal-redistribution';
+import './modules/timeline-data';
 
 export { getModule, getAllModules, getModuleSlugs } from './core/registry';

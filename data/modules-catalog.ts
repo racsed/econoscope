@@ -15,11 +15,11 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   {
     slug: 'offre-et-demande',
     title: 'Offre et Demande',
-    subtitle: 'Le mécanisme de base de tout marche',
+    subtitle: 'Le mécanisme de base de tout marché',
     theme: 'micro',
     level: 'accessible',
     description:
-      'Explorez comment les courbes d\'offre et de demande déterminent le prix et la quantité d\'équilibre sur un marché. Simulez des chocs de demande, des hausses de coûts, des taxes et des controles de prix pour comprendre leurs effets sur l\'équilibre.',
+      'Explorez comment les courbes d\'offre et de demande déterminent le prix et la quantité d\'équilibre sur un marché. Simulez des chocs de demande, des hausses de coûts, des taxes et des contrôles de prix pour comprendre leurs effets sur l\'équilibre.',
     icon: 'TrendingUpDown',
     tier: 1,
     available: true,
@@ -27,7 +27,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   {
     slug: 'elasticite-prix',
     title: 'Élasticité-prix',
-    subtitle: 'Mesurer la sensibilite de la demande au prix',
+    subtitle: 'Mesurer la sensibilité de la demande au prix',
     theme: 'micro',
     level: 'accessible',
     description:
@@ -38,7 +38,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   },
   {
     slug: 'multiplicateur-keynesien',
-    title: 'Multiplicateur keynesien',
+    title: 'Multiplicateur keynésien',
     subtitle: 'Comment une dépense initiale se multiplie',
     theme: 'macro',
     level: 'intermediate',
@@ -67,15 +67,15 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
     theme: 'macro',
     level: 'advanced',
     description:
-      'Explorez le modèle fondamental de la macroéconomie keynesienne. Simulez des politiques budgétaires et monétaires pour comprendre comment elles affectent simultanément le taux d\'intérêt et la production.',
+      'Explorez le modèle fondamental de la macroéconomie keynésienne. Simulez des politiques budgétaires et monétaires pour comprendre comment elles affectent simultanément le taux d\'intérêt et la production.',
     icon: 'Crosshair',
     tier: 1,
     available: true,
   },
   {
     slug: 'ad-as',
-    title: 'Offre et Demande agregees (AD-AS)',
-    subtitle: 'Offre et demande agregees',
+    title: 'Offre et Demande agrégées (AD-AS)',
+    subtitle: 'Offre et demande agrégées',
     theme: 'macro',
     level: 'advanced',
     description:
@@ -99,11 +99,11 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   {
     slug: 'courbe-de-laffer',
     title: 'Courbe de Laffer',
-    subtitle: 'Trop d\'impot tue-t-il l\'impot ?',
+    subtitle: 'Trop d\'impôt tue-t-il l\'impôt ?',
     theme: 'fiscal',
     level: 'accessible',
     description:
-      'Explorez la relation entre le taux d\'imposition et les recettes fiscales. Découvrez le point au-dela duquel augmenter les impots réduit paradoxalement les recettes, et comprenez les debats autour de la fiscalité optimale.',
+      'Explorez la relation entre le taux d\'imposition et les recettes fiscales. Découvrez le point au-dela duquel augmenter les impôts réduit paradoxalement les recettes, et comprenez les debats autour de la fiscalité optimale.',
     icon: 'Mountain',
     tier: 1,
     available: true,
@@ -127,8 +127,20 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
     theme: 'monetary',
     level: 'intermediate',
     description:
-      'Comprenez le mécanisme du multiplicateur de credit et le role des reserves obligatoires. Simulez le processus par lequel les banques commerciales créent de la monnaie scripturale à partir d\'un dépôt initial.',
+      'Comprenez le mécanisme du multiplicateur de crédit et le rôle des réserves obligatoires. Simulez le processus par lequel les banques commerciales créent de la monnaie scripturale à partir d\'un dépôt initial.',
     icon: 'Banknote',
+    tier: 1,
+    available: true,
+  },
+  {
+    slug: 'donnees-historiques',
+    title: 'Donnees historiques de la France',
+    subtitle: 'Visualisez les grands indicateurs economiques depuis 1960',
+    theme: 'macro',
+    level: 'accessible',
+    description:
+      "Explorez l'evolution des principaux indicateurs macroeconomiques de la France depuis 1960 : croissance du PIB, inflation, chomage et dette publique. Voyagez dans le temps des Trente Glorieuses a aujourd'hui pour comprendre les grands cycles economiques.",
+    icon: 'Clock',
     tier: 1,
     available: true,
   },
@@ -136,12 +148,12 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   // ── Tier 2 - A venir ──────────────────────────────────────────────────
   {
     slug: 'frontiere-possibilites-production',
-    title: 'Frontiere des possibilites de production',
+    title: 'Frontière des possibilités de production',
     subtitle: 'Les choix sous contrainte de ressources',
     theme: 'micro',
     level: 'accessible',
     description:
-      'Visualisez les arbitrages entre deux biens lorsque les ressources sont limitees. Comprenez les coûts d\'opportunité et l\'efficacité productive.',
+      'Visualisez les arbitrages entre deux biens lorsque les ressources sont limitées. Comprenez les coûts d\'opportunité et l\'efficacité productive.',
     icon: 'Maximize2',
     tier: 2,
     available: true,
@@ -177,7 +189,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
     theme: 'micro',
     level: 'intermediate',
     description:
-      'Comparez les équilibres en concurrence parfaite et en monopole. Mesurez la perte seche et comprenez les politiques de régulation de la concurrence.',
+      'Comparez les équilibres en concurrence parfaite et en monopole. Mesurez la perte sèche et comprenez les politiques de régulation de la concurrence.',
     icon: 'Scale',
     tier: 2,
     available: true,
@@ -197,7 +209,7 @@ export const modulesCatalog: ModuleCatalogEntry[] = [
   {
     slug: 'fiscalite-redistribution',
     title: 'Fiscalité et redistribution',
-    subtitle: 'L\'impot comme outil de justice sociale',
+    subtitle: 'L\'impôt comme outil de justice sociale',
     theme: 'fiscal',
     level: 'intermediate',
     description:

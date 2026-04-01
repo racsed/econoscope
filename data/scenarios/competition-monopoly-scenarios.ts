@@ -20,14 +20,14 @@ export const competitionMonopolyScenarios: CompetitionMonopolyScenario[] = [
     id: 'concurrence-pure',
     title: 'Concurrence pure et parfaite',
     description:
-      'Marché atomise ou de nombreuses entreprises identiques produisent un bien homogène.',
+      'Marché atomisé ou de nombreuses entreprises identiques produisent un bien homogène.',
     demandeIntercept: 100,
     penteDemande: 1,
     coutMarginal: 20,
     coutFixe: 0,
     mode: 'concurrence',
     explanation:
-      'En concurrence parfaite, aucune entreprise n\'a de pouvoir de marché. Le prix s\'etablit au coût marginal (20 EUR). La quantité échangée est maximale (80 unites). Le surplus du consommateur est maximal et il n\'y a aucune perte seche. C\'est l\'équilibre de référence en microéconomie.',
+      'En concurrence parfaite, aucune entreprise n\'a de pouvoir de marché. Le prix s\'etablit au coût marginal (20 EUR). La quantité échangée est maximale (80 unites). Le surplus du consommateur est maximal et il n\'y a aucune perte sèche. C\'est l\'équilibre de référence en microéconomie.',
   },
   {
     id: 'monopole-classique',
@@ -40,13 +40,13 @@ export const competitionMonopolyScenarios: CompetitionMonopolyScenario[] = [
     coutFixe: 100,
     mode: 'monopole',
     explanation:
-      'Le monopoleur egalise sa recette marginale au coût marginal, produisant 40 unites à un prix de 60 EUR. Le profit est de (60-20)*40 - 100 = 1 500 EUR. La perte seche (triangle de Harberger) s\'élevé a 800 EUR : c\'est la valeur des échanges mutuellement avantageux qui n\'ont pas lieu.',
+      'Le monopoleur egalise sa recette marginale au coût marginal, produisant 40 unites à un prix de 60 EUR. Le profit est de (60-20)*40 - 100 = 1 500 EUR. La perte sèche (triangle de Harberger) s\'élevé a 800 EUR : c\'est la valeur des échanges mutuellement avantageux qui n\'ont pas lieu.',
   },
   {
     id: 'monopole-naturel',
     title: 'Monopole naturel',
     description:
-      'Coûts fixes tres élevés rendant inefficace la presence de plusieurs producteurs.',
+      'Coûts fixes très élevés rendant inefficace la presence de plusieurs producteurs.',
     demandeIntercept: 100,
     penteDemande: 1,
     coutMarginal: 10,
@@ -72,14 +72,14 @@ export const competitionMonopolyScenarios: CompetitionMonopolyScenario[] = [
     id: 'quasi-concurrence',
     title: 'Quasi-concurrence (marché contestable)',
     description:
-      'Demande tres élastique qui limite le pouvoir du monopoleur.',
+      'Demande très élastique qui limite le pouvoir du monopoleur.',
     demandeIntercept: 60,
     penteDemande: 0.5,
     coutMarginal: 20,
     coutFixe: 50,
     mode: 'monopole',
     explanation:
-      'Quand la demande est tres élastique (pente faible), les consommateurs sont tres sensibles au prix. Le monopoleur ne peut augmenter significativement son prix sans perdre l\'essentiel de sa clientele. C\'est la théorie des marchés contestables de Baumol : la menace d\'entree suffit a discipliner le monopoleur.',
+      'Quand la demande est très élastique (pente faible), les consommateurs sont très sensibles au prix. Le monopoleur ne peut augmenter significativement son prix sans perdre l\'essentiel de sa clientele. C\'est la théorie des marchés contestables de Baumol : la menace d\'entree suffit a discipliner le monopoleur.',
   },
 ];
 

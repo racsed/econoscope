@@ -14,22 +14,23 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'courbe-de-laffer',
   title: 'Courbe de Laffer',
-  subtitle: "Trop d'impot tue l'impot",
+  subtitle: "Trop d'impôt tue l'impôt",
   theme: 'fiscal',
   level: 'accessible',
   introduction:
     "La courbe de Laffer illustre la relation entre le taux d'imposition et les recettes fiscales. A taux 0%, les recettes sont nulles. A taux 100%, personne ne travaille, les recettes sont nulles aussi. Il existe donc un taux optimal qui maximisé les recettes. La position exacte de ce sommet fait l'objet de vifs debats.",
   limites: [
-    "La forme exacte de la courbe est inconnue et depend de nombreux facteurs",
-    "Le taux optimal varie selon le type d'impot et le contexte",
+    "La forme exacte de la courbe est inconnue et dépend de nombreux facteurs",
+    "Le taux optimal varie selon le type d'impôt et le contexte",
     "Ignore les effets redistributifs et les biens publics",
     "L'elasticite de l'assiette fiscale est difficile a estimer",
   ],
+  economists: ['arthur-laffer', 'david-ricardo'],
   realite: [
     "Le taux marginal supérieur de l'IR en France est passe de 75% (2012) a 45%",
     "Les études empiriques situent le sommet de la courbe entre 50% et 70%",
-    "La taxe a 75% de 2012 a rapporte tres peu : effet Laffer visible",
-    "L'impot sur les sociétés a baisse mondialement (course fiscale)",
+    "La taxe a 75% de 2012 a rapporte très peu : effet Laffer visible",
+    "L'impôt sur les sociétés a baisse mondialement (course fiscale)",
   ],
 };
 
@@ -75,7 +76,7 @@ const scenarios: Scenario[] = [
   {
     id: 'elasticite_forte',
     label: 'Élasticité forte (2.0)',
-    description: "Revenu tres sensible, sommet bas",
+    description: "Revenu très sensible, sommet bas",
     values: { taux_imposition: 30, elasticite_assiette: 2 },
   },
   {
@@ -205,23 +206,23 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     interpretation = `L'économie se situe sur le versant gauche (ascendant) de la courbe de Laffer : une hausse du taux de ${écart.toFixed(0)} points augmenterait les recettes de ${manqueAGagner.toFixed(0)}. L'effet-taux (plus de recettes par unite) domine l'effet-assiette (réduction de l'activité).`;
   } else if (positionRelative === 'droite') {
     const écart = taux - tauxOptimal;
-    interpretation = `L'économie se situe sur le versant droit (descendant) de la courbe de Laffer : \"trop d'impot tue l'impot\". Une baisse du taux de ${écart.toFixed(0)} points augmenterait paradoxalement les recettes de ${manqueAGagner.toFixed(0)}. L'effet-assiette (retrait de l'activité) domine l'effet-taux.`;
+    interpretation = `L'économie se situe sur le versant droit (descendant) de la courbe de Laffer : \"trop d'impôt tue l'impôt\". Une baisse du taux de ${écart.toFixed(0)} points augmenterait paradoxalement les recettes de ${manqueAGagner.toFixed(0)}. L'effet-assiette (retrait de l'activité) domine l'effet-taux.`;
   } else {
     interpretation = "L'économie se situe exactement au sommet de la courbe de Laffer : les recettes fiscales sont maximisees. Toute variation du taux réduirait les recettes.";
   }
 
   if (elasticite > 1.5) {
-    interpretation += ` Avec une elasticite élevée (${elasticite.toFixed(1)}), les agents économiques sont tres reactifs à la fiscalité (évasion, delocalisation, réduction de l'effort de travail) : le sommet de la courbe est relativement bas (${tauxOptimal.toFixed(0)}%). Cela correspond à des revenus tres mobiles (capital financier, hauts salaires).`;
+    interpretation += ` Avec une elasticite élevée (${elasticite.toFixed(1)}), les agents économiques sont très reactifs à la fiscalité (évasion, delocalisation, réduction de l'effort de travail) : le sommet de la courbe est relativement bas (${tauxOptimal.toFixed(0)}%). Cela correspond à des revenus très mobiles (capital financier, hauts salaires).`;
   } else if (elasticite < 0.5) {
     interpretation += ` Avec une elasticite faible (${elasticite.toFixed(1)}), les agents économiques sont peu reactifs à la fiscalité : le sommet de la courbe est élevé (${tauxOptimal.toFixed(0)}%), laissant une marge de manoeuvre fiscale importante. Cela correspond à des revenus peu mobiles (salaires moyens, immobilier).`;
   } else {
-    interpretation += ` Avec une elasticite moyenne (${elasticite.toFixed(1)}), le sommet se situe a ${tauxOptimal.toFixed(0)}%. C'est la valeur souvent citee dans les estimations empiriques pour l'impot sur le revenu des classes moyennes.`;
+    interpretation += ` Avec une elasticite moyenne (${elasticite.toFixed(1)}), le sommet se situe a ${tauxOptimal.toFixed(0)}%. C'est la valeur souvent citee dans les estimations empiriques pour l'impôt sur le revenu des classes moyennes.`;
   }
 
   if (taux > 80) {
-    interpretation += ` Un taux de ${taux}% est quasi confiscatoire : le revenu imposable s'effondre a ${revenuImposable.toFixed(0)} (contre ${Y0} sans impot). L'assiette fiscale rétrécit tellement que les recettes chutent malgre le taux élevé.`;
+    interpretation += ` Un taux de ${taux}% est quasi confiscatoire : le revenu imposable s'effondre a ${revenuImposable.toFixed(0)} (contre ${Y0} sans impôt). L'assiette fiscale rétrécit tellement que les recettes chutent malgre le taux élevé.`;
   } else if (taux < 10 && taux > 0) {
-    interpretation += ` Un taux de ${taux}% est tres faible : l'assiette fiscale est quasi intacte (${revenuImposable.toFixed(0)}) mais les recettes sont modestes car le taux est bas. Il y à une large marge avant d'atteindre le sommet.`;
+    interpretation += ` Un taux de ${taux}% est très faible : l'assiette fiscale est quasi intacte (${revenuImposable.toFixed(0)}) mais les recettes sont modestes car le taux est bas. Il y à une large marge avant d'atteindre le sommet.`;
   }
 
   return {

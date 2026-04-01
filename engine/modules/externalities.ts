@@ -25,6 +25,7 @@ const meta: ModuleMeta = {
     "Coûts marginaux supposés linéaires",
     "Ne tient pas compte des effets dynamiques et comportementaux",
   ],
+  economists: ['arthur-cecil-pigou'],
   realite: [
     "La taxe carbone européenne (EU ETS) est l'exemple le plus vaste de taxe pigouvienne",
     "Les subventions aux vaccins corrigent une externalité positive (immunité collective)",

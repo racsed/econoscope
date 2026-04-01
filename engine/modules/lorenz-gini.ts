@@ -23,8 +23,9 @@ const meta: ModuleMeta = {
     "Ne distingue pas les inégalités en haut et en bas de la distribution",
     "Deux distributions différentes peuvent avoir le même Gini",
     "Ne tient pas compte des transferts en nature (sante, education)",
-    "Sensible à la definition du revenu retenue (avant/après impots)",
+    "Sensible à la definition du revenu retenue (avant/après impôts)",
   ],
+  economists: ['max-lorenz', 'corrado-gini', 'vilfredo-pareto', 'karl-marx', 'thomas-piketty'],
   realite: [
     "Le Gini de la France est d'environ 0.29 (après redistribution), parmi les plus bas de l'OCDE",
     "Les pays scandinaves ont un Gini autour de 0.25, les États-Unis autour de 0.39",
@@ -125,7 +126,7 @@ const scenarios: Scenario[] = [
   {
     id: 'france_apres',
     label: 'France après redistribution',
-    description: "Avec impots progressifs et transferts",
+    description: "Avec impôts progressifs et transferts",
     values: { preset: 'france', d1: 3.5, d2: 5.0, d3: 6.0, d4: 7.0, d5: 8.0, d6: 9.5, d7: 11.0, d8: 13.0, d9: 16.0, d10: 21.0, taux_tranche1: 5, taux_tranche2: 20, taux_tranche3: 35, transferts: 2 },
   },
   {
@@ -337,20 +338,20 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (giniAvant < 0.25) {
-    interpretation = "Cette distribution est relativement égalitaire (Gini < 0.25), comparable aux pays scandinaves (Suede ~0.25, Danemark ~0.26). Ces pays combinent impots élevés, transferts généreux et négociation salariale centralisee pour comprimer les écarts.";
+    interpretation = "Cette distribution est relativement égalitaire (Gini < 0.25), comparable aux pays scandinaves (Suede ~0.25, Danemark ~0.26). Ces pays combinent impôts élevés, transferts généreux et négociation salariale centralisee pour comprimer les écarts.";
   } else if (giniAvant < 0.35) {
     interpretation = "Cette distribution presente des inégalités moderees (Gini entre 0.25 et 0.35), typique des pays européens continentaux. La France se situe autour de 0.29 après redistribution grâce à un système socio-fiscal puissant.";
   } else if (giniAvant < 0.45) {
     interpretation = "Cette distribution presente des inégalités significatives (Gini entre 0.35 et 0.45), comparable aux États-Unis (~0.39). Les écarts de revenus sont marques, avec une concentration importante au sommet de la distribution.";
   } else {
-    interpretation = "Cette distribution est tres inégalitaire (Gini > 0.45), comparable aux pays émergents comme le Bresil (~0.49) ou l'Afrique du Sud (~0.63). Une petite fraction de la population concentre l'essentiel des revenus.";
+    interpretation = "Cette distribution est très inégalitaire (Gini > 0.45), comparable aux pays émergents comme le Bresil (~0.49) ou l'Afrique du Sud (~0.63). Une petite fraction de la population concentre l'essentiel des revenus.";
   }
 
   // Country-specific context for presets
   if (preset === 'france') {
     interpretation += " La distribution française avant redistribution presente des inégalités moderees. Le système fiscal et social (IR progressif, RSA, prime d'activité, aides au logement) réduit le Gini d'environ 45% - un des taux de redistribution les plus élevés de l'OCDE.";
   } else if (preset === 'usa') {
-    interpretation += " La distribution americaine est marquee par de fortes inégalités de revenus primaires et une redistribution plus faible qu'en Europe. Les revenus du capital (tres concentres) et la fiscalité moins progressive expliquent cet écart.";
+    interpretation += " La distribution américaine est marquee par de fortes inégalités de revenus primaires et une redistribution plus faible qu'en Europe. Les revenus du capital (très concentres) et la fiscalité moins progressive expliquent cet écart.";
   } else if (preset === 'bresil') {
     interpretation += " La distribution bresilienne est l'une des plus inegalitaires au monde. L'héritage historique (esclavage, concentration fonciere), un système fiscal peu progressif et des services publics inegalement repartis expliquent cette situation.";
   }
@@ -358,10 +359,10 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (hasRedistribution) {
     const reductionGini = ((giniAvant - giniApres) / giniAvant) * 100;
     observation += ` Après redistribution, le Gini passe a ${giniApres.toFixed(3)} (la courbe de Lorenz après redistribution se rapproche de la diagonale).`;
-    interpretation += ` La redistribution (impots progressifs + transferts forfaitaires de ${transferts}%) réduit le Gini de ${reductionGini.toFixed(1)}%. `;
+    interpretation += ` La redistribution (impôts progressifs + transferts forfaitaires de ${transferts}%) réduit le Gini de ${reductionGini.toFixed(1)}%. `;
 
     if (reductionGini > 30) {
-      interpretation += "L'effet redistributif est tres fort. Le mécanisme est double : les impots progressifs compressent les hauts revenus (redistribution \"par le haut\") et les transferts forfaitaires augmentent proportionnellement plus les bas revenus (redistribution \"par le bas\").";
+      interpretation += "L'effet redistributif est très fort. Le mécanisme est double : les impôts progressifs compressent les hauts revenus (redistribution \"par le haut\") et les transferts forfaitaires augmentent proportionnellement plus les bas revenus (redistribution \"par le bas\").";
     } else if (reductionGini > 15) {
       interpretation += "L'effet redistributif est notable mais les inégalités restent presentes. Pour aller plus loin, il faudrait augmenter les taux des tranches supérieures ou les transferts forfaitaires.";
     } else if (reductionGini > 0) {

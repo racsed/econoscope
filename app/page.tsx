@@ -15,7 +15,7 @@ import { THEME_COLORS, type ThemeType } from '@/lib/constants';
 const featuredSlugs = [
   'offre-et-demande',
   'multiplicateur-keynesien',
-  'carré-magique-kaldor',
+  'carre-magique-kaldor',
 ];
 
 export default function HomePage() {
@@ -159,7 +159,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-3xl font-bold text-center mb-16 text-text-primary"
           >
-            Comment ca marche
+            Comment ca marché
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -168,7 +168,7 @@ export default function HomePage() {
                 icon: SlidersHorizontal,
                 title: 'Choisis un mécanisme',
                 description:
-                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept économique.',
+                  'Offre et demande, multiplicateur keynésien, IS-LM... Chaque module isole un concept économique.',
                 color: '#5B5EF4',
               },
               {

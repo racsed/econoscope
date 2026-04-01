@@ -14,18 +14,19 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'is-lm',
   title: 'Modèle IS-LM',
-  subtitle: "L'équilibre simultane sur les marchés des biens et de la monnaie",
+  subtitle: "L'équilibre simultané sur les marchés des biens et de la monnaie",
   theme: 'macro',
   level: 'advanced',
   introduction:
     "Le modèle IS-LM (Hicks-Hansen, 1937) représente l'équilibre macroéconomique simultanee sur le marché des biens (courbe IS) et le marché monétaire (courbe LM). Il permet d'analyser les effets des politiques budgétaire et monétaire sur le revenu national et le taux d'intérêt.",
   limites: [
-    "Modèle à prix fixes (court terme keynesien)",
+    "Modèle à prix fixes (court terme keynésien)",
     "Ignore le marché du travail et l'offre globale",
     "Économie fermee dans la version de base",
-    "Les courbes sont supposees lineaires",
+    "Les courbes sont supposées linéaires",
     "Ne tient pas compte des anticipations",
   ],
+  economists: ['john-hicks', 'john-maynard-keynes', 'paul-samuelson'],
   realite: [
     "La BCE fixe les taux directeurs, influencant la position de LM",
     "Le plan de relance européen (2020) illustre un déplacement de IS vers la droite",
@@ -111,7 +112,7 @@ const inputs: SimulationInput[] = [
     max: 100,
     step: 1,
     defaultValue: 40,
-    tooltip: "Plus h est grand, plus LM est plate (trappe a liquidite)",
+    tooltip: "Plus h est grand, plus LM est plate (trappe a liquidité)",
     group: 'Politique monétaire',
   },
 ];
@@ -143,8 +144,8 @@ const scenarios: Scenario[] = [
   },
   {
     id: 'trappe_liquidite',
-    label: 'Trappe a liquidite',
-    description: "Sensibilite monétaire tres élevée, LM quasi-plate",
+    label: 'Trappe a liquidité',
+    description: "Sensibilite monétaire très élevée, LM quasi-plate",
     values: { depenses_publiques: 200, taux_imposition: 0.2, investissement_autonome: 200, sensibilite_investissement: 30, offre_monnaie: 800, niveau_prix: 1, sensibilite_monnaie: 95 },
   },
 ];
@@ -342,10 +343,10 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
     // Liquidity trap detection (dynamic: LM slope is K_MONEY/h, very flat when h is high relative to b)
     if (h > 3 * b) {
-      interpretation += ` Avec h = ${h} (bien supérieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidite. La politique monétaire perd en efficacité au profit de la politique budgétaire.`;
+      interpretation += ` Avec h = ${h} (bien supérieur a b = ${b}), LM est quasi-horizontale : on approche la trappe a liquidité. La politique monétaire perd en efficacité au profit de la politique budgétaire.`;
     }
   } else {
-    interpretation = `A l'équilibre, le marché des biens (IS) et le marché monétaire (LM) sont simultanément en équilibre. Le multiplicateur budgétaire effectif (tenant compte de l'éviction) est de ${multiplicateurEffectif.toFixed(2)}, inférieur au multiplicateur keynesien simple de ${multiplicateurIS.toFixed(2)}. Pourquoi cette différence ? Parce que la hausse du revenu augmente la demande de monnaie, ce qui fait monter le taux d'intérêt et freine l'investissement privé : c'est l'effet d'éviction (crowding out).`;
+    interpretation = `A l'équilibre, le marché des biens (IS) et le marché monétaire (LM) sont simultanément en équilibre. Le multiplicateur budgétaire effectif (tenant compte de l'éviction) est de ${multiplicateurEffectif.toFixed(2)}, inférieur au multiplicateur keynésien simple de ${multiplicateurIS.toFixed(2)}. Pourquoi cette différence ? Parce que la hausse du revenu augmente la demande de monnaie, ce qui fait monter le taux d'intérêt et freine l'investissement privé : c'est l'effet d'éviction (crowding out).`;
   }
 
   if (t > 0.4) {
@@ -353,7 +354,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   }
 
   if (b > 60 && h < 20) {
-    interpretation += ` Avec un investissement tres sensible au taux (b = ${b}) et une demande de monnaie peu sensible (h = ${h}), l'effet d'éviction est maximal : toute relance budgétaire fait fortement monter les taux, annulant une grande partie de l'effet sur Y.`;
+    interpretation += ` Avec un investissement très sensible au taux (b = ${b}) et une demande de monnaie peu sensible (h = ${h}), l'effet d'éviction est maximal : toute relance budgétaire fait fortement monter les taux, annulant une grande partie de l'effet sur Y.`;
   }
 
   return {

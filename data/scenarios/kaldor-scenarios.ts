@@ -37,7 +37,7 @@ export const kaldorScenarios: KaldorScenario[] = [
     tradeBalance: 5.5,
     source: 'Destatis, Bundesbank',
     explanation:
-      'L\'Allemagne illustre un profil atypique : un chômage tres bas et un excédent commercial important, mais une récession et une inflation élevée. Le modèle industriel exportateur allemand est fragilise par la hausse des coûts energetiques après la fin du gaz russe bon marche.',
+      'L\'Allemagne illustre un profil atypique : un chômage très bas et un excédent commercial important, mais une récession et une inflation élevée. Le modèle industriel exportateur allemand est fragilise par la hausse des coûts energetiques après la fin du gaz russe bon marché.',
   },
   {
     id: 'france-1973',
@@ -73,7 +73,7 @@ export const kaldorScenarios: KaldorScenario[] = [
     tradeBalance: 2.1,
     source: 'Bank of Japan, Cabinet Office',
     explanation:
-      'Le Japon des années 1990 presente un profil singulier : un chômage faible et un excédent commercial, mais une croissance molle et une inflation nulle voire négative. C\'est le debut de la "trappe a liquidite" japonaise. Le carré semble correct sur deux axes mais révèle une économie en panne.',
+      'Le Japon des années 1990 presente un profil singulier : un chômage faible et un excédent commercial, mais une croissance molle et une inflation nulle voire négative. C\'est le debut de la "trappe a liquidité" japonaise. Le carré semble correct sur deux axes mais révèle une économie en panne.',
   },
   {
     id: 'chine-2019',

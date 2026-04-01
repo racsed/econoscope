@@ -20,6 +20,7 @@ interface ModuleLayoutProps {
   narration: ReactNode;
   limites: ReactNode;
   realite: ReactNode;
+  economists?: ReactNode;
   dataTable?: ReactNode;
   comparison?: ReactNode;
   isProjectionMode?: boolean;
@@ -37,6 +38,7 @@ export function ModuleLayout({
   narration,
   limites,
   realite,
+  economists,
   dataTable,
   comparison,
   isProjectionMode: _isProjectionMode = false,
@@ -164,6 +166,9 @@ export function ModuleLayout({
 
         {/* Realite */}
         <div className="mb-8">{realite}</div>
+
+        {/* Economists */}
+        {economists && <div className="mb-8">{economists}</div>}
 
         {/* Data Table */}
         {dataTable && <div className="mb-8">{dataTable}</div>}

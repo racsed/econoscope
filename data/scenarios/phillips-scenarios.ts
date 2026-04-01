@@ -37,7 +37,7 @@ export const phillipsScenarios: PhillipsScenario[] = [
     title: 'La stagflation des années 1970',
     period: '1970-1982',
     description:
-      'Les chocs petroliers brisent la relation : inflation et chômage augmentent simultanément.',
+      'Les chocs pétroliers brisent la relation : inflation et chômage augmentent simultanément.',
     dataPoints: [
       { year: 1970, unemployment: 4.9, inflation: 5.7 },
       { year: 1971, unemployment: 5.9, inflation: 4.4 },
@@ -55,7 +55,7 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: null,
     explanation:
-      'Les chocs petroliers de 1973 et 1979 ont provoque une stagflation : hausse simultanee de l\'inflation et du chômage. Friedman et Phelps avaient predit ce phénomène en distinguant la courbe de Phillips de court terme (qui se déplace) et l\'absence de compromis à long terme. Les anticipations d\'inflation jouent un role central.',
+      'Les chocs pétroliers de 1973 et 1979 ont provoque une stagflation : hausse simultanee de l\'inflation et du chômage. Friedman et Phelps avaient predit ce phénomène en distinguant la courbe de Phillips de court terme (qui se déplace) et l\'absence de compromis à long terme. Les anticipations d\'inflation jouent un rôle central.',
   },
   {
     id: 'désinflation-volcker',
@@ -97,7 +97,7 @@ export const phillipsScenarios: PhillipsScenario[] = [
     ],
     nairu: 4.0,
     explanation:
-      'Depuis 2010, la relation entre chômage et inflation semble affaiblie, voire inexistante. Le chômage a fortement baisse aux États-Unis sans générer d\'inflation notable -- jusqu\'au choc post-Covid de 2021-2022. Ce retour brutal de l\'inflation relance le debat : la courbe de Phillips n\'est pas morte, mais elle est devenue non lineaire et tres sensible aux chocs d\'offre.',
+      'Depuis 2010, la relation entre chômage et inflation semble affaiblie, voire inexistante. Le chômage a fortement baisse aux États-Unis sans générer d\'inflation notable -- jusqu\'au choc post-Covid de 2021-2022. Ce retour brutal de l\'inflation relance le debat : la courbe de Phillips n\'est pas morte, mais elle est devenue non linéaire et très sensible aux chocs d\'offre.',
   },
 ];
 

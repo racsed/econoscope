@@ -25,6 +25,7 @@ const meta: ModuleMeta = {
     'Ne tient pas compte des externalités',
     'Équilibre partiel : ignore les interactions entre marchés',
   ],
+  economists: ['adam-smith', 'alfred-marshall'],
   realite: [
     "La taxe sur les sodas en France (2012) a réduit la consommation d'environ 3,4%",
     "L'augmentation du SMIC déplace la courbe d'offre de travail",

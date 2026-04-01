@@ -15,13 +15,14 @@ const meta: ModuleMeta = {
   theme: 'macro',
   level: 'intermediate',
   introduction:
-    "Le carré magique de Kaldor (1971) représente graphiquement les quatre objectifs fondamentaux de la politique économique : croissance, plein emploi, stabilité des prix et équilibre exterieur. Plus la surface du quadrilatere est grande, meilleure est la situation économique. On le dit \"magique\" car il est tres difficile d'atteindre les quatre objectifs simultanément.",
+    "Le carré magique de Kaldor (1971) représente graphiquement les quatre objectifs fondamentaux de la politique économique : croissance, plein emploi, stabilité des prix et équilibre exterieur. Plus la surface du quadrilatere est grande, meilleure est la situation économique. On le dit \"magique\" car il est très difficile d'atteindre les quatre objectifs simultanément.",
   limites: [
-    "Ne tient pas compte des inégalités, de l'environnement, du bien-etre",
+    "Ne tient pas compte des inégalités, de l'environnement, du bien-être",
     "Les quatre objectifs ne sont pas independants (courbe de Phillips)",
     "Ponderation implicite égale des quatre objectifs",
     "Donnees annuelles qui masquent les variations infra-annuelles",
   ],
+  economists: ['nicholas-kaldor'],
   realite: [
     "Aucun pays n'a jamais atteint le carré parfait de manière durable",
     "L'Allemagne des années 2010 s'en est approchee (croissance, excédent commercial, chômage bas)",
@@ -102,7 +103,7 @@ const scenarios: Scenario[] = [
   {
     id: 'japon_2023',
     label: 'Japon 2023',
-    description: "Croissance moderee, retour de l'inflation après des décennies",
+    description: "Croissance modérée, retour de l'inflation après des décennies",
     values: { croissance: 1.9, chômage: 2.6, inflation: 3.3, solde_commercial: -1.5 },
   },
   {
@@ -246,7 +247,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     interpretation += " La combinaison chômage bas / inflation élevée illustre l'arbitrage de Phillips : l'économie est en surchauffe, les entreprises se disputent les travailleurs et les coûts grimpent. La banque centrale devrait durcir sa politique monétaire.";
   }
   if (soldeCommercial < -3) {
-    interpretation += ` Le déficit commercial de ${soldeCommercial}% du PIB traduit soit un manque de compétitivité-prix (coûts trop élevés, monnaie trop forte), soit une demande intérieure excessive qui aspire les importations. Ce déficit doit etre finance par des emprunts exterieurs.`;
+    interpretation += ` Le déficit commercial de ${soldeCommercial}% du PIB traduit soit un manque de compétitivité-prix (coûts trop élevés, monnaie trop forte), soit une demande intérieure excessive qui aspire les importations. Ce déficit doit être finance par des emprunts exterieurs.`;
   }
   if (soldeCommercial > 5) {
     interpretation += ` L'excédent commercial de ${soldeCommercial}% du PIB peut refleter une forte compétitivité, mais aussi une demande intérieure trop faible (épargne excessive). Un excédent persistant crée des tensions avec les partenaires commerciaux.`;
@@ -267,7 +268,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     coherenceWarnings.push("Coherent mais fragile : une forte croissance stimule les importations (les ménages consomment plus, y compris des produits étrangers), ce qui creuse naturellement le déficit commercial");
   }
   if (chômage < 3 && croissance < 0) {
-    coherenceWarnings.push("Combinaison incoherente : une récession detruit des emplois et augmente le chômage (loi d'Okun). Un chômage bas avec un PIB en recul est quasi impossible hors contexte demographique exceptionnel");
+    coherenceWarnings.push("Combinaison incoherente : une récession détruit des emplois et augmente le chômage (loi d'Okun). Un chômage bas avec un PIB en recul est quasi impossible hors contexte demographique exceptionnel");
   }
   if (inflation > 10 && croissance > 5) {
     coherenceWarnings.push("Surchauffe : une croissance forte avec une inflation à deux chiffres indique une économie qui dépasse ses capacités productives. Les marchés de matières premières et du travail sont en tension");

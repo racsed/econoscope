@@ -48,7 +48,7 @@ export const islmScenarios: ISLMScenario[] = [
     moneyDemandInterestSensitivity: 100,
     taxRate: 0.2,
     explanation:
-      'L\'augmentation de l\'offre de monnaie déplace la courbe LM vers la droite. Le taux d\'intérêt baisse, ce qui stimule l\'investissement et donc le revenu. La politique monétaire est efficace tant que l\'économie n\'est pas en trappe a liquidite.',
+      'L\'augmentation de l\'offre de monnaie déplace la courbe LM vers la droite. Le taux d\'intérêt baisse, ce qui stimule l\'investissement et donc le revenu. La politique monétaire est efficace tant que l\'économie n\'est pas en trappe a liquidité.',
   },
   {
     id: 'policy-mix',
@@ -66,8 +66,8 @@ export const islmScenarios: ISLMScenario[] = [
       'En combinant politique budgétaire et monétaire expansionnistes, le revenu augmente fortement. La politique monétaire accommodante limite la hausse du taux d\'intérêt, réduisant l\'effet d\'éviction. C\'est le policy mix ideal pour une relance.',
   },
   {
-    id: 'trappe-liquidite',
-    title: 'Trappe a liquidite',
+    id: 'trappe-liquidité',
+    title: 'Trappe a liquidité',
     description:
       'Le taux d\'intérêt est si bas que la politique monétaire devient inefficace.',
     autonomousSpending: 180,
@@ -78,13 +78,13 @@ export const islmScenarios: ISLMScenario[] = [
     moneyDemandInterestSensitivity: 5000,
     taxRate: 0.2,
     explanation:
-      'Quand la courbe LM est quasi horizontale (sensibilite tres élevée de la demande de monnaie au taux d\'intérêt), toute injection de monnaie supplémentaire est absorbee sans baisser le taux. Seule la politique budgétaire reste efficace. C\'est la situation decrite par Keynes lors de la Grande Depression, et revisitee après 2008.',
+      'Quand la courbe LM est quasi horizontale (sensibilité très élevée de la demande de monnaie au taux d\'intérêt), toute injection de monnaie supplémentaire est absorbée sans baisser le taux. Seule la politique budgétaire reste efficace. C\'est la situation décrite par Keynes lors de la Grande Dépression, et revisitée après 2008.',
   },
   {
     id: 'cas-classique',
     title: 'Cas classique',
     description:
-      'La demande de monnaie depend uniquement du revenu, pas du taux d\'intérêt.',
+      'La demande de monnaie dépend uniquement du revenu, pas du taux d\'intérêt.',
     autonomousSpending: 200,
     mpc: 0.75,
     investmentSensitivity: 50,
@@ -93,7 +93,7 @@ export const islmScenarios: ISLMScenario[] = [
     moneyDemandInterestSensitivity: 5,
     taxRate: 0.2,
     explanation:
-      'Quand la courbe LM est quasi verticale (faible sensibilite au taux d\'intérêt), la politique budgétaire est totalement evincee : toute hausse des dépenses publiques provoque une hausse du taux d\'intérêt qui réduit d\'autant l\'investissement privé. Seule la politique monétaire est efficace.',
+      'Quand la courbe LM est quasi verticale (faible sensibilité au taux d\'intérêt), la politique budgétaire est totalement évincée : toute hausse des dépenses publiques provoque une hausse du taux d\'intérêt qui réduit d\'autant l\'investissement privé. Seule la politique monétaire est efficace.',
   },
 ];
 

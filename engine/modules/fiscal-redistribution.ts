@@ -18,13 +18,14 @@ const meta: ModuleMeta = {
   theme: 'fiscal',
   level: 'intermediate',
   introduction:
-    "Ce module compare les effets de différents barèmes fiscaux sur la distribution des revenus. L'impot progressif prélevé davantage sur les hauts revenus, tandis qu'un impot proportionnel (flat tax) applique le même taux a tous. En combinant prélèvements et transferts sociaux, on mesure l'effet redistributif à travers le coefficient de Gini avant et après intervention publique.",
+    "Ce module compare les effets de différents barèmes fiscaux sur la distribution des revenus. L'impôt progressif prélevé davantage sur les hauts revenus, tandis qu'un impôt proportionnel (flat tax) applique le même taux a tous. En combinant prélèvements et transferts sociaux, on mesure l'effet redistributif à travers le coefficient de Gini avant et après intervention publique.",
   limites: [
     'Pas d\'effets comportementaux (offre de travail, évasion fiscale)',
     'Pas de TVA ni de cotisations sociales dans le modèle',
     'Distribution des revenus simplifiee (approximation log-normale)',
     'Transferts sociaux forfaitaires, pas de ciblage selon la situation familiale',
   ],
+  economists: ['karl-marx', 'thomas-piketty'],
   realite: [
     'Le barème de l\'IR français 2024 comporte 5 tranches (0%, 11%, 30%, 41%, 45%)',
     'Le RSA socle s\'élevé a 635 EUR/mois pour une personne seule en 2024',
@@ -43,7 +44,7 @@ const inputs: SimulationInput[] = [
     step: 50,
     defaultValue: 2500,
     unit: 'EUR',
-    tooltip: 'Revenu median de la population (avant impot)',
+    tooltip: 'Revenu median de la population (avant impôt)',
     group: 'Revenus',
   },
   {
@@ -122,14 +123,14 @@ const scenarios: Scenario[] = [
     values: { revenu_median: 2500, taux_tranche1: 20, taux_tranche2: 20, taux_tranche3: 20, taux_tranche4: 20, transfert_social: 200 },
   },
   {
-    id: 'tres-progressif',
-    label: 'Système tres progressif',
+    id: 'très-progressif',
+    label: 'Système très progressif',
     description: 'Forte redistribution avec transferts élevés',
     values: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 20, taux_tranche3: 40, taux_tranche4: 55, transfert_social: 600 },
   },
   {
-    id: 'zero-impot-transferts',
-    label: 'Zero impot, zero transfert',
+    id: 'zéro-impôt-transferts',
+    label: 'Zéro impôt, zéro transfert',
     description: 'État minimal, pas d\'intervention fiscale',
     values: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 0, taux_tranche3: 0, taux_tranche4: 0, transfert_social: 0 },
   },
@@ -301,13 +302,13 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation: string;
 
   if (reductionGini > 30) {
-    interpretation = `Le système fiscal est fortement redistributif (réduction du Gini de ${reductionGini.toFixed(0)}%). Pourquoi ? La progressivité de l'impot fait que les hauts revenus contribuent proportionnellement plus : le D10 paie un taux effectif de ${tauxEffectifs[9].toFixed(1)}% tandis que le D1 à un taux effectif de ${tauxEffectifs[0].toFixed(1)}%. Les transferts forfaitaires amplifient l'effet : ils representent une part plus importante du revenu des ménages modestes (effet redistributif "par le bas"). Les premiers déciles sont bénéficiaires nets (taux effectif négatif).`;
+    interpretation = `Le système fiscal est fortement redistributif (réduction du Gini de ${reductionGini.toFixed(0)}%). Pourquoi ? La progressivité de l'impôt fait que les hauts revenus contribuent proportionnellement plus : le D10 paie un taux effectif de ${tauxEffectifs[9].toFixed(1)}% tandis que le D1 à un taux effectif de ${tauxEffectifs[0].toFixed(1)}%. Les transferts forfaitaires amplifient l'effet : ils representent une part plus importante du revenu des ménages modestes (effet redistributif "par le bas"). Les premiers déciles sont bénéficiaires nets (taux effectif négatif).`;
   } else if (reductionGini > 10) {
-    interpretation = `Le système fiscal à un effet redistributif modere (réduction du Gini de ${reductionGini.toFixed(0)}%). La progressivité du barème prélevé davantage sur les hauts revenus, et les transferts completent les bas revenus, mais l'écart entre D1 et D10 reste significatif. Pour une redistribution plus forte, il faudrait augmenter la progressivité (slider des tranches hautes) ou les transferts.`;
+    interpretation = `Le système fiscal à un effet redistributif modéré (réduction du Gini de ${reductionGini.toFixed(0)}%). La progressivité du barème prélevé davantage sur les hauts revenus, et les transferts completent les bas revenus, mais l'écart entre D1 et D10 reste significatif. Pour une redistribution plus forte, il faudrait augmenter la progressivité (slider des tranches hautes) ou les transferts.`;
   } else {
     interpretation = `Le système fiscal à un faible effet redistributif (réduction du Gini de ${reductionGini.toFixed(0)}% seulement). `;
     if (isFlat) {
-      interpretation += `Un impot proportionnel (même taux pour tous) ne redistribue que par les transferts : il prélevé le même pourcentage à chaque décile, donc l'écart relatif entre riches et pauvres reste quasiment inchange.`;
+      interpretation += `Un impôt proportionnel (même taux pour tous) ne redistribue que par les transferts : il prélevé le même pourcentage à chaque décile, donc l'écart relatif entre riches et pauvres reste quasiment inchange.`;
     } else if (isRegressif) {
       interpretation += `Le barème régressif accentue les inégalités au lieu de les réduire : les bas revenus paient un taux effectif plus élevé que les hauts revenus. Ce type de configuration est l'inverse de l'objectif redistributif.`;
     } else {
@@ -317,7 +318,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   // Equity-efficiency trade-off
   if (t4 > 50) {
-    interpretation += ` Attention à l'arbitrage equite-efficacité : un taux marginal supérieur de ${t4}% peut décourager l'effort de travail, l'entrepreneuriat ou inciter à l'optimisation fiscale, réduisant l'assiette imposable (effet Laffer). Le gain redistributif doit etre mis en balance avec ces effets comportementaux.`;
+    interpretation += ` Attention à l'arbitrage equite-efficacité : un taux marginal supérieur de ${t4}% peut décourager l'effort de travail, l'entrepreneuriat ou inciter à l'optimisation fiscale, réduisant l'assiette imposable (effet Laffer). Le gain redistributif doit être mis en balance avec ces effets comportementaux.`;
   }
 
   if (transfertMensuel > 500 && t4 < 30) {

@@ -6,11 +6,11 @@ export interface ADASScenario {
   initialPriceLevel: number;
   /** PIB réel initial */
   initialOutput: number;
-  /** PIB potentiel (offre agregee de long terme) */
+  /** PIB potentiel (offre agrégée de long terme) */
   potentialOutput: number;
-  /** Deplacement de la demande agregee (positif = droite, négatif = gauche) */
+  /** Deplacement de la demande agrégée (positif = droite, négatif = gauche) */
   adShift: number;
-  /** Deplacement de l'offre agregee de court terme (positif = droite, négatif = gauche) */
+  /** Deplacement de l'offre agrégée de court terme (positif = droite, négatif = gauche) */
   asShift: number;
   /** Pente de la courbe AS de court terme */
   asSlope: number;
@@ -22,7 +22,7 @@ export const adasScenarios: ADASScenario[] = [
     id: 'choc-demande-positif',
     title: 'Choc de demande positif',
     description:
-      'Une relance budgétaire ou monétaire déplace la demande agregee vers la droite.',
+      'Une relance budgétaire ou monétaire déplace la demande agrégée vers la droite.',
     initialPriceLevel: 100,
     initialOutput: 1000,
     potentialOutput: 1000,
@@ -30,13 +30,13 @@ export const adasScenarios: ADASScenario[] = [
     asShift: 0,
     asSlope: 0.15,
     explanation:
-      'Un choc de demande positif (hausse des dépenses publiques, baisse des impots, politique monétaire expansionniste) déplace la courbe AD vers la droite. A court terme, le PIB réel et le niveau des prix augmentent. L\'économie passe au-dessus de son potentiel, creant des tensions inflationnistes. A long terme, les salaires s\'ajustent et l\'offre agregee se déplace vers la gauche, ramenant le PIB à son niveau potentiel à un prix plus élevé.',
+      'Un choc de demande positif (hausse des dépenses publiques, baisse des impôts, politique monétaire expansionniste) déplace la courbe AD vers la droite. A court terme, le PIB réel et le niveau des prix augmentent. L\'économie passe au-dessus de son potentiel, créant des tensions inflationnistes. A long terme, les salaires s\'ajustent et l\'offre agrégée se déplace vers la gauche, ramenant le PIB à son niveau potentiel à un prix plus élevé.',
   },
   {
     id: 'choc-offre-négatif',
     title: 'Choc d\'offre négatif (choc pétrolier)',
     description:
-      'Une hausse brutale des coûts de production déplace l\'offre agregee vers la gauche.',
+      'Une hausse brutale des coûts de production déplace l\'offre agrégée vers la gauche.',
     initialPriceLevel: 100,
     initialOutput: 1000,
     potentialOutput: 1000,
@@ -72,7 +72,7 @@ export const adasScenarios: ADASScenario[] = [
     asShift: 0,
     asSlope: 0.15,
     explanation:
-      'En surchauffe, le PIB réel dépasse le PIB potentiel. Le chômage est inférieur à son taux naturel et les entreprises peinent a recruter. Les salaires et les prix augmentent. La banque centrale doit intervenir en relevant les taux d\'intérêt pour ramener la demande agregee à un niveau soutenable et eviter une spirale inflationniste.',
+      'En surchauffe, le PIB réel dépasse le PIB potentiel. Le chômage est inférieur à son taux naturel et les entreprises peinent a recruter. Les salaires et les prix augmentent. La banque centrale doit intervenir en relevant les taux d\'intérêt pour ramener la demande agrégée à un niveau soutenable et eviter une spirale inflationniste.',
   },
 ];
 

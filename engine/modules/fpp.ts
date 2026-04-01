@@ -13,18 +13,19 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'frontiere-possibilites-production',
-  title: 'Frontiere des possibilites de production',
+  title: 'Frontière des possibilités de production',
   subtitle: "Arbitrage, coût d'opportunité et efficacité productive",
   theme: 'micro',
   level: 'accessible',
   introduction:
-    "La frontiere des possibilites de production (FPP) représente l'ensemble des combinaisons maximales de deux biens qu'une économie peut produire avec ses ressources et sa technologie. Tout point sur la frontiere est efficient ; tout point à l'intérieur révèle un gaspillage de ressources.",
+    "La frontière des possibilités de production (FPP) représente l'ensemble des combinaisons maximales de deux biens qu'une économie peut produire avec ses ressources et sa technologie. Tout point sur la frontière est efficient ; tout point à l'intérieur révèle un gaspillage de ressources.",
   limites: [
     'Modèle simplifie à deux biens uniquement',
-    'Technologie supposee constante à court terme',
+    'Technologie supposée constante à court terme',
     'Hypothese de plein emploi des ressources',
     'Ne tient pas compte du commerce international',
   ],
+  economists: ['joseph-schumpeter'],
   realite: [
     "L'arbitrage classique entre beurre et canons illustre les choix budgétaires des États",
     "La désindustrialisation française reflète un déplacement le long de la FPP vers les services",
@@ -161,7 +162,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'fpp',
-      label: 'Frontiere des possibilites (FPP)',
+      label: 'Frontière des possibilités (FPP)',
       color: '#3b82f6',
       data: ppfCurve,
       strokeWidth: 2.5,
@@ -205,26 +206,26 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   // Narration
   const allocPct = (allocA * 100).toFixed(0);
   let observation = `Avec ${R} unites de ressources (productivité A = ${prodA}, productivité B = ${prodB}), l'économie produit ${qaFrontier.toFixed(0)} unites de bien A et ${qbFrontier.toFixed(0)} unites de bien B (allocation de ${allocPct}% au bien A). La capacité maximale est de ${maxQA.toFixed(0)} A ou ${maxQB.toFixed(0)} B en spécialisation totale.`;
-  let interpretation = `Le coût d'opportunité marginal d'une unite supplémentaire de bien A est de ${coutOpportunite.toFixed(2)} unites de bien B. Ce coût augmente à mesure qu'on se spécialisé dans A (concavite de la frontiere), car les ressources les moins adaptees a A sont mobilisees en dernier. `;
+  let interpretation = `Le coût d'opportunité marginal d'une unite supplémentaire de bien A est de ${coutOpportunite.toFixed(2)} unites de bien B. Ce coût augmente à mesure qu'on se spécialisé dans A (concavite de la frontière), car les ressources les moins adaptees a A sont mobilisees en dernier. `;
 
   if (allocA > 0.9) {
-    interpretation += `L'économie est quasi spécialisée dans le bien A (${allocPct}% des ressources). Le coût d'opportunité est tres élevé (${coutOpportunite.toFixed(2)} B par A supplémentaire) : les dernières unites de A "coutent" cher car il faut renoncer a beaucoup de B. Diversifier légèrement la production réduirait ce coût et pourrait etre plus efficient.`;
+    interpretation += `L'économie est quasi spécialisée dans le bien A (${allocPct}% des ressources). Le coût d'opportunité est très élevé (${coutOpportunite.toFixed(2)} B par A supplémentaire) : les dernières unites de A "coutent" cher car il faut renoncer a beaucoup de B. Diversifier légèrement la production réduirait ce coût et pourrait être plus efficient.`;
   } else if (allocA < 0.1) {
     interpretation += `L'économie est quasi spécialisée dans le bien B (seulement ${allocPct}% des ressources au bien A). Le coût d'opportunité de A est faible (${coutOpportunite.toFixed(2)} B) : produire un peu plus de A ne sacrifierait presque rien en B. C'est le signe que la spécialisation dans B est poussee au maximum.`;
   } else if (allocA > 0.4 && allocA < 0.6) {
-    interpretation += `L'économie diversifie sa production de manière equilibree. Le point se situe sur la frontiere, ce qui signifie que toutes les ressources sont utilisées efficacement (pas de chômage ni de gaspillage). Tout déplacement le long de la courbe implique un arbitrage : produire plus de A exige de renoncer a du B, et inversement.`;
+    interpretation += `L'économie diversifie sa production de manière equilibree. Le point se situe sur la frontière, ce qui signifie que toutes les ressources sont utilisées efficacement (pas de chômage ni de gaspillage). Tout déplacement le long de la courbe impliqué un arbitrage : produire plus de A exige de renoncer a du B, et inversement.`;
   } else {
-    interpretation += `Le point de production se situe sur la frontiere, ce qui signifie que l'économie utilise efficacement toutes ses ressources. Tout déplacement le long de la courbe implique un arbitrage : produire plus de A signifie renoncer a du B.`;
+    interpretation += `Le point de production se situe sur la frontière, ce qui signifie que l'économie utilise efficacement toutes ses ressources. Tout déplacement le long de la courbe impliqué un arbitrage : produire plus de A signifie renoncer a du B.`;
   }
 
   if (prodA > 7 || prodB > 7) {
-    interpretation += ` La productivité élevée ${prodA > 7 ? 'du bien A' : ''}${prodA > 7 && prodB > 7 ? ' et ' : ''}${prodB > 7 ? 'du bien B' : ''} repousse la frontiere vers l'exterieur, ce qui correspond à un progrès technique : l'économie peut produire davantage avec les memes ressources.`;
+    interpretation += ` La productivité élevée ${prodA > 7 ? 'du bien A' : ''}${prodA > 7 && prodB > 7 ? ' et ' : ''}${prodB > 7 ? 'du bien B' : ''} repousse la frontière vers l'exterieur, ce qui correspond à un progrès technique : l'économie peut produire davantage avec les mêmes ressources.`;
   }
 
   if (R > 700) {
-    interpretation += ` Les ressources abondantes (${R}) étirent la frontiere : une économie plus grande disposé de plus de possibilites, mais les coûts d'opportunité restent determines par les productivités relatives.`;
+    interpretation += ` Les ressources abondantes (${R}) étirent la frontière : une économie plus grande disposé de plus de possibilités, mais les coûts d'opportunité restent determines par les productivités relatives.`;
   } else if (R < 250) {
-    interpretation += ` Avec des ressources limitees (${R}), la frontiere est étroite : les choix d'allocation sont d'autant plus cruciaux car la marge d'erreur est faible.`;
+    interpretation += ` Avec des ressources limitées (${R}), la frontière est étroite : les choix d'allocation sont d'autant plus cruciaux car la marge d'erreur est faible.`;
   }
 
   return {

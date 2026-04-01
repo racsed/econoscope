@@ -106,6 +106,7 @@ export interface ModuleMeta {
   introduction: string;
   limites: string[];
   realite: string[];
+  economists?: string[];
 }
 
 export interface ComputeResult {

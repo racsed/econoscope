@@ -25,6 +25,7 @@ const meta: ModuleMeta = {
     "Hypothese de spécialisation complete",
     "Ignore les effets redistributifs au sein des pays",
   ],
+  economists: ['david-ricardo', 'adam-smith'],
   realite: [
     "Le commerce France-Chine illustre la spécialisation : luxe/aeronautique vs manufacturier",
     "La spécialisation agricole de la Nouvelle-Zelande (lait, viande) est un cas ricardien classique",
@@ -106,7 +107,7 @@ const scenarios: Scenario[] = [
   {
     id: 'productivité-égale',
     label: 'Productivité égale',
-    description: "Les deux pays ont les memes productivités : pas de gain à l'échange",
+    description: "Les deux pays ont les mêmes productivités : pas de gain à l'échange",
     values: { productivite_pays1_bienA: 6, productivite_pays1_bienB: 6, productivite_pays2_bienA: 6, productivite_pays2_bienB: 6, spécialisation: 'libre-échange' },
   },
   {
@@ -130,7 +131,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const p1B = clamp(Number(values.productivite_pays1_bienB) || 5, 1, 20);
   const p2A = clamp(Number(values.productivite_pays2_bienA) || 4, 1, 20);
   const p2B = clamp(Number(values.productivite_pays2_bienB) || 8, 1, 20);
-  const regime = String(values.spécialisation || 'autarcie');
+  const régime = String(values.spécialisation || 'autarcie');
 
   // Total labor endowment (hours) for each country
   const L = 100;
@@ -200,8 +201,8 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const gainA = totalTradeA - totalAutarkyA;
   const gainB = totalTradeB - totalAutarkyB;
 
-  // Determine which production points to show based on regime
-  const isLibreEchange = regime === 'libre-échange';
+  // Determine which production points to show based on régime
+  const isLibreEchange = régime === 'libre-échange';
   const currentA1 = isLibreEchange ? trade1A : autarky1A;
   const currentB1 = isLibreEchange ? trade1B : autarky1B;
   const currentA2 = isLibreEchange ? trade2A : autarky2A;
@@ -266,7 +267,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   if (parité) {
     observation = `Les deux pays ont des coûts d'opportunité identiques (${coutOpp1A.toFixed(2)} B pour 1 A dans les deux cas). Il n'y a pas d'avantage comparatif.`;
-    interpretation = "Le libre-échange n'apporte aucun gain dans cette configuration. Les deux pays ont exactement les memes productivités relatives, donc aucune spécialisation n'est mutuellement avantageuse. Pour que des gains à l'échange existent, il faut que les ratios de productivité différent entre les deux pays.";
+    interpretation = "Le libre-échange n'apporte aucun gain dans cette configuration. Les deux pays ont exactement les mêmes productivités relatives, donc aucune spécialisation n'est mutuellement avantageuse. Pour que des gains à l'échange existent, il faut que les ratios de productivité différent entre les deux pays.";
   } else {
     const specA = pays1SpecialiseA ? 'Pays 1' : 'Pays 2';
     const specB = pays1SpecialiseA ? 'Pays 2' : 'Pays 1';
@@ -283,7 +284,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     }
 
     if (isLibreEchange) {
-      interpretation = `Avec le libre-échange et la spécialisation complete, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Ce gain net est crée "a partir de rien" : les memes ressources, mieux allouees par la spécialisation, produisent davantage au niveau mondial. Chaque pays consomme ensuite les deux biens en echangeant à un prix compris entre les deux coûts d'opportunité.`;
+      interpretation = `Avec le libre-échange et la spécialisation complete, la production mondiale passe de ${totalAutarkyA.toFixed(0)} a ${totalTradeA.toFixed(0)} unites de A (${gainA >= 0 ? '+' : ''}${gainA.toFixed(0)}) et de ${totalAutarkyB.toFixed(0)} a ${totalTradeB.toFixed(0)} unites de B (${gainB >= 0 ? '+' : ''}${gainB.toFixed(0)}). Ce gain net est crée "a partir de rien" : les mêmes ressources, mieux allouees par la spécialisation, produisent davantage au niveau mondial. Chaque pays consomme ensuite les deux biens en echangeant à un prix compris entre les deux coûts d'opportunité.`;
       if (gainA < 0 && gainB > 0) {
         interpretation += ` La production de A diminue mais celle de B augmente davantage : le gain global est positif car les ressources libérées dans A sont utilisées plus efficacement dans B.`;
       } else if (gainA > 0 && gainB < 0) {

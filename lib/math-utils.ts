@@ -1,5 +1,5 @@
 /**
- * Interpolation lineaire entre a et b selon le facteur t (0..1).
+ * Interpolation linéaire entre a et b selon le facteur t (0..1).
  */
 export function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -21,7 +21,7 @@ export function roundTo(value: number, decimals: number): number {
 }
 
 /**
- * Représentation d'une equation lineaire y = slope * x + intercept.
+ * Représentation d'une equation linéaire y = slope * x + intercept.
  */
 interface LinearEquation {
   slope: number;
@@ -29,7 +29,7 @@ interface LinearEquation {
 }
 
 /**
- * Trouve le point d'intersection de deux equations lineaires.
+ * Trouve le point d'intersection de deux equations linéaires.
  * Retourne null si les droites sont paralleles.
  */
 export function solveLinearEquilibrium(
@@ -50,7 +50,7 @@ export function solveLinearEquilibrium(
 
 /**
  * Calcule l'aire sous une courbe par integration trapezoidale.
- * Les points doivent etre tries par x croissant.
+ * Les points doivent être tries par x croissant.
  */
 export function computeArea(
   points: ReadonlyArray<{ x: number; y: number }>,

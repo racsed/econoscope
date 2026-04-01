@@ -24,10 +24,11 @@ const meta: ModuleMeta = {
     "Ne tient pas compte des effets de substitution entre biens",
     "Analyse statique : pas de dimension temporelle",
   ],
+  economists: ['alfred-marshall'],
   realite: [
     "L'élasticité-prix de l'essence est d'environ -0.3 à court terme",
     "Les biens de luxe ont une élasticité-prix généralement supérieure à 1",
-    "Le tabac à une élasticité d'environ -0.4, justifiant la taxation",
+    "Le tabac a une élasticité d'environ -0.4, justifiant la taxation",
   ],
 };
 

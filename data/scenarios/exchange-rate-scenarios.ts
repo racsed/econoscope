@@ -40,7 +40,7 @@ export const exchangeRateScenarios: ExchangeRateScenario[] = [
     elasticiteExport: 1.5,
     elasticiteImport: 1.2,
     explanation:
-      'Avec un euro fort (0.70 EUR/USD), les produits européens coutent plus cher a l\'etranger et les importations deviennent bon marche. Les exportations chutent tandis que les importations augmentent, creusant le déficit commercial. C\'est la situation typique qui a pénalisé l\'industrie française dans les années 2000-2010.',
+      'Avec un euro fort (0.70 EUR/USD), les produits européens coutent plus cher a l\'etranger et les importations deviennent bon marché. Les exportations chutent tandis que les importations augmentent, creusant le déficit commercial. C\'est la situation typique qui a pénalisé l\'industrie française dans les années 2000-2010.',
   },
   {
     id: 'euro-faible',

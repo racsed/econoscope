@@ -43,7 +43,7 @@ export const lorenzScenarios: LorenzScenario[] = [
     déciles: [2.0, 3.5, 4.5, 5.5, 7.0, 8.5, 10.5, 13.5, 18.0, 27.0],
     source: 'U.S. Census Bureau, Current Population Survey',
     explanation:
-      'Les États-Unis affichent un Gini nettement plus élevé que la France (0,39). Les inégalités y sont plus marquees en raison d\'un système de redistribution moins généreux et de tres hauts revenus concentres dans le dernier décile. Les 10 % les plus riches captent 27 % des revenus.',
+      'Les États-Unis affichent un Gini nettement plus élevé que la France (0,39). Les inégalités y sont plus marquees en raison d\'un système de redistribution moins généreux et de très hauts revenus concentres dans le dernier décile. Les 10 % les plus riches captent 27 % des revenus.',
   },
   {
     id: 'scandinavie',
@@ -53,17 +53,17 @@ export const lorenzScenarios: LorenzScenario[] = [
     déciles: [4.0, 5.5, 6.5, 7.5, 8.5, 10.0, 11.0, 12.5, 15.0, 19.5],
     source: 'Statistics Sweden, OCDE',
     explanation:
-      'La Suede et les pays scandinaves presentent les coefficients de Gini les plus bas du monde developpe (0,25). Ce résultat est obtenu grâce à une fiscalité fortement progressive, des services publics universels et des négociations salariales centralisees qui compriment l\'échelle des revenus.',
+      'La Suede et les pays scandinaves presentent les coefficients de Gini les plus bas du monde développé (0,25). Ce résultat est obtenu grâce à une fiscalité fortement progressive, des services publics universels et des négociations salariales centralisees qui compriment l\'échelle des revenus.',
   },
   {
-    id: 'tres-inégalitaire',
-    title: 'Économie tres inégalitaire',
+    id: 'très-inégalitaire',
+    title: 'Économie très inégalitaire',
     description: 'Un cas stylise illustrant une extreme concentration des revenus.',
     gini: 0.6,
     déciles: [1.0, 1.5, 2.0, 3.0, 4.0, 5.5, 8.0, 12.0, 20.0, 43.0],
     source: 'Cas stylise inspire de pays a forte inégalité',
     explanation:
-      'Dans les économies les plus inegalitaires (certains pays d\'Amerique latine ou d\'Afrique), le coefficient de Gini peut dépasser 0,55. Les 10 % les plus riches captent pres de la moitie du revenu total, tandis que les 40 % les plus pauvres se partagent moins de 8 %. La courbe de Lorenz est tres eloignee de la diagonale.',
+      'Dans les économies les plus inegalitaires (certains pays d\'Amerique latine ou d\'Afrique), le coefficient de Gini peut dépasser 0,55. Les 10 % les plus riches captent pres de la moitie du revenu total, tandis que les 40 % les plus pauvres se partagent moins de 8 %. La courbe de Lorenz est très eloignee de la diagonale.',
   },
 ];
 

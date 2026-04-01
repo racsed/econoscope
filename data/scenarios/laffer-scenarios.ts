@@ -51,8 +51,8 @@ export const lafferScenarios: LafferScenario[] = [
       'Les hauts revenus et les detenteurs de capitaux ont une forte capacité d\'optimisation fiscale et de mobilite internationale. Avec une élasticité élevée, le sommet de la courbe se situe autour de 35 %. Au-dela, les recettes diminuent rapidement par exil fiscal et optimisation.',
   },
   {
-    id: 'france-impot-revenu',
-    title: 'France -- impot sur le revenu',
+    id: 'france-impôt-revenu',
+    title: 'France -- impôt sur le revenu',
     description:
       'Application au cas français avec son système progressif.',
     optimalRate: 55,

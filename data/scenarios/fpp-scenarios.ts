@@ -19,18 +19,18 @@ export const fppScenarios: FppScenario[] = [
     productiviteB: 3,
     allocationA: 50,
     explanation:
-      "Avec une allocation égale, l'économie produit les deux biens de manière equilibree. Le coût d'opportunité est modere dans les deux directions.",
+      "Avec une allocation égale, l'économie produit les deux biens de manière equilibree. Le coût d'opportunité est modéré dans les deux directions.",
   },
   {
     id: 'spécialisation-bien-a',
     title: 'Spécialisation dans le bien A',
-    description: "L'économie consacre la quasi-totalite de ses ressources au bien A.",
+    description: "L'économie consacré la quasi-totalite de ses ressources au bien A.",
     ressourcesTotales: 500,
     productiviteA: 5,
     productiviteB: 3,
     allocationA: 95,
     explanation:
-      "Proche de la spécialisation totale, le coût d'opportunité de chaque unite supplémentaire de A est tres élevé car il faut renoncer a beaucoup de B. La concavite de la FPP illustre ce rendement decroissant.",
+      "Proche de la spécialisation totale, le coût d'opportunité de chaque unite supplémentaire de A est très élevé car il faut renoncer a beaucoup de B. La concavite de la FPP illustre ce rendement decroissant.",
   },
   {
     id: 'sous-utilisation',
@@ -41,7 +41,7 @@ export const fppScenarios: FppScenario[] = [
     productiviteB: 3,
     allocationA: 15,
     explanation:
-      "Avec seulement 15% des ressources allouees au bien A, la production de A est faible. Si le point se situe à l'intérieur de la frontiere, cela révèle une inefficience (chômage, sous-emploi des capacités).",
+      "Avec seulement 15% des ressources allouees au bien A, la production de A est faible. Si le point se situe à l'intérieur de la frontière, cela révèle une inefficience (chômage, sous-emploi des capacités).",
   },
   {
     id: 'progrès-technique',
@@ -52,7 +52,7 @@ export const fppScenarios: FppScenario[] = [
     productiviteB: 6,
     allocationA: 50,
     explanation:
-      "Le progrès technique déplace la FPP vers l'exterieur : l'économie peut produire davantage des deux biens avec les memes ressources. C'est le moteur de la croissance économique à long terme.",
+      "Le progrès technique déplace la FPP vers l'exterieur : l'économie peut produire davantage des deux biens avec les mêmes ressources. C'est le moteur de la croissance économique à long terme.",
   },
   {
     id: 'économie-de-guerre',

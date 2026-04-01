@@ -12,21 +12,22 @@ import { registerModule } from '../core/registry';
 const meta: ModuleMeta = {
   slug: 'creation-monetaire',
   title: 'Création monétaire',
-  subtitle: "Le multiplicateur de credit bancaire",
+  subtitle: "Le multiplicateur de crédit bancaire",
   theme: 'monetary',
   level: 'intermediate',
   introduction:
-    "Les banques commerciales créent de la monnaie par le credit. Quand une banque accorde un pret, elle crée un dépôt du même montant. Ce dépôt est partiellement conserve en reserves, partiellement retire en billets, et le reste est reprêté. Le processus se repete, multipliant le dépôt initial. La banque centrale contrôle ce processus par le taux de reserves obligatoires.",
+    "Les banques commerciales créent de la monnaie par le crédit. Quand une banque accorde un prêt, elle crée un dépôt du même montant. Ce dépôt est partiellement conserve en réserves, partiellement retire en billets, et le reste est reprêté. Le processus se repete, multipliant le dépôt initial. La banque centrale contrôle ce processus par le taux de réserves obligatoires.",
   limites: [
-    "Suppose que les banques prêtent tout ce qu'elles peuvent (pas de reserves excedentaires)",
-    "Ignore les contraintes de demande de credit",
+    "Suppose que les banques prêtent tout ce qu'elles peuvent (pas de réserves excedentaires)",
+    "Ignore les contraintes de demande de crédit",
     "Taux de fuite en billets suppose constant",
     "Ne tient pas compte des ratios prudentiels (Bale III)",
   ],
+  economists: ['milton-friedman', 'irving-fisher'],
   realite: [
-    "Le taux de reserves obligatoires de la BCE est de 1% depuis 2012",
-    "En pratique, les banques détiennent des reserves excedentaires importantes",
-    "La création monétaire depend aussi de la demande de credit des entreprises et ménages",
+    "Le taux de réserves obligatoires de la BCE est de 1% depuis 2012",
+    "En pratique, les banques détiennent des réserves excedentaires importantes",
+    "La création monétaire dépend aussi de la demande de crédit des entreprises et ménages",
     "Le multiplicateur théorique surestime la création monétaire réelle",
   ],
 };
@@ -46,14 +47,14 @@ const inputs: SimulationInput[] = [
   },
   {
     id: 'taux_reserves',
-    label: 'Taux de reserves obligatoires',
+    label: 'Taux de réserves obligatoires',
     type: 'slider',
     min: 1,
     max: 25,
     step: 0.5,
     defaultValue: 10,
     unit: '%',
-    tooltip: "Pourcentage des dépôts que les banques doivent garder en reserves",
+    tooltip: "Pourcentage des dépôts que les banques doivent garder en réserves",
     group: 'Réglementation',
   },
   {
@@ -178,25 +179,25 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   let interpretation = `Le multiplicateur monétaire est de ${round2(multiplicateur)}, avec un coefficient de propagation de ${round2(alpha)}. `;
 
   if (r + b > 0.5) {
-    interpretation += `Les fuites sont élevées (reserves ${(r * 100).toFixed(0)}% + billets ${(b * 100).toFixed(0)}% = ${((r + b) * 100).toFixed(0)}%), limitant fortement la création monétaire. `;
+    interpretation += `Les fuites sont élevées (réserves ${(r * 100).toFixed(0)}% + billets ${(b * 100).toFixed(0)}% = ${((r + b) * 100).toFixed(0)}%), limitant fortement la création monétaire. `;
   }
 
-  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du dépôt est reprêté, ${(r * 100).toFixed(0)}% est garde en reserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
+  interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du dépôt est reprêté, ${(r * 100).toFixed(0)}% est garde en réserves et ${(b * 100).toFixed(0)}% est retire en billets.`;
 
   if (r <= 0.02) {
-    interpretation += " Avec des reserves obligatoires aussi faibles (comme celles de la BCE a 1% depuis 2012), le multiplicateur théorique est tres élevé. En pratique, d'autres contraintes (ratios prudentiels Bale III, demande de credit des entreprises, risk appetite des banques) limitent la création monétaire effective bien en deca du maximum théorique.";
+    interpretation += " Avec des réserves obligatoires aussi faibles (comme celles de la BCE a 1% depuis 2012), le multiplicateur théorique est très élevé. En pratique, d'autres contraintes (ratios prudentiels Bale III, demande de crédit des entreprises, risk appetite des banques) limitent la création monétaire effective bien en deca du maximum théorique.";
   }
 
   if (b > 0.2) {
-    interpretation += ` La forte préférence pour les billets (${(b * 100).toFixed(0)}%) réduit considérablement le multiplicateur : à chaque tour, une part importante de la monnaie "sort" du circuit bancaire sous forme de billets et ne peut plus etre reprêtée. C'est une fuite definitive du processus de création monétaire.`;
+    interpretation += ` La forte préférence pour les billets (${(b * 100).toFixed(0)}%) réduit considérablement le multiplicateur : à chaque tour, une part importante de la monnaie "sort" du circuit bancaire sous forme de billets et ne peut plus être reprêtée. C'est une fuite definitive du processus de création monétaire.`;
   }
 
   if (multiplicateur > 5 && multiplicateur < 20) {
-    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} signifie que chaque euro de dépôt initial génère theoriquement ${round2(multiplicateur)} euros de dépôts dans l'ensemble du système bancaire. C'est le pouvoir de création monétaire des banques commerciales, sous contrôle de la banque centrale via le taux de reserves.`;
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} signifie que chaque euro de dépôt initial génère theoriquement ${round2(multiplicateur)} euros de dépôts dans l'ensemble du système bancaire. C'est le pouvoir de création monétaire des banques commerciales, sous contrôle de la banque centrale via le taux de réserves.`;
   }
 
   if (r > 0.15) {
-    interpretation += ` Le taux de reserves élevé (${(r * 100).toFixed(0)}%) bride fortement la création monétaire. C'est un outil de politique monétaire restrictive utilise notamment par la Banque de Chine ou en Inde pour contrôler l'expansion du credit.`;
+    interpretation += ` Le taux de réserves élevé (${(r * 100).toFixed(0)}%) bride fortement la création monétaire. C'est un outil de politique monétaire restrictive utilise notamment par la Banque de Chine ou en Inde pour contrôler l'expansion du crédit.`;
   }
 
   return {
@@ -204,7 +205,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       { id: 'multiplicateur', label: 'Multiplicateur monétaire', value: round2(multiplicateur) },
       { id: 'total_depots', label: 'Total des dépôts', value: round2(cumulativeDepots), unit: '\u20ac' },
       { id: 'monnaie_creee', label: 'Monnaie créée', value: round2(monnaieCreee), unit: '\u20ac' },
-      { id: 'total_reserves', label: 'Total des reserves', value: round2(cumulativeReserves), unit: '\u20ac' },
+      { id: 'total_reserves', label: 'Total des réserves', value: round2(cumulativeReserves), unit: '\u20ac' },
       { id: 'total_billets', label: 'Fuite en billets', value: round2(cumulativeBillets), unit: '\u20ac' },
       { id: 'convergence', label: 'Convergence', value: round2(convergencePercent), unit: '%' },
     ],

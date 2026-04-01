@@ -196,6 +196,26 @@ function FactArticle({
             </p>
           </motion.div>
 
+          {/* Quote */}
+          {fact.quote && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="bg-bg-card border border-border rounded-2xl p-6"
+            >
+              <blockquote
+                className="text-base italic text-text-secondary leading-relaxed pl-4 mb-2"
+                style={{ borderLeft: `3px solid ${themeColor}` }}
+              >
+                &laquo; {fact.quote.text} &raquo;
+              </blockquote>
+              <p className="text-sm text-text-muted text-right">
+                -- {fact.quote.author}
+              </p>
+            </motion.div>
+          )}
+
           {/* Embedded simulator */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}

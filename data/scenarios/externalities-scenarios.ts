@@ -19,7 +19,7 @@ export const externalitiesScenarios: ExternalitiesScenario[] = [
     typeExternalite: 'negative',
     taxePigouvienne: 0,
     explanation:
-      "L'usine produit au-delà de l'optimum social car elle ne tient pas compte du coût de la pollution (santé, environnement). La différence entre la quantité de marché et la quantité optimale représente la surproduction. La perte seche mesure le coût social de cette défaillance.",
+      "L'usine produit au-delà de l'optimum social car elle ne tient pas compte du coût de la pollution (santé, environnement). La différence entre la quantité de marché et la quantité optimale représente la surproduction. La perte sèche mesure le coût social de cette défaillance.",
   },
   {
     id: 'taxe-carbone-optimale',
@@ -30,7 +30,7 @@ export const externalitiesScenarios: ExternalitiesScenario[] = [
     typeExternalite: 'negative',
     taxePigouvienne: 10,
     explanation:
-      "La taxe pigouvienne de 10 euros internalise le coût de la pollution. Le producteur intègre désormais le coût social dans son calcul. La quantité produite coïncide avec l'optimum social et la perte seche disparaît.",
+      "La taxe pigouvienne de 10 euros internalise le coût de la pollution. Le producteur intègre désormais le coût social dans son calcul. La quantité produite coïncide avec l'optimum social et la perte sèche disparaît.",
   },
   {
     id: 'taxe-insuffisanté',
@@ -41,7 +41,7 @@ export const externalitiesScenarios: ExternalitiesScenario[] = [
     typeExternalite: 'negative',
     taxePigouvienne: 5,
     explanation:
-      "Une taxe de 5 euros alors que le coût externe est de 10 euros ne corrige que partiellement la défaillance. Il reste une surproduction et une perte seche résiduelle, bien que moindres qu'en l'absence de taxe.",
+      "Une taxe de 5 euros alors que le coût externe est de 10 euros ne corrige que partiellement la défaillance. Il reste une surproduction et une perte sèche résiduelle, bien que moindres qu'en l'absence de taxe.",
   },
   {
     id: 'vaccination-positive',

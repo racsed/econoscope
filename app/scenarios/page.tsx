@@ -23,14 +23,14 @@ export default function ScenariosPage() {
       if (!entry.available) continue;
       const mod = getModule(entry.slug);
       if (!mod) continue;
-      for (const scénario of mod.scenarios) {
+      for (const scenario of mod.scenarios) {
         result.push({
           moduleSlug: entry.slug,
           moduleTitle: entry.title,
           moduleTheme: entry.theme,
-          scenarioId: scénario.id,
-          scenarioLabel: scénario.label,
-          scenarioDescription: scénario.description,
+          scenarioId: scenario.id,
+          scenarioLabel: scenario.label,
+          scenarioDescription: scenario.description,
         });
       }
     }
@@ -61,7 +61,7 @@ export default function ScenariosPage() {
             <h1 className="text-3xl font-bold text-text-primary">Scénarios</h1>
           </div>
           <p className="text-text-secondary text-lg">
-            {allScenarios.length} situations économiques preconfigurees a explorer
+            {allScenarios.length} situations économiques préconfigurées à explorer
           </p>
         </motion.div>
 
@@ -87,10 +87,10 @@ export default function ScenariosPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {scenarios.map((scénario) => (
+                  {scenarios.map((scenario) => (
                     <Link
-                      key={`${moduleSlug}-${scénario.scenarioId}`}
-                      href={`/module/${moduleSlug}?scénario=${scénario.scenarioId}`}
+                      key={`${moduleSlug}-${scenario.scenarioId}`}
+                      href={`/module/${moduleSlug}?scenario=${scenario.scenarioId}`}
                       className="group bg-bg-card border border-border rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-200"
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
@@ -100,10 +100,10 @@ export default function ScenariosPage() {
                       }}
                     >
                       <h3 className="font-medium text-text-primary text-sm mb-1">
-                        {scénario.scenarioLabel}
+                        {scenario.scenarioLabel}
                       </h3>
                       <p className="text-xs text-text-secondary leading-relaxed mb-3">
-                        {scénario.scenarioDescription}
+                        {scenario.scenarioDescription}
                       </p>
                       <div
                         className="flex items-center gap-1 text-xs font-medium group-hover:gap-2 transition-all"

@@ -25,7 +25,7 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'Le prix d\'équilibre se situe a l\'intersection des courbes d\'offre et de demande. A ce prix, la quantité offerte égale la quantité demandee : le marché est en équilibre.',
+      'Le prix d\'équilibre se situe a l\'intersection des courbes d\'offre et de demande. A ce prix, la quantité offerte égale la quantité demandée : le marché est en équilibre.',
   },
   {
     id: 'hausse-revenu',
@@ -67,7 +67,7 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: null,
     explanation:
-      'La taxe crée un écart entre le prix paye par l\'acheteur et le prix recu par le vendeur. La quantité échangée diminue et une perte seche apparait : c\'est le coût social de la taxe.',
+      'La taxe crée un écart entre le prix paye par l\'acheteur et le prix recu par le vendeur. La quantité échangée diminue et une perte sèche apparait : c\'est le coût social de la taxe.',
   },
   {
     id: 'prix-plafond',
@@ -81,7 +81,7 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: null,
     priceCeiling: 20,
     explanation:
-      'Un prix plafond fixe en dessous du prix d\'équilibre crée une pénurie : la quantité demandee dépasse la quantité offerte. Des files d\'attente ou des marchés noirs peuvent apparaitre, comme dans le cas de l\'encadrement des loyers.',
+      'Un prix plafond fixé en dessous du prix d\'équilibre crée une pénurie : la quantité demandée dépasse la quantité offerte. Des files d\'attente ou des marchés noirs peuvent apparaître, comme dans le cas de l\'encadrement des loyers.',
   },
   {
     id: 'prix-plancher',
@@ -95,7 +95,7 @@ export const supplyDemandScenarios: SupplyDemandScenario[] = [
     priceFloor: 35,
     priceCeiling: null,
     explanation:
-      'Un prix plancher fixe au-dessus du prix d\'équilibre crée un surplus : la quantité offerte dépasse la quantité demandee. Sur le marché du travail, cela correspond au salaire minimum, qui peut générer du chômage si fixe trop haut, mais protege les travailleurs les plus vulnerables.',
+      'Un prix plancher fixé au-dessus du prix d\'équilibre crée un surplus : la quantité offerte dépasse la quantité demandée. Sur le marché du travail, cela correspond au salaire minimum, qui peut générer du chômage si fixé trop haut, mais protège les travailleurs les plus vulnérables.',
   },
 ];
 

@@ -22,7 +22,7 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     id: 'système-français',
     title: 'Système français (approx. IR 2024)',
     description:
-      'Barème progressif inspire du barème de l\'impot sur le revenu français.',
+      'Barème progressif inspire du barème de l\'impôt sur le revenu français.',
     revenuMedian: 2500,
     tauxTranche1: 0,
     tauxTranche2: 11,
@@ -47,8 +47,8 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
       'La flat tax applique le même taux a tous les revenus. Ses partisans avancent la simplicite, la transparence et la réduction de l\'évasion fiscale. Ses detracteurs soulignent la faible progressivité : les bas revenus paient proportionnellement autant que les hauts revenus. Plusieurs pays d\'Europe de l\'Est (Estonie, Bulgarie, Roumanie) ont adopte ce système.',
   },
   {
-    id: 'tres-progressif',
-    title: 'Système tres progressif',
+    id: 'très-progressif',
+    title: 'Système très progressif',
     description:
       'Forte redistribution avec des taux élevés et des transferts généreux.',
     revenuMedian: 2500,
@@ -58,11 +58,11 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 55,
     transfertSocial: 600,
     explanation:
-      'Un système tres progressif avec des taux marginaux élevés et des transferts généreux réduit fortement les inégalités. C\'est l\'approche des pays scandinaves (Danemark, Suede) qui combinent taux marginaux supérieurs a 50% et prestations sociales universelles. Le risque est l\'effet desincitatif sur l\'offre de travail et l\'exil fiscal des hauts revenus.',
+      'Un système très progressif avec des taux marginaux élevés et des transferts généreux réduit fortement les inégalités. C\'est l\'approche des pays scandinaves (Danemark, Suede) qui combinent taux marginaux supérieurs a 50% et prestations sociales universelles. Le risque est l\'effet desincitatif sur l\'offre de travail et l\'exil fiscal des hauts revenus.',
   },
   {
-    id: 'zero-impot-transferts',
-    title: 'Zero impot, zero transfert',
+    id: 'zéro-impôt-transferts',
+    title: 'Zéro impôt, zéro transfert',
     description:
       'Absence totale d\'intervention fiscale et sociale.',
     revenuMedian: 2500,
@@ -75,10 +75,10 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
       'Sans fiscalité ni transferts, les inégalités de marché sont intactes. Le Gini reste à son niveau initial (environ 0.45 en France). Ce scénario théorique illustre l\'ampleur de la redistribution opérée par l\'État. Dans la réalité, même les pays les plus liberaux (États-Unis, Singapour) ont un minimum de redistribution.',
   },
   {
-    id: 'impot-négatif',
+    id: 'impôt-négatif',
     title: 'Impot négatif (Friedman)',
     description:
-      'Les bas revenus recoivent un complement plutot que de payer l\'impot.',
+      'Les bas revenus recoivent un complement plutôt que de payer l\'impôt.',
     revenuMedian: 2500,
     tauxTranche1: 0,
     tauxTranche2: 10,
@@ -86,7 +86,7 @@ export const fiscalRedistributionScenarios: FiscalRedistributionScenario[] = [
     tauxTranche4: 35,
     transfertSocial: 500,
     explanation:
-      'L\'impot négatif, propose par Milton Friedman, consiste a verser un complement de revenu aux ménages en dessous d\'un seuil plutot que de les imposer. La prime d\'activité française s\'en inspire partiellement. Ce système preserve l\'incitation au travail tout en garantissant un revenu minimum. Le taux effectif devient négatif pour les premiers déciles.',
+      'L\'impôt négatif, propose par Milton Friedman, consiste a verser un complement de revenu aux ménages en dessous d\'un seuil plutôt que de les imposer. La prime d\'activité française s\'en inspire partiellement. Ce système preserve l\'incitation au travail tout en garantissant un revenu minimum. Le taux effectif devient négatif pour les premiers déciles.',
   },
 ];
 

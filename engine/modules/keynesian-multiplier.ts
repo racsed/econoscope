@@ -11,22 +11,23 @@ import { registerModule } from '../core/registry';
 
 const meta: ModuleMeta = {
   slug: 'multiplicateur-keynesien',
-  title: 'Multiplicateur keynesien',
+  title: 'Multiplicateur keynésien',
   subtitle: "L'effet amplificateur de la dépense publique",
   theme: 'macro',
   level: 'accessible',
   introduction:
-    "Le multiplicateur keynesien montre comment une injection initiale de dépenses se propage dans l'économie par des tours successifs de consommation. Chaque euro dépense génère des revenus qui sont à leur tour partiellement dépenses, creant un effet en cascade.",
+    "Le multiplicateur keynésien montre comment une injection initiale de dépenses se propage dans l'économie par des tours successifs de consommation. Chaque euro dépensé génère des revenus qui sont à leur tour partiellement dépensés, créant un effet en cascade.",
   limites: [
-    "Suppose des capacités de production inutilisees (pas de plein-emploi)",
-    "Ignore les effets sur les taux d'intérêt (pas d'éviction financiere)",
-    "Ne tient pas compte du delai de propagation",
-    "Propensions marginales supposees constantes",
+    "Suppose des capacités de production inutilisées (pas de plein-emploi)",
+    "Ignore les effets sur les taux d'intérêt (pas d'éviction financière)",
+    "Ne tient pas compte du délai de propagation",
+    "Propensions marginales supposées constantes",
   ],
+  economists: ['john-maynard-keynes'],
   realite: [
     "Le FMI estime le multiplicateur budgétaire entre 0.4 et 2.5 selon le contexte",
     "En récession, le multiplicateur est généralement plus élevé (>1)",
-    "Les dépenses d'infrastructures ont un multiplicateur plus fort que les baisses d'impots",
+    "Les dépenses d'infrastructures ont un multiplicateur plus fort que les baisses d'impôts",
   ],
 };
 
@@ -73,7 +74,7 @@ const inputs: SimulationInput[] = [
     max: 0.4,
     step: 0.01,
     defaultValue: 0.1,
-    tooltip: "Part de la consommation supplémentaire consacree aux importations",
+    tooltip: "Part de la consommation supplémentaire consacrée aux importations",
     group: 'Fuites',
   },
   {
@@ -92,13 +93,13 @@ const scenarios: Scenario[] = [
   {
     id: 'keynes_simple',
     label: 'Multiplicateur simple',
-    description: "Économie fermee sans impots, propension de 0.8",
+    description: "Économie fermee sans impôts, propension de 0.8",
     values: { depense_initiale: 10, propension_consommer: 0.8, taux_imposition: 0, propension_importer: 0, nb_tours: 15 },
   },
   {
     id: 'economie_ouverte',
     label: 'Économie ouverte',
-    description: "Avec impots et importations, multiplicateur réduit",
+    description: "Avec impôts et importations, multiplicateur réduit",
     values: { depense_initiale: 10, propension_consommer: 0.8, taux_imposition: 0.2, propension_importer: 0.15, nb_tours: 15 },
   },
   {
@@ -110,13 +111,13 @@ const scenarios: Scenario[] = [
   {
     id: 'multiplicateur_faible',
     label: 'Multiplicateur faible',
-    description: "Fortes fuites : épargne élevée, impots élevés, importations",
+    description: "Fortes fuites : épargne élevée, impôts élevés, importations",
     values: { depense_initiale: 10, propension_consommer: 0.5, taux_imposition: 0.3, propension_importer: 0.2, nb_tours: 15 },
   },
 ];
 
 /**
- * Multiplicateur en économie ouverte avec impots:
+ * Multiplicateur en économie ouverte avec impôts:
  * k = 1 / (1 - c*(1-t) + m)
  *
  * A chaque tour n :
@@ -223,23 +224,23 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   interpretation += `A chaque tour, ${(alpha * 100).toFixed(0)}% du revenu est redépensé localement. Les fuites totales representent ${(fuites * 100).toFixed(0)}% : `;
 
   const fuitesDetail: string[] = [];
-  if (t > 0) fuitesDetail.push(`impots (${(t * 100).toFixed(0)}%)`);
+  if (t > 0) fuitesDetail.push(`impôts (${(t * 100).toFixed(0)}%)`);
   if (1 - c > 0.01) fuitesDetail.push(`épargne (${((1 - c) * 100).toFixed(0)}% du disponible)`);
   if (m > 0) fuitesDetail.push(`importations (${(m * 100).toFixed(0)}% de la consommation)`);
   interpretation += fuitesDetail.join(', ') + '.';
 
   if (multiplicateur < 1.2) {
-    interpretation += " Le multiplicateur est tres faible : les fuites absorbent l'essentiel de l'injection. La politique budgétaire serait peu efficace dans ce contexte. L'essentiel de la dépense publique \"fuit\" vers l'épargne, les impots ou l'étranger des le premier tour.";
+    interpretation += " Le multiplicateur est très faible : les fuites absorbent l'essentiel de l'injection. La politique budgétaire serait peu efficace dans ce contexte. L'essentiel de la dépense publique \"fuit\" vers l'épargne, les impôts ou l'étranger dès le premier tour.";
   } else if (multiplicateur > 3) {
-    interpretation += " Le multiplicateur est tres élevé : l'économie amplifie fortement l'impulsion budgétaire. Cela suppose toutefois des capacités productives inutilisees (chômage, usines en sous-regime), sinon l'effet se dissipe en inflation plutot qu'en production réelle.";
+    interpretation += " Le multiplicateur est très élevé : l'économie amplifie fortement l'impulsion budgétaire. Cela suppose toutefois des capacités productives inutilisées (chômage, usines en sous-régime), sinon l'effet se dissipe en inflation plutôt qu'en production réelle.";
   } else if (multiplicateur > 1.5 && multiplicateur <= 3) {
-    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} est dans la fourchette typique des économies developpees en récession. Chaque euro de dépense publique génère environ ${round2(multiplicateur)} euros de revenu total, l'effet en cascade etant modere par les fuites.`;
+    interpretation += ` Le multiplicateur de ${round2(multiplicateur)} est dans la fourchette typique des économies développées en récession. Chaque euro de dépense publique génère environ ${round2(multiplicateur)} euros de revenu total, l'effet en cascade étant modéré par les fuites.`;
   }
 
   if (c > 0.85) {
     interpretation += ` La forte propension à consommer (${(c * 100).toFixed(0)}%) indique une population qui dépense rapidement ses revenus supplémentaires, amplifiant la propagation. C'est typique des ménages a bas revenus.`;
   } else if (c < 0.5) {
-    interpretation += ` La faible propension à consommer (${(c * 100).toFixed(0)}%) signifie que les ménages epargnent l'essentiel de leur revenu supplémentaire, freinant la propagation. Le multiplicateur s'en trouve considérablement réduit.`;
+    interpretation += ` La faible propension à consommer (${(c * 100).toFixed(0)}%) signifie que les ménages épargnent l'essentiel de leur revenu supplémentaire, freinant la propagation. Le multiplicateur s'en trouve considérablement réduit.`;
   }
 
   return {

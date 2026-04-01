@@ -33,7 +33,7 @@ export const multiplierScenarios: MultiplierScenario[] = [
     id: 'économie-fermee',
     title: 'Économie fermee (modèle simplifie)',
     description:
-      'Le cas théorique sans impot ni importation, pour comprendre le mécanisme pur.',
+      'Le cas théorique sans impôt ni importation, pour comprendre le mécanisme pur.',
     initialSpending: 10,
     mpc: 0.8,
     taxRate: 0,
@@ -44,20 +44,20 @@ export const multiplierScenarios: MultiplierScenario[] = [
   },
   {
     id: 'économie-ouverte',
-    title: 'Économie tres ouverte',
+    title: 'Économie très ouverte',
     description:
-      'Un petit pays tres dependant du commerce international, avec de fortes fuites.',
+      'Un petit pays très dependant du commerce international, avec de fortes fuites.',
     initialSpending: 10,
     mpc: 0.7,
     taxRate: 0.25,
     importRate: 0.3,
     rounds: 10,
     explanation:
-      'Dans une économie tres ouverte (taux d\'importation de 30 %), une part importante de la dépense "fuit" vers l\'etranger à chaque vague. Le multiplicateur chute a environ 1,58. L\'ouverture commerciale réduit l\'efficacité de la relance budgétaire nationale.',
+      'Dans une économie très ouverte (taux d\'importation de 30 %), une part importante de la dépense "fuit" vers l\'etranger à chaque vague. Le multiplicateur chute a environ 1,58. L\'ouverture commerciale réduit l\'efficacité de la relance budgétaire nationale.',
   },
   {
-    id: 'austerite',
-    title: 'Politique d\'austerite',
+    id: 'austérité',
+    title: 'Politique d\'austérité',
     description:
       'L\'État réduit ses dépenses de 10 milliards : le multiplicateur joue en sens inverse.',
     initialSpending: -10,
@@ -66,7 +66,7 @@ export const multiplierScenarios: MultiplierScenario[] = [
     importRate: 0.1,
     rounds: 10,
     explanation:
-      'Le multiplicateur fonctionne dans les deux sens. Une réduction de dépenses publiques de 10 milliards, avec les memes paramètres que la relance classique, detruit environ 21,7 milliards de revenu. C\'est l\'argument keynesien contre l\'austerite en période de récession.',
+      'Le multiplicateur fonctionne dans les deux sens. Une réduction de dépenses publiques de 10 milliards, avec les mêmes paramètres que la relance classique, détruit environ 21,7 milliards de revenu. C\'est l\'argument keynésien contre l\'austérité en période de récession.',
   },
 ];
 

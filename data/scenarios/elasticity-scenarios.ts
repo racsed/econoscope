@@ -21,7 +21,7 @@ export const elasticityScenarios: ElasticityScenario[] = [
     id: 'bien-de-luxe',
     title: 'Bien de luxe (sac a main haut de gamme)',
     description:
-      'La demande est tres sensible au prix : une hausse de 10 % fait chuter la demande de 25 %.',
+      'La demande est très sensible au prix : une hausse de 10 % fait chuter la demande de 25 %.',
     elasticity: 2.5,
     initialPrice: 500,
     initialQuantity: 1000,
@@ -43,7 +43,7 @@ export const elasticityScenarios: ElasticityScenario[] = [
     demandIntercept: 12000,
     category: 'nécessité',
     explanation:
-      'Le pain est un bien de première nécessité avec une tres faible élasticité (|Ep| < 1). Les consommateurs continuent d\'en acheter même si le prix augmente car il n\'y a pas de veritable substitut pour ce produit de base. Une hausse de prix augmente la recette totale des boulangers.',
+      'Le pain est un bien de première nécessité avec une très faible élasticité (|Ep| < 1). Les consommateurs continuent d\'en acheter même si le prix augmente car il n\'y a pas de véritable substitut pour ce produit de base. Une hausse de prix augmente la recette totale des boulangers.',
   },
   {
     id: 'tabac',
@@ -57,7 +57,7 @@ export const elasticityScenarios: ElasticityScenario[] = [
     demandIntercept: 7000,
     category: 'addictif',
     explanation:
-      'Le tabac à une élasticité faible à court terme (environ 0,4) en raison de la dépendance. A long terme, l\'élasticité augmente (0,7-0,8) car certains fumeurs parviennent a arreter. C\'est pourquoi les politiques de hausse des taxes sur le tabac reduisent la consommation, mais lentement. L\'État peut augmenter les recettes en elevant la taxe.',
+      'Le tabac a une élasticité faible à court terme (environ 0,4) en raison de la dépendance. À long terme, l\'élasticité augmente (0,7-0,8) car certains fumeurs parviennent à arrêter. C\'est pourquoi les politiques de hausse des taxes sur le tabac réduisent la consommation, mais lentement. L\'État peut augmenter les recettes en élevant la taxe.',
   },
   {
     id: 'smartphones',

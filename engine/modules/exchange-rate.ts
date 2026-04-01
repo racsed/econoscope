@@ -21,10 +21,11 @@ const meta: ModuleMeta = {
     "Le taux de change réel mesure la compétitivité-prix d'une économie. Une dépréciation rend les exportations moins cheres et les importations plus couteuses. Selon la condition de Marshall-Lerner, une dépréciation ameliore la balance commerciale si la somme des elasticites des exportations et des importations dépasse 1. Ce module simule l'impact du taux de change sur les flux commerciaux.",
   limites: [
     'Pas de modèle dynamique de courbe en J (effets instantanes)',
-    'Elasticites supposees constantes sur toute la plage',
+    'Elasticites supposées constantes sur toute la plage',
     'Modèle à deux pays seulement (domestique vs etranger)',
-    'Pas de prise en compte des flux de capitaux ni de la balance financiere',
+    'Pas de prise en compte des flux de capitaux ni de la balance financière',
   ],
+  economists: ['alfred-marshall'],
   realite: [
     'La dépréciation de l\'euro de 20% en 2022 a renchéri les importations energetiques',
     'L\'excédent commercial allemand repose en partie sur un euro sous-évalué pour l\'Allemagne',
@@ -271,7 +272,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (balance > 0) {
     interpretation += `L'économie dégage un excédent commercial de ${balance.toFixed(0)}. La compétitivité-prix est favorable grâce à ${TCR > 1 ? 'un taux de change réel deprecie qui rend les produits domestiques relativement bon marché a l\'etranger' : 'des prix domestiques relativement bas par rapport aux prix étrangers convertis'}.`;
   } else if (balance < 0) {
-    interpretation += `L'économie est en déficit commercial de ${Math.abs(balance).toFixed(0)}. ${TCR < 1 ? 'L\'appreciation réelle de la monnaie rend les produits domestiques plus chers a l\'etranger et les importations meilleur marche : les exportations chutent et les importations augmentent.' : 'Malgre un change nominalement favorable, d\'autres facteurs (prix domestiques élevés, elasticites faibles) maintiennent un déficit.'} A court terme, la courbe en J suggere qu'une dépréciation aggrave d'abord le déficit (les volumes s'ajustent lentement) avant de l'ameliorer.`;
+    interpretation += `L'économie est en déficit commercial de ${Math.abs(balance).toFixed(0)}. ${TCR < 1 ? 'L\'appreciation réelle de la monnaie rend les produits domestiques plus chers a l\'etranger et les importations meilleur marché : les exportations chutent et les importations augmentent.' : 'Malgre un change nominalement favorable, d\'autres facteurs (prix domestiques élevés, elasticites faibles) maintiennent un déficit.'} A court terme, la courbe en J suggere qu'une dépréciation aggrave d'abord le déficit (les volumes s'ajustent lentement) avant de l'ameliorer.`;
   } else {
     interpretation += 'La balance commerciale est a l\'équilibre : les exportations financent exactement les importations.';
   }
