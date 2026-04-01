@@ -59,10 +59,10 @@ export function NarrationBlock({
       <AnimatePresence mode="wait">
         <motion.p
           key={contentKey}
-          initial={{ opacity: 0, y: 4 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.25 }}
+          initial={{ opacity: 0, filter: "blur(4px)", y: 4 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          exit={{ opacity: 0, filter: "blur(2px)", y: -4 }}
+          transition={{ duration: 0.3 }}
           className="text-sm leading-relaxed text-text-secondary"
         >
           {renderNarration(content, themeColor)}

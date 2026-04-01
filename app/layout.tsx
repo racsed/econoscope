@@ -62,12 +62,14 @@ export default function RootLayout({
       <head />
       <body className="min-h-screen flex flex-col antialiased bg-bg-primary text-text-primary">
         <ThemeProvider>
-          <Header />
-          <div className="flex-1">
-            <PageTransition>{children}</PageTransition>
-          </div>
-          <Footer />
-          <ServiceWorkerRegister />
+          <SearchModalProvider>
+            <Header />
+            <div className="flex-1">
+              <PageTransition>{children}</PageTransition>
+            </div>
+            <Footer />
+            <ServiceWorkerRegister />
+          </SearchModalProvider>
         </ThemeProvider>
       </body>
     </html>

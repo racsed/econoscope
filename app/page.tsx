@@ -308,7 +308,7 @@ export default function HomePage() {
                         style={{ backgroundColor: `${color}15` }}
                       >
                         <div
-                          className="w-2.5 h-2.5 rounded-full"
+                          className="w-2.5 h-2.5 rounded-full transition-transform duration-300 group-hover:scale-125"
                           style={{ backgroundColor: color }}
                         />
                       </div>
@@ -330,7 +330,7 @@ export default function HomePage() {
                     </p>
                     <div className="flex items-center gap-1 text-sm font-medium" style={{ color }}>
                       Explorer
-                      <ArrowRight size={14} />
+                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
                   </Link>
                 </motion.div>

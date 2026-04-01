@@ -37,7 +37,9 @@ export function AnimatedNumber({
 
   const [display, setDisplay] = useState(() => safeFormat(value, format));
   const [flash, setFlash] = useState<"up" | "down" | null>(null);
+  const [scaleUp, setScaleUp] = useState(false);
   const prevValue = useRef(value);
+  const prevDirection = useRef<"up" | "down" | null>(null);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
@@ -48,8 +50,17 @@ export function AnimatedNumber({
     if (from === to) return;
 
     // Flash direction
-    setFlash(to > from ? "up" : "down");
+    const direction = to > from ? "up" : "down";
+    setFlash(direction);
     const flashTimeout = setTimeout(() => setFlash(null), 600);
+
+    // Scale bump when direction changes
+    let scaleTimeout: ReturnType<typeof setTimeout> | undefined;
+    if (prevDirection.current !== null && prevDirection.current !== direction) {
+      setScaleUp(true);
+      scaleTimeout = setTimeout(() => setScaleUp(false), 300);
+    }
+    prevDirection.current = direction;
 
     const start = performance.now();
 
@@ -73,6 +84,7 @@ export function AnimatedNumber({
     return () => {
       cancelAnimationFrame(rafRef.current);
       clearTimeout(flashTimeout);
+      if (scaleTimeout) clearTimeout(scaleTimeout);
     };
   }, [value, duration, format]);
 
@@ -84,7 +96,11 @@ export function AnimatedNumber({
 
   return (
     <span
-      className={`font-mono transition-colors duration-500 ${flashColor} ${className}`}
+      className={`font-mono transition-all duration-500 ${flashColor} ${className}`}
+      style={{
+        fontVariantNumeric: "tabular-nums",
+        transform: scaleUp ? "scale(1.05)" : "scale(1)",
+      }}
     >
       {display}
     </span>

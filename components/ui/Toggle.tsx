@@ -25,7 +25,7 @@ export function Toggle({
         {/* Sliding indicator */}
         <motion.div
           layout
-          transition={{ type: "spring", stiffness: 500, damping: 35 }}
+          transition={{ type: "spring", stiffness: 500, damping: 30, mass: 0.8 }}
           className="absolute inset-y-0.5 w-[calc(50%-2px)] rounded-full bg-accent-indigo"
           style={{ [checked ? "right" : "left"]: "2px" }}
         />
@@ -33,8 +33,8 @@ export function Toggle({
         <button
           type="button"
           onClick={() => onChange(false)}
-          className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-colors ${
-            !checked ? "text-white" : "text-text-secondary"
+          className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-all duration-200 ${
+            !checked ? "text-white" : "text-text-secondary opacity-60 hover:opacity-80"
           }`}
         >
           {options[0]}
@@ -42,8 +42,8 @@ export function Toggle({
         <button
           type="button"
           onClick={() => onChange(true)}
-          className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-colors ${
-            checked ? "text-white" : "text-text-secondary"
+          className={`relative z-10 flex-1 rounded-full px-4 text-sm font-medium transition-all duration-200 ${
+            checked ? "text-white" : "text-text-secondary opacity-60 hover:opacity-80"
           }`}
         >
           {options[1]}
