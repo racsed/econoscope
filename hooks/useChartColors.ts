@@ -7,15 +7,23 @@ export function useChartColors() {
   const isDark = theme === 'dark';
 
   return {
-    grid: isDark ? '#232638' : '#F1F3F5',
-    axis: isDark ? '#3D4156' : '#CBD5E1',
-    tickLabel: isDark ? '#5E6478' : '#9CA3B4',
-    legendText: isDark ? '#9096A8' : '#5F6980',
-    annotationLine: isDark ? '#5E6478' : '#9CA3B4',
-    annotationLabel: isDark ? '#5E6478' : '#9CA3B4',
+    // Grid lines - more visible
+    grid: isDark ? '#2D3044' : '#E2E4E9',
+    // Axis lines - stronger
+    axis: isDark ? '#4A4E66' : '#94A3B8',
+    // Tick labels - readable
+    tickLabel: isDark ? '#7882A0' : '#64748B',
+    // Legend text
+    legendText: isDark ? '#9096A8' : '#475569',
+    // Annotations
+    annotationLine: isDark ? '#6E78A0' : '#94A3B8',
+    annotationLabel: isDark ? '#7882A0' : '#64748B',
+    // Equilibrium
     equilibriumDot: '#FFFFFF',
-    radarRing: isDark ? '#2D3044' : '#F1F3F5',
-    radarAxis: isDark ? '#2D3044' : '#E2E4E9',
+    // Radar
+    radarRing: isDark ? '#2D3044' : '#E2E4E9',
+    radarAxis: isDark ? '#3D4156' : '#CBD5E1',
+    // Tooltip
     tooltipBg: isDark ? '#1E2130' : '#FFFFFF',
     tooltipBorder: isDark ? '#2D3044' : '#E2E4E9',
   };

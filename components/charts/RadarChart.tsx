@@ -1,10 +1,12 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import type { RadarData } from '@/engine/types';
 import { ChartContainer } from './ChartContainer';
 import { useChartColors } from '@/hooks/useChartColors';
+import { useAnimatedPath } from '@/hooks/useAnimatedPath';
+import { useAnimatedValue } from '@/hooks/useAnimatedScale';
 
 interface RadarChartProps {
   data: RadarData;
@@ -31,6 +33,118 @@ function formatValue(value: number): string {
   return value.toFixed(1);
 }
 
+/* ---------- Animated polygon ---------- */
+function AnimatedPolygon({
+  pathD,
+  fillId,
+  color,
+  hasRendered,
+  dsIdx,
+  cx,
+  cy,
+}: {
+  pathD: string;
+  fillId: string;
+  color: string;
+  hasRendered: boolean;
+  dsIdx: number;
+  cx: number;
+  cy: number;
+}) {
+  const animatedD = useAnimatedPath(pathD, { duration: 450 });
+
+  if (!hasRendered) {
+    return (
+      <motion.path
+        d={pathD}
+        fill={fillId}
+        stroke={color}
+        strokeWidth={2}
+        strokeLinejoin="round"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 80,
+          damping: 15,
+          delay: dsIdx * 0.15,
+        }}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      />
+    );
+  }
+
+  return (
+    <path
+      d={animatedD}
+      fill={fillId}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinejoin="round"
+    />
+  );
+}
+
+/* ---------- Animated data point ---------- */
+function AnimatedDataPoint({
+  targetX,
+  targetY,
+  color,
+  tooltipBg,
+  isHovered,
+  hasRendered,
+  delay,
+}: {
+  targetX: number;
+  targetY: number;
+  color: string;
+  tooltipBg: string;
+  isHovered: boolean;
+  hasRendered: boolean;
+  delay: number;
+}) {
+  const animX = useAnimatedValue(targetX, 450);
+  const animY = useAnimatedValue(targetY, 450);
+  const cx = hasRendered ? animX : targetX;
+  const cy = hasRendered ? animY : targetY;
+
+  return (
+    <>
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={isHovered ? 6 : 4}
+        fill={color}
+        stroke={tooltipBg}
+        strokeWidth={2}
+        initial={hasRendered ? false : { scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={hasRendered ? undefined : { delay }}
+      />
+      {isHovered && (
+        <motion.circle
+          cx={cx}
+          cy={cy}
+          r={6}
+          fill="none"
+          stroke={color}
+          strokeWidth={1.5}
+          initial={{ r: 6, opacity: 0.8 }}
+          animate={{
+            r: [6, 14, 6],
+            opacity: [0.8, 0, 0.8],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
+    </>
+  );
+}
+
 function RadarChartInner({
   data,
   width,
@@ -47,6 +161,10 @@ function RadarChartInner({
     datasetIdx: number;
     axisIdx: number;
   } | null>(null);
+  const renderCountRef = useRef(0);
+
+  renderCountRef.current += 1;
+  const hasRendered = renderCountRef.current > 2;
 
   const rings = [0.2, 0.4, 0.6, 0.8, 1.0];
 
@@ -73,6 +191,17 @@ function RadarChartInner({
     }));
   }, [data.datasets, getPolygonPoints]);
 
+  // Pre-compute polygon path strings
+  const polygonPaths = useMemo(() => {
+    return polygonsData.map((ds) => {
+      return (
+        ds.points
+          .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`)
+          .join(' ') + ' Z'
+      );
+    });
+  }, [polygonsData]);
+
   const handlePointEnter = useCallback(
     (datasetIdx: number, axisIdx: number) => {
       setHoveredPoint({ datasetIdx, axisIdx });
@@ -83,6 +212,11 @@ function RadarChartInner({
   const handlePointLeave = useCallback(() => {
     setHoveredPoint(null);
   }, []);
+
+  // Animated area percentage
+  const areaPercent = data.currentArea != null && data.idealArea != null
+    ? (data.currentArea / data.idealArea) * 100
+    : null;
 
   return (
     <>
@@ -175,7 +309,6 @@ function RadarChartInner({
               >
                 {axis.label}
               </text>
-              {/* Min/max hint */}
               <text
                 x={polarToCartesian(cx, cy, radius + 10, angle).x}
                 y={polarToCartesian(cx, cy, radius + 10, angle).y + 14}
@@ -192,33 +325,18 @@ function RadarChartInner({
           );
         })}
 
-        {/* Data polygons */}
+        {/* Data polygons - animated morphing */}
         {polygonsData.map((ds, dsIdx) => {
-          const pathD =
-            ds.points
-              .map(
-                (p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`,
-              )
-              .join(' ') + ' Z';
-
           return (
             <g key={ds.label}>
-              {/* Fill */}
-              <motion.path
-                d={pathD}
-                fill={`url(#radar-grad-${dsIdx})`}
-                stroke={ds.color}
-                strokeWidth={2}
-                strokeLinejoin="round"
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 80,
-                  damping: 15,
-                  delay: dsIdx * 0.15,
-                }}
-                style={{ transformOrigin: `${cx}px ${cy}px` }}
+              <AnimatedPolygon
+                pathD={polygonPaths[dsIdx]}
+                fillId={`url(#radar-grad-${dsIdx})`}
+                color={ds.color}
+                hasRendered={hasRendered}
+                dsIdx={dsIdx}
+                cx={cx}
+                cy={cy}
               />
 
               {/* Data points with hover */}
@@ -230,7 +348,7 @@ function RadarChartInner({
                 return (
                   <g key={i}>
                     {/* Value label at each point */}
-                    <motion.text
+                    <text
                       x={p.x + (p.x > cx ? 8 : -8)}
                       y={p.y + (p.y > cy ? 14 : -8)}
                       fill={ds.color}
@@ -238,12 +356,13 @@ function RadarChartInner({
                       fontFamily="var(--font-mono)"
                       fontWeight={600}
                       textAnchor={p.x > cx ? 'start' : 'end'}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.8 }}
-                      transition={{ delay: i * 0.05 + 0.5 }}
+                      opacity={0.8}
+                      style={{
+                        transition: 'x 0.4s ease-out, y 0.4s ease-out',
+                      }}
                     >
                       {formatValue(p.value)}
-                    </motion.text>
+                    </text>
 
                     {/* Invisible larger hit area */}
                     <circle
@@ -256,40 +375,16 @@ function RadarChartInner({
                       style={{ cursor: 'pointer' }}
                     />
 
-                    {/* Visible dot */}
-                    <motion.circle
-                      cx={p.x}
-                      cy={p.y}
-                      r={isHovered ? 6 : 4}
-                      fill={ds.color}
-                      stroke={colors.tooltipBg}
-                      strokeWidth={2}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: i * 0.05 + 0.2 }}
+                    {/* Visible dot - position animates */}
+                    <AnimatedDataPoint
+                      targetX={p.x}
+                      targetY={p.y}
+                      color={ds.color}
+                      tooltipBg={colors.tooltipBg}
+                      isHovered={isHovered}
+                      hasRendered={hasRendered}
+                      delay={i * 0.05 + 0.2}
                     />
-
-                    {/* Hover pulse */}
-                    {isHovered && (
-                      <motion.circle
-                        cx={p.x}
-                        cy={p.y}
-                        r={6}
-                        fill="none"
-                        stroke={ds.color}
-                        strokeWidth={1.5}
-                        initial={{ r: 6, opacity: 0.8 }}
-                        animate={{
-                          r: [6, 14, 6],
-                          opacity: [0.8, 0, 0.8],
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        }}
-                      />
-                    )}
                   </g>
                 );
               })}
@@ -318,6 +413,8 @@ function RadarChartInner({
               <div
                 style={{
                   background: colors.tooltipBg,
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
                   border: `1px solid ${colors.tooltipBorder}`,
                   borderRadius: 8,
                   padding: '6px 10px',
@@ -349,30 +446,13 @@ function RadarChartInner({
           );
         })()}
 
-        {/* Area percentage indicator */}
-        {data.currentArea != null && data.idealArea != null && (
-          <g>
-            <rect
-              x={width - 140}
-              y={10}
-              width={130}
-              height={36}
-              rx={18}
-              fill={themeColor}
-              opacity={0.1}
-            />
-            <text
-              x={width - 75}
-              y={33}
-              fill={themeColor}
-              fontSize={13}
-              fontFamily="var(--font-mono)"
-              fontWeight={600}
-              textAnchor="middle"
-            >
-              {((data.currentArea / data.idealArea) * 100).toFixed(1)}% ideal
-            </text>
-          </g>
+        {/* Area percentage indicator with animated value */}
+        {areaPercent != null && (
+          <AreaPercentBadge
+            percent={areaPercent}
+            x={width - 140}
+            color={themeColor}
+          />
         )}
       </svg>
 
@@ -409,6 +489,44 @@ function RadarChartInner({
         </div>
       )}
     </>
+  );
+}
+
+/* ---------- Animated area percent badge ---------- */
+function AreaPercentBadge({
+  percent,
+  x,
+  color,
+}: {
+  percent: number;
+  x: number;
+  color: string;
+}) {
+  const animPercent = useAnimatedValue(percent, 400);
+
+  return (
+    <g>
+      <rect
+        x={x}
+        y={10}
+        width={130}
+        height={36}
+        rx={18}
+        fill={color}
+        opacity={0.1}
+      />
+      <text
+        x={x + 65}
+        y={33}
+        fill={color}
+        fontSize={13}
+        fontFamily="var(--font-mono)"
+        fontWeight={600}
+        textAnchor="middle"
+      >
+        {animPercent.toFixed(1)}% ideal
+      </text>
+    </g>
   );
 }
 

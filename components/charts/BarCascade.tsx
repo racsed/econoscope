@@ -1,16 +1,17 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useRef } from 'react';
 import { scaleLinear, scaleBand } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
-import { AreaClosed } from '@visx/shape';
 import { localPoint } from '@visx/event';
-import { curveMonotoneX } from 'd3-shape';
+import { line, area, curveMonotoneX } from 'd3-shape';
 import { motion } from 'framer-motion';
 import type { CascadeData, CascadeBar } from '@/engine/types';
 import { ChartContainer } from './ChartContainer';
 import { useChartColors } from '@/hooks/useChartColors';
+import { useAnimatedPath } from '@/hooks/useAnimatedPath';
+import { useAnimatedValue } from '@/hooks/useAnimatedScale';
 
 interface BarCascadeProps {
   data: CascadeData;
@@ -29,6 +30,111 @@ function formatCompact(value: number): string {
 
 const CUMULATIVE_COLOR = '#22D3EE';
 
+/* ---------- Animated cumulative line ---------- */
+function AnimatedCumulativeLine({
+  pathString,
+  hasRendered,
+}: {
+  pathString: string;
+  hasRendered: boolean;
+}) {
+  const animatedD = useAnimatedPath(pathString, { duration: 500 });
+
+  if (!hasRendered) {
+    return (
+      <motion.path
+        d={pathString}
+        fill="none"
+        stroke={CUMULATIVE_COLOR}
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
+      />
+    );
+  }
+
+  return (
+    <path
+      d={animatedD}
+      fill="none"
+      stroke={CUMULATIVE_COLOR}
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  );
+}
+
+/* ---------- Animated cumulative area ---------- */
+function AnimatedCumulativeArea({
+  pathString,
+  hasRendered,
+}: {
+  pathString: string;
+  hasRendered: boolean;
+}) {
+  const animatedD = useAnimatedPath(pathString, { duration: 500 });
+
+  if (!hasRendered) {
+    return (
+      <motion.path
+        d={pathString}
+        fill="url(#cumulative-grad)"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      />
+    );
+  }
+
+  return <path d={animatedD} fill="url(#cumulative-grad)" />;
+}
+
+/* ---------- Animated multiplier badge ---------- */
+function MultiplierBadge({
+  multiplier,
+  x,
+  color,
+}: {
+  multiplier: number;
+  x: number;
+  color: string;
+}) {
+  const animValue = useAnimatedValue(multiplier, 400);
+
+  return (
+    <motion.g
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
+      <rect
+        x={x}
+        y={4}
+        width={130}
+        height={22}
+        rx={11}
+        fill={color}
+        opacity={0.1}
+      />
+      <text
+        x={x + 65}
+        y={18}
+        fill={color}
+        fontSize={11}
+        fontFamily="var(--font-mono)"
+        fontWeight={600}
+        textAnchor="middle"
+      >
+        k = {animValue.toFixed(2)}
+      </text>
+    </motion.g>
+  );
+}
+
 function BarCascadeInner({
   data,
   width,
@@ -39,6 +145,10 @@ function BarCascadeInner({
   const innerHeight = height - margin.top - margin.bottom;
   const colors = useChartColors();
   const [hoveredBar, setHoveredBar] = useState<number | null>(null);
+  const renderCountRef = useRef(0);
+
+  renderCountRef.current += 1;
+  const hasRendered = renderCountRef.current > 2;
 
   const xScale = useMemo(
     () =>
@@ -60,7 +170,7 @@ function BarCascadeInner({
     [data.asymptote, innerHeight],
   );
 
-  // Build cumulative area points for gradient fill
+  // Build cumulative paths with d3 generators
   const cumulativePoints = useMemo(
     () =>
       data.bars.map((bar) => ({
@@ -69,6 +179,23 @@ function BarCascadeInner({
       })),
     [data.bars, xScale],
   );
+
+  const cumulativeLinePath = useMemo(() => {
+    const gen = line<{ x: number; y: number }>()
+      .x((d) => d.x)
+      .y((d) => yScale(d.y) as number)
+      .curve(curveMonotoneX);
+    return gen(cumulativePoints) || 'M0,0';
+  }, [cumulativePoints, yScale]);
+
+  const cumulativeAreaPath = useMemo(() => {
+    const gen = area<{ x: number; y: number }>()
+      .x((d) => d.x)
+      .y0(innerHeight)
+      .y1((d) => yScale(d.y) as number)
+      .curve(curveMonotoneX);
+    return gen(cumulativePoints) || 'M0,0';
+  }, [cumulativePoints, yScale, innerHeight]);
 
   const handleBarEnter = useCallback((round: number) => {
     setHoveredBar(round);
@@ -86,12 +213,10 @@ function BarCascadeInner({
     <>
       <svg width={width} height={height}>
         <defs>
-          {/* Bar gradient */}
           <linearGradient id="bar-grad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={themeColor} stopOpacity={0.95} />
             <stop offset="100%" stopColor={themeColor} stopOpacity={0.6} />
           </linearGradient>
-          {/* Cumulative area gradient */}
           <linearGradient id="cumulative-grad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={CUMULATIVE_COLOR} stopOpacity={0.15} />
             <stop offset="100%" stopColor={CUMULATIVE_COLOR} stopOpacity={0} />
@@ -99,7 +224,7 @@ function BarCascadeInner({
         </defs>
 
         <Group left={margin.left} top={margin.top}>
-          {/* Horizontal grid lines only */}
+          {/* Horizontal grid lines */}
           {yScale.ticks(5).map((tick) => (
             <line
               key={`grid-${tick}`}
@@ -112,15 +237,11 @@ function BarCascadeInner({
             />
           ))}
 
-          {/* Cumulative area fill */}
+          {/* Cumulative area fill - animated */}
           {cumulativePoints.length > 1 && (
-            <AreaClosed
-              data={cumulativePoints}
-              x={(d) => d.x}
-              y={(d) => yScale(d.y)}
-              yScale={yScale}
-              curve={curveMonotoneX}
-              fill="url(#cumulative-grad)"
+            <AnimatedCumulativeArea
+              pathString={cumulativeAreaPath}
+              hasRendered={hasRendered}
             />
           )}
 
@@ -152,7 +273,7 @@ function BarCascadeInner({
             Total: {formatCompact(data.asymptote)}
           </motion.text>
 
-          {/* Bars with gradient fill */}
+          {/* Bars with spring animation */}
           {data.bars.map((bar, i) => {
             const barWidth = xScale.bandwidth();
             const barHeight = innerHeight - yScale(bar.total);
@@ -164,12 +285,9 @@ function BarCascadeInner({
               <g key={bar.round}>
                 <motion.rect
                   x={x}
-                  y={y}
                   width={barWidth}
-                  height={Math.max(2, barHeight)}
                   rx={3}
                   fill="url(#bar-grad)"
-                  opacity={isHovered ? 1 : 0.85}
                   initial={{ y: innerHeight, height: 0, opacity: 0 }}
                   animate={{
                     y: barHeight < 2 ? y - (2 - barHeight) : y,
@@ -180,7 +298,7 @@ function BarCascadeInner({
                     type: 'spring',
                     stiffness: 120,
                     damping: 18,
-                    delay: i * 0.06,
+                    delay: hasRendered ? 0 : i * 0.06,
                   }}
                   onMouseEnter={() => handleBarEnter(bar.round)}
                   onMouseLeave={handleBarLeave}
@@ -197,7 +315,7 @@ function BarCascadeInner({
                   textAnchor="middle"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.8 }}
-                  transition={{ delay: i * 0.06 + 0.4 }}
+                  transition={{ delay: hasRendered ? 0 : i * 0.06 + 0.4 }}
                 >
                   {formatCompact(bar.total)}
                 </motion.text>
@@ -205,24 +323,10 @@ function BarCascadeInner({
             );
           })}
 
-          {/* Cumulative line */}
-          <motion.path
-            d={data.bars
-              .map((bar, i) => {
-                const x =
-                  (xScale(String(bar.round)) ?? 0) + xScale.bandwidth() / 2;
-                const y = yScale(bar.cumulative);
-                return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
-              })
-              .join(' ')}
-            fill="none"
-            stroke={CUMULATIVE_COLOR}
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
+          {/* Cumulative line - animated morphing */}
+          <AnimatedCumulativeLine
+            pathString={cumulativeLinePath}
+            hasRendered={hasRendered}
           />
 
           {/* Cumulative dots */}
@@ -241,7 +345,7 @@ function BarCascadeInner({
                 strokeWidth={2}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.06 + 0.3 }}
+                transition={{ delay: hasRendered ? 0 : i * 0.06 + 0.3 }}
               />
             );
           })}
@@ -284,36 +388,15 @@ function BarCascadeInner({
           />
         </Group>
 
-        {/* Multiplier badge */}
-        <motion.g
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <rect
-            x={margin.left}
-            y={4}
-            width={130}
-            height={22}
-            rx={11}
-            fill={themeColor}
-            opacity={0.1}
-          />
-          <text
-            x={margin.left + 65}
-            y={18}
-            fill={themeColor}
-            fontSize={11}
-            fontFamily="var(--font-mono)"
-            fontWeight={600}
-            textAnchor="middle"
-          >
-            k = {data.multiplier.toFixed(2)}
-          </text>
-        </motion.g>
+        {/* Multiplier badge - animates value */}
+        <MultiplierBadge
+          multiplier={data.multiplier}
+          x={margin.left}
+          color={themeColor}
+        />
       </svg>
 
-      {/* Tooltip on bar hover */}
+      {/* Tooltip on bar hover with glass-morphism */}
       {hoveredBarData && (() => {
         const barX = (xScale(String(hoveredBarData.round)) ?? 0) + margin.left;
         const tooltipLeft = barX + xScale.bandwidth() + 12;
@@ -324,7 +407,10 @@ function BarCascadeInner({
               position: 'absolute',
               top: margin.top + 30,
               left: flipLeft ? barX - 175 : tooltipLeft,
+              transition: 'left 0.08s ease-out',
               background: colors.tooltipBg,
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               border: `1px solid ${colors.tooltipBorder}`,
               borderRadius: 8,
               padding: '8px 12px',
