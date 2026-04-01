@@ -303,24 +303,9 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   }
 
   const annotations: Annotation[] = [
-    {
-      type: 'label',
-      x: 30,
-      y: 70,
-      label: `Gini = ${giniAvant.toFixed(3)}`,
-      color: '#3b82f6',
-    },
+    // Diagonal line (equality reference)
+    { type: 'line', x1: 0, y1: 0, x2: 100, y2: 100, color: '#94A3B8' },
   ];
-
-  if (hasRedistribution) {
-    annotations.push({
-      type: 'label',
-      x: 50,
-      y: 40,
-      label: `Gini après = ${giniApres.toFixed(3)}`,
-      color: '#10b981',
-    });
-  }
 
   const chartData: ChartData = {
     type: 'area',

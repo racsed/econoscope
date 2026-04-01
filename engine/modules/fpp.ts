@@ -201,6 +201,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xDomain: [0, maxQA * 1.1],
     yDomain: [0, maxQB * 1.1],
     annotations,
+    equilibrium: { x: qaFrontier, y: qbFrontier },
   };
 
   // Narration

@@ -248,6 +248,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     yLabel: 'Quantité demandée',
     xDomain: [pMin, pMax],
     annotations: demandAnnotations,
+    equilibrium: { x: prixNouveau, y: quantiteNouvelle },
   };
 
   // Secondary chart: revenue curve

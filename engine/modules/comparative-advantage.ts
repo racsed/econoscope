@@ -253,6 +253,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xDomain: [0, maxX],
     yDomain: [0, maxY],
     annotations,
+    equilibrium: { x: currentA1, y: currentB1 },
   };
 
   // Narration

@@ -260,6 +260,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xDomain: [uMin, uMax],
     yDomain: [Math.min(-3, inflationAtNairu - 4), Math.max(inflationAtNairu + 6, 12)],
     annotations,
+    equilibrium: { x: nairu, y: inflationAtNairu },
   };
 
   // Current inflation at NAIRU
