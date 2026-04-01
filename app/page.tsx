@@ -146,6 +146,40 @@ export default function HomePage() {
                 En savoir plus
               </Link>
             </div>
+          {/* Floating stat cards - "wow" effect */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mt-16 flex flex-wrap justify-center gap-3"
+          >
+            {[
+              { value: 'PIB +6.8%', label: 'Relance 2021', color: '#10B981', delay: 1.4 },
+              { value: 'Gini 0.29', label: 'France', color: '#EC4899', delay: 1.6 },
+              { value: 'k = 1.5', label: 'Multiplicateur', color: '#5B5EF4', delay: 1.8 },
+              { value: '-7.9%', label: 'Choc COVID', color: '#EF4444', delay: 2.0 },
+              { value: 't* = 55%', label: 'Laffer optimal', color: '#F59E0B', delay: 2.2 },
+            ].map((card) => (
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  delay: card.delay,
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 15,
+                }}
+                className="px-4 py-2.5 rounded-xl border border-border bg-bg-card/80 backdrop-blur-sm shadow-sm"
+              >
+                <div className="font-mono font-bold text-sm" style={{ color: card.color }}>
+                  {card.value}
+                </div>
+                <div className="text-[10px] text-text-muted">{card.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
           </motion.div>
         </div>
       </section>

@@ -192,7 +192,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 1, prix_domestiques: 100, prix_etrangers: 100, elasticite_export: 1.2, elasticite_import: 1.0 },
     category: 'monétaire',
     icon: 'Landmark',
-    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'plan-marshall-1948',
@@ -204,7 +204,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { propension_consommer: 0.85, depense_initiale: 50, taux_imposition: 0.2, propension_importer: 0.15, nb_tours: 20 },
     category: 'politique',
     icon: 'Building',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f7e7?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "Notre politique n'est dirigee contre aucun pays ni aucune doctrine, mais contre la faim, la pauvrete, le desespoir et le chaos.", author: "George Marshall" },
   },
   {
@@ -217,7 +217,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { croissance: 8, chômage: 1.5, inflation: 2, solde_commercial: 3 },
     category: 'histoire',
     icon: 'Factory',
-    image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'trente-glorieuses-france',
@@ -229,7 +229,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 300, offre_monnaie: 1000, prix_petrole: 80, productivité: 150, salaire_nominal: 110 },
     category: 'histoire',
     icon: 'ArrowUpCircle',
-    image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f7?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'decolonisation-termes-echange',
@@ -268,7 +268,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { nairu: 6, anticipations_inflation: 8, choc_offre: 4, version_augmentee: true, mode_long_terme: false },
     category: 'crise',
     icon: 'TrendingDown',
-    image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "L'inflation est toujours et partout un phenomene monetaire.", author: "Milton Friedman" },
   },
   {
@@ -293,7 +293,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.5, prix_domestiques: 150, prix_etrangers: 100, elasticite_export: 0.8, elasticite_import: 0.6 },
     category: 'crise',
     icon: 'TrendingDown',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== TOURNANT DU MILLENAIRE =====
@@ -346,7 +346,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { prix_initial: 1.5, elasticite: -0.4, variation_prix: 8 },
     category: 'politique',
     icon: 'Receipt',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'courbe-laffer-france-ir',
@@ -358,7 +358,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_imposition: 75, elasticite_assiette: 0.7 },
     category: 'politique',
     icon: 'Receipt',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "Il existe toujours deux taux d'imposition qui produisent les memes recettes : un taux eleve et un taux faible.", author: "Arthur Laffer" },
   },
   {
@@ -431,7 +431,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { demande_intercept: 250, pente_demande: 0.5, cout_marginal: 10, cout_fixe: 1000, mode: 'monopole' },
     category: 'politique',
     icon: 'Smartphone',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1512941937-f48f3a98f36e?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "La concurrence est un processus de decouverte, un moyen d'utiliser des connaissances dispersees qu'aucun planificateur central ne pourrait reunir.", author: "Friedrich Hayek" },
   },
   {
@@ -506,7 +506,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 11, taux_tranche3: 30, taux_tranche4: 45, transfert_social: 600 },
     category: 'social',
     icon: 'Scale',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "L'accumulation de la richesse a un pole est donc en meme temps accumulation de misere a l'autre pole.", author: "Karl Marx" },
   },
   {
