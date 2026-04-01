@@ -127,36 +127,27 @@ function FactCard({
         className="bg-bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
         onClick={onToggle}
       >
-        {/* Mobile image - full width at top */}
-        {fact.image && (
-          <div className="block md:hidden">
-            <img
-              src={fact.image}
-              alt={fact.title}
-              loading="lazy"
-              className="w-full h-[120px] object-cover"
-            />
-          </div>
-        )}
-
         <div className="p-5">
           <div className="flex items-start gap-4">
-            {/* Icon */}
+            {/* Gradient icon badge */}
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-              style={{ backgroundColor: `${catInfo.color}15` }}
+              className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+              style={{
+                background: `linear-gradient(135deg, ${catInfo.color}20, ${catInfo.color}08)`,
+                border: `1px solid ${catInfo.color}20`,
+              }}
             >
-              <Icon size={18} style={{ color: catInfo.color }} />
+              <Icon size={20} style={{ color: catInfo.color }} />
             </div>
 
             <div className="flex-1 min-w-0">
               {/* Header */}
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-mono font-semibold" style={{ color: catInfo.color }}>
+                <span className="text-xs font-mono font-bold" style={{ color: catInfo.color }}>
                   {fact.year}
                 </span>
                 <span
-                  className="text-xs px-2 py-0.5 rounded-full"
+                  className="text-xs px-2 py-0.5 rounded-full font-medium"
                   style={{ backgroundColor: `${catInfo.color}12`, color: catInfo.color }}
                 >
                   {catInfo.label}
@@ -166,18 +157,6 @@ function FactCard({
               <h3 className="text-base font-semibold text-text-primary mb-1">{fact.title}</h3>
               <p className="text-sm text-text-secondary leading-relaxed">{fact.summary}</p>
             </div>
-
-            {/* Desktop thumbnail */}
-            {fact.image && (
-              <div className="hidden md:block shrink-0">
-                <img
-                  src={fact.image}
-                  alt={fact.title}
-                  loading="lazy"
-                  className="w-[120px] h-[80px] object-cover rounded-lg"
-                />
-              </div>
-            )}
           </div>
 
           {/* Expanded detail */}

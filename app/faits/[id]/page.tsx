@@ -116,65 +116,37 @@ function FactArticle({
           Retour aux faits économiques
         </Link>
 
-        {/* Hero image + Article header */}
+        {/* Article header with gradient banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          {fact.image && (
-            <div className="relative rounded-xl overflow-hidden mb-6">
-              <img
-                src={fact.image}
-                alt={fact.title}
-                loading="lazy"
-                className="w-full h-[250px] object-cover"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-primary)] via-[var(--color-bg-primary)]/40 to-transparent" />
-              {/* Title overlay at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <span
-                    className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
-                    style={{ backgroundColor: `${catInfo.color}30`, color: catInfo.color }}
-                  >
-                    <Tag size={12} />
-                    {catInfo.label}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs font-mono text-text-secondary">
-                    <Calendar size={12} />
-                    {fact.year}
-                  </span>
-                </div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">
-                  {fact.title}
-                </h1>
-              </div>
+          {/* Gradient hero banner */}
+          <div
+            className="relative rounded-2xl overflow-hidden mb-6 p-8 sm:p-10"
+            style={{
+              background: `linear-gradient(135deg, ${catInfo.color}15, ${catInfo.color}05)`,
+              border: `1px solid ${catInfo.color}20`,
+            }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span
+                className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
+                style={{ backgroundColor: `${catInfo.color}20`, color: catInfo.color }}
+              >
+                <Tag size={12} />
+                {catInfo.label}
+              </span>
+              <span className="flex items-center gap-1.5 text-xs font-mono text-text-muted">
+                <Calendar size={12} />
+                {fact.year}
+              </span>
             </div>
-          )}
-
-          {!fact.image && (
-            <>
-              <div className="flex items-center gap-3 mb-4">
-                <span
-                  className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
-                  style={{ backgroundColor: `${catInfo.color}15`, color: catInfo.color }}
-                >
-                  <Tag size={12} />
-                  {catInfo.label}
-                </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-text-muted">
-                  <Calendar size={12} />
-                  {fact.year}
-                </span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">
-                {fact.title}
-              </h1>
-            </>
-          )}
+            <h1 className="text-3xl sm:text-4xl font-bold text-text-primary">
+              {fact.title}
+            </h1>
+          </div>
 
           <p className="text-lg text-text-secondary leading-relaxed max-w-3xl">
             {fact.summary}
