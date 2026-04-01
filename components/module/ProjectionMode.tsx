@@ -123,16 +123,18 @@ export function ProjectionMode({
 
       {/* Main content: chart (70%) + side panel (30%) */}
       <div className="flex-1 min-h-0 flex">
-        {/* Chart area */}
-        <div ref={chartAreaRef} className="flex-[7] min-w-0 p-2">
+        {/* Chart area - fills all available space */}
+        <div ref={chartAreaRef} className="flex-[7] min-w-0 p-3 flex flex-col">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            style={{ width: '100%', height: chartHeight }}
-            className="[&>div]:!h-full [&>div>div]:!h-full [&_svg]:max-h-full"
+            className="flex-1 min-h-0"
+            style={{ height: chartHeight > 100 ? chartHeight : '100%' }}
           >
-            {visualization}
+            <div style={{ width: '100%', height: '100%' }}>
+              {visualization}
+            </div>
           </motion.div>
         </div>
 

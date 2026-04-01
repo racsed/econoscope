@@ -25,26 +25,20 @@ export function ChartContainer({
     const w = Math.floor(el.clientWidth);
     if (w <= 0) return;
 
-    // Height is FIXED once calculated - never grows from content
-    // Only changes if: 1) aspect ratio, 2) parent has explicit height via CSS
+    // Determine height
     let h = minHeight;
     if (aspectRatio) {
       h = Math.max(Math.round(w / aspectRatio), minHeight);
     }
 
-    // Check if parent has explicit height set (projection mode)
-    const parent = el.parentElement;
-    if (parent) {
-      const parentStyle = getComputedStyle(parent);
-      const parentH = parent.clientHeight;
-      // Only use parent height if it's explicitly set (not auto/min-content)
-      if (parentStyle.height !== 'auto' && parentH > h + 50) {
-        h = parentH - 8;
-      }
+    // Use parent height if significantly larger (projection/fullscreen mode)
+    const parentH = el.parentElement?.clientHeight ?? 0;
+    if (parentH > minHeight + 80) {
+      h = parentH - 4;
     }
 
-    // Cap at reasonable max
-    h = Math.min(h, 800);
+    // Cap to prevent absurd sizes
+    h = Math.min(h, 900);
     heightRef.current = h;
 
     setDims(prev => {
