@@ -782,6 +782,7 @@ export const glossary: GlossaryTerm[] = [
       "Combinaison de la politique budgétaire (responsabilité du gouvernement) et de la politique monétaire (responsabilité de la banque centrale) mises en oeuvre simultanément pour atteindre les objectifs macroéconomiques. Le policy mix optimal dépend de la nature du choc et du régime de change. En économie fermée (modèle IS-LM), une relance budgétaire déplace IS vers la droite (hausse de Y et de r), tandis qu'une politique monétaire accommodante déplace LM vers la droite (baisse de r), neutralisant l'effet d'éviction. En zone euro, la configuration institutionnelle crée une asymétrie : la politique monétaire est centralisée (BCE) tandis que les politiques budgétaires restent nationales (encadrées par le PSC). Le policy mix européen a souvent été critiqué : politique monétaire trop restrictive dans les années 2000, puis budgets trop austères en 2011-2013 alors que la BCE était expansionniste. Le Modèle Mundell-Fleming (IS-LM en économie ouverte) montre que l'efficacité relative des politiques dépend du régime de change (fixe ou flottant) et du degré de mobilité des capitaux.",
     relatedModules: ['is-lm', 'multiplicateur-keynesien', 'ad-as', 'carre-magique-kaldor'],
     category: 'Politique économique',
+    seeAlso: ['Politique budgétaire', 'Politique monétaire', 'Modèle IS-LM', 'Stabilisateurs automatiques'],
   },
   {
     term: 'Stabilisateurs automatiques',
@@ -789,6 +790,8 @@ export const glossary: GlossaryTerm[] = [
       "Mécanismes budgétaires qui atténuent spontanément les fluctuations conjoncturelles sans décision discrétionnaire du gouvernement. En période de récession, les recettes fiscales diminuent mécaniquement (baisse des revenus imposables, des bénéfices, de la consommation taxée à la TVA) tandis que les dépenses sociales augmentent automatiquement (hausse des allocations chômage, du RSA, des aides sociales) : le déficit se creuse et soutient la demande. En période d'expansion, le phénomène inverse freine la surchauffe. L'ampleur des stabilisateurs automatiques dépend de la taille du secteur public dans l'économie : ils sont plus puissants en France (dépenses publiques à 57 % du PIB) qu'aux États-Unis (38 %). Selon l'OCDE, les stabilisateurs automatiques absorbent environ 25-30 % d'un choc conjoncturel dans les pays de la zone euro. Leur avantage est la rapidité et l'absence de délai décisionnel (contrairement aux plans de relance discrétionnaires qui nécessitent un vote parlementaire et une mise en oeuvre administrative).",
     relatedModules: ['multiplicateur-keynesien', 'carre-magique-kaldor', 'courbe-de-laffer'],
     category: 'Politique économique',
+    keyFigure: 'Depenses publiques France : 57% du PIB | USA : 38% | Absorption choc : 25-30%',
+    seeAlso: ['Politique budgétaire', 'Policy mix', 'Multiplicateur keynésien'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -800,6 +803,8 @@ export const glossary: GlossaryTerm[] = [
       "Mesure de l'inflation qui exclut les composantes les plus volatiles de l'indice des prix à la consommation, principalement l'énergie et l'alimentation fraîche (produits dont les prix fluctuent fortement en raison de facteurs saisonniers, géopolitiques ou climatiques). L'INSEE publie un indice d'inflation sous-jacente qui exclut également les prix soumis à l'intervention de l'État (tabac, tarifs publics). Cette mesure permet de dégager la tendance de fond de l'inflation, reflétant les pressions internes sur les prix (salaires, marges, demande domestique). Elle est suivie de près par les banques centrales pour piloter la politique monétaire, car les variations temporaires des prix de l'énergie ne nécessitent pas de réponse monétaire. Lors du choc inflationniste de 2021-2023, l'inflation totale a atteint 6 % en zone euro tandis que l'inflation sous-jacente a culminé autour de 5,5 %, confirmant la diffusion des hausses de prix de l'énergie à l'ensemble de l'économie (effets de second tour).",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'donnees-historiques'],
     category: 'Monnaie et finance',
+    keyFigure: 'Inflation totale Zone euro 2022 : ~6% | Sous-jacente : ~5.5%',
+    seeAlso: ['Inflation', 'Courbe de Phillips', 'Politique monétaire'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -811,6 +816,8 @@ export const glossary: GlossaryTerm[] = [
       "Ensemble des personnes qui ne sont pas comptabilisées comme chômeurs au sens du BIT mais qui se trouvent dans une situation de frontière entre inactivité et chômage. L'INSEE distingue trois composantes du halo du chômage : les personnes qui souhaitent travailler mais ne sont pas disponibles dans les deux semaines (maladie, garde d'enfants), celles qui souhaitent travailler et sont disponibles mais n'ont pas fait de recherche active dans les quatre dernières semaines (personnes « découragées »), et celles qui recherchent un emploi mais ne sont pas disponibles. En France, le halo du chômage concerne environ 1,9 million de personnes (INSEE, 2023), soit presque autant que le nombre de chômeurs BIT (2,3 millions). Ajouté au sous-emploi (personnes à temps partiel subi, environ 1,2 million), il révèle une réalité du marché du travail bien plus dégradée que ne le suggère le seul taux de chômage officiel. Le concept de « taux de non-emploi » (incluant chômeurs + halo + inactifs en âge de travailler) donne une image plus complète.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor'],
     category: 'Marché du travail',
+    keyFigure: 'Halo du chomage France : ~1.9M personnes | Chomeurs BIT : ~2.3M (INSEE 2023)',
+    seeAlso: ['Chômage au sens du BIT', 'Taux d\'emploi, taux d\'activité, taux de chômage', 'Chômage structurel vs chômage conjoncturel'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -822,6 +829,9 @@ export const glossary: GlossaryTerm[] = [
       "Indicateur de dispersion des revenus calculé comme le rapport entre le neuvième décile (D9, seuil en dessous duquel se situent 90 % des individus) et le premier décile (D1, seuil en dessous duquel se situent 10 % des individus). En France, le rapport interdécile du niveau de vie est d'environ 3,4 (INSEE, 2023) : le seuil d'entrée dans les 10 % les plus aisés est 3,4 fois supérieur au seuil des 10 % les plus modestes. Cet indicateur est moins sensible aux valeurs extrêmes que le coefficient de Gini, car il ignore les revenus situés en dessous de D1 et au-dessus de D9. Il est complété par d'autres ratios : D5/D1 (inégalités dans la moitié basse de la distribution), D9/D5 (inégalités dans la moitié haute), et par les parts de revenu des centiles supérieurs (part du top 1 %, top 10 %) pour capter la concentration au sommet. Après redistribution (impôts et transferts), le rapport interdécile en France passe d'environ 5,5 (revenus primaires) à 3,4 (revenus disponibles), illustrant l'effet redistributif du système socio-fiscal.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     category: 'Inégalités et protection sociale',
+    keyFormula: 'D9/D1 = seuil 90e percentile / seuil 10e percentile',
+    keyFigure: 'D9/D1 France : 3.4 (apres redistribution) vs 5.5 (avant) | Effet redistributif fort',
+    seeAlso: ['Coefficient de Gini', 'Déciles et centiles de revenus', 'Courbe de Lorenz'],
   },
 ];
 
