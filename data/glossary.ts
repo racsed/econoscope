@@ -18,6 +18,9 @@ export const glossary: GlossaryTerm[] = [
       "Agrégat mesurant la valeur totale de la production de biens et services finaux réalisée sur le territoire économique d'un pays au cours d'une période donnée, généralement une année ou un trimestre. Selon la comptabilité nationale (base INSEE/SEC 2010), le PIB peut être calculé par trois approches équivalentes : l'approche production (somme des valeurs ajoutées brutes + impôts sur les produits - subventions sur les produits), l'approche revenu (rémunération des salariés + EBE + revenus mixtes + impôts nets sur la production et les importations), et l'approche demande (consommation finale + FBCF + variations de stocks + exportations - importations). Le PIB en volume (ou à prix constants) corrige l'effet de l'inflation pour mesurer la croissance réelle de la production. C'est l'indicateur de référence pour la croissance économique, bien qu'il ne mesure ni le bien-être, ni les inégalités, ni les dégradations environnementales - ce que la commission Stiglitz-Sen-Fitoussi (2009) a souligné.",
     relatedModules: ['multiplicateur-keynesien', 'ad-as', 'carre-magique-kaldor', 'is-lm', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFormula: 'PIB = C + I + G + (X - M)',
+    keyFigure: 'France 2023 : 2 822 Md EUR | Croissance : +0.9% | USA : 27 360 Md USD',
+    seeAlso: ['Investissement (FBCF)', 'Croissance endogène', 'PIB potentiel et écart de production (output gap)', 'Carré magique de Kaldor'],
   },
   {
     term: 'Inflation',
@@ -25,6 +28,9 @@ export const glossary: GlossaryTerm[] = [
       "Hausse généralisée et durable du niveau général des prix, mesurée par la variation de l'indice des prix à la consommation (IPC) publié mensuellement par l'INSEE, ou par l'indice des prix à la consommation harmonisé (IPCH) au niveau européen (Eurostat). On distingue classiquement l'inflation par la demande (excès de demande globale sur l'offre disponible, analyse keynésienne), l'inflation par les coûts (hausse des coûts de production - salaires, matières premières, énergie - répercutée sur les prix de vente), et l'inflation monétaire (création excessive de monnaie selon la théorie quantitative de la monnaie, MV = PY, de Fisher puis Friedman). L'inflation réduit le pouvoir d'achat de la monnaie mais peut alléger le poids réel de la dette (effet favorisant les emprunteurs au détriment des créanciers). La BCE cible une inflation de 2 % à moyen terme pour la zone euro, considérant qu'un taux modéré facilite les ajustements de prix relatifs et éloigne le risque déflationniste.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'ad-as', 'creation-monetaire', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFormula: 'Taux d\'inflation = (IPC_t - IPC_{t-1}) / IPC_{t-1} x 100',
+    keyFigure: 'France 2023 : 4.9% | Zone euro 2023 : 5.4% | Cible BCE : 2%',
+    seeAlso: ['Désinflation', 'Déflation', 'Stagflation', 'Politique monétaire', 'Inflation sous-jacente (core inflation)'],
   },
   {
     term: 'Chômage au sens du BIT',
@@ -32,6 +38,9 @@ export const glossary: GlossaryTerm[] = [
       "Selon la définition du Bureau International du Travail (BIT), adoptée par l'INSEE et Eurostat pour les comparaisons internationales, est chômeur toute personne en âge de travailler (15 ans ou plus) qui remplit simultanément trois critères : (1) être sans emploi, c'est-à-dire ne pas avoir travaillé ne serait-ce qu'une heure au cours de la semaine de référence ; (2) être disponible pour prendre un emploi dans les deux semaines ; (3) avoir entrepris des démarches actives de recherche d'emploi au cours des quatre dernières semaines ou avoir trouvé un emploi commençant dans les trois mois. Cette définition, plus restrictive que celle des demandeurs d'emploi inscrits à France Travail (ex-Pôle emploi), exclut notamment les personnes découragées (halo du chômage) et celles en sous-emploi (temps partiel subi). Le taux de chômage (nombre de chômeurs / population active x 100) est l'indicateur de référence du carré magique de Kaldor.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'ad-as', 'donnees-historiques'],
     category: 'Marché du travail',
+    keyFormula: 'Taux de chomage = (Chomeurs BIT / Population active) x 100',
+    keyFigure: 'France T4 2023 : 7.5% | Zone euro : 6.5% | USA : 3.7%',
+    seeAlso: ['Halo du chômage', 'NAIRU (Non-Accelerating Inflation Rate of Unemployment)', 'Chômage structurel vs chômage conjoncturel', 'Courbe de Phillips'],
   },
   {
     term: 'Taux d\'emploi, taux d\'activité, taux de chômage',
@@ -39,6 +48,8 @@ export const glossary: GlossaryTerm[] = [
       "Ces trois indicateurs du marché du travail mesurent des réalités distinctes et ne doivent pas être confondus. Le taux d'emploi rapporte le nombre de personnes en emploi à la population en âge de travailler (15-64 ans selon la convention européenne) : il mesure la capacité d'une économie à mobiliser sa main-d'oeuvre. Le taux d'activité rapporte la population active (personnes en emploi + chômeurs au sens du BIT) à la population en âge de travailler : il intègre donc aussi les chômeurs. Le taux de chômage rapporte le nombre de chômeurs au sens du BIT à la population active (et non à la population totale). En France en 2024, le taux d'emploi des 15-64 ans est d'environ 68 %, le taux d'activité de 73 % et le taux de chômage d'environ 7,3 % (INSEE). Ces distinctions sont essentielles pour comprendre que le taux de chômage peut baisser sans que l'emploi progresse, si des personnes sortent de la population active.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'donnees-historiques'],
     category: 'Marché du travail',
+    keyFigure: 'France 2024 : taux d\'emploi 68% | taux d\'activite 73% | taux de chomage 7.3%',
+    seeAlso: ['Chômage au sens du BIT', 'Halo du chômage', 'Loi d\'Okun'],
   },
   {
     term: 'Demande agrégée (AD)',
@@ -46,6 +57,8 @@ export const glossary: GlossaryTerm[] = [
       "Quantité totale de biens et services demandés dans une économie pour chaque niveau de prix. Elle se décompose en quatre composantes : la consommation finale des ménages (C), l'investissement des entreprises et des ménages (I, mesuré par la FBCF), les dépenses publiques (G) et les exportations nettes (X - M). La courbe AD est décroissante dans le plan (prix, production) en raison de trois effets : l'effet d'encaisse réelle (Pigou) - une baisse des prix augmente la valeur réelle de la monnaie détenue et stimule la consommation ; l'effet taux d'intérêt (Keynes) - une baisse des prix réduit la demande de monnaie et fait baisser le taux d'intérêt, stimulant l'investissement ; l'effet commerce extérieur (Mundell-Fleming) - une baisse des prix nationaux améliore la compétitivité-prix et stimule les exportations nettes. Un déplacement de la courbe AD vers la droite traduit une politique de relance (budgétaire ou monétaire).",
     relatedModules: ['ad-as', 'is-lm', 'multiplicateur-keynesien'],
     category: 'Macroéconomie',
+    keyFormula: 'AD = C + I + G + (X - M)',
+    seeAlso: ['Offre agrégée (AS)', 'Multiplicateur keynésien', 'Politique de la demande vs politique de l\'offre'],
   },
   {
     term: 'Offre agrégée (AS)',
@@ -53,6 +66,7 @@ export const glossary: GlossaryTerm[] = [
       "Quantité totale de biens et services que l'ensemble des entreprises d'une économie sont disposées à produire pour chaque niveau de prix. La distinction entre court terme et long terme est fondamentale. À court terme (SRAS), la courbe est croissante car les salaires nominaux sont rigides (contrats, négociations) : une hausse des prix augmente les profits et stimule la production. À long terme (LRAS), la courbe est verticale au niveau du PIB potentiel car tous les prix et salaires se sont ajustés : la production ne dépend plus que des facteurs structurels (capital, travail, productivité). Un choc d'offre négatif (hausse du prix du pétrole, catastrophe naturelle) déplace la courbe SRAS vers la gauche, provoquant simultanément inflation et récession - c'est le mécanisme de la stagflation observée lors des chocs pétroliers de 1973 et 1979.",
     relatedModules: ['ad-as'],
     category: 'Macroéconomie',
+    seeAlso: ['Demande agrégée (AD)', 'Stagflation', 'PIB potentiel et écart de production (output gap)'],
   },
   {
     term: 'Multiplicateur keynésien',
@@ -60,6 +74,9 @@ export const glossary: GlossaryTerm[] = [
       "Mécanisme théorisé par John Maynard Keynes (Théorie générale, 1936) selon lequel une variation initiale de la dépense autonome (investissement, dépenses publiques, exportations) entraîne une variation plus que proportionnelle du revenu national. Le multiplicateur k = 1/(1-c), où c est la propension marginale à consommer. Si c = 0,8, le multiplicateur vaut 5 : une injection de 1 milliard d'euros de dépenses publiques génère 5 milliards de revenu national à travers des vagues successives de consommation. Ce résultat repose sur des hypothèses : existence de capacités de production inutilisées (sous-emploi keynésien), rigidité des prix à court terme, économie fermée (en économie ouverte, les fuites par les importations réduisent le multiplicateur). L'effet est d'autant plus fort que la propension marginale à consommer est élevée et que le taux d'imposition est faible. En pratique, les estimations empiriques du FMI situent le multiplicateur budgétaire entre 0,5 et 2,5 selon le contexte conjoncturel.",
     relatedModules: ['multiplicateur-keynesien', 'is-lm'],
     category: 'Macroéconomie',
+    keyFormula: 'k = 1 / (1 - c) avec c = propension marginale a consommer',
+    keyFigure: 'Estimations FMI : multiplicateur entre 0.5 et 2.5 selon le contexte',
+    seeAlso: ['Propension marginale à consommer (PmC)', 'Paradoxe de l\'épargne (Keynes)', 'Politique budgétaire', 'Effet d\'éviction'],
   },
   {
     term: 'Propension marginale à consommer (PmC)',
@@ -67,6 +84,8 @@ export const glossary: GlossaryTerm[] = [
       "Part de chaque euro de revenu supplémentaire consacrée à la consommation, le complément étant épargné (propension marginale à épargner, PmS = 1 - PmC). Concept central de la théorie keynésienne, la PmC est comprise entre 0 et 1 et détermine la valeur du multiplicateur (k = 1/(1 - PmC)). Keynes formule la « loi psychologique fondamentale » selon laquelle les hommes tendent à accroître leur consommation lorsque le revenu augmente, mais moins que proportionnellement. Une PmC de 0,8 signifie que pour chaque euro de revenu supplémentaire, 80 centimes sont consommés et 20 centimes épargnés. La PmC varie selon le niveau de revenu (plus élevée pour les ménages modestes, qui consomment une plus grande part de leur revenu) et selon la phase du cycle économique, ce qui a des implications directes pour l'efficacité de la politique budgétaire et le ciblage des transferts sociaux.",
     relatedModules: ['multiplicateur-keynesien', 'is-lm'],
     category: 'Macroéconomie',
+    keyFormula: 'k = 1 / (1 - PmC) | PmS = 1 - PmC',
+    seeAlso: ['Multiplicateur keynésien', 'Paradoxe de l\'épargne (Keynes)'],
   },
   {
     term: 'Modèle IS-LM',
@@ -74,6 +93,7 @@ export const glossary: GlossaryTerm[] = [
       "Modèle macroéconomique de synthèse développé par John Hicks (1937) et Alvin Hansen, formalisant l'analyse de la Théorie générale de Keynes. La courbe IS (Investment-Saving) représente l'ensemble des combinaisons de taux d'intérêt (r) et de revenu national (Y) assurant l'équilibre sur le marché des biens et services : elle est décroissante car une baisse du taux d'intérêt stimule l'investissement et donc le revenu. La courbe LM (Liquidity preference-Money supply) représente l'équilibre sur le marché de la monnaie : elle est croissante car une hausse du revenu augmente la demande de monnaie pour motif de transaction, ce qui élève le taux d'intérêt. L'intersection détermine l'équilibre simultané (Y*, r*). Le modèle permet d'analyser les effets des politiques budgétaire (déplacement de IS) et monétaire (déplacement de LM), et de mettre en évidence l'effet d'éviction. Ses cas limites sont la trappe à liquidité (LM horizontale, politique monétaire inefficace) et le cas classique (LM verticale, politique budgétaire inefficace).",
     relatedModules: ['is-lm'],
     category: 'Macroéconomie',
+    seeAlso: ['Politique budgétaire', 'Politique monétaire', 'Effet d\'éviction', 'Trappe à liquidité', 'Policy mix'],
   },
   {
     term: 'Courbe de Phillips',
@@ -81,6 +101,7 @@ export const glossary: GlossaryTerm[] = [
       "Relation empirique mise en évidence par l'économiste néo-zélandais Alban William Phillips en 1958, établissant une corrélation inverse entre le taux de chômage et le taux de variation des salaires nominaux au Royaume-Uni (1861-1957). Samuelson et Solow (1960) l'ont reformulée comme un arbitrage inflation-chômage, offrant aux décideurs un « menu de politique économique ». Milton Friedman (1968) et Edmund Phelps ont remis en cause cette relation à long terme en introduisant les anticipations adaptatives : à long terme, la courbe est verticale au taux de chômage naturel (NAIRU), car les agents ajustent leurs anticipations d'inflation. Les nouveaux classiques (Lucas, Sargent) ont radicalisé cette critique avec les anticipations rationnelles : même à court terme, une politique monétaire anticipée est sans effet réel. La stagflation des années 1970 a confirmé l'instabilité de la relation de Phillips simple.",
     relatedModules: ['courbe-de-phillips', 'ad-as'],
     category: 'Macroéconomie',
+    seeAlso: ['NAIRU (Non-Accelerating Inflation Rate of Unemployment)', 'Stagflation', 'Inflation', 'Loi d\'Okun'],
   },
   {
     term: 'NAIRU (Non-Accelerating Inflation Rate of Unemployment)',
@@ -88,6 +109,8 @@ export const glossary: GlossaryTerm[] = [
       "Taux de chômage en dessous duquel l'inflation tend à s'accélérer, concept développé par Franco Modigliani et Lucas Papademos (1975) puis popularisé dans le débat de politique économique. Il correspond au taux de chômage compatible avec une inflation stable, c'est-à-dire un taux de chômage « d'équilibre » déterminé par les caractéristiques structurelles du marché du travail : degré de rigidité des salaires, pouvoir de négociation des syndicats, efficacité de l'appariement entre offre et demande d'emploi, niveau des allocations chômage. Lorsque le chômage effectif est inférieur au NAIRU, les tensions sur le marché du travail poussent les salaires puis les prix à la hausse ; lorsqu'il est supérieur, l'inflation décélère. Le NAIRU n'est pas directement observable et fait l'objet d'estimations (OCDE, Commission européenne). Il est estimé entre 7 % et 8 % en France et autour de 4 % aux États-Unis, mais ces estimations sont entourées d'une forte incertitude.",
     relatedModules: ['courbe-de-phillips', 'ad-as'],
     category: 'Macroéconomie',
+    keyFigure: 'NAIRU France : 7-8% | USA : ~4% | Zone euro : ~6.5%',
+    seeAlso: ['Courbe de Phillips', 'Chômage structurel vs chômage conjoncturel', 'Chômage au sens du BIT'],
   },
   {
     term: 'Carré magique de Kaldor',
@@ -95,6 +118,7 @@ export const glossary: GlossaryTerm[] = [
       "Représentation graphique proposée par l'économiste Nicholas Kaldor (1971), synthétisant sur quatre axes les quatre objectifs fondamentaux de la politique économique conjoncturelle : la croissance du PIB réel (en %), le taux de chômage (en %), le taux d'inflation (en %) et le solde de la balance courante (en % du PIB). Plus le quadrilatère formé est étendu (en plaçant les valeurs souhaitables vers l'extérieur), meilleure est la performance économique globale. Le terme « magique » souligne qu'il est en pratique impossible d'atteindre simultanément les quatre objectifs optimaux, en raison des arbitrages (trade-offs) : par exemple, une relance pour réduire le chômage peut aggraver l'inflation et le déficit extérieur. Ce diagramme est un outil pédagogique courant en STMG et SES pour comparer les performances de différents pays ou les résultats de politiques économiques successives.",
     relatedModules: ['carre-magique-kaldor', 'donnees-historiques'],
     category: 'Macroéconomie',
+    seeAlso: ['PIB (Produit Intérieur Brut)', 'Inflation', 'Chômage au sens du BIT', 'Balance commerciale et balance des paiements'],
   },
   {
     term: 'Stagflation',
@@ -102,6 +126,7 @@ export const glossary: GlossaryTerm[] = [
       "Situation macroéconomique combinant simultanément stagnation économique (croissance faible ou nulle, chômage élevé) et inflation élevée. Ce phénomène, observé dans les économies occidentales après les chocs pétroliers de 1973 (quadruplement du prix du pétrole par l'OPEP) et 1979, a constitué un défi majeur pour la théorie keynésienne traditionnelle qui postulait un arbitrage entre inflation et chômage (courbe de Phillips). La stagflation s'explique par un choc d'offre négatif : la hausse du prix des intrants (énergie, matières premières) déplace la courbe d'offre agrégée vers la gauche, provoquant simultanément une hausse des prix et une baisse de la production. Les politiques de demande sont alors inefficaces - une relance aggrave l'inflation, une rigueur aggrave le chômage. Ce constat a favorisé l'essor des politiques de l'offre et du monétarisme dans les années 1980 (Thatcher, Reagan).",
     relatedModules: ['courbe-de-phillips', 'ad-as', 'carre-magique-kaldor'],
     category: 'Macroéconomie',
+    seeAlso: ['Inflation', 'Désinflation', 'Déflation', 'Offre agrégée (AS)'],
   },
   {
     term: 'Désinflation',
@@ -109,6 +134,8 @@ export const glossary: GlossaryTerm[] = [
       "Ralentissement du rythme de hausse du niveau général des prix, c'est-à-dire une baisse du taux d'inflation (qui reste positif). À ne pas confondre avec la déflation (baisse absolue des prix). Par exemple, si l'inflation passe de 10 % à 3 %, on parle de désinflation. La France a connu une désinflation majeure entre 1983 et 1986 sous l'effet de la politique de rigueur menée par le gouvernement Mauroy puis Fabius (blocage des salaires, austérité budgétaire) et de la politique du « franc fort » arrimé au mark allemand. La désinflation compétitive visait à restaurer la compétitivité-prix des entreprises françaises en réduisant l'écart d'inflation avec l'Allemagne. Au niveau mondial, la « Grande Modération » (1985-2007) s'est caractérisée par une désinflation progressive, attribuée à la crédibilité des banques centrales indépendantes et à la concurrence internationale accrue.",
     relatedModules: ['courbe-de-phillips', 'ad-as', 'carre-magique-kaldor', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFigure: 'France 1983 : inflation 9.6% -> 1986 : 2.5% (desinflation competitive)',
+    seeAlso: ['Inflation', 'Déflation', 'Stagflation'],
   },
   {
     term: 'Déflation',
@@ -116,6 +143,7 @@ export const glossary: GlossaryTerm[] = [
       "Baisse généralisée et durable du niveau général des prix (taux d'inflation négatif), à distinguer de la désinflation (simple ralentissement de la hausse des prix). La déflation peut enclencher un cercle vicieux auto-entretenu théorisé par Irving Fisher (debt-deflation, 1933) : la baisse des prix augmente la valeur réelle des dettes, fragilisant les emprunteurs qui réduisent leurs dépenses ; les anticipations de baisse future des prix incitent les consommateurs à reporter leurs achats, ce qui déprime la demande agrégée et accentue la baisse des prix. La politique monétaire conventionnelle (baisse des taux directeurs) perd son efficacité lorsque les taux atteignent leur plancher (trappe à liquidité). Le Japon a connu une déflation persistante entre 1999 et 2013, avec des conséquences durables sur la croissance (« décennies perdues »). La zone euro a frôlé la déflation en 2014-2015, ce qui a conduit la BCE à adopter le quantitative easing.",
     relatedModules: ['courbe-de-phillips', 'ad-as', 'creation-monetaire', 'donnees-historiques'],
     category: 'Macroéconomie',
+    seeAlso: ['Désinflation', 'Inflation', 'Trappe à liquidité', 'Quantitative easing (assouplissement quantitatif)'],
   },
   {
     term: 'Paradoxe de l\'épargne (Keynes)',
@@ -123,6 +151,7 @@ export const glossary: GlossaryTerm[] = [
       "Proposition paradoxale formulée par Keynes selon laquelle si tous les agents économiques décident simultanément d'épargner davantage (hausse de la propension marginale à épargner), la demande globale diminue, ce qui réduit le revenu national et, in fine, l'épargne agrégée elle-même. Ce qui est rationnel au niveau individuel (épargner pour se prémunir contre l'incertitude) devient contre-productif au niveau macroéconomique : c'est un cas typique de « sophisme de composition ». Le mécanisme passe par le multiplicateur keynésien : une hausse de l'épargne réduit la consommation, donc la production, les revenus, et finalement l'épargne totale. Ce paradoxe a retrouvé une actualité forte pendant la crise de 2008-2009, lorsque le désendettement simultané des ménages américains a amplifié la récession. Il justifie l'intervention de l'État comme « dépenseur en dernier ressort » lorsque le secteur privé se contracte.",
     relatedModules: ['multiplicateur-keynesien', 'is-lm'],
     category: 'Macroéconomie',
+    seeAlso: ['Multiplicateur keynésien', 'Propension marginale à consommer (PmC)'],
   },
   {
     term: 'Effet d\'éviction',
@@ -130,6 +159,7 @@ export const glossary: GlossaryTerm[] = [
       "Phénomène par lequel une hausse des dépenses publiques financée par l'emprunt provoque une augmentation du taux d'intérêt sur le marché des capitaux, ce qui réduit (« évince ») l'investissement privé. Dans le cadre du modèle IS-LM, la politique budgétaire expansionniste déplace IS vers la droite, ce qui augmente à la fois le revenu et le taux d'intérêt ; la hausse du taux d'intérêt décourage partiellement l'investissement privé, atténuant l'effet multiplicateur initial. L'éviction est totale dans le cas classique (courbe LM verticale : tout l'effet de la relance est absorbé par la hausse des taux) et nulle en trappe à liquidité (LM horizontale : les taux ne montent pas car la demande de monnaie est parfaitement élastique). L'éviction peut aussi être « ricardienne » (théorème d'équivalence de Barro-Ricardo) : les agents anticipent de futures hausses d'impôts pour rembourser la dette et réduisent leur consommation présente.",
     relatedModules: ['is-lm', 'multiplicateur-keynesien'],
     category: 'Macroéconomie',
+    seeAlso: ['Modèle IS-LM', 'Politique budgétaire', 'Multiplicateur keynésien', 'Trappe à liquidité'],
   },
   {
     term: 'Loi d\'Okun',
@@ -137,6 +167,9 @@ export const glossary: GlossaryTerm[] = [
       "Relation empirique mise en évidence par l'économiste Arthur Okun (1962), établissant un lien négatif entre la variation du taux de chômage et l'écart de production (output gap). Dans sa formulation courante, une croissance du PIB réel supérieure de 1 point au taux de croissance potentiel fait baisser le taux de chômage d'environ 0,5 point (le coefficient varie selon les pays et les périodes). Inversement, il faut en général une croissance supérieure à un certain seuil (environ 1,5 % en France) pour que le chômage commence à baisser, en raison des gains de productivité et de la croissance de la population active. Cette « loi » n'est pas une relation structurelle mais une régularité statistique robuste, utile pour prévoir l'évolution du chômage en fonction des perspectives de croissance. Elle illustre le coût social de la récession en termes d'emplois détruits.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor', 'ad-as', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFormula: 'Delta chomage ≈ -0.5 x (croissance PIB - croissance potentielle)',
+    keyFigure: 'Seuil de croissance pour creer de l\'emploi en France : ~1.5%',
+    seeAlso: ['PIB potentiel et écart de production (output gap)', 'Courbe de Phillips', 'Chômage au sens du BIT'],
   },
   {
     term: 'Courbe de Beveridge',
@@ -144,6 +177,7 @@ export const glossary: GlossaryTerm[] = [
       "Relation empirique inverse entre le taux de chômage et le taux d'emplois vacants dans une économie, du nom de l'économiste britannique William Beveridge. Lorsque le taux de vacance est élevé et le chômage faible, le marché du travail est tendu (difficultés de recrutement) ; lorsque le taux de vacance est faible et le chômage élevé, le marché du travail est détendu. Un déplacement de la courbe vers l'extérieur (hausse simultanée du chômage et des emplois vacants) signale une dégradation de l'appariement (mismatch) entre offre et demande de travail, due à l'inadéquation des qualifications, à la mobilité géographique insuffisante ou à des rigidités institutionnelles. Cet indicateur est suivi par la DARES en France et par Eurostat au niveau européen pour diagnostiquer la nature structurelle ou conjoncturelle du chômage.",
     relatedModules: ['courbe-de-phillips', 'carre-magique-kaldor'],
     category: 'Marché du travail',
+    seeAlso: ['Chômage structurel vs chômage conjoncturel', 'Chômage au sens du BIT', 'NAIRU (Non-Accelerating Inflation Rate of Unemployment)'],
   },
   {
     term: 'Politique de la demande vs politique de l\'offre',
@@ -151,6 +185,7 @@ export const glossary: GlossaryTerm[] = [
       "Deux grandes orientations de politique économique. Les politiques de la demande, d'inspiration keynésienne, visent à stimuler la demande globale (consommation, investissement) par la relance budgétaire (hausse des dépenses publiques, baisse des impôts) ou la politique monétaire expansionniste (baisse des taux directeurs). Elles sont efficaces en situation de sous-emploi des capacités de production (chômage keynésien). Les politiques de l'offre visent à améliorer les conditions de production : baisse du coût du travail (allègements de charges), flexibilisation du marché du travail, réduction de la fiscalité sur les entreprises, dérégulation, investissement en éducation et R&D. Elles ciblent la croissance potentielle à long terme. La distinction renvoie au débat classique : pour les keynésiens, « la demande crée sa propre offre » (principe de la demande effective) ; pour les classiques et l'école de l'offre (Laffer, Mundell), la loi de Say prévaut (« l'offre crée sa propre demande »). En pratique, les gouvernements combinent souvent les deux approches.",
     relatedModules: ['ad-as', 'is-lm', 'multiplicateur-keynesien', 'courbe-de-laffer'],
     category: 'Politique économique',
+    seeAlso: ['Multiplicateur keynésien', 'Politique budgétaire', 'Courbe de Laffer', 'Demande agrégée (AD)', 'Offre agrégée (AS)'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -162,6 +197,8 @@ export const glossary: GlossaryTerm[] = [
       "Mesure de la sensibilité de la quantité demandée d'un bien à une variation de son prix, définie comme le rapport entre la variation relative de la quantité demandée et la variation relative du prix : Ep = (%ΔQd) / (%ΔP). Elle est généralement négative (loi de la demande) et s'exprime en valeur absolue. Si |Ep| > 1, la demande est élastique (biens de luxe, biens substituables) : une hausse de 1 % du prix entraîne une baisse de plus de 1 % de la quantité demandée. Si |Ep| < 1, la demande est inélastique (biens de première nécessité, biens addictifs, biens sans substitut). Si |Ep| = 1, l'élasticité est unitaire et la recette totale est maximisée. L'élasticité dépend de la disponibilité de substituts, du poids du bien dans le budget, et de l'horizon temporel (plus élastique à long terme). C'est un concept fondamental pour la tarification, la fiscalité (incidence de la taxe) et l'analyse des structures de marché.",
     relatedModules: ['elasticite-prix', 'offre-et-demande', 'courbe-de-laffer'],
     category: 'Microéconomie',
+    keyFormula: 'Ep = (%Delta Qd) / (%Delta P)',
+    seeAlso: ['Élasticité-revenu de la demande', 'Surplus du consommateur et du producteur', 'Perte sèche (deadweight loss)'],
   },
   {
     term: 'Élasticité-revenu de la demande',
@@ -169,6 +206,8 @@ export const glossary: GlossaryTerm[] = [
       "Mesure de la sensibilité de la quantité demandée d'un bien à une variation du revenu du consommateur : Er = (%ΔQd) / (%ΔR). Elle permet de classer les biens selon la nomenclature d'Ernst Engel. Si Er < 0, le bien est un bien inférieur (sa consommation diminue quand le revenu augmente, comme les transports en commun pour certains ménages). Si 0 < Er < 1, le bien est un bien normal ou de première nécessité (l'alimentation de base, dont la part budgétaire diminue avec le revenu, conformément à la loi d'Engel). Si Er > 1, le bien est un bien supérieur ou de luxe (voyages, culture, haute technologie). La connaissance des élasticités-revenu est cruciale pour la prospective économique : les secteurs produisant des biens supérieurs voient leur demande croître plus que proportionnellement avec le développement économique, tandis que les secteurs de biens inférieurs déclinent.",
     relatedModules: ['elasticite-prix', 'offre-et-demande'],
     category: 'Microéconomie',
+    keyFormula: 'Er = (%Delta Qd) / (%Delta R)',
+    seeAlso: ['Élasticité-prix de la demande', 'Bien de Giffen et bien de Veblen'],
   },
   {
     term: 'Équilibre de marché',
@@ -176,6 +215,7 @@ export const glossary: GlossaryTerm[] = [
       "Situation dans laquelle la quantité offerte est exactement égale à la quantité demandée, déterminant un prix d'équilibre (P*) et une quantité d'équilibre (Q*). Ce prix « vide le marché » : il n'existe ni excès d'offre (surplus) ni excès de demande (pénurie). L'équilibre est stable si le marché revient spontanément vers cet état après une perturbation (condition de stabilité walrasienne : excès de demande quand P < P*, excès d'offre quand P > P*). Toute modification des déterminants de l'offre (coûts de production, technologie, nombre de producteurs) ou de la demande (revenu, préférences, prix des biens liés, nombre de consommateurs) déplace les courbes et modifie l'équilibre. L'intervention publique (prix plafond, prix plancher, taxe, quota) crée des distorsions par rapport à l'équilibre concurrentiel, générant typiquement une perte sèche (deadweight loss).",
     relatedModules: ['offre-et-demande', 'ad-as'],
     category: 'Microéconomie',
+    seeAlso: ['Surplus du consommateur et du producteur', 'Perte sèche (deadweight loss)', 'Défaillance de marché'],
   },
   {
     term: 'Coût marginal et coût moyen',
@@ -183,6 +223,8 @@ export const glossary: GlossaryTerm[] = [
       "Le coût marginal (Cm) est le supplément de coût engendré par la production d'une unité additionnelle : Cm = ΔCT/ΔQ, ou la dérivée du coût total par rapport à la quantité. Le coût moyen (CM) est le coût total rapporté à la quantité produite : CM = CT/Q. La relation entre les deux est fondamentale : le coût marginal coupe la courbe de coût moyen en son minimum. Quand Cm < CM, le coût moyen est décroissant (économies d'échelle) ; quand Cm > CM, le coût moyen est croissant (déséconomies d'échelle). En concurrence parfaite, la condition de maximisation du profit impose P = Cm (le producteur est « preneur de prix »). En monopole, la maximisation du profit se fait à Rm = Cm (recette marginale = coût marginal), avec un prix supérieur au coût marginal, générant un pouvoir de marché mesurable par l'indice de Lerner : L = (P - Cm)/P.",
     relatedModules: ['offre-et-demande', 'concurrence-monopole'],
     category: 'Microéconomie',
+    keyFormula: 'Cm = Delta CT / Delta Q | CM = CT / Q | Lerner = (P - Cm) / P',
+    seeAlso: ['Recette marginale', 'Monopole', 'Rendements d\'échelle', 'Concurrence pure et parfaite'],
   },
   {
     term: 'Rendements d\'échelle',
@@ -190,6 +232,8 @@ export const glossary: GlossaryTerm[] = [
       "Les rendements d'échelle décrivent la manière dont la production varie lorsque tous les facteurs de production sont multipliés dans la même proportion. Si l'on multiplie tous les inputs par un facteur λ > 1 : les rendements sont croissants si la production est multipliée par plus de λ (par exemple, doubler les inputs triple la production) - ce qui génère des économies d'échelle et favorise la concentration ; les rendements sont constants si la production est exactement multipliée par λ ; les rendements sont décroissants si la production est multipliée par moins de λ. Pour une fonction de production Cobb-Douglas Y = A.K^α.L^β, les rendements sont croissants si α+β > 1, constants si α+β = 1, et décroissants si α+β < 1. Les rendements croissants sont à l'origine des monopoles naturels (coût moyen continûment décroissant) et jouent un rôle central dans les nouvelles théories du commerce international (Paul Krugman, prix Nobel 2008).",
     relatedModules: ['concurrence-monopole', 'frontiere-possibilites-production'],
     category: 'Microéconomie',
+    keyFormula: 'Cobb-Douglas : Y = A.K^alpha.L^beta | Croissants si alpha+beta > 1',
+    seeAlso: ['Coût marginal et coût moyen', 'Monopole', 'Frontière des possibilités de production (FPP)'],
   },
   {
     term: 'Surplus du consommateur et du producteur',
@@ -197,6 +241,7 @@ export const glossary: GlossaryTerm[] = [
       "Le surplus du consommateur mesure le gain net retiré de l'échange par les acheteurs : c'est la différence entre le prix maximal qu'ils étaient disposés à payer (consentement à payer) et le prix effectivement payé, agrégée sur l'ensemble des unités achetées. Graphiquement, c'est l'aire comprise entre la courbe de demande et la droite de prix, au-dessus du prix d'équilibre. Le surplus du producteur mesure le gain net des vendeurs : c'est la différence entre le prix reçu et le coût marginal de production (prix minimal acceptable), agrégée sur les unités vendues. C'est l'aire entre la droite de prix et la courbe d'offre. Le surplus total (somme des deux) est maximisé à l'équilibre concurrentiel - tout écart (taxe, monopole, prix réglementé) engendre une perte sèche (deadweight loss). Ce cadre d'analyse, fondé sur les travaux de Marshall et Dupuit, est central pour l'évaluation des politiques publiques (analyse coût-bénéfice).",
     relatedModules: ['offre-et-demande', 'elasticite-prix', 'concurrence-monopole'],
     category: 'Microéconomie',
+    seeAlso: ['Perte sèche (deadweight loss)', 'Équilibre de marché', 'Élasticité-prix de la demande'],
   },
   {
     term: 'Perte sèche (deadweight loss)',
@@ -204,6 +249,7 @@ export const glossary: GlossaryTerm[] = [
       "Perte nette de bien-être économique qui n'est récupérée par aucun agent (ni consommateurs, ni producteurs, ni État), résultant d'une distorsion par rapport à l'équilibre concurrentiel. Elle apparaît chaque fois qu'une intervention empêche certains échanges mutuellement bénéfiques de se réaliser. Les principales sources de perte sèche sont : les taxes indirectes (le triangle de Harberger entre les courbes d'offre et de demande, entre la quantité d'équilibre libre et la quantité avec taxe), le monopole (quantité produite inférieure à l'optimum concurrentiel), les prix plafonds (rationnement et files d'attente) et les prix planchers (surplus invendus). L'ampleur de la perte sèche dépend des élasticités de l'offre et de la demande : plus elles sont élevées, plus la distorsion est coûteuse. Le concept est fondamental en économie publique pour évaluer le coût social de la fiscalité et de la régulation.",
     relatedModules: ['offre-et-demande', 'courbe-de-laffer', 'concurrence-monopole', 'externalites'],
     category: 'Microéconomie',
+    seeAlso: ['Surplus du consommateur et du producteur', 'Monopole', 'Taxe pigouvienne', 'Courbe de Laffer'],
   },
   {
     term: 'Bien de Giffen et bien de Veblen',
@@ -211,6 +257,7 @@ export const glossary: GlossaryTerm[] = [
       "Deux exceptions apparentes à la loi de la demande (relation inverse prix-quantité). Le bien de Giffen, théorisé par Alfred Marshall d'après les observations de Robert Giffen sur la pomme de terre en Irlande, est un bien inférieur pour lequel l'effet revenu (la hausse du prix appauvrit le consommateur qui consomme davantage du bien inférieur bon marché) domine l'effet substitution, de sorte que la quantité demandée augmente quand le prix augmente. C'est un cas théorique rarissime empiriquement (Jensen et Miller, 2008, l'ont documenté pour le riz en Chine). Le bien de Veblen (Théorie de la classe de loisir, 1899), en revanche, relève de la sociologie de la consommation : c'est un bien dont la demande augmente avec le prix parce que le prix élevé est un signal de statut social (montres de luxe, voitures haut de gamme). Il ne contredit pas la théorie du consommateur rationnel si l'on intègre la valeur de prestige dans l'utilité.",
     relatedModules: ['elasticite-prix', 'offre-et-demande'],
     category: 'Microéconomie',
+    seeAlso: ['Élasticité-prix de la demande', 'Élasticité-revenu de la demande', 'Utilité marginale décroissante'],
   },
   {
     term: 'Utilité marginale décroissante',
@@ -218,6 +265,8 @@ export const glossary: GlossaryTerm[] = [
       "Principe fondamental de la théorie du consommateur, formalisé par les marginalistes (Jevons, Menger, Walras, années 1870), selon lequel la satisfaction supplémentaire (utilité marginale) procurée par la consommation d'une unité additionnelle d'un bien décroît à mesure que la quantité consommée augmente. Le premier verre d'eau procure une utilité très élevée à une personne assoiffée, le dixième beaucoup moins. Ce principe fonde la courbe de demande décroissante : le consommateur n'accepte de consommer une unité supplémentaire que si le prix baisse. La condition d'optimum du consommateur (maximisation de l'utilité sous contrainte budgétaire) exige l'égalisation des utilités marginales pondérées par les prix : Um_A/P_A = Um_B/P_B pour tous les biens A et B. Ce principe a été remis en question pour certains biens (biens addictifs, biens de réseau) où l'utilité peut être croissante sur certains intervalles.",
     relatedModules: ['offre-et-demande', 'elasticite-prix'],
     category: 'Microéconomie',
+    keyFormula: 'Optimum : Um_A / P_A = Um_B / P_B',
+    seeAlso: ['Élasticité-prix de la demande', 'Surplus du consommateur et du producteur'],
   },
   {
     term: 'Externalité',
@@ -225,6 +274,7 @@ export const glossary: GlossaryTerm[] = [
       "Effet d'une activité économique (production ou consommation) sur le bien-être d'un tiers qui n'est pas partie à la transaction, et pour lequel aucune compensation monétaire n'est versée via le mécanisme de prix. L'externalité négative (pollution industrielle, bruit, tabagisme passif) impose un coût social supérieur au coût privé : le coût social marginal excède le coût marginal privé, et la production de marché est excessive par rapport à l'optimum social. L'externalité positive (éducation, vaccination, recherche fondamentale) génère un bénéfice social supérieur au bénéfice privé : la production de marché est insuffisante. Deux grandes familles de solutions existent : la solution pigouvienne (taxe pour internaliser le coût social, subvention pour les externalités positives) et la solution coasienne (négociation directe entre les parties, possible si les droits de propriété sont bien définis et les coûts de transaction faibles, théorème de Coase, 1960). Les externalités sont l'une des principales défaillances de marché.",
     relatedModules: ['externalites', 'offre-et-demande'],
     category: 'Microéconomie',
+    seeAlso: ['Taxe pigouvienne', 'Bien public', 'Défaillance de marché', 'Perte sèche (deadweight loss)'],
   },
   {
     term: 'Taxe pigouvienne',
@@ -232,6 +282,9 @@ export const glossary: GlossaryTerm[] = [
       "Taxe mise en place par l'État pour corriger une externalité négative en internalisant le coût social dans le prix de marché, du nom de l'économiste Arthur Cecil Pigou (The Economics of Welfare, 1920). Le montant optimal de la taxe est égal à la différence entre le coût social marginal et le coût privé marginal au niveau de production socialement optimal. Par exemple, une taxe carbone fixée au coût social marginal d'une tonne de CO2 (estimé entre 50 et 200 euros selon les modèles) incite les producteurs et consommateurs à réduire leurs émissions jusqu'au point où le coût de réduction marginal égale la taxe. L'avantage de la taxe pigouvienne par rapport à la réglementation directe (normes, interdictions) est qu'elle laisse les agents choisir la manière la plus efficace de réduire l'externalité (efficacité allocative), tout en générant des recettes fiscales (double dividende environnemental et fiscal).",
     relatedModules: ['externalites'],
     category: 'Microéconomie',
+    keyFormula: 'Taxe optimale = Cout social marginal - Cout prive marginal',
+    keyFigure: 'Taxe carbone France : 44.6 EUR/t CO2 | Cout social estime : 50-200 EUR/t',
+    seeAlso: ['Externalité', 'Défaillance de marché', 'Perte sèche (deadweight loss)'],
   },
   {
     term: 'Bien public',
@@ -239,6 +292,7 @@ export const glossary: GlossaryTerm[] = [
       "Bien caractérisé par deux propriétés fondamentales : la non-rivalité (la consommation du bien par un agent ne réduit pas la quantité disponible pour les autres) et la non-exclusion (il est impossible ou trop coûteux d'empêcher un agent de consommer le bien sans payer). Les exemples canoniques sont la défense nationale, l'éclairage public, un phare maritime, ou la recherche fondamentale. Le marché produit spontanément les biens publics en quantité sous-optimale en raison du problème du passager clandestin (free rider) : chaque agent a intérêt à ne pas révéler sa préférence et à bénéficier du bien financé par les autres. C'est pourquoi les biens publics sont généralement fournis par l'État et financés par l'impôt. La condition d'optimalité de Samuelson (1954) stipule que la somme des dispositions marginales à payer de tous les agents doit être égale au coût marginal de production du bien public.",
     relatedModules: ['externalites', 'offre-et-demande'],
     category: 'Microéconomie',
+    seeAlso: ['Externalité', 'Défaillance de marché'],
   },
   {
     term: 'Défaillance de marché',
@@ -246,6 +300,7 @@ export const glossary: GlossaryTerm[] = [
       "Situation dans laquelle le libre fonctionnement du marché ne conduit pas à une allocation optimale des ressources au sens de Pareto (premier théorème de l'économie du bien-être). Les principales défaillances de marché sont : les externalités (coûts ou bénéfices non pris en compte par le prix), les biens publics (sous-production par le marché en raison du passager clandestin), les asymétries d'information (sélection adverse et aléa moral), le pouvoir de marché (monopole, oligopole qui fixent des prix supérieurs au coût marginal), et les rendements croissants (monopoles naturels). Ces défaillances constituent le fondement théorique de l'intervention publique (régulation, taxation, subvention, production publique). Toutefois, l'école du Public Choice (Buchanan, Tullock) met en garde contre les « défaillances de l'État » (capture réglementaire, recherche de rente, inefficacité bureaucratique) qui peuvent être aussi coûteuses que les défaillances de marché.",
     relatedModules: ['externalites', 'concurrence-monopole', 'offre-et-demande'],
     category: 'Microéconomie',
+    seeAlso: ['Externalité', 'Bien public', 'Monopole', 'Aléa moral', 'Sélection adverse (Akerlof)'],
   },
   {
     term: 'Équilibre de Nash',
@@ -253,6 +308,7 @@ export const glossary: GlossaryTerm[] = [
       "Concept central de la théorie des jeux, développé par John Nash (1950, prix Nobel 1994). Un équilibre de Nash est un profil de stratégies (une stratégie par joueur) tel qu'aucun joueur n'a intérêt à dévier unilatéralement de sa stratégie, étant donné les stratégies des autres joueurs. Autrement dit, chaque joueur joue la meilleure réponse aux stratégies adverses. L'exemple classique est le dilemme du prisonnier, où l'équilibre de Nash (trahir, trahir) est un résultat sous-optimal pour les deux joueurs - aucun ne peut améliorer sa situation en changeant seul de stratégie, mais les deux auraient gagné à coopérer. Ce concept s'applique à l'oligopole (équilibre de Cournot est un équilibre de Nash en quantités), à la négociation internationale (accords commerciaux), et à la politique monétaire (jeu entre banque centrale et anticipations des agents). Un jeu peut avoir zéro, un ou plusieurs équilibres de Nash.",
     relatedModules: ['concurrence-monopole'],
     category: 'Microéconomie',
+    seeAlso: ['Monopole', 'Concurrence pure et parfaite'],
   },
   {
     term: 'Aléa moral',
@@ -260,6 +316,7 @@ export const glossary: GlossaryTerm[] = [
       "Forme d'asymétrie d'information ex post (après la signature du contrat) dans laquelle un agent modifie son comportement au détriment de l'autre partie parce qu'il est protégé contre les conséquences de ses actes. L'exemple classique est celui de l'assurance : un individu assuré contre le vol prend moins de précautions (ne ferme plus sa porte à clé), augmentant la probabilité du sinistre. En économie financière, le sauvetage systématique des banques « too big to fail » par l'État crée un aléa moral : les banques prennent des risques excessifs en sachant qu'elles seront renflouées en cas de crise. Ce concept, formalisé par Kenneth Arrow (1963) dans le domaine de l'assurance santé, est central pour comprendre la crise des subprimes de 2008. Les solutions incluent les franchises et co-paiements (partage du risque), les clauses de bonus-malus, et la régulation prudentielle (ratios de fonds propres, Bâle III).",
     relatedModules: ['concurrence-monopole', 'creation-monetaire'],
     category: 'Microéconomie',
+    seeAlso: ['Sélection adverse (Akerlof)', 'Défaillance de marché'],
   },
   {
     term: 'Sélection adverse (Akerlof)',
@@ -267,6 +324,7 @@ export const glossary: GlossaryTerm[] = [
       "Forme d'asymétrie d'information ex ante (avant la transaction) dans laquelle une partie dispose d'informations privées que l'autre ne peut observer, conduisant à une dégradation de la qualité des biens ou services échangés. Le modèle fondateur est celui du « marché des lemons » (voitures d'occasion) de George Akerlof (1970, prix Nobel 2001) : les vendeurs connaissent la qualité de leur véhicule mais pas les acheteurs, qui n'acceptent de payer qu'un prix moyen. Les vendeurs de bonnes voitures se retirent du marché, ne restent que les mauvaises (« lemons »), jusqu'à l'effondrement potentiel du marché. En assurance, ce sont les individus à haut risque qui s'assurent le plus, ce qui fait monter les primes et décourage les individus à faible risque. Les solutions incluent le signalement (le vendeur certifie la qualité, labels, diplômes), le filtrage (screening, l'acheteur propose des contrats différenciés) et l'obligation d'assurance (assurance maladie universelle).",
     relatedModules: ['concurrence-monopole'],
     category: 'Microéconomie',
+    seeAlso: ['Aléa moral', 'Défaillance de marché'],
   },
   {
     term: 'Monopole',
@@ -274,6 +332,8 @@ export const glossary: GlossaryTerm[] = [
       "Structure de marché dans laquelle un seul producteur contrôle l'intégralité de l'offre d'un bien ou service sans substitut proche, lui conférant un pouvoir de marché : la capacité d'influencer le prix. Contrairement à l'entreprise en concurrence parfaite (price-taker), le monopoleur est « faiseur de prix » (price-maker). Il maximise son profit au point où la recette marginale égale le coût marginal (Rm = Cm), ce qui conduit à un prix supérieur au coût marginal et à une quantité produite inférieure à l'optimum concurrentiel, générant une perte sèche. Les sources du monopole sont : les barrières légales (brevets, licences, monopoles publics), les barrières naturelles (rendements d'échelle croissants conduisant au monopole naturel, comme les réseaux de distribution d'eau), et les barrières stratégiques (prix prédateurs, contrôle des ressources). La régulation des monopoles (tarification au coût marginal, régulation du taux de rendement, droit de la concurrence) est un domaine central de l'économie publique.",
     relatedModules: ['concurrence-monopole'],
     category: 'Microéconomie',
+    keyFormula: 'Profit max : Rm = Cm | Lerner : L = (P - Cm) / P',
+    seeAlso: ['Concurrence pure et parfaite', 'Perte sèche (deadweight loss)', 'Rendements d\'échelle', 'Recette marginale'],
   },
   {
     term: 'Frontière des possibilités de production (FPP)',
@@ -281,6 +341,7 @@ export const glossary: GlossaryTerm[] = [
       "Courbe représentant l'ensemble des combinaisons maximales de deux biens (ou catégories de biens) qu'une économie peut produire en utilisant pleinement et efficacement toutes ses ressources disponibles (travail, capital, ressources naturelles) et sa technologie. Tout point sur la FPP correspond à une allocation efficace (pas de gaspillage) ; un point à l'intérieur traduit une sous-utilisation des ressources (chômage, capacités ocieuves) ; un point au-delà est inaccessible avec les ressources actuelles. La FPP est généralement concave (courbée vers l'extérieur) en raison de la loi des rendements décroissants et de la spécialisation des facteurs. La pente de la FPP en un point mesure le coût d'opportunité : la quantité d'un bien à laquelle il faut renoncer pour produire une unité supplémentaire de l'autre. La FPP se déplace vers l'extérieur grâce à la croissance économique (accumulation de capital, progrès technique, augmentation de la population active).",
     relatedModules: ['frontiere-possibilites-production', 'avantages-comparatifs'],
     category: 'Microéconomie',
+    seeAlso: ['Coût d\'opportunité', 'Avantage comparatif (Ricardo)'],
   },
   {
     term: 'Coût d\'opportunité',
@@ -288,6 +349,7 @@ export const glossary: GlossaryTerm[] = [
       "Valeur de la meilleure alternative sacrifiée lorsqu'un choix économique est effectué, c'est-à-dire le bénéfice auquel on renonce en choisissant une option plutôt qu'une autre. Ce concept, formalisé par Friedrich von Wieser (1914), est au fondement du raisonnement économique : la rareté des ressources implique que tout choix comporte un coût, même en l'absence de dépense monétaire. Par exemple, le coût d'opportunité d'une année d'études supérieures n'est pas seulement le coût des frais d'inscription, mais aussi le salaire auquel l'étudiant renonce en ne travaillant pas. Sur la frontière des possibilités de production, le coût d'opportunité d'un bien est mesuré par la pente de la FPP (quantité de l'autre bien sacrifiée). En théorie du commerce international, c'est la différence de coûts d'opportunité entre pays qui fonde l'avantage comparatif de Ricardo et justifie la spécialisation et l'échange mutuellement bénéfique.",
     relatedModules: ['frontiere-possibilites-production', 'avantages-comparatifs'],
     category: 'Microéconomie',
+    seeAlso: ['Frontière des possibilités de production (FPP)', 'Avantage comparatif (Ricardo)'],
   },
   {
     term: 'Recette marginale',
@@ -295,6 +357,8 @@ export const glossary: GlossaryTerm[] = [
       "Supplément de recette totale obtenu par la vente d'une unité supplémentaire : Rm = ΔRT/ΔQ, ou la dérivée de la recette totale par rapport à la quantité. En concurrence parfaite, l'entreprise est preneuse de prix et la recette marginale est constante, égale au prix de marché (Rm = P). En monopole ou en concurrence imparfaite, le producteur doit baisser son prix pour vendre une unité supplémentaire, de sorte que la recette marginale est inférieure au prix (Rm < P) : la courbe de Rm est en dessous de la courbe de demande et décroît plus rapidement. La condition de maximisation du profit pour toute entreprise est Rm = Cm (recette marginale = coût marginal). Lorsque Rm > Cm, l'entreprise a intérêt à produire davantage ; lorsque Rm < Cm, elle doit réduire sa production. L'écart entre P et Rm en monopole est à l'origine du pouvoir de marché et de la perte sèche.",
     relatedModules: ['concurrence-monopole', 'offre-et-demande'],
     category: 'Microéconomie',
+    keyFormula: 'Rm = Delta RT / Delta Q | En CPP : Rm = P',
+    seeAlso: ['Coût marginal et coût moyen', 'Monopole'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -306,6 +370,9 @@ export const glossary: GlossaryTerm[] = [
       "Prix du temps et du risque, exprimé en pourcentage annuel, représentant la rémunération du prêteur (ou le coût pour l'emprunteur). On distingue le taux d'intérêt nominal (affiché dans le contrat) et le taux d'intérêt réel (corrigé de l'inflation, selon la relation de Fisher : r ≈ i - π). Le taux directeur fixé par la banque centrale (taux de refinancement pour la BCE, fed funds rate pour la Fed) constitue le taux de référence à court terme qui se transmet à l'ensemble des taux de l'économie par le canal du crédit bancaire. Les taux d'intérêt jouent un rôle central dans le modèle IS-LM : ils déterminent l'investissement (via le coût du capital) et la demande de monnaie (arbitrage entre liquidité et rendement). Keynes distingue trois motifs de détention de monnaie : transaction, précaution et spéculation, ce dernier étant inversement lié au taux d'intérêt.",
     relatedModules: ['is-lm', 'creation-monetaire', 'multiplicateur-keynesien'],
     category: 'Monnaie et finance',
+    keyFormula: 'Taux reel r ≈ i - pi (relation de Fisher)',
+    keyFigure: 'Taux directeur BCE (2024) : 4.5% | Fed funds : 5.25-5.50% | Taux 10 ans FR : 3.0%',
+    seeAlso: ['Politique monétaire', 'Modèle IS-LM', 'Trappe à liquidité', 'Investissement (FBCF)'],
   },
   {
     term: 'Politique monétaire',
@@ -313,6 +380,7 @@ export const glossary: GlossaryTerm[] = [
       "Ensemble des décisions prises par la banque centrale pour réguler la quantité de monnaie en circulation, le niveau des taux d'intérêt et les conditions de crédit dans l'économie. La politique monétaire conventionnelle utilise trois instruments principaux : la fixation des taux directeurs (taux de refinancement, taux de facilité de dépôt, taux de facilité de prêt marginal pour la BCE), les opérations d'open market (achat/vente de titres sur le marché interbancaire) et le taux de réserves obligatoires. La politique monétaire est expansionniste (accommodante) lorsqu'elle vise à stimuler l'activité par la baisse des taux et restrictive lorsqu'elle lutte contre l'inflation par la hausse des taux. Face à la trappe à liquidité (taux directeurs proches de zéro), les banques centrales ont recouru à des politiques non conventionnelles après 2008 : quantitative easing (achats massifs de titres), forward guidance (communication sur l'orientation future de la politique), et taux négatifs sur les facilités de dépôt.",
     relatedModules: ['is-lm', 'creation-monetaire', 'courbe-de-phillips', 'ad-as'],
     category: 'Monnaie et finance',
+    seeAlso: ['Taux d\'intérêt', 'BCE (Banque Centrale Européenne)', 'Quantitative easing (assouplissement quantitatif)', 'Policy mix', 'Création monétaire et multiplicateur de crédit'],
   },
   {
     term: 'Masse monétaire (M1, M2, M3)',
@@ -320,6 +388,8 @@ export const glossary: GlossaryTerm[] = [
       "Quantité totale de monnaie en circulation dans une économie, mesurée par des agrégats classés par degré de liquidité décroissant. M1 (monnaie au sens strict) comprend les billets et pièces en circulation et les dépôts à vue (comptes courants) : c'est la monnaie immédiatement utilisable pour les transactions. M2 inclut M1 plus les dépôts à terme d'une durée inférieure ou égale à 2 ans et les dépôts remboursables avec un préavis inférieur ou égal à 3 mois (livret A, LDDS, LEP en France). M3 inclut M2 plus les instruments négociables émis par les institutions financières monétaires : pensions, titres d'OPCVM monétaires et titres de créance d'une durée inférieure ou égale à 2 ans. La BCE surveille principalement M3 comme indicateur avancé de l'inflation. En zone euro, M3 représente environ 16 000 milliards d'euros, dont plus de 90 % est de la monnaie scripturale créée par les banques commerciales via le mécanisme du crédit.",
     relatedModules: ['creation-monetaire', 'is-lm'],
     category: 'Monnaie et finance',
+    keyFigure: 'M3 Zone euro : ~16 000 Md EUR | Plus de 90% = monnaie scripturale',
+    seeAlso: ['Création monétaire et multiplicateur de crédit', 'Théorie quantitative de la monnaie'],
   },
   {
     term: 'Création monétaire et multiplicateur de crédit',
@@ -327,6 +397,9 @@ export const glossary: GlossaryTerm[] = [
       "La création monétaire dans les économies modernes résulte principalement de l'octroi de crédit par les banques commerciales (« les crédits font les dépôts »). Lorsqu'une banque accorde un prêt de 1 000 euros, elle crédite le compte de l'emprunteur d'un simple jeu d'écriture, augmentant la masse monétaire M1. Le multiplicateur de crédit décrit le processus par lequel un dépôt initial (ou une injection de monnaie banque centrale) se transforme en un volume de crédits (et donc de monnaie) multiple : si le taux de réserves obligatoires est r, le multiplicateur maximal est k = 1/r. Avec r = 2 % (taux actuel en zone euro), un dépôt de 100 euros peut théoriquement générer 5 000 euros de monnaie. En réalité, le multiplicateur effectif est inférieur en raison des fuites en billets, des réserves excédentaires, et du comportement prudent des banques (ratios Bâle III). La vision contemporaine (endogène) souligne que ce sont les banques qui créent la monnaie en fonction de la demande de crédit, et non la banque centrale qui contrôle mécaniquement la quantité de monnaie.",
     relatedModules: ['creation-monetaire'],
     category: 'Monnaie et finance',
+    keyFormula: 'Multiplicateur de credit = 1 / r (r = taux de reserves obligatoires)',
+    keyFigure: 'Reserves obligatoires Zone euro : 1% | Multiplicateur theorique : 100',
+    seeAlso: ['Masse monétaire (M1, M2, M3)', 'Réserves obligatoires', 'Théorie quantitative de la monnaie'],
   },
   {
     term: 'Réserves obligatoires',
@@ -334,6 +407,8 @@ export const glossary: GlossaryTerm[] = [
       "Fraction des dépôts que les banques commerciales sont légalement tenues de conserver sous forme de réserves auprès de la banque centrale, constituant l'un des instruments de la politique monétaire. En zone euro, le taux de réserves obligatoires est fixé à 1 % depuis 2012 (il était de 2 % auparavant). Ce mécanisme remplit plusieurs fonctions : limiter la création monétaire en contraignant la capacité de prêt des banques, stabiliser les taux du marché interbancaire, et créer une demande structurelle de monnaie banque centrale qui renforce le canal de transmission de la politique monétaire. Toutefois, dans le système bancaire moderne avec excès de liquidité (post-quantitative easing), les réserves obligatoires sont rarement une contrainte effective : les banques détiennent des réserves excédentaires massives. L'instrument principal est désormais le taux d'intérêt sur les facilités de dépôt, qui rémunère (ou pénalise) les réserves excédentaires.",
     relatedModules: ['creation-monetaire'],
     category: 'Monnaie et finance',
+    keyFigure: 'Taux reserves Zone euro : 1% depuis 2012 (2% avant)',
+    seeAlso: ['Création monétaire et multiplicateur de crédit', 'Politique monétaire'],
   },
   {
     term: 'Trappe à liquidité',
@@ -341,6 +416,7 @@ export const glossary: GlossaryTerm[] = [
       "Situation théorisée par Keynes (Théorie générale, 1936) dans laquelle le taux d'intérêt est si bas que la demande de monnaie pour motif de spéculation devient parfaitement élastique : les agents préfèrent conserver toute monnaie supplémentaire sous forme liquide plutôt que d'acheter des obligations dont ils anticipent une baisse de cours (hausse future des taux). Dans le modèle IS-LM, la courbe LM devient horizontale dans sa partie gauche, rendant la politique monétaire totalement inefficace (l'augmentation de l'offre de monnaie ne fait plus baisser le taux d'intérêt) tandis que la politique budgétaire est pleinement efficace (pas d'effet d'éviction). Le Japon a connu cette situation entre 1995 et 2013, avec des taux directeurs proches de zéro et une croissance atone malgré des injections massives de liquidités. La zone euro s'en est approchée après 2014, amenant la BCE à adopter des taux négatifs et le quantitative easing pour tenter de contourner cette limite théorique.",
     relatedModules: ['is-lm', 'creation-monetaire'],
     category: 'Monnaie et finance',
+    seeAlso: ['Modèle IS-LM', 'Déflation', 'Quantitative easing (assouplissement quantitatif)', 'Politique monétaire'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -352,6 +428,8 @@ export const glossary: GlossaryTerm[] = [
       "Utilisation du budget de l'État (recettes fiscales et dépenses publiques) pour influencer le niveau d'activité économique. Une politique budgétaire expansionniste (augmentation des dépenses publiques et/ou baisse des impôts) accroît la demande globale et stimule la production via l'effet multiplicateur keynésien, au prix d'un creusement du déficit public. Une politique restrictive (austérité) réduit les dépenses et/ou augmente les impôts pour assainir les finances publiques, avec un effet récessif à court terme. L'efficacité de la politique budgétaire dépend du contexte : elle est maximale en économie fermée, en trappe à liquidité (pas d'éviction par les taux d'intérêt), et en présence de capacités de production inutilisées. Elle est réduite par l'effet d'éviction (hausse des taux), les fuites par les importations (économie ouverte), et l'équivalence ricardienne (anticipation de hausses d'impôts futures). En zone euro, la politique budgétaire est encadrée par le Pacte de stabilité et de croissance (déficit < 3 % du PIB, dette < 60 % du PIB).",
     relatedModules: ['is-lm', 'multiplicateur-keynesien', 'courbe-de-laffer', 'ad-as'],
     category: 'Politique économique',
+    keyFigure: 'France deficit 2023 : 5.5% du PIB | Pacte de stabilite : limite 3%',
+    seeAlso: ['Multiplicateur keynésien', 'Effet d\'éviction', 'Policy mix', 'Stabilisateurs automatiques', 'Dette publique'],
   },
   {
     term: 'Courbe de Laffer',
@@ -359,6 +437,9 @@ export const glossary: GlossaryTerm[] = [
       "Relation en cloche entre le taux d'imposition et les recettes fiscales totales, popularisée par l'économiste Arthur Laffer dans les années 1970 (bien que l'idée remonte à Ibn Khaldoun et Dupuit). À un taux de 0 %, les recettes sont nulles ; à un taux de 100 %, elles le sont aussi car plus personne n'a intérêt à produire ou à déclarer ses revenus. Entre ces extrêmes, il existe un taux optimal (t*) qui maximise les recettes fiscales. Au-delà de t*, toute hausse du taux réduit paradoxalement les recettes par trois mécanismes : effet désincitatif sur l'offre de travail et l'investissement, développement de l'évasion et de la fraude fiscale, et délocalisation de la base imposable. L'estimation empirique de t* fait l'objet de débats intenses : les travaux de Piketty, Saez et Stantcheva (2014) situent le taux marginal optimal sur les hauts revenus autour de 80 %, bien au-dessus des estimations de l'école supply-side. La courbe illustre que la même recette peut être obtenue par deux taux différents (un bas et un élevé).",
     relatedModules: ['courbe-de-laffer', 'fiscalite-redistribution'],
     category: 'Politique économique',
+    keyFormula: 'Recettes = f(taux) en cloche | Taux optimal t* maximise les recettes',
+    keyFigure: 'Taux marginal optimal hauts revenus (Piketty-Saez) : ~80%',
+    seeAlso: ['Assiette fiscale', 'Taux effectif d\'imposition', 'Impôt progressif, proportionnel, régressif', 'Perte sèche (deadweight loss)'],
   },
   {
     term: 'Impôt progressif, proportionnel, régressif',
@@ -366,6 +447,8 @@ export const glossary: GlossaryTerm[] = [
       "Classification des systèmes d'imposition selon l'évolution du taux moyen d'imposition en fonction du revenu. Un impôt progressif applique un taux moyen qui augmente avec le revenu (l'impôt sur le revenu en France avec ses tranches à 0 %, 11 %, 30 %, 41 % et 45 %) : il réduit les inégalités de revenus après redistribution. Un impôt proportionnel (flat tax) applique un taux constant quel que soit le revenu : il prélève davantage en valeur absolue aux plus riches mais ne modifie pas la distribution relative. Un impôt régressif prélève proportionnellement davantage aux revenus modestes : c'est le cas de la TVA et des accises, car les ménages à bas revenus consacrent une part plus importante de leur revenu à la consommation. En France, le système fiscal dans son ensemble est légèrement progressif jusqu'au 95e percentile de revenu, mais peut devenir régressif pour les très hauts revenus en raison du poids des revenus du capital taxés à taux forfaitaire (PFU de 30 %).",
     relatedModules: ['fiscalite-redistribution', 'courbe-de-laffer', 'courbe-de-lorenz-gini'],
     category: 'Politique économique',
+    keyFigure: 'Tranches IR France : 0% | 11% | 30% | 41% | 45% | PFU : 30%',
+    seeAlso: ['Courbe de Laffer', 'Taux effectif d\'imposition', 'Coefficient de Gini', 'Courbe de Lorenz'],
   },
   {
     term: 'Taux effectif d\'imposition',
@@ -373,6 +456,8 @@ export const glossary: GlossaryTerm[] = [
       "Rapport entre l'impôt effectivement payé et le revenu total (ou le bénéfice total pour une entreprise), à distinguer du taux marginal qui ne s'applique qu'à la dernière tranche de revenu. En France, un contribuable célibataire gagnant 50 000 euros bruts a un taux marginal de 30 % (tranche à 30 % du barème de l'IR) mais un taux effectif bien inférieur (environ 12-14 %) en raison de la progressivité (les premières tranches sont imposées à 0 % puis 11 %). Le taux effectif est l'indicateur pertinent pour mesurer la charge fiscale réelle pesant sur un contribuable. Pour les entreprises, le taux effectif d'imposition sur les sociétés (impôt effectivement payé / bénéfice comptable) est souvent très inférieur au taux nominal (25 % en France depuis 2022) en raison des crédits d'impôt (CIR, CICE historique), des régimes dérogatoires et de l'optimisation fiscale. La comparaison internationale des taux effectifs est un outil central de l'analyse de la compétitivité fiscale.",
     relatedModules: ['fiscalite-redistribution', 'courbe-de-laffer'],
     category: 'Politique économique',
+    keyFigure: 'Taux IS France : 25% nominal | Taux effectif souvent < 20% (niches, CIR)',
+    seeAlso: ['Impôt progressif, proportionnel, régressif', 'Courbe de Laffer', 'Assiette fiscale'],
   },
   {
     term: 'Assiette fiscale',
@@ -380,6 +465,7 @@ export const glossary: GlossaryTerm[] = [
       "Base sur laquelle est calculé l'impôt, c'est-à-dire la matière imposable retenue pour le calcul de la dette fiscale. Pour l'impôt sur le revenu, l'assiette est le revenu net imposable (revenus bruts moins charges déductibles et abattements). Pour la TVA, l'assiette est le prix hors taxe du bien ou service. Pour l'impôt sur les sociétés, c'est le bénéfice imposable. L'élargissement de l'assiette fiscale (suppression des niches fiscales, lutte contre la fraude) permet de collecter davantage de recettes à taux inchangé, ou de baisser le taux à recettes constantes, réduisant les distorsions économiques. La courbe de Laffer montre que l'assiette fiscale est sensible au taux d'imposition : un taux trop élevé réduit l'assiette par trois canaux - contraction de l'activité économique, évasion fiscale (délocalisation légale de la base) et fraude fiscale (dissimulation). La notion d'érosion de l'assiette fiscale est au coeur des travaux BEPS de l'OCDE sur la fiscalité internationale.",
     relatedModules: ['courbe-de-laffer', 'fiscalite-redistribution'],
     category: 'Politique économique',
+    seeAlso: ['Courbe de Laffer', 'Taux effectif d\'imposition'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -391,6 +477,7 @@ export const glossary: GlossaryTerm[] = [
       "Principe théorisé par David Ricardo (Des principes de l'économie politique et de l'impôt, 1817) selon lequel un pays a intérêt à se spécialiser dans la production du bien pour lequel il dispose du coût d'opportunité le plus faible (avantage comparatif), même s'il est moins productif que son partenaire dans tous les domaines (pas d'avantage absolu). L'exemple classique oppose le Portugal et l'Angleterre pour le vin et le drap : même si le Portugal est plus efficace dans les deux productions, il a avantage à se spécialiser dans le vin (où son avantage est le plus grand) et à importer le drap d'Angleterre. Le commerce international est donc mutuellement bénéfique car il permet à chaque pays de consommer au-delà de sa frontière des possibilités de production. Ce modèle repose sur des hypothèses fortes : deux pays, deux biens, un seul facteur de production (travail), mobilité parfaite du travail au sein de chaque pays mais immobilité internationale, rendements constants. Le théorème HOS (Heckscher-Ohlin-Samuelson) étend l'analyse à deux facteurs de production.",
     relatedModules: ['avantages-comparatifs', 'frontiere-possibilites-production'],
     category: 'Commerce international',
+    seeAlso: ['Avantage absolu (Adam Smith)', 'Coût d\'opportunité', 'Division internationale du travail (DIT)', 'Frontière des possibilités de production (FPP)'],
   },
   {
     term: 'Avantage absolu (Adam Smith)',
@@ -398,6 +485,7 @@ export const glossary: GlossaryTerm[] = [
       "Concept développé par Adam Smith (La Richesse des nations, 1776) selon lequel un pays dispose d'un avantage absolu dans la production d'un bien s'il peut le produire en utilisant moins de ressources (moins d'heures de travail, par exemple) que tout autre pays. Smith en déduit que chaque pays devrait se spécialiser dans les biens où il est le plus productif et échanger les autres. Toutefois, cette théorie ne peut expliquer le commerce entre un pays productif dans tous les domaines et un pays moins productif partout. C'est la limite que Ricardo a dépassée avec la théorie de l'avantage comparatif : même un pays sans avantage absolu dans aucun bien a intérêt à commercer en se spécialisant dans le bien où son désavantage est le moindre. L'avantage absolu reste pertinent pour comprendre les spécialisations fondées sur les dotations naturelles (pétrole pour l'Arabie Saoudite, terres agricoles pour le Brésil).",
     relatedModules: ['avantages-comparatifs'],
     category: 'Commerce international',
+    seeAlso: ['Avantage comparatif (Ricardo)', 'Division internationale du travail (DIT)'],
   },
   {
     term: 'Termes de l\'échange',
