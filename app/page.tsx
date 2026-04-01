@@ -14,6 +14,7 @@ import {
   BookOpen,
   Globe,
   Presentation,
+  Radio,
 } from 'lucide-react';
 import { modulesCatalog } from '@/data/modules-catalog';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
@@ -347,6 +348,41 @@ export default function HomePage() {
               <ArrowRight size={16} />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ─── Live Data Banner ─── */}
+      <section className="py-16 px-4 bg-bg-elevated">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Link
+              href="/donnees-live"
+              className="group block bg-bg-card border border-border rounded-2xl p-8 sm:p-10 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-accent-indigo/30"
+            >
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                <div className="w-12 h-12 rounded-xl bg-accent-indigo/10 flex items-center justify-center flex-shrink-0">
+                  <Radio size={22} className="text-accent-indigo" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-text-primary mb-1">
+                    Donnees en direct
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    Explorez les donnees economiques en direct de la Banque mondiale :
+                    PIB, inflation, chomage, dette publique et plus encore pour 30 pays.
+                  </p>
+                </div>
+                <ArrowRight
+                  size={20}
+                  className="text-accent-indigo flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </div>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

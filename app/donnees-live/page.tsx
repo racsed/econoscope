@@ -59,7 +59,7 @@ function buildChartData(
 
 export default function DonneesLivePage() {
   const [country, setCountry] = useState('FRA');
-  const [indicator, setIndicator] = useState(INDICATORS.gdpGrowth);
+  const [indicator, setIndicator] = useState(INDICATORS.gdpGrowth as string);
   const [timeSeries, setTimeSeries] = useState<{ year: number; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
