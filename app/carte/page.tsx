@@ -242,6 +242,85 @@ export default function CartePage() {
           )}
         </div>
 
+        {/* Year timeline slider (only for PIB Growth) */}
+        {indicator === 'pibGrowth' && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="mb-6"
+          >
+            <div className="bg-bg-card border border-border rounded-xl p-4 shadow-[var(--shadow-card)]">
+              <div className="flex items-center gap-3 mb-3">
+                <button
+                  onClick={() => {
+                    if (isPlaying) {
+                      setIsPlaying(false);
+                    } else {
+                      // Start from beginning if at the end or not started
+                      if (selectedYear === null || selectedYear === HISTORICAL_YEARS[HISTORICAL_YEARS.length - 1]) {
+                        setSelectedYear(HISTORICAL_YEARS[0]);
+                      }
+                      setIsPlaying(true);
+                    }
+                  }}
+                  className="flex items-center justify-center w-9 h-9 rounded-full border border-border hover:bg-bg-hover transition-colors cursor-pointer"
+                  style={{
+                    borderColor: isPlaying ? '#5B5EF4' : undefined,
+                    backgroundColor: isPlaying ? '#5B5EF415' : undefined,
+                  }}
+                  title={isPlaying ? 'Pause' : 'Lecture automatique'}
+                >
+                  {isPlaying ? <Pause size={16} className="text-accent-indigo" /> : <Play size={16} className="text-text-secondary" />}
+                </button>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium text-text-primary">
+                      Annee : {selectedYear ?? 'actuelle (2023)'}
+                    </span>
+                    {selectedYear !== null && (
+                      <button
+                        onClick={() => { setSelectedYear(null); setIsPlaying(false); }}
+                        className="text-xs text-text-muted hover:text-text-primary cursor-pointer"
+                      >
+                        Donnees actuelles
+                      </button>
+                    )}
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="range"
+                      min={0}
+                      max={HISTORICAL_YEARS.length - 1}
+                      step={1}
+                      value={selectedYear !== null ? HISTORICAL_YEARS.indexOf(selectedYear as typeof HISTORICAL_YEARS[number]) : HISTORICAL_YEARS.length - 1}
+                      onChange={(e) => {
+                        const idx = Number(e.target.value);
+                        setSelectedYear(HISTORICAL_YEARS[idx]);
+                        setIsPlaying(false);
+                      }}
+                      className="w-full h-2 bg-bg-elevated rounded-full appearance-none cursor-pointer accent-[#5B5EF4]"
+                    />
+                    <div className="flex justify-between mt-1">
+                      {HISTORICAL_YEARS.map((y) => (
+                        <span
+                          key={y}
+                          className="text-[10px] text-text-muted"
+                          style={{
+                            fontWeight: selectedYear === y ? 700 : 400,
+                            color: selectedYear === y ? '#5B5EF4' : undefined,
+                          }}
+                        >
+                          {y}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Map */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -351,20 +430,40 @@ export default function CartePage() {
           >
             <p className="font-semibold text-text-primary mb-1.5">
               {hoveredCountry.name}
+              {isTimelineActive && (
+                <span className="ml-2 text-xs font-normal text-text-muted">({selectedYear})</span>
+              )}
             </p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
-              {INDICATORS.map((ind) => {
-                const val = hoveredCountry[ind.key];
-                return (
-                  <div key={ind.key} className="flex justify-between gap-2">
-                    <span className="text-text-muted">{ind.label}</span>
-                    <span className="text-text-primary font-medium">
-                      {val !== undefined ? ind.format(val) : '-'}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            {isTimelineActive ? (
+              <div className="text-xs">
+                {(() => {
+                  const hist = historicalByIso.get(hoveredCountry.iso);
+                  const val = hist?.gdpGrowthByYear[selectedYear!];
+                  return (
+                    <div className="flex justify-between gap-2">
+                      <span className="text-text-muted">Croissance PIB</span>
+                      <span className="text-text-primary font-medium">
+                        {val !== undefined ? `${val >= 0 ? '+' : ''}${val.toFixed(1)}%` : 'N/A'}
+                      </span>
+                    </div>
+                  );
+                })()}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
+                {INDICATORS.map((ind) => {
+                  const val = hoveredCountry[ind.key];
+                  return (
+                    <div key={ind.key} className="flex justify-between gap-2">
+                      <span className="text-text-muted">{ind.label}</span>
+                      <span className="text-text-primary font-medium">
+                        {val !== undefined ? ind.format(val) : '-'}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
 
@@ -411,7 +510,7 @@ export default function CartePage() {
 
         {/* Source */}
         <p className="text-xs text-text-muted mt-4">
-          Sources : Banque mondiale, FMI -- estimations 2023
+          Sources : Banque mondiale, FMI{isTimelineActive ? ` -- donnees historiques ${selectedYear}` : ' -- estimations 2023'}
         </p>
       </div>
     </main>
