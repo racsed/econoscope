@@ -11,36 +11,36 @@ interface EconomistBlockProps {
 
 function EconomistCard({ economist, themeColor }: { economist: Economist; themeColor: string }) {
   return (
-    <div className="bg-bg-card border border-border rounded-xl p-5 space-y-3">
-      <div className="flex items-start gap-3">
-        <div
-          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-          style={{ backgroundColor: `${themeColor}15` }}
-        >
-          <Quote size={14} style={{ color: themeColor }} />
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-text-primary">
-            {economist.name}
-          </h4>
-          <p className="text-xs text-text-muted">
-            {economist.years} -- {economist.school}
-          </p>
-        </div>
-      </div>
-
-      <blockquote
-        className="text-sm italic text-text-secondary leading-relaxed pl-4"
-        style={{ borderLeft: `3px solid ${themeColor}` }}
+    <div className="bg-bg-card border border-border rounded-xl p-6 sm:p-8 relative overflow-hidden">
+      {/* Large decorative quotation mark */}
+      <svg
+        className="absolute top-4 left-5 w-12 h-12 opacity-10"
+        style={{ color: themeColor }}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
       >
+        <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
+      </svg>
+
+      <blockquote className="relative z-10 text-base italic text-text-secondary leading-relaxed mb-4 pl-10">
         &laquo; {economist.quote} &raquo;
       </blockquote>
 
       {economist.quoteContext && (
-        <p className="text-xs text-text-muted leading-relaxed pl-4">
+        <p className="text-xs text-text-muted leading-relaxed pl-10 mb-4">
           {economist.quoteContext}
         </p>
       )}
+
+      <div className="pl-10">
+        <p className="text-sm font-bold text-text-primary">
+          {economist.name}
+        </p>
+        <p className="text-xs text-text-muted">
+          {economist.years} -- {economist.school}
+        </p>
+      </div>
     </div>
   );
 }
@@ -68,7 +68,7 @@ export function EconomistBlock({ economistIds, themeColor }: EconomistBlockProps
           Economistes associes
         </h3>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-4">
         {economistsData.map(economist => (
           <EconomistCard key={economist.id} economist={economist} themeColor={themeColor} />
         ))}

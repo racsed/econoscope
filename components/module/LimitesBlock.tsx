@@ -22,9 +22,6 @@ export function LimitesBlock({ limites, themeColor }: LimitesBlockProps) {
           Limites du modèle
         </h3>
       </div>
-      <p className="limites-text text-sm text-[#78716C] mb-3">
-        Ce modèle repose sur des hypothèses simplificatrices :
-      </p>
       <ul className="space-y-2">
         {limites.map((limite, i) => (
           <li key={i} className="limites-text flex items-start gap-2 text-sm text-[#78716C]">

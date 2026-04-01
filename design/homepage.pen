@@ -1,0 +1,2228 @@
+{
+  "version": "2.10",
+  "children": [
+    {
+      "type": "frame",
+      "id": "3EvI5",
+      "x": 0,
+      "y": 0,
+      "name": "Econoscope Landing Page",
+      "width": 1440,
+      "fill": "$surface-primary",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mE8Pr",
+          "name": "Navigation",
+          "width": "fill_container",
+          "padding": [
+            20,
+            120
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "tQxH2",
+              "name": "logo",
+              "fill": "$foreground-primary",
+              "content": "Econoscope",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "QCAZO",
+              "name": "navLinks",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sTfm5",
+                  "fill": "$foreground-secondary",
+                  "content": "Simulateurs",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "FhKm0",
+                  "fill": "$foreground-secondary",
+                  "content": "Glossaire",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "ZE4pi",
+                  "fill": "$foreground-secondary",
+                  "content": "Economistes",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "U2zTu",
+                  "fill": "$foreground-secondary",
+                  "content": "A propos",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "x0d73",
+                  "name": "navCta",
+                  "fill": "$accent-primary",
+                  "cornerRadius": "$rounded-full",
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Z6jyB",
+                      "fill": "$foreground-inverse",
+                      "content": "Commencer",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "9N6fW",
+          "name": "Hero Section",
+          "width": "fill_container",
+          "height": 720,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1.2,
+              "height": 1.2
+            },
+            "colors": [
+              {
+                "color": "#E8E8FE20",
+                "position": 0
+              },
+              {
+                "color": "#FAFBFC00",
+                "position": 1
+              }
+            ],
+            "center": {
+              "y": 0.4
+            }
+          },
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            80,
+            120
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "DXZ1N",
+              "name": "heroContent",
+              "width": 900,
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Ya7ns",
+                  "name": "eyebrow",
+                  "fill": "$accent-light",
+                  "cornerRadius": "$rounded-full",
+                  "gap": 8,
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "aBYBN",
+                      "fill": "$accent-primary",
+                      "width": 6,
+                      "height": 6
+                    },
+                    {
+                      "type": "text",
+                      "id": "Zz9D3",
+                      "fill": "$accent-primary",
+                      "content": "Laboratoire interactif d'economie",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "khQDK",
+                  "name": "title",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 0,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#5B5EF4FF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#06B6D4FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "textGrowth": "fixed-width",
+                  "width": 900,
+                  "content": "L'economie, enfin visible.",
+                  "lineHeight": 1.1,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 64,
+                  "fontWeight": "800",
+                  "letterSpacing": -1.5
+                },
+                {
+                  "type": "text",
+                  "id": "W66tp",
+                  "name": "subtitle",
+                  "fill": "$foreground-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": 640,
+                  "content": "Explorez les mecanismes economiques a travers des simulations interactives, des donnees en temps reel et des visualisations immersives.",
+                  "lineHeight": 1.6,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18
+                },
+                {
+                  "type": "frame",
+                  "id": "I2V36",
+                  "name": "ctaRow",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "TVAl1",
+                      "name": "ctaPrimary",
+                      "fill": "$accent-primary",
+                      "cornerRadius": "$rounded-md",
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#5B5EF440",
+                        "offset": {
+                          "x": 0,
+                          "y": 4
+                        },
+                        "blur": 16
+                      },
+                      "gap": 8,
+                      "padding": [
+                        14,
+                        32
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "awYep",
+                          "fill": "$foreground-inverse",
+                          "content": "Explorer les simulateurs",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "5DZEp",
+                          "fill": "$foreground-inverse",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FMCdI",
+                      "name": "ctaSecondary",
+                      "cornerRadius": "$rounded-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border-subtle"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        14,
+                        32
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bzce8",
+                          "fill": "$foreground-primary",
+                          "content": "Decouvrir le glossaire",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CnXAc",
+                  "name": "statsRow",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ddhcq",
+                      "name": "card1",
+                      "fill": "$surface-card",
+                      "cornerRadius": "$rounded-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border-subtle"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000000A",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 8
+                      },
+                      "gap": 12,
+                      "padding": [
+                        12,
+                        20
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "F2jM2",
+                          "name": "dot1",
+                          "fill": "$accent-emerald",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "907zo",
+                          "fill": "$foreground-muted",
+                          "content": "PIB",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "6GFK7",
+                          "fill": "$accent-emerald",
+                          "content": "+6.8%",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OqFRA",
+                      "name": "card2",
+                      "fill": "$surface-card",
+                      "cornerRadius": "$rounded-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border-subtle"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000000A",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 8
+                      },
+                      "gap": 12,
+                      "padding": [
+                        12,
+                        20
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "bv4DW",
+                          "name": "dot2",
+                          "fill": "$accent-primary",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZaBys",
+                          "fill": "$foreground-muted",
+                          "content": "Gini",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OrSlO",
+                          "fill": "$accent-primary",
+                          "content": "0.29",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mSMRT",
+                      "name": "card3",
+                      "fill": "$surface-card",
+                      "cornerRadius": "$rounded-md",
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border-subtle"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000000A",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 8
+                      },
+                      "gap": 12,
+                      "padding": [
+                        12,
+                        20
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "uiW6S",
+                          "name": "dot3",
+                          "fill": "$accent-cyan",
+                          "width": 8,
+                          "height": 8
+                        },
+                        {
+                          "type": "text",
+                          "id": "xZXki",
+                          "fill": "$foreground-muted",
+                          "content": "k",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Tj54Y",
+                          "fill": "$accent-cyan",
+                          "content": "= 1.5",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "0fOLq",
+          "name": "How It Works",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ePCpz",
+              "name": "howHeader",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hlT6J",
+                  "name": "howBadge",
+                  "fill": "$accent-light",
+                  "cornerRadius": "$rounded-full",
+                  "gap": 8,
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AAeuH",
+                      "fill": "$accent-primary",
+                      "content": "COMMENT CA MARCHE",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "HjNTM",
+                  "fill": "$foreground-primary",
+                  "content": "Trois etapes pour comprendre",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.8
+                },
+                {
+                  "type": "text",
+                  "id": "qrX2q",
+                  "fill": "$foreground-secondary",
+                  "content": "Une experience pedagogique pensee pour la clarte et l'intuition.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 17
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AWTcp",
+              "name": "stepsRow",
+              "width": 1080,
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OdVrP",
+                  "name": "step1",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 32,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "uAtO6",
+                      "name": "s1num",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$accent-primary",
+                      "cornerRadius": "$rounded-full",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lxgyj",
+                          "fill": "$foreground-inverse",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "2rvE5",
+                      "name": "s1icon",
+                      "width": 28,
+                      "height": 28,
+                      "iconFontName": "mouse-pointer-click",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "kMhVI",
+                      "fill": "$foreground-primary",
+                      "content": "Choisissez un simulateur",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "W4Xr2",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Parcourez notre bibliotheque de simulations economiques interactives couvrant micro et macroeconomie.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2Jk3M",
+                  "name": "step2",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 32,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KROtS",
+                      "name": "s2num",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$accent-primary",
+                      "cornerRadius": "$rounded-full",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bKFAm",
+                          "fill": "$foreground-inverse",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "z8551",
+                      "name": "s2icon",
+                      "width": 28,
+                      "height": 28,
+                      "iconFontName": "sliders-horizontal",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zo03B",
+                      "fill": "$foreground-primary",
+                      "content": "Ajustez les parametres",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6AAz1",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Modifiez les variables economiques et observez en temps reel l'impact sur les courbes et indicateurs.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bDhOZ",
+                  "name": "step3",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 32,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Hrw9W",
+                      "name": "s3num",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$accent-primary",
+                      "cornerRadius": "$rounded-full",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kv7Um",
+                          "fill": "$foreground-inverse",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon_font",
+                      "id": "LaE1S",
+                      "name": "s3icon",
+                      "width": 28,
+                      "height": 28,
+                      "iconFontName": "lightbulb",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FArGq",
+                      "fill": "$foreground-primary",
+                      "content": "Comprenez les mecanismes",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jWlC1",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Visualisez les liens de cause a effet et approfondissez votre comprehension des theories economiques.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dijnu",
+          "name": "Featured Modules",
+          "width": "fill_container",
+          "fill": "$surface-secondary",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "uOLRn",
+              "name": "modHeader",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vvLAi",
+                  "name": "modBadge",
+                  "fill": "$accent-light",
+                  "cornerRadius": "$rounded-full",
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jhJSI",
+                      "fill": "$accent-primary",
+                      "content": "SIMULATEURS PHARES",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "7MybN",
+                  "fill": "$foreground-primary",
+                  "content": "Explorez nos modules interactifs",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.8
+                },
+                {
+                  "type": "text",
+                  "id": "FlCpf",
+                  "fill": "$foreground-secondary",
+                  "content": "Des simulations conçues pour rendre les concepts economiques tangibles et memorables.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 17
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "6yiGC",
+              "name": "modGrid",
+              "width": 1080,
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Kzc5g",
+                  "name": "mc1",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dN0Gw",
+                      "name": "mc1top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "Ui67v",
+                          "fill": "$accent-primary",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tFMf2",
+                          "name": "mc1badge",
+                          "fill": "#EEF2FFFF",
+                          "cornerRadius": "$rounded-full",
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MBVIs",
+                              "fill": "$accent-primary",
+                              "content": "Microeconomie",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "UUJY8",
+                      "fill": "$foreground-primary",
+                      "content": "Offre et Demande",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "O9D5c",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Visualisez l'equilibre du marche en ajustant les courbes d'offre et de demande. Observez les effets des taxes, subventions et prix plafonds.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RpPHC",
+                      "name": "mc1link",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yQZ7y",
+                          "fill": "$accent-primary",
+                          "content": "Explorer",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ehxvx",
+                          "fill": "$accent-primary",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "q1A6W",
+                  "name": "mc2",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jCRB9",
+                      "name": "mc2top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "ToFgK",
+                          "fill": "$accent-emerald",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "frame",
+                          "id": "9L2xA",
+                          "name": "mc2badge",
+                          "fill": "#ECFDF5FF",
+                          "cornerRadius": "$rounded-full",
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "XJDM1",
+                              "fill": "$accent-emerald",
+                              "content": "Macroeconomie",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "cJmIr",
+                      "fill": "$foreground-primary",
+                      "content": "Multiplicateur keynesien",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "S5mAV",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Simulez l'effet multiplicateur des depenses publiques sur le PIB. Comprenez le role de la propension marginale a consommer.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "frame",
+                      "id": "eL8nE",
+                      "name": "mc2link",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VyESj",
+                          "fill": "$accent-primary",
+                          "content": "Explorer",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7Rqll",
+                          "fill": "$accent-primary",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KcKiN",
+                  "name": "mc3",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "vpiJl",
+                      "name": "mc3top",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "Vei45",
+                          "fill": "$accent-amber",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VdwWA",
+                          "name": "mc3badge",
+                          "fill": "#FFFBEBFF",
+                          "cornerRadius": "$rounded-full",
+                          "padding": [
+                            4,
+                            10
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jevfM",
+                              "fill": "$accent-amber",
+                              "content": "Politique economique",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "ju9Hl",
+                      "fill": "$foreground-primary",
+                      "content": "Carre magique de Kaldor",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PxQfV",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Explorez les quatre objectifs macroeconomiques et leurs arbitrages. Comparez les performances des pays sur le radar.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "frame",
+                      "id": "aHlSf",
+                      "name": "mc3link",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dlfRG",
+                          "fill": "$accent-primary",
+                          "content": "Explorer",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "JzvXV",
+                          "fill": "$accent-primary",
+                          "content": "→",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KfUbP",
+          "name": "Testimonials",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "jEvfp",
+              "name": "testHeader",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "krlZd",
+                  "name": "testBadge",
+                  "fill": "$accent-light",
+                  "cornerRadius": "$rounded-full",
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lFUHF",
+                      "fill": "$accent-primary",
+                      "content": "TEMOIGNAGES",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "700",
+                      "letterSpacing": 1.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "g42Fw",
+                  "fill": "$foreground-primary",
+                  "content": "Ce qu'en disent nos utilisateurs",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.8
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "obbzy",
+              "name": "testGrid",
+              "width": 1080,
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ho7Zo",
+                  "name": "t1",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "l46Qa",
+                      "fill": "$accent-primary",
+                      "content": "“",
+                      "lineHeight": 0.8,
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JvZ5s",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Les simulations m'ont permis de vraiment comprendre l'equilibre de marche. C'est comme si l'economie prenait vie sous mes yeux.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NuNo9",
+                      "name": "t1author",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sHXkr",
+                          "fill": "$foreground-primary",
+                          "content": "Leila M.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UDwWr",
+                          "fill": "$foreground-muted",
+                          "content": "Etudiante en L2 Economie",
+                          "fontFamily": "Inter",
+                          "fontSize": 13
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IefBL",
+                  "name": "t2",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pLwED",
+                      "fill": "$accent-primary",
+                      "content": "“",
+                      "lineHeight": 0.8,
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bb58C",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "J'utilise Econoscope en cours pour illustrer les concepts. Mes etudiants sont bien plus engages depuis que je l'ai integre.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fYHlw",
+                      "name": "t2author",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "AEfxI",
+                          "fill": "$foreground-primary",
+                          "content": "Prof. Thomas R.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "5ImQZ",
+                          "fill": "$foreground-muted",
+                          "content": "Enseignant en Sciences Economiques",
+                          "fontFamily": "Inter",
+                          "fontSize": 13
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vfxOr",
+                  "name": "t3",
+                  "width": "fill_container",
+                  "fill": "$surface-card",
+                  "cornerRadius": "$rounded-lg",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000000A",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 12
+                  },
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QlLKZ",
+                      "fill": "$accent-primary",
+                      "content": "“",
+                      "lineHeight": 0.8,
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "C6Dme",
+                      "fill": "$foreground-secondary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Autodidacte en economie, j'ai enfin trouve une ressource qui rend les maths accessibles. Le multiplicateur keynesien n'a plus de secret pour moi.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontStyle": "italic"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QZnai",
+                      "name": "t3author",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "5v936",
+                          "fill": "$foreground-primary",
+                          "content": "Marc D.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "S65AK",
+                          "fill": "$foreground-muted",
+                          "content": "Autodidacte passione",
+                          "fontFamily": "Inter",
+                          "fontSize": 13
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "7xCvX",
+          "name": "Stats Section",
+          "width": "fill_container",
+          "fill": "$surface-inverse",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "sVQZO",
+              "name": "statsHeader",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "I5t9A",
+                  "fill": "$foreground-inverse",
+                  "content": "Econoscope en chiffres",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.8
+                },
+                {
+                  "type": "text",
+                  "id": "lIFCR",
+                  "fill": "#9CA3AFFF",
+                  "content": "Une plateforme riche et en constante evolution.",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 17
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FRNbt",
+              "name": "statsGrid",
+              "width": 1080,
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "roGWw",
+                  "name": "s1",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "VFyYQ",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "activity",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ebaXj",
+                      "fill": "$foreground-inverse",
+                      "content": "17",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wFB2m",
+                      "fill": "#9CA3AFFF",
+                      "content": "Simulateurs",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "7QNtn",
+                  "name": "s2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "CVP5z",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "history",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-cyan"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rf7qZ",
+                      "fill": "$foreground-inverse",
+                      "content": "40",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "4x2z8",
+                      "fill": "#9CA3AFFF",
+                      "content": "Faits historiques",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ISwAp",
+                  "name": "s3",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "nX4VK",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "users",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-emerald"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KBhU3",
+                      "fill": "$foreground-inverse",
+                      "content": "20",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "laJpK",
+                      "fill": "#9CA3AFFF",
+                      "content": "Economistes",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ND0x3",
+                  "name": "s4",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "4nI9n",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-amber"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PFXhV",
+                      "fill": "$foreground-inverse",
+                      "content": "48",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yAexC",
+                      "fill": "#9CA3AFFF",
+                      "content": "Termes au glossaire",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u3ZLa",
+                  "name": "s5",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "fXNOY",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "globe",
+                      "iconFontFamily": "lucide",
+                      "fill": "$accent-rose"
+                    },
+                    {
+                      "type": "text",
+                      "id": "r5eE7",
+                      "fill": "$foreground-inverse",
+                      "content": "30+",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6gbUz",
+                      "fill": "#9CA3AFFF",
+                      "content": "Pays couverts",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z2pk3",
+                  "name": "s6",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF0A",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF12"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 24,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "vI840",
+                      "width": 32,
+                      "height": 32,
+                      "iconFontName": "circle-play",
+                      "iconFontFamily": "lucide",
+                      "fill": "#A78BFAFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nIDYg",
+                      "fill": "$foreground-inverse",
+                      "content": "80+",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IocJl",
+                      "fill": "#9CA3AFFF",
+                      "content": "Scenarios",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Thsv1",
+          "name": "Final CTA",
+          "width": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#5B5EF4FF",
+                "position": 0
+              },
+              {
+                "color": "#4338CAFF",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            80,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "jBdiq",
+              "fill": "$foreground-inverse",
+              "content": "Pret a explorer l'economie autrement ?",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 36,
+              "fontWeight": "700",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "text",
+              "id": "KmV5m",
+              "fill": "#FFFFFFCC",
+              "textGrowth": "fixed-width",
+              "width": 600,
+              "content": "Rejoignez des milliers d'apprenants et decouvrez une nouvelle facon de comprendre les mecanismes economiques.",
+              "lineHeight": 1.6,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 17
+            },
+            {
+              "type": "frame",
+              "id": "y8wKT",
+              "name": "ctaFinalRow",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "8Bhuo",
+                  "name": "ctaFinalPrimary",
+                  "fill": "$foreground-inverse",
+                  "cornerRadius": "$rounded-md",
+                  "gap": 8,
+                  "padding": [
+                    14,
+                    32
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "uo3io",
+                      "fill": "$accent-primary",
+                      "content": "Commencer gratuitement",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "8iXtj",
+                      "fill": "$accent-primary",
+                      "content": "→",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Pcgw8",
+                  "name": "ctaFinalSecondary",
+                  "cornerRadius": "$rounded-md",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF40"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    14,
+                    32
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IQJtE",
+                      "fill": "$foreground-inverse",
+                      "content": "En savoir plus",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ya2rn",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$surface-inverse",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            120
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "AC8lY",
+              "name": "footerTop",
+              "width": 1080,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "MT8R8",
+                  "fill": "$foreground-inverse",
+                  "content": "Econoscope",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "tWP7k",
+                  "name": "footerLinks",
+                  "gap": 32,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CH86B",
+                      "fill": "#9CA3AFFF",
+                      "content": "Simulateurs",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "sVwuq",
+                      "fill": "#9CA3AFFF",
+                      "content": "Glossaire",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "IisFT",
+                      "fill": "#9CA3AFFF",
+                      "content": "Economistes",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "OHgor",
+                      "fill": "#9CA3AFFF",
+                      "content": "A propos",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "Csec8",
+                      "fill": "#9CA3AFFF",
+                      "content": "Contact",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fQlCE",
+              "name": "footerDiv",
+              "width": 1080,
+              "height": 1,
+              "fill": "#FFFFFF15"
+            },
+            {
+              "type": "text",
+              "id": "2I20Q",
+              "fill": "#6B7280FF",
+              "content": "© 2026 Econoscope. Tous droits reserves. Fait avec passion pour la pedagogie economique.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 12
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-amber": {
+      "type": "color",
+      "value": "#F59E0BFF"
+    },
+    "accent-cyan": {
+      "type": "color",
+      "value": "#06B6D4FF"
+    },
+    "accent-emerald": {
+      "type": "color",
+      "value": "#10B981FF"
+    },
+    "accent-light": {
+      "type": "color",
+      "value": "#E8E8FEFF"
+    },
+    "accent-primary": {
+      "type": "color",
+      "value": "#5B5EF4FF"
+    },
+    "accent-rose": {
+      "type": "color",
+      "value": "#F43F5EFF"
+    },
+    "border-muted": {
+      "type": "color",
+      "value": "#F3F4F6FF"
+    },
+    "border-subtle": {
+      "type": "color",
+      "value": "#E5E7EBFF"
+    },
+    "content-width": {
+      "type": "number",
+      "value": 1200
+    },
+    "font-size-body": {
+      "type": "number",
+      "value": 16
+    },
+    "font-size-caption": {
+      "type": "number",
+      "value": 14
+    },
+    "font-size-display": {
+      "type": "number",
+      "value": 64
+    },
+    "font-size-h1": {
+      "type": "number",
+      "value": 48
+    },
+    "font-size-h2": {
+      "type": "number",
+      "value": 36
+    },
+    "font-size-h3": {
+      "type": "number",
+      "value": 24
+    },
+    "font-size-small": {
+      "type": "number",
+      "value": 12
+    },
+    "foreground-inverse": {
+      "type": "color",
+      "value": "#FFFFFFFF"
+    },
+    "foreground-muted": {
+      "type": "color",
+      "value": "#9CA3AFFF"
+    },
+    "foreground-primary": {
+      "type": "color",
+      "value": "#0F1117FF"
+    },
+    "foreground-secondary": {
+      "type": "color",
+      "value": "#4B5563FF"
+    },
+    "rounded-full": {
+      "type": "number",
+      "value": 999
+    },
+    "rounded-lg": {
+      "type": "number",
+      "value": 16
+    },
+    "rounded-md": {
+      "type": "number",
+      "value": 12
+    },
+    "rounded-sm": {
+      "type": "number",
+      "value": 8
+    },
+    "rounded-xl": {
+      "type": "number",
+      "value": 24
+    },
+    "shadow-color": {
+      "type": "color",
+      "value": "#0000000A"
+    },
+    "spacing-lg": {
+      "type": "number",
+      "value": 48
+    },
+    "spacing-md": {
+      "type": "number",
+      "value": 32
+    },
+    "spacing-section": {
+      "type": "number",
+      "value": 120
+    },
+    "spacing-sm": {
+      "type": "number",
+      "value": 16
+    },
+    "spacing-xs": {
+      "type": "number",
+      "value": 8
+    },
+    "surface-card": {
+      "type": "color",
+      "value": "#FFFFFFFF"
+    },
+    "surface-inverse": {
+      "type": "color",
+      "value": "#0F1117FF"
+    },
+    "surface-primary": {
+      "type": "color",
+      "value": "#FAFBFCFF"
+    },
+    "surface-secondary": {
+      "type": "color",
+      "value": "#F1F3F5FF"
+    }
+  }
+}

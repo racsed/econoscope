@@ -36,7 +36,7 @@ function CountUpNumber({ value, suffix = '', duration = 1.5 }: { value: number; 
     requestAnimationFrame(animate);
   }, [isInView, value, duration]);
 
-  return <span ref={ref} className="font-mono font-bold text-3xl text-accent-indigo tabular-nums">{display}{suffix}</span>;
+  return <span ref={ref} className="font-mono font-bold text-4xl text-white tabular-nums">{display}{suffix}</span>;
 }
 
 const featuredSlugs = [
@@ -52,12 +52,12 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen">
-      {/* Hero */}
+      {/* ─── Hero ─── */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Animated chart background */}
+        {/* Background grid + chart lines */}
         <div className="absolute inset-0">
           <div
-            className="absolute inset-0 opacity-[0.03]"
+            className="absolute inset-0 opacity-[0.02]"
             style={{
               backgroundImage:
                 'linear-gradient(#5B5EF4 1px, transparent 1px), linear-gradient(90deg, #5B5EF4 1px, transparent 1px)',
@@ -69,7 +69,7 @@ export default function HomePage() {
             className="absolute inset-0 w-full h-full"
             viewBox="0 0 1200 800"
             preserveAspectRatio="xMidYMid slice"
-            style={{ opacity: 0.07 }}
+            style={{ opacity: 0.05 }}
           >
             <style>{`
               @keyframes drawLine {
@@ -125,8 +125,8 @@ export default function HomePage() {
             <circle className="hero-dot-3" cx="1050" cy="160" fill="#5B5EF4" />
           </svg>
           {/* Gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent-indigo/5 blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#22D3EE]/5 blur-[120px]" />
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent-indigo/[0.02] blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#22D3EE]/[0.02] blur-[120px]" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -143,7 +143,7 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-text-primary">L&apos;économie,</span>
+              <span className="text-text-primary">L&apos;economie,</span>
               <br />
               <span className="bg-gradient-to-r from-accent-indigo to-[#22D3EE] bg-clip-text text-transparent">
                 enfin visible.
@@ -151,77 +151,58 @@ export default function HomePage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-              Un laboratoire interactif pour comprendre les mécanismes économiques.
+              Un laboratoire interactif pour comprendre les mecanismes economiques.
               Manipulez les variables, observez les effets, construisez votre intuition.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/explorer"
-                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full hover:bg-[#4F52E0] transition-all duration-200 hover:shadow-lg hover:shadow-accent-indigo/25"
+                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full shadow-lg shadow-accent-indigo/0 hover:shadow-accent-indigo/25 hover:bg-[#4F52E0] transition-all duration-200"
               >
-                Explorer les mécanismes
+                Explorer les simulateurs
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
               <Link
-                href="/a-propos"
+                href="/glossaire"
                 className="px-8 py-3.5 border border-border text-text-secondary font-medium rounded-full hover:border-accent-indigo/30 hover:text-text-primary transition-all duration-200"
               >
-                En savoir plus
+                Decouvrir le glossaire
               </Link>
             </div>
-          {/* Floating stat cards - "wow" effect */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-16 flex flex-wrap justify-center gap-3"
-          >
-            {[
-              { value: 'PIB +6.8%', label: 'Relance 2021', color: '#10B981', delay: 1.4 },
-              { value: 'Gini 0.29', label: 'France', color: '#EC4899', delay: 1.6 },
-              { value: 'k = 1.5', label: 'Multiplicateur', color: '#5B5EF4', delay: 1.8 },
-              { value: '-7.9%', label: 'Choc COVID', color: '#EF4444', delay: 2.0 },
-              { value: 't* = 55%', label: 'Laffer optimal', color: '#F59E0B', delay: 2.2 },
-            ].map((card) => (
-              <motion.div
-                key={card.label}
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  delay: card.delay,
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 15,
-                }}
-                className="px-4 py-2.5 rounded-xl border border-border bg-bg-card/80 backdrop-blur-sm shadow-sm"
-              >
-                <div className="font-mono font-bold text-sm" style={{ color: card.color }}>
-                  {card.value}
-                </div>
-                <div className="text-[10px] text-text-muted">{card.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
 
+            {/* Mini stats row */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="mt-10 text-sm text-text-muted"
+            >
+              17 simulateurs &bull; 40 faits historiques &bull; 20 economistes
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-24 px-4">
+      {/* ─── How it works ─── */}
+      <section className="py-28 px-4 bg-bg-elevated">
         <div className="max-w-5xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-16 text-text-primary"
+            className="text-center mb-16"
           >
-            Comment ca marche
-          </motion.h2>
+            <h2 className="text-3xl font-bold text-text-primary mb-3">
+              Trois etapes pour comprendre
+            </h2>
+            <p className="text-text-secondary max-w-xl mx-auto">
+              Une experience pedagogique pensee pour la classe et l&apos;etudiant.
+            </p>
+          </motion.div>
 
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Connecting line between steps on desktop */}
@@ -230,25 +211,25 @@ export default function HomePage() {
             {[
               {
                 icon: SlidersHorizontal,
-                title: 'Choisis un mecanisme',
+                title: 'Choisissez un mecanisme',
                 description:
-                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept economique.',
+                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept economique precis.',
                 color: '#5B5EF4',
                 step: '01',
               },
               {
                 icon: Eye,
-                title: 'Manipule les variables',
+                title: 'Manipulez les variables',
                 description:
-                  'Deplace les curseurs, change les parametres. Les graphiques reagissent en temps reel.',
+                  'Deplacez les curseurs, changez les parametres. Les graphiques reagissent en temps reel sous vos yeux.',
                 color: '#22D3EE',
                 step: '02',
               },
               {
                 icon: Lightbulb,
-                title: 'Comprends les effets',
+                title: 'Comprenez les effets',
                 description:
-                  "La narration s'adapte a tes choix. Tu vois ce qui se passe et pourquoi.",
+                  "La narration s'adapte a vos choix. Vous voyez ce qui se passe et pourquoi.",
                 color: '#34D399',
                 step: '03',
               },
@@ -259,15 +240,14 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="relative text-center bg-bg-card border border-border rounded-2xl p-6 pt-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 hover:border-border"
+                className="relative text-center bg-bg-card border border-border rounded-2xl p-8 pt-10 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5"
               >
                 {/* Large step number behind icon */}
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 text-6xl font-black font-mono text-text-primary/[0.04] select-none pointer-events-none leading-none">
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 text-7xl font-black font-mono text-text-primary/[0.03] select-none pointer-events-none leading-none">
                   {step.step}
                 </div>
                 <div
-                  className="relative w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
-                  style={{ backgroundColor: `${step.color}1A` }}
+                  className="relative w-14 h-14 rounded-full bg-bg-elevated flex items-center justify-center mx-auto mb-5"
                 >
                   <step.icon size={24} style={{ color: step.color }} />
                 </div>
@@ -283,8 +263,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Modules */}
-      <section className="py-24 px-4 border-t border-border">
+      {/* ─── Featured Modules ─── */}
+      <section className="py-28 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -293,10 +273,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-text-primary mb-4">
-              Modules en vedette
+              Explorez nos modules interactifs
             </h2>
-            <p className="text-text-secondary">
-              Commencez par ces trois mécanismes fondamentaux
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Des simulations conçues pour rendre les concepts economiques tangibles et manipulables.
             </p>
           </motion.div>
 
@@ -314,7 +294,7 @@ export default function HomePage() {
                 >
                   <Link
                     href={`/module/${mod.slug}`}
-                    className="block bg-bg-card border border-border rounded-2xl p-6 h-full shadow-sm transition-all duration-300 hover:shadow-md"
+                    className="block bg-bg-card border border-border rounded-2xl p-8 h-full shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
                     }}
@@ -322,7 +302,7 @@ export default function HomePage() {
                       (e.currentTarget as HTMLElement).style.borderColor = '';
                     }}
                   >
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-6">
                       <div
                         className="w-10 h-10 rounded-xl flex items-center justify-center"
                         style={{ backgroundColor: `${color}15` }}
@@ -342,13 +322,13 @@ export default function HomePage() {
                         {mod.theme}
                       </span>
                     </div>
-                    <h3 className="text-lg font-semibold text-text-primary mb-2">
+                    <h3 className="text-lg font-semibold text-text-primary mb-3">
                       {mod.title}
                     </h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed mb-6">
                       {mod.description}
                     </p>
-                    <div className="mt-4 flex items-center gap-1 text-sm font-medium" style={{ color }}>
+                    <div className="flex items-center gap-1 text-sm font-medium" style={{ color }}>
                       Explorer
                       <ArrowRight size={14} />
                     </div>
@@ -370,87 +350,101 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials / Use cases */}
-      <section className="py-24 px-4 border-t border-border">
+      {/* ─── Testimonials ─── */}
+      <section className="py-28 px-4 bg-bg-elevated">
         <div className="max-w-5xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-4 text-text-primary"
+            className="text-center mb-16"
           >
-            Qui utilise Econoscope ?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-text-secondary text-center mb-14 max-w-xl mx-auto"
-          >
-            Etudiants, enseignants et curieux y trouvent leur compte.
-          </motion.p>
+            <h2 className="text-3xl font-bold text-text-primary mb-3">
+              Ce qu&apos;en disent nos utilisateurs
+            </h2>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                icon: GraduationCap,
+                number: '#1',
                 label: 'Etudiant',
-                quote: 'Je comprends enfin IS-LM grace aux simulations interactives.',
+                quote: 'Je comprends enfin IS-LM grace aux simulations interactives. Les concepts deviennent concrets.',
+                name: 'Lucas M.',
                 color: '#5B5EF4',
               },
               {
-                icon: Presentation,
+                number: '#2',
                 label: 'Enseignant',
-                quote: 'Je projette les modules en cours, mes eleves manipulent en direct.',
+                quote: 'Je projette les modules en cours, mes eleves manipulent en direct. Un vrai outil pedagogique.',
+                name: 'Sophie R.',
                 color: '#22D3EE',
               },
               {
-                icon: Lightbulb,
+                number: '#3',
                 label: 'Autodidacte',
-                quote: "Les faits historiques avec simulateur, c'est exactement ce qu'il manquait.",
+                quote: "Les faits historiques avec simulateur integre, c'est exactement ce qu'il manquait pour apprendre.",
+                name: 'Karim B.',
                 color: '#34D399',
               },
             ].map((item, i) => (
               <motion.div
-                key={item.label}
+                key={item.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12 }}
-                className="bg-bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center"
+                className="bg-bg-card border border-border rounded-2xl p-8 flex flex-col shadow-sm"
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                  style={{ backgroundColor: `${item.color}1A` }}
+                <span
+                  className="text-3xl font-black font-mono mb-4"
+                  style={{ color: item.color }}
                 >
-                  <item.icon size={22} style={{ color: item.color }} />
-                </div>
-                <p className="text-sm text-text-secondary italic leading-relaxed mb-4">
+                  {item.number}
+                </span>
+                <p className="text-sm text-text-secondary italic leading-relaxed mb-6 flex-1">
                   &laquo;&nbsp;{item.quote}&nbsp;&raquo;
                 </p>
-                <span
-                  className="text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ backgroundColor: `${item.color}15`, color: item.color }}
-                >
-                  {item.label}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-text-primary">{item.name}</span>
+                  <span
+                    className="text-xs font-semibold px-3 py-1 rounded-full"
+                    style={{ backgroundColor: `${item.color}15`, color: item.color }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-20 px-4 bg-bg-elevated border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+      {/* ─── Stats (dark section) ─── */}
+      <section className="py-28 px-4 bg-[#1A1D26]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl font-bold text-white mb-3">
+              Econoscope en chiffres
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              Une plateforme riche et en constante evolution.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
             {[
-              { value: 17, suffix: '', label: 'Simulateurs interactifs', icon: FlaskConical, color: '#5B5EF4' },
-              { value: 40, suffix: '', label: 'Faits historiques', icon: History, color: '#EC4899' },
-              { value: 20, suffix: '', label: 'Economistes cites', icon: GraduationCap, color: '#22D3EE' },
-              { value: 48, suffix: '', label: 'Termes au glossaire', icon: BookOpen, color: '#F59E0B' },
-              { value: 30, suffix: '+', label: 'Pays sur la carte', icon: Globe, color: '#34D399' },
-              { value: 80, suffix: '+', label: 'Scenarios preconfigures', icon: SlidersHorizontal, color: '#8B5CF6' },
+              { value: 17, suffix: '', label: 'Simulateurs interactifs' },
+              { value: 40, suffix: '', label: 'Faits historiques' },
+              { value: 20, suffix: '', label: 'Economistes cites' },
+              { value: 48, suffix: '', label: 'Termes au glossaire' },
+              { value: 30, suffix: '+', label: 'Pays sur la carte' },
+              { value: 80, suffix: '+', label: 'Scenarios preconfigures' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -458,18 +452,46 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-bg-card border border-border rounded-2xl p-5 flex flex-col items-center gap-2"
+                className="flex flex-col items-center gap-2"
               >
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-1"
-                  style={{ backgroundColor: `${stat.color}15` }}
-                >
-                  <stat.icon size={20} style={{ color: stat.color }} />
-                </div>
                 <CountUpNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-sm text-text-secondary">{stat.label}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Final CTA ─── */}
+      <section className="py-28 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-accent-indigo rounded-2xl px-8 py-16 sm:px-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                Pret a explorer l&apos;economie autrement ?
+              </h2>
+              <p className="text-white/80 max-w-xl mx-auto mb-10 leading-relaxed">
+                Rejoignez les milliers d&apos;etudiants et enseignants qui utilisent Econoscope au quotidien.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/explorer"
+                  className="px-8 py-3.5 bg-white text-accent-indigo font-semibold rounded-full hover:bg-white/90 transition-all duration-200"
+                >
+                  Commencer gratuitement
+                </Link>
+                <Link
+                  href="/a-propos"
+                  className="px-8 py-3.5 border border-white/40 text-white font-medium rounded-full hover:border-white/70 transition-all duration-200"
+                >
+                  En savoir plus
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

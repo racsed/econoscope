@@ -141,16 +141,21 @@ export function ModuleLayout({
           {/* Visualization */}
           <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[300px] sm:min-h-[400px] flex flex-col">
             {/* Toolbar row */}
-            <div className="flex items-center justify-end gap-2 mb-2">
-              <ExportButton targetRef={chartRef} filename={exportFilename} />
-              <button
-                onClick={() => setProjectionActive(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-lg hover:bg-bg-hover hover:text-text-primary transition-colors"
-                title="Mode projection"
-              >
-                <Maximize2 size={14} />
-                Projection
-              </button>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                Visualisation
+              </h2>
+              <div className="flex items-center gap-2">
+                <ExportButton targetRef={chartRef} filename={exportFilename} />
+                <button
+                  onClick={() => setProjectionActive(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-lg hover:bg-bg-hover hover:text-text-primary transition-colors"
+                  title="Mode projection"
+                >
+                  <Maximize2 size={14} />
+                  Projection
+                </button>
+              </div>
             </div>
             {/* Chart container with ref for PNG export */}
             <div ref={chartRef} className="flex-1 flex items-center justify-center">
@@ -162,14 +167,14 @@ export function ModuleLayout({
         {/* Scénarios */}
         <div className="mb-8">{scenarios}</div>
 
-        {/* Narration blocks */}
-        <div className="space-y-6 mb-8">{narration}</div>
+        {/* Narration blocks (two columns: observation + interpretation) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">{narration}</div>
 
-        {/* Limites */}
-        <div className="mb-8">{limites}</div>
-
-        {/* Realite */}
-        <div className="mb-8">{realite}</div>
+        {/* Limites + Realite side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+          {limites}
+          {realite}
+        </div>
 
         {/* Economists */}
         {economists && <div className="mb-8">{economists}</div>}
