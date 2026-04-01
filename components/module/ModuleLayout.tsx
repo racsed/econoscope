@@ -2,7 +2,7 @@
 
 import { ReactNode, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Maximize2, SlidersHorizontal, ChevronUp } from 'lucide-react';
+import { Maximize2, SlidersHorizontal, ChevronUp, Share2 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { ExportButton } from '@/components/charts/ExportButton';
 import { ProjectionMode } from '@/components/module/ProjectionMode';
@@ -50,6 +50,7 @@ export function ModuleLayout({
   const chartRef = useRef<HTMLDivElement>(null);
   const [projectionActive, setProjectionActive] = useState(false);
   const [controlsOpen, setControlsOpen] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
 
   // Generate a slug-friendly filename from the title
   const exportFilename = `econoscope-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`;
@@ -147,6 +148,43 @@ export function ModuleLayout({
               </h2>
               <div className="flex items-center gap-2">
                 <ExportButton targetRef={chartRef} filename={exportFilename} />
+                <div className="relative">
+                  <button
+                    onClick={async () => {
+                      const url = window.location.href;
+                      try {
+                        await navigator.clipboard.writeText(url);
+                      } catch {
+                        // Fallback for older browsers
+                        const input = document.createElement('input');
+                        input.value = url;
+                        document.body.appendChild(input);
+                        input.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(input);
+                      }
+                      setShowCopied(true);
+                      setTimeout(() => setShowCopied(false), 2000);
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-lg hover:bg-bg-hover hover:text-text-primary transition-colors"
+                    title="Copier le lien avec les parametres actuels"
+                  >
+                    <Share2 size={14} />
+                    Partager
+                  </button>
+                  <AnimatePresence>
+                    {showCopied && (
+                      <motion.span
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-green-500 whitespace-nowrap"
+                      >
+                        Lien copie !
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <button
                   onClick={() => setProjectionActive(true)}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-lg hover:bg-bg-hover hover:text-text-primary transition-colors"

@@ -1,10 +1,10 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useMemo, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, Tag, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, SlidersHorizontal, RotateCcw, Share2 } from 'lucide-react';
 import { economicFacts } from '@/data/economic-facts';
 import { getModule } from '@/engine/init';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
@@ -74,6 +74,50 @@ function FactArticle({
 
   const [values, setAllValues] = useState(initialValues);
   const [activeScenarioId, setActiveScenarioId] = useState<string | null>(null);
+  const [showCopied, setShowCopied] = useState(false);
+
+  // Read initial values from URL params if present
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.size === 0) return;
+
+    const urlValues: Record<string, number | boolean | string> = { ...initialValues };
+    let hasUrlValues = false;
+    for (const input of module.inputs) {
+      const paramVal = params.get(input.id);
+      if (paramVal !== null) {
+        hasUrlValues = true;
+        if (input.type === 'toggle' && !input.options) {
+          urlValues[input.id] = paramVal === 'true';
+        } else if (input.type === 'slider') {
+          urlValues[input.id] = Number(paramVal);
+        } else {
+          urlValues[input.id] = paramVal;
+        }
+      }
+    }
+    if (hasUrlValues) setAllValues(urlValues);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Sync values to URL (debounced)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams();
+      for (const [key, val] of Object.entries(values)) {
+        if (val !== initialValues[key]) {
+          params.set(key, String(val));
+        }
+      }
+      const url = params.size > 0
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+      window.history.replaceState(null, '', url);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [values, initialValues]);
 
   const setValue = useCallback((key: string, value: number | boolean | string) => {
     setAllValues(prev => ({ ...prev, [key]: value }));
@@ -199,13 +243,51 @@ function FactArticle({
                 <SlidersHorizontal size={18} style={{ color: themeColor }} />
                 Simulateur : {module.meta.title}
               </h2>
-              <button
-                onClick={resetToFact}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-border rounded-lg hover:bg-bg-hover text-text-secondary transition-colors"
-              >
-                <RotateCcw size={12} />
-                Valeurs historiques
-              </button>
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <button
+                    onClick={async () => {
+                      const url = window.location.href;
+                      try {
+                        await navigator.clipboard.writeText(url);
+                      } catch {
+                        const input = document.createElement('input');
+                        input.value = url;
+                        document.body.appendChild(input);
+                        input.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(input);
+                      }
+                      setShowCopied(true);
+                      setTimeout(() => setShowCopied(false), 2000);
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-border rounded-lg hover:bg-bg-hover text-text-secondary transition-colors"
+                    title="Copier le lien avec les parametres actuels"
+                  >
+                    <Share2 size={12} />
+                    Partager
+                  </button>
+                  <AnimatePresence>
+                    {showCopied && (
+                      <motion.span
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-green-500 whitespace-nowrap"
+                      >
+                        Lien copie !
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <button
+                  onClick={resetToFact}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-border rounded-lg hover:bg-bg-hover text-text-secondary transition-colors"
+                >
+                  <RotateCcw size={12} />
+                  Valeurs historiques
+                </button>
+              </div>
             </div>
 
             <p className="text-sm text-text-muted mb-4">
