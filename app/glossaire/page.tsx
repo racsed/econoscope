@@ -62,7 +62,7 @@ function processText(
   let remaining = text;
 
   while (remaining.length > 0) {
-    let earliestMatch: { index: number; length: number; type: Segment['type']; value: string; termName?: string } | null = null;
+    let earliestMatch: { index: number; length: number; type: Segment['type']; value: string; termName?: string } | null = null as { index: number; length: number; type: Segment['type']; value: string; termName?: string } | null;
 
     const numMatch = remaining.match(numberPattern);
     if (numMatch) {
