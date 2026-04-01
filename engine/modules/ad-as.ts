@@ -70,7 +70,7 @@ const inputs: SimulationInput[] = [
     group: 'Offre globale',
   },
   {
-    id: 'productivité',
+    id: 'productivite',
     label: 'Productivité (indice)',
     type: 'slider',
     min: 50,
@@ -214,7 +214,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const g = clamp(Number(values.depenses_publiques) || 200, 0, 500);
   const m = clamp(Number(values.offre_monnaie) || 800, 100, 2000);
   const prixPetrole = clamp(Number(values.prix_petrole) || 100, 50, 300);
-  const productivité = clamp(Number(values.productivité) || 100, 50, 200);
+  const productivité = clamp(Number(values.productivite) || 100, 50, 200);
   const salaire = clamp(Number(values.salaire_nominal) || 100, 50, 200);
   const modeLongTerme = typeof values.mode_long_terme === 'boolean' ? values.mode_long_terme : true;
 

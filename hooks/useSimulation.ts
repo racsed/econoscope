@@ -19,9 +19,16 @@ export function useSimulation(module: SimulationModule) {
   const setValue = useCallback((key: string, value: number | boolean | string) => {
     setAllValues(prev => {
       const next = { ...prev, [key]: value };
-      // Auto-switch to 'personnalise' if user changes a décile slider
+      // Auto-switch to 'personnalise' if user changes a decile slider
       if (key.match(/^d\d+$/) && prev.preset !== undefined && prev.preset !== 'personnalise') {
         next.preset = 'personnalise';
+      }
+      // Auto-set elasticite when type_bien changes
+      if (key === 'type_bien') {
+        const presets: Record<string, number> = { necessaire: -0.3, normal: -1, luxe: -2.5 };
+        if (presets[value as string] !== undefined) {
+          next.elasticite = presets[value as string];
+        }
       }
       return next;
     });
