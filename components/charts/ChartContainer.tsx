@@ -7,6 +7,7 @@ interface ChartContainerProps {
   children: (dimensions: { width: number; height: number }) => ReactNode;
   aspectRatio?: number;
   minHeight?: number;
+  maxHeight?: number;
   className?: string;
 }
 
@@ -14,27 +15,24 @@ export function ChartContainer({
   children,
   aspectRatio,
   minHeight = 350,
+  maxHeight = 600,
   className = '',
 }: ChartContainerProps) {
-  // Lower minimum height on mobile for better fit
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-  const effectiveMinHeight = isMobile ? Math.min(minHeight, 250) : minHeight;
-
   return (
     <div
-      className={`w-full h-full overflow-x-auto ${className}`}
-      style={{ minHeight: effectiveMinHeight }}
+      className={`w-full ${className}`}
+      style={{ height: minHeight, maxHeight }}
     >
-      <ParentSize debounceTime={50}>
+      <ParentSize debounceTime={100}>
         {({ width, height: parentHeight }) => {
           if (width <= 0) return null;
+          // Use a stable height: either from aspect ratio or the fixed minHeight
+          // Never grow beyond maxHeight to prevent infinite growth loops
           let height: number;
-          if (parentHeight > effectiveMinHeight) {
-            height = parentHeight;
-          } else if (aspectRatio) {
-            height = Math.max(width / aspectRatio, effectiveMinHeight);
+          if (aspectRatio) {
+            height = Math.min(Math.max(width / aspectRatio, minHeight), maxHeight);
           } else {
-            height = Math.max(effectiveMinHeight, isMobile ? 250 : 350);
+            height = Math.min(Math.max(parentHeight, minHeight), maxHeight);
           }
           return <>{children({ width, height })}</>;
         }}
