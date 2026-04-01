@@ -1,7 +1,19 @@
 'use client';
 
-import { ReactNode, useRef, useState, useEffect, useCallback } from 'react';
+import { ReactNode, createContext, useContext, useRef, useState, useEffect, useCallback } from 'react';
 
+/* ---------- Chart Height Context ---------- */
+const ChartHeightContext = createContext<number | null>(null);
+
+export function ChartHeightProvider({ height, children }: { height: number; children: ReactNode }) {
+  return <ChartHeightContext.Provider value={height}>{children}</ChartHeightContext.Provider>;
+}
+
+export function useChartHeight() {
+  return useContext(ChartHeightContext);
+}
+
+/* ---------- ChartContainer ---------- */
 interface ChartContainerProps {
   children: (dimensions: { width: number; height: number }) => ReactNode;
   aspectRatio?: number;
@@ -20,6 +32,7 @@ export function ChartContainer({
   const lastWidthRef = useRef(0);
   const computedHeightRef = useRef(minHeight);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const contextHeight = useContext(ChartHeightContext);
 
   const measure = useCallback(() => {
     const el = containerRef.current;
@@ -28,38 +41,24 @@ export function ChartContainer({
     if (w <= 0) return;
 
     let h = minHeight;
-    if (aspectRatio) {
+
+    // Context height takes priority (projection mode)
+    if (contextHeight && contextHeight > minHeight) {
+      h = contextHeight;
+    } else if (aspectRatio) {
       h = Math.max(Math.round(w / aspectRatio), minHeight);
     }
 
-    // Detect fullscreen/projection: check if any ancestor has large explicit height
-    let parent = el.parentElement;
-    while (parent) {
-      const pH = parent.clientHeight;
-      if (pH > minHeight + 100 && parent.style.height) {
-        h = Math.max(h, pH - 8);
-        break;
-      }
-      // Also check for flex containers with large height
-      const cs = getComputedStyle(parent);
-      if (cs.display === 'flex' && pH > minHeight + 100 && cs.flexGrow !== '0') {
-        h = Math.max(h, pH - 8);
-        break;
-      }
-      parent = parent.parentElement;
-    }
+    h = Math.min(h, 1200); // higher cap for fullscreen
 
-    h = Math.min(h, 900);
     computedHeightRef.current = h;
-
     setDims(prev => {
       if (prev && prev.width === w && prev.height === h) return prev;
       return { width: w, height: h };
     });
-  }, [aspectRatio, minHeight]);
+  }, [aspectRatio, minHeight, contextHeight]);
 
   useEffect(() => {
-    // Initial measure + delayed re-measure for fullscreen detection
     measure();
     const timer = setTimeout(measure, 200);
 

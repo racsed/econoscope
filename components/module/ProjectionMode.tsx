@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import type { SimulationOutput } from '@/engine/types';
+import { ChartHeightProvider } from '@/components/charts/ChartContainer';
 
 interface ProjectionModeProps {
   isActive: boolean;
@@ -133,7 +134,9 @@ export function ProjectionMode({
             style={{ height: chartHeight > 100 ? chartHeight : '100%' }}
           >
             <div style={{ width: '100%', height: '100%' }}>
-              {visualization}
+              <ChartHeightProvider height={chartHeight > 100 ? chartHeight - 20 : 500}>
+                {visualization}
+              </ChartHeightProvider>
             </div>
           </motion.div>
         </div>
