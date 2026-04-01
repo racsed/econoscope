@@ -29,6 +29,7 @@ export const FOOTER_LINKS = [
   { href: '/faits', label: 'Faits' },
   { href: '/carte', label: 'Carte' },
   { href: '/scenarios', label: 'Scénarios' },
+  { href: '/donnees-live', label: 'Donnees live' },
   { href: '/glossaire', label: 'Glossaire' },
   { href: '/a-propos', label: 'À propos' },
 ] as const;

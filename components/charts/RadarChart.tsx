@@ -1,9 +1,9 @@
 'use client';
 
-import { useMemo, useState, useCallback, useRef } from 'react';
+import { useMemo, useState, useCallback, useRef, useContext } from 'react';
 import { motion } from 'framer-motion';
 import type { RadarData } from '@/engine/types';
-import { ChartContainer } from './ChartContainer';
+import { ChartContainer, useChartHeight } from './ChartContainer';
 import { useChartColors } from '@/hooks/useChartColors';
 import { useAnimatedPath } from '@/hooks/useAnimatedPath';
 import { useAnimatedValue } from '@/hooks/useAnimatedScale';
@@ -531,10 +531,15 @@ function AreaPercentBadge({
 }
 
 export function RadarChart({ data, themeColor }: RadarChartProps) {
+  const contextHeight = useChartHeight();
   return (
     <ChartContainer aspectRatio={1} minHeight={400}>
       {({ width, height }) => {
-        const size = Math.min(width, height);
+        // In projection mode, constrain to square using the smaller of width and contextHeight
+        const effectiveHeight = contextHeight && contextHeight > 400
+          ? Math.min(width, contextHeight)
+          : Math.min(width, height);
+        const size = effectiveHeight;
         return (
           <div style={{ position: 'relative' }}>
             <RadarChartInner
