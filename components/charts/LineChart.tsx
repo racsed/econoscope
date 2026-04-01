@@ -124,6 +124,13 @@ function LineChartInner({
             ))}
         </defs>
 
+        {/* Clip path to prevent overflow */}
+        <defs>
+          <clipPath id="chart-clip">
+            <rect x={0} y={0} width={innerWidth} height={innerHeight} />
+          </clipPath>
+        </defs>
+
         {/* Y-axis label */}
         {data.yLabel && (
           <text
@@ -138,7 +145,7 @@ function LineChartInner({
           </text>
         )}
 
-        <Group left={margin.left} top={margin.top}>
+        <Group left={margin.left} top={margin.top} clipPath="url(#chart-clip)">
           {/* Horizontal grid lines only */}
           {yScale.ticks(5).map((tick) => (
             <line
@@ -152,9 +159,9 @@ function LineChartInner({
             />
           ))}
 
-          {/* Gradient area fills under non-dashed curves */}
+          {/* Gradient area fills - only when single series or explicitly flagged */}
           {data.series
-            .filter((s) => !s.dashed)
+            .filter((s) => !s.dashed && (s.area || data.series.filter(x => !x.dashed).length === 1))
             .map((series) => (
               <AreaClosed<Point>
                 key={`area-fill-${series.id}`}
