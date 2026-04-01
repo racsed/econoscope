@@ -28,7 +28,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "Dans un systeme de commerce parfaitement libre, chaque pays consacre naturellement son capital et son travail aux emplois qui lui sont le plus avantageux.", author: "David Ricardo" },
   },
   {
-    id: 'dévaluation-denarius-romain',
+    id: 'devaluation-denarius-romain',
     title: 'La dévaluation du denarius romain',
     year: 'IIIe siecle',
     summary: "Rome réduit la teneur en argent de ses pièces pour financer ses guerres, provoquant une inflation galopante.",
@@ -130,7 +130,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "Le marche peut rester irrationnel plus longtemps que vous ne pouvez rester solvable.", author: "Attribue a John Maynard Keynes" },
   },
   {
-    id: 'revolution-industrielle-productivité',
+    id: 'revolution-industrielle-productivite',
     title: 'La revolution industrielle et la productivité',
     year: '1760-1840',
     summary: "L'industrialisation britannique repousse la frontière des possibilités de production grâce à l'innovation technologique.",
@@ -232,7 +232,7 @@ export const economicFacts: EconomicFact[] = [
     image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f7?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
-    id: 'decolonisation-termes-échange',
+    id: 'decolonisation-termes-echange',
     title: 'La decolonisation et les termes de l\'échange',
     year: '1960-1970',
     summary: "Les nouveaux pays independants exportent des matières premières a bas prix et importent des produits manufactures couteux.",
@@ -246,7 +246,7 @@ export const economicFacts: EconomicFact[] = [
 
   // ===== CRISES ET POLITIQUES (1970s-1990s) =====
   {
-    id: 'choc-pétrolier-1973',
+    id: 'choc-petrolier-1973',
     title: 'Premier choc pétrolier',
     year: '1973',
     summary: "Le prix du pétrole quadruple suite à l'embargo de l'OPEP, provoquant inflation et récession simultanees.",
@@ -272,7 +272,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "L'inflation est toujours et partout un phenomene monetaire.", author: "Milton Friedman" },
   },
   {
-    id: 'désinflation-volcker-1980',
+    id: 'desinflation-volcker-1980',
     title: 'Le choc Volcker',
     year: '1979-1982',
     summary: "Paul Volcker, president de la Fed, monte les taux a 20% pour briser l'inflation -- au prix d'une récession sévère.",
@@ -362,7 +362,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "Il existe toujours deux taux d'imposition qui produisent les memes recettes : un taux eleve et un taux faible.", author: "Arthur Laffer" },
   },
   {
-    id: 'création-monétaire-qe-bce',
+    id: 'creation-monetaire-qe-bce',
     title: "Le Quantitative Easing de la BCE",
     year: '2015-2022',
     summary: "La BCE injecte 5 000 milliards d'euros de base monétaire -- mais le multiplicateur reste faible.",
@@ -447,7 +447,7 @@ export const economicFacts: EconomicFact[] = [
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
-    id: 'dépréciation-euro-2022',
+    id: 'depreciation-euro-2022',
     title: "La chute de l'euro face au dollar",
     year: '2022',
     summary: "L'euro passe sous la parité avec le dollar pour la première fois en 20 ans, révélant la crise énergétique européenne.",
@@ -459,7 +459,7 @@ export const economicFacts: EconomicFact[] = [
     image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
-    id: 'crise-énergétique-europe-2022',
+    id: 'crise-energetique-europe-2022',
     title: "La crise énergétique européenne",
     year: '2022',
     summary: "La réduction des livraisons de gaz russe fait exploser les prix de l'énergie, un choc d'offre majeur pour l'industrie européenne.",
@@ -484,7 +484,7 @@ export const economicFacts: EconomicFact[] = [
     image: 'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
-    id: 'inégalités-france-us',
+    id: 'inegalites-france-us',
     title: 'France vs États-Unis : le poids de la redistribution',
     year: '2023',
     summary: "Avant redistribution, les inégalités sont comparables. Après, la France est nettement plus égalitaire (Gini 0.29 vs 0.39).",
@@ -497,7 +497,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "Quand le taux de rendement du capital depasse durablement le taux de croissance de l'economie, les inegalites augmentent mecaniquement.", author: "Thomas Piketty" },
   },
   {
-    id: 'rsa-prime-activité-france',
+    id: 'rsa-prime-activite-france',
     title: "Le RSA et la prime d'activité",
     year: '2023',
     summary: "Le RSA (607 EUR/mois) et la prime d'activité (595 EUR max) illustrent les deux piliers de la redistribution française.",
@@ -510,7 +510,7 @@ export const economicFacts: EconomicFact[] = [
     quote: { text: "L'accumulation de la richesse a un pole est donc en meme temps accumulation de misere a l'autre pole.", author: "Karl Marx" },
   },
   {
-    id: 'réforme-retraites-france-2023',
+    id: 'reforme-retraites-france-2023',
     title: 'La réforme des retraites en France',
     year: '2023',
     summary: "Le recul de l'age legal de 62 à 64 ans vise a equilibrer un système en déficit de 12 milliards d'euros.",
