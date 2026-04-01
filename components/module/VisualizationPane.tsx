@@ -33,10 +33,13 @@ export function VisualizationPane({ chartData, secondaryChartData, themeColor }:
     return renderChart(chartData, themeColor);
   }
 
+  // Two charts: cap each one's height to prevent explosion in fullscreen
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <div className="flex-1">{renderChart(chartData, themeColor)}</div>
-      <div className="flex-1 border-t border-border pt-4">
+    <div className="flex flex-col gap-3 w-full h-full">
+      <div style={{ maxHeight: '50%', minHeight: 200 }}>
+        {renderChart(chartData, themeColor)}
+      </div>
+      <div className="border-t border-border pt-3" style={{ maxHeight: '50%', minHeight: 200 }}>
         {renderChart(secondaryChartData, themeColor)}
       </div>
     </div>
