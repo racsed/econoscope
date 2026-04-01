@@ -17,7 +17,7 @@ interface LineChartProps {
   themeColor?: string;
 }
 
-const margin = { top: 30, right: 30, bottom: 60, left: 65 };
+const margin = { top: 20, right: 30, bottom: 55, left: 60 };
 
 function formatCompact(value: number): string {
   const abs = Math.abs(value);
@@ -63,9 +63,9 @@ function LineChartInner({
   return (
     <>
     <svg width={width} height={height}>
-      {/* Y-axis label (horizontal, above chart) */}
+      {/* Y-axis label (compact, top-left) */}
       {data.yLabel && (
-        <text x={margin.left} y={14} fill={colors.tickLabel} fontSize={10} fontFamily="var(--font-mono)">
+        <text x={4} y={margin.top - 4} fill={colors.tickLabel} fontSize={9} fontFamily="var(--font-mono)" opacity={0.7}>
           {data.yLabel}
         </text>
       )}
@@ -135,24 +135,46 @@ function LineChartInner({
             );
           })}
 
-        {/* Lines */}
-        {data.series.map((series) => (
-          <motion.g
-            key={series.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LinePath
-              data={series.data}
-              x={(d) => xScale(d.x)}
-              y={(d) => yScale(d.y)}
+        {/* Lines with draw animation */}
+        {data.series.map((series, idx) => (
+          <g key={series.id}>
+            {/* Glow effect under curve */}
+            {!series.dashed && (
+              <LinePath
+                data={series.data}
+                x={(d) => xScale(d.x)}
+                y={(d) => yScale(d.y)}
+                stroke={series.color}
+                strokeWidth={8}
+                strokeOpacity={0.08}
+                curve={curveMonotoneX}
+              />
+            )}
+            <motion.path
+              d={
+                series.data
+                  .map((d, i) => {
+                    const x = xScale(d.x);
+                    const y = yScale(d.y);
+                    // Simple curve approximation via L commands (curveMonotoneX applied by LinePath already)
+                    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+                  })
+                  .join(' ') || 'M 0 0'
+              }
+              fill="none"
               stroke={series.color}
               strokeWidth={series.strokeWidth ?? 2.5}
               strokeDasharray={series.dashed ? '8,4' : undefined}
-              curve={curveMonotoneX}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{
+                pathLength: { duration: 1.2, delay: idx * 0.2, ease: 'easeInOut' },
+                opacity: { duration: 0.3, delay: idx * 0.2 },
+              }}
             />
-          </motion.g>
+          </g>
         ))}
 
         {/* Annotations - lines */}

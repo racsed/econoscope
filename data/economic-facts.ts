@@ -100,7 +100,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 200, offre_monnaie: 1800, prix_petrole: 100, productivité: 100, salaire_nominal: 150 },
     category: 'histoire',
     icon: 'Coins',
-    image: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== EPOQUE MODERNE (XVIIe-XIXe) =====
@@ -192,7 +192,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 1, prix_domestiques: 100, prix_etrangers: 100, elasticite_export: 1.2, elasticite_import: 1.0 },
     category: 'monétaire',
     icon: 'Landmark',
-    image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'plan-marshall-1948',
@@ -229,7 +229,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 300, offre_monnaie: 1000, prix_petrole: 80, productivité: 150, salaire_nominal: 110 },
     category: 'histoire',
     icon: 'ArrowUpCircle',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'decolonisation-termes-echange',
@@ -241,7 +241,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { productivite_pays1_bienA: 7, productivite_pays1_bienB: 2, productivite_pays2_bienA: 3, productivite_pays2_bienB: 8, spécialisation: true },
     category: 'commerce',
     icon: 'Globe',
-    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5eb95?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== CRISES ET POLITIQUES (1970s-1990s) =====
@@ -281,7 +281,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 200, taux_imposition: 0.3, offre_monnaie: 300, niveau_prix: 2, investissement_autonome: 200, sensibilite_investissement: 40, sensibilite_monnaie: 50 },
     category: 'politique',
     icon: 'Landmark',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'crise-asiatique-1997',
@@ -293,7 +293,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.5, prix_domestiques: 150, prix_etrangers: 100, elasticite_export: 0.8, elasticite_import: 0.6 },
     category: 'crise',
     icon: 'TrendingDown',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=600&h=300&fit=crop&auto=format&q=75',
   },
 
   // ===== TOURNANT DU MILLENAIRE =====
@@ -321,7 +321,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { depenses_publiques: 250, taux_imposition: 0.25, offre_monnaie: 250, niveau_prix: 1.8, investissement_autonome: 100, sensibilite_investissement: 50, sensibilite_monnaie: 60 },
     category: 'crise',
     icon: 'Flame',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "Le systeme IS-LM est une tentative de reduire la Theorie generale de Keynes a un schema maniable.", author: "John Hicks" },
   },
   {
@@ -334,7 +334,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { propension_consommer: 0.8, depense_initiale: 26, taux_imposition: 0.3, propension_importer: 0.25, nb_tours: 20 },
     category: 'politique',
     icon: 'ArrowUpCircle',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'taxe-soda-france-2012',
@@ -395,7 +395,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 1.12, prix_domestiques: 125, prix_etrangers: 100, elasticite_export: 0.9, elasticite_import: 0.7 },
     category: 'commerce',
     icon: 'Globe',
-    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5eb95?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'covid-effondrement-offre-2020',
@@ -456,7 +456,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { taux_change: 0.95, prix_domestiques: 110, prix_etrangers: 100, elasticite_export: 1.5, elasticite_import: 1.2 },
     category: 'commerce',
     icon: 'Euro',
-    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=600&h=300&fit=crop&auto=format&q=75',
   },
   {
     id: 'crise-energetique-europe-2022',
@@ -506,7 +506,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu_median: 2500, taux_tranche1: 0, taux_tranche2: 11, taux_tranche3: 30, taux_tranche4: 45, transfert_social: 600 },
     category: 'social',
     icon: 'Scale',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&h=300&fit=crop&auto=format&q=75',
     quote: { text: "L'accumulation de la richesse a un pole est donc en meme temps accumulation de misere a l'autre pole.", author: "Karl Marx" },
   },
   {
@@ -519,7 +519,7 @@ export const economicFacts: EconomicFact[] = [
     scenarioValues: { revenu_median: 2800, taux_tranche1: 0, taux_tranche2: 11, taux_tranche3: 30, taux_tranche4: 41, transfert_social: 400 },
     category: 'social',
     icon: 'Landmark',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=300&fit=crop&auto=format&q=75',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=300&fit=crop&auto=format&q=75',
   },
 ];
 
