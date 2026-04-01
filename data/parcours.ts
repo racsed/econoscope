@@ -117,7 +117,7 @@ export const parcoursList: Parcours[] = [
   {
     id: 'dcg5-eco-contemporaine',
     title: 'DCG 5 - Economie contemporaine',
-    description: "Parcours complet calque sur le programme officiel DCG UE5 (Dunod 2023-2024). Fondements de l'activite economique, fonctionnement des marches, acteurs financiers, regulation publique, croissance et desequilibres sociaux.",
+    description: "Parcours complet couvrant le programme officiel DCG UE5 Économie contemporaine. Fondements de l'activite economique, fonctionnement des marches, acteurs financiers, regulation publique, croissance et desequilibres sociaux.",
     level: 'DCG / Licence',
     duration: '8h',
     modules: [

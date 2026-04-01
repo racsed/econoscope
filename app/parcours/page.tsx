@@ -38,7 +38,7 @@ export default function ParcoursPage() {
           <div className="flex items-center gap-3 mb-3">
             <BookMarked size={24} className="text-accent-indigo" />
             <h1 className="text-3xl sm:text-4xl font-bold text-text-primary">
-              Parcours guides
+              Parcours guidés
             </h1>
           </div>
           <p className="text-text-secondary text-lg">
