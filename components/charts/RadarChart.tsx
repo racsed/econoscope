@@ -153,7 +153,7 @@ function RadarChartInner({
 }: RadarChartProps & { width: number; height: number }) {
   const cx = width / 2;
   const cy = height / 2;
-  const radius = Math.min(width, height) / 2 - 55;
+  const radius = Math.min(width, height) / 2 - 75;
   const numAxes = data.axes.length;
   const angleStep = 360 / numAxes;
   const colors = useChartColors();
