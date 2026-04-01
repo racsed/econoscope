@@ -114,6 +114,33 @@ export const parcoursList: Parcours[] = [
     icon: 'Scale',
     color: '#EC4899',
   },
+  {
+    id: 'dcg5-eco-contemporaine',
+    title: 'DCG 5 - Economie contemporaine',
+    description: "Parcours complet calque sur le programme officiel DCG UE5 (Dunod 2023-2024). Fondements de l'activite economique, fonctionnement des marches, acteurs financiers, regulation publique, croissance et desequilibres sociaux.",
+    level: 'DCG / Licence',
+    duration: '8h',
+    modules: [
+      { slug: 'offre-et-demande', objective: 'Partie 2 - Mecanismes de formation des prix et equilibre de marche' },
+      { slug: 'elasticite-prix', objective: 'Partie 2 - Sensibilite de la demande et comportement des agents' },
+      { slug: 'concurrence-monopole', objective: 'Partie 2 - Structures de marche : concurrence, monopole, regulation (Walras, Pareto, Schumpeter, Hayek)' },
+      { slug: 'externalites', objective: 'Partie 2 - Defaillances de marche : externalites, biens collectifs (Marshall, Pigou, Coase)' },
+      { slug: 'frontiere-possibilites-production', objective: 'Partie 1 - Allocation des ressources et couts d\'opportunite' },
+      { slug: 'creation-monetaire', objective: 'Partie 3 - Role des banques et des marches financiers, multiplicateur de credit' },
+      { slug: 'multiplicateur-keynesien', objective: 'Partie 4 - Intervention economique de l\'Etat, politique budgetaire' },
+      { slug: 'is-lm', objective: 'Partie 4 - Politique economique : equilibre marche des biens et de la monnaie' },
+      { slug: 'ad-as', objective: 'Partie 4 - Regulation publique, offre et demande agregees' },
+      { slug: 'carre-magique-kaldor', objective: 'Partie 5 - Mesurer la performance macroeconomique (croissance, emploi, prix, exterieur)' },
+      { slug: 'donnees-historiques', objective: 'Partie 5 - Croissance economique : origines, potentiel et enjeux' },
+      { slug: 'avantages-comparatifs', objective: 'Partie 5 - Ouverture internationale et croissance (Ricardo)' },
+      { slug: 'taux-de-change', objective: 'Partie 5 - Commerce exterieur, competitivite et taux de change' },
+      { slug: 'courbe-de-phillips', objective: 'Partie 6 - Desequilibres du marche du travail, relation inflation-chomage' },
+      { slug: 'courbe-de-lorenz-gini', objective: 'Partie 6 - Inegalites sociales et pauvrete, mesure et analyse' },
+      { slug: 'fiscalite-redistribution', objective: 'Partie 6 - Redistribution des revenus, politiques sociales' },
+    ],
+    icon: 'BookOpen',
+    color: '#F97316',
+  },
 ];
 
 export function getParcoursById(id: string): Parcours | undefined {

@@ -33,13 +33,31 @@ function EconomistCard({ economist, themeColor }: { economist: Economist; themeC
         </p>
       )}
 
-      <div className="pl-10">
-        <p className="text-sm font-bold text-text-primary">
-          {economist.name}
-        </p>
-        <p className="text-xs text-text-muted">
-          {economist.years} -- {economist.school}
-        </p>
+      <div className="pl-10 flex items-center gap-3">
+        {economist.portrait ? (
+          <img
+            src={economist.portrait}
+            alt={`Portrait de ${economist.name}`}
+            loading="lazy"
+            className="w-12 h-12 rounded-full object-cover flex-shrink-0 border border-border"
+          />
+        ) : (
+          <div
+            className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-lg"
+            style={{ backgroundColor: themeColor }}
+            aria-hidden="true"
+          >
+            {economist.name.charAt(0)}
+          </div>
+        )}
+        <div>
+          <p className="text-sm font-bold text-text-primary">
+            {economist.name}
+          </p>
+          <p className="text-xs text-text-muted">
+            {economist.years} -- {economist.school}
+          </p>
+        </div>
       </div>
     </div>
   );

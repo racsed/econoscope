@@ -3,6 +3,9 @@ export interface GlossaryTerm {
   definition: string;
   relatedModules: string[];
   category: string;
+  keyFormula?: string;
+  keyFigure?: string;
+  seeAlso?: string[];
 }
 
 export const glossary: GlossaryTerm[] = [

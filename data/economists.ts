@@ -18,7 +18,7 @@ export const economists: Economist[] = [
     quote: "Ce n'est pas de la bienveillance du boucher, du brasseur ou du boulanger que nous attendons notre dîner, mais de leur souci de leur propre intérêt.",
     quoteContext: "Extrait de La Richesse des nations (1776), où Smith explique que l'intérêt personnel, guidé par la \"main invisible\" du marché, conduit à l'intérêt général.",
     relatedModules: ['offre-et-demande', 'avantages-comparatifs'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/AdamSmith.jpg',
+    portrait: '/images/economists/adam-smith.jpg',
   },
   {
     id: 'david-ricardo',
@@ -28,7 +28,7 @@ export const economists: Economist[] = [
     quote: "Dans un système de commerce parfaitement libre, chaque pays consacre naturellement son capital et son travail aux emplois qui lui sont le plus avantageux.",
     quoteContext: "Tiré des Principes de l'économie politique et de l'impôt (1817), où Ricardo formalise la théorie des avantages comparatifs qui fonde le libre-échange.",
     relatedModules: ['avantages-comparatifs', 'courbe-de-laffer'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/David_ricardo.jpg',
+    portrait: '/images/economists/david-ricardo.jpg',
   },
   {
     id: 'john-maynard-keynes',
@@ -38,7 +38,7 @@ export const economists: Economist[] = [
     quote: "À long terme, nous serons tous morts.",
     quoteContext: "Publié dans le Tract on Monetary Reform (1923). Keynes critique les économistes classiques qui promettent un retour automatique à l'équilibre \"à long terme\", alors que les gens souffrent maintenant.",
     relatedModules: ['multiplicateur-keynesien', 'is-lm', 'ad-as'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/John_Maynard_Keynes.jpg',
+    portrait: '/images/economists/john-maynard-keynes.jpg',
   },
   {
     id: 'milton-friedman',
@@ -48,7 +48,7 @@ export const economists: Economist[] = [
     quote: "L'inflation est toujours et partout un phénomène monétaire.",
     quoteContext: "Formulé dans A Monetary History of the United States (1963, avec Anna Schwartz). Friedman soutient que seule l'expansion excessive de la masse monétaire cause l'inflation durable.",
     relatedModules: ['courbe-de-phillips', 'creation-monetaire'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Portrait_of_Milton_Friedman.jpg',
+    portrait: '/images/economists/milton-friedman.jpg',
   },
   {
     id: 'arthur-laffer',
@@ -58,7 +58,7 @@ export const economists: Economist[] = [
     quote: "Il existe toujours deux taux d'imposition qui produisent les mêmes recettes : un taux élevé et un taux faible.",
     quoteContext: "Laffer aurait dessiné sa célèbre courbe sur une serviette de restaurant en 1974, lors d'un dîner avec Dick Cheney et Donald Rumsfeld, pour convaincre de baisser les impôts.",
     relatedModules: ['courbe-de-laffer'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Arthur_Laffer_2019.jpg',
+    portrait: '/images/economists/arthur-laffer.jpg',
   },
   {
     id: 'alban-william-phillips',
@@ -68,6 +68,7 @@ export const economists: Economist[] = [
     quote: "Il existe une relation statistique claire et négative entre le taux de variation des salaires nominaux et le taux de chômage.",
     quoteContext: "Article fondateur de 1958, où Phillips analyse 97 ans de données britanniques (1861-1957) et découvre la relation inverse entre chômage et inflation salariale.",
     relatedModules: ['courbe-de-phillips'],
+    portrait: '/images/economists/aw-phillips.jpg',
   },
   {
     id: 'john-hicks',
@@ -77,7 +78,7 @@ export const economists: Economist[] = [
     quote: "Le système IS-LM est une tentative de réduire la Théorie générale de Keynes à un schéma maniable.",
     quoteContext: "Hicks crée le modèle IS-LM en 1937, dans l'article \"Mr. Keynes and the Classics\", pour synthétiser la pensée keynésienne dans un cadre graphique accessible. Prix Nobel 1972.",
     relatedModules: ['is-lm'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/en/4/42/John_Richard_Hicks_1972.jpg',
+    portrait: '/images/economists/john-hicks.jpg',
   },
   {
     id: 'nicholas-kaldor',
@@ -87,6 +88,7 @@ export const economists: Economist[] = [
     quote: "Les quatre objectifs fondamentaux de la politique économique -- croissance, plein emploi, stabilité des prix et équilibre extérieur -- sont comme un carré magique : il est presque impossible de les atteindre tous simultanément.",
     quoteContext: "Kaldor propose en 1971 ce cadre d'analyse des performances macroéconomiques, devenu un outil pédagogique majeur en économie.",
     relatedModules: ['carre-magique-kaldor'],
+    portrait: '/images/economists/nicholas-kaldor.jpg',
   },
   {
     id: 'vilfredo-pareto',
@@ -96,7 +98,7 @@ export const economists: Economist[] = [
     quote: "Dans tous les pays et à toutes les époques, la répartition des revenus suit une loi remarquablement stable.",
     quoteContext: "Dans son Cours d'économie politique (1896), Pareto observe que la distribution des richesses suit une loi de puissance : 20% de la population détient environ 80% des richesses.",
     relatedModules: ['courbe-de-lorenz-gini'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Vilfredo_Pareto_1870s2.jpg',
+    portrait: '/images/economists/vilfredo-pareto.jpg',
   },
   {
     id: 'max-lorenz',
@@ -115,6 +117,7 @@ export const economists: Economist[] = [
     quote: "Un indice unique permet de résumer l'ensemble de la distribution des revenus et de comparer les inégalités entre pays et entre époques.",
     quoteContext: "En 1912, le statisticien italien Corrado Gini publie \"Variabilità e mutabilità\", où il propose le coefficient qui porte son nom, devenu la mesure d'inégalité la plus utilisée au monde.",
     relatedModules: ['courbe-de-lorenz-gini'],
+    portrait: '/images/economists/corrado-gini.jpg',
   },
   {
     id: 'arthur-cecil-pigou',
@@ -124,7 +127,7 @@ export const economists: Economist[] = [
     quote: "Lorsque le coût social d'une activité diffère de son coût privé, l'État doit intervenir par une taxe ou une subvention pour rétablir l'optimum.",
     quoteContext: "Dans The Economics of Welfare (1920), Pigou formalise le concept d'externalité et propose la taxe corrective qui porte son nom, fondement de la politique environnementale moderne.",
     relatedModules: ['externalites'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/6/62/A.C._Pigou.jpg',
+    portrait: '/images/economists/arthur-pigou.jpg',
   },
   {
     id: 'alfred-marshall',
@@ -134,7 +137,7 @@ export const economists: Economist[] = [
     quote: "C'est l'équilibre de l'offre et de la demande qui détermine le prix, comme les deux lames d'une paire de ciseaux.",
     quoteContext: "Tiré de ses Principes d'économie politique (1890), où Marshall formalise le modèle de l'offre et de la demande avec le célèbre diagramme en croix qui porte son nom.",
     relatedModules: ['offre-et-demande', 'taux-de-change', 'elasticite-prix'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Alfred_Marshall.jpg',
+    portrait: '/images/economists/alfred-marshall.jpg',
   },
   {
     id: 'joseph-schumpeter',
@@ -144,7 +147,7 @@ export const economists: Economist[] = [
     quote: "Le processus de destruction créatrice est le fait essentiel du capitalisme. C'est en cela que consiste le capitalisme et c'est en cela que doit vivre toute entreprise capitaliste.",
     quoteContext: "Publié dans Capitalisme, Socialisme et Démocratie (1942). Schumpeter décrit comment l'innovation détruit les anciennes structures pour en créer de nouvelles, repoussant la frontière des possibilités.",
     relatedModules: ['frontiere-possibilites-production'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Joseph_Schumpeter_ekonomist.jpg',
+    portrait: '/images/economists/joseph-schumpeter.jpg',
   },
   {
     id: 'friedrich-hayek',
@@ -154,7 +157,7 @@ export const economists: Economist[] = [
     quote: "La concurrence est un processus de découverte, un moyen d'utiliser des connaissances dispersées qu'aucun planificateur central ne pourrait réunir.",
     quoteContext: "Tiré de La Route de la servitude (1944) et de ses travaux sur la connaissance dispersée. Hayek défend la concurrence comme mécanisme d'information supérieur à la planification. Prix Nobel 1974.",
     relatedModules: ['concurrence-monopole'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Friedrich_Hayek_portrait.jpg',
+    portrait: '/images/economists/friedrich-hayek.jpg',
   },
   {
     id: 'karl-marx',
@@ -164,7 +167,7 @@ export const economists: Economist[] = [
     quote: "L'accumulation de la richesse à un pôle est donc en même temps accumulation de misère, de souffrance, d'esclavage, d'ignorance à l'autre pôle.",
     quoteContext: "Extrait du Capital (1867, Livre I). Marx analyse la tendance inhérente au capitalisme à concentrer le capital entre quelques mains, creusant les inégalités.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg',
+    portrait: '/images/economists/karl-marx.jpg',
   },
   {
     id: 'thomas-piketty',
@@ -174,7 +177,7 @@ export const economists: Economist[] = [
     quote: "Quand le taux de rendement du capital dépasse durablement le taux de croissance de l'économie, les inégalités augmentent mécaniquement.",
     quoteContext: "Thèse centrale du Capital au XXIe siècle (2013). Piketty résume sa découverte par la formule r > g : le rendement du capital (r) dépasse structurellement la croissance (g), concentrant la richesse.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Thomas_Piketty%2C_2015_%28cropped%29.jpg',
+    // Piketty: portrait skip (likely copyrighted modern photo)
   },
   {
     id: 'paul-samuelson',
@@ -184,7 +187,7 @@ export const economists: Economist[] = [
     quote: "L'économie a finalement obtenu ce qu'elle cherchait depuis longtemps : une synthèse néoclassique réconciliant Keynes et les classiques.",
     quoteContext: "Samuelson unifie la macroéconomie keynésienne et la microéconomie néoclassique dans son manuel Economics (1948), le plus vendu de l'histoire. Premier Prix Nobel d'économie américain (1970).",
     relatedModules: ['is-lm', 'ad-as'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Paul_Samuelson.jpg',
+    portrait: '/images/economists/paul-samuelson.jpg',
   },
   {
     id: 'irving-fisher',
@@ -194,7 +197,7 @@ export const economists: Economist[] = [
     quote: "Le niveau général des prix varie en proportion directe de la quantité de monnaie en circulation.",
     quoteContext: "Dans The Purchasing Power of Money (1911), Fisher formalise l'équation quantitative de la monnaie (MV = PT), fondement de la théorie monétaire moderne.",
     relatedModules: ['creation-monetaire'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Irving_Fisher.jpg',
+    portrait: '/images/economists/irving-fisher.jpg',
   },
   {
     id: 'jean-baptiste-say',
@@ -204,7 +207,7 @@ export const economists: Economist[] = [
     quote: "L'offre crée sa propre demande : les produits s'échangent contre des produits.",
     quoteContext: "Tiré du Traité d'économie politique (1803). La \"loi de Say\" affirme que toute production génère un revenu équivalent, excluant les crises de surproduction. Keynes la contestera frontalement.",
     relatedModules: ['ad-as'],
-    portrait: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Jean-Baptiste_Say.jpg',
+    portrait: '/images/economists/jean-baptiste-say.jpg',
   },
 ];
 

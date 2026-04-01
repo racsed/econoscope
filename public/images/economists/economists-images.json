@@ -1,0 +1,98 @@
+{
+  "adam-smith": {
+    "file": "adam-smith.jpg",
+    "alt": "Portrait d'Adam Smith (1723-1790), économiste écossais",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "david-ricardo": {
+    "file": "david-ricardo.jpg",
+    "alt": "Portrait de David Ricardo (1772-1823), économiste britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "jean-baptiste-say": {
+    "file": "jean-baptiste-say.jpg",
+    "alt": "Portrait de Jean-Baptiste Say (1767-1832), économiste français",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "karl-marx": {
+    "file": "karl-marx.jpg",
+    "alt": "Portrait de Karl Marx (1818-1883), philosophe et économiste allemand",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "alfred-marshall": {
+    "file": "alfred-marshall.jpg",
+    "alt": "Portrait d'Alfred Marshall (1842-1924), économiste britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "vilfredo-pareto": {
+    "file": "vilfredo-pareto.jpg",
+    "alt": "Portrait de Vilfredo Pareto (1848-1923), économiste et sociologue italien",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "arthur-pigou": {
+    "file": "arthur-pigou.jpg",
+    "alt": "Portrait d'Arthur Cecil Pigou (1877-1959), économiste britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "irving-fisher": {
+    "file": "irving-fisher.jpg",
+    "alt": "Portrait d'Irving Fisher (1867-1947), économiste américain",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "john-maynard-keynes": {
+    "file": "john-maynard-keynes.jpg",
+    "alt": "Portrait de John Maynard Keynes (1883-1946), économiste britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "joseph-schumpeter": {
+    "file": "joseph-schumpeter.jpg",
+    "alt": "Portrait de Joseph Schumpeter (1883-1950), économiste autrichien",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "friedrich-hayek": {
+    "file": "friedrich-hayek.jpg",
+    "alt": "Portrait de Friedrich Hayek (1899-1992), économiste autrichien",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "john-hicks": {
+    "file": "john-hicks.jpg",
+    "alt": "Portrait de John Hicks (1904-1989), économiste britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "nicholas-kaldor": {
+    "file": "nicholas-kaldor.jpg",
+    "alt": "Portrait de Nicholas Kaldor (1908-1986), économiste hongrois-britannique",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "milton-friedman": {
+    "file": "milton-friedman.jpg",
+    "alt": "Portrait de Milton Friedman (1912-2006), économiste américain",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "corrado-gini": {
+    "file": "corrado-gini.jpg",
+    "alt": "Portrait de Corrado Gini (1884-1965), statisticien italien",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  },
+  "paul-samuelson": {
+    "file": "paul-samuelson.jpg",
+    "alt": "Portrait de Paul Samuelson (1915-2009), économiste américain",
+    "source": "Wikimedia Commons",
+    "license": "Public Domain"
+  }
+}
