@@ -158,7 +158,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/explorer"
-                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full shadow-lg shadow-accent-indigo/0 hover:shadow-accent-indigo/25 hover:bg-[#4F52E0] transition-all duration-200"
+                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full shadow-lg shadow-accent-indigo/0 hover:shadow-accent-indigo/25 hover:bg-[#4F52E0] active:scale-[0.98] transition-all duration-200"
               >
                 Explorer les simulateurs
                 <ArrowRight
@@ -168,7 +168,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/glossaire"
-                className="px-8 py-3.5 border border-border text-text-secondary font-medium rounded-full hover:border-accent-indigo/30 hover:text-text-primary transition-all duration-200"
+                className="px-8 py-3.5 border border-border text-text-secondary font-medium rounded-full hover:border-accent-indigo/30 hover:text-text-primary active:scale-[0.98] transition-all duration-200"
               >
                 Decouvrir le glossaire
               </Link>
@@ -294,7 +294,7 @@ export default function HomePage() {
                 >
                   <Link
                     href={`/module/${mod.slug}`}
-                    className="block bg-bg-card border border-border rounded-2xl p-8 h-full shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+                    className="group block bg-bg-card border border-border rounded-2xl p-8 h-full shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
                     }}
@@ -480,13 +480,13 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/explorer"
-                  className="px-8 py-3.5 bg-white text-accent-indigo font-semibold rounded-full hover:bg-white/90 transition-all duration-200"
+                  className="px-8 py-3.5 bg-white text-accent-indigo font-semibold rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
                 >
                   Commencer gratuitement
                 </Link>
                 <Link
                   href="/a-propos"
-                  className="px-8 py-3.5 border border-white/40 text-white font-medium rounded-full hover:border-white/70 transition-all duration-200"
+                  className="px-8 py-3.5 border border-white/40 text-white font-medium rounded-full hover:border-white/70 active:scale-[0.98] transition-all duration-200"
                 >
                   En savoir plus
                 </Link>

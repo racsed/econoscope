@@ -29,7 +29,7 @@ export function ScenarioBar({ scenarios, activeId, onSelect }: ScenarioBarProps)
                 <button
                   type="button"
                   onClick={() => onSelect(scénario.id)}
-                  className={`relative shrink-0 snap-start rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                  className={`relative shrink-0 snap-start rounded-full px-4 py-1.5 text-sm font-medium transition-all active:scale-95 ${
                     isActive
                       ? "text-white"
                       : "border border-border text-text-secondary hover:border-axis hover:text-text-primary"

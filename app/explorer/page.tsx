@@ -169,9 +169,9 @@ function ModuleCard({
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className={`relative bg-bg-card border border-border rounded-2xl p-5 h-full shadow-sm transition-all duration-300 ${
+      className={`group relative bg-bg-card border border-border rounded-2xl p-5 h-full shadow-sm transition-all duration-300 ${
         isAvailable
-          ? 'hover:shadow-md cursor-pointer'
+          ? 'hover:shadow-md hover:-translate-y-0.5 cursor-pointer'
           : 'opacity-50 cursor-default'
       }`}
       onMouseEnter={(e) => {
@@ -193,7 +193,7 @@ function ModuleCard({
         >
           {isAvailable ? (
             <div
-              className="w-2.5 h-2.5 rounded-full"
+              className="w-2.5 h-2.5 rounded-full transition-transform duration-300 group-hover:scale-125"
               style={{ backgroundColor: color }}
             />
           ) : (
@@ -225,7 +225,7 @@ function ModuleCard({
           style={{ color }}
         >
           Explorer
-          <ArrowRight size={14} />
+          <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       ) : (
         <div className="text-xs text-text-muted font-medium">

@@ -1,10 +1,7 @@
-const CACHE_NAME = 'econoscope-v1';
-const STATIC_ASSETS = ['/', '/explorer', '/glossaire', '/faits'];
+const CACHE_NAME = 'econoscope-v2';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
-  );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -13,24 +10,31 @@ self.addEventListener('activate', (event) => {
       Promise.all(
         keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
       )
-    )
+    ).then(() => self.clients.claim())
   );
 });
 
+// Network-first strategy: always try network, fall back to cache
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).then((response) => {
-        if (event.request.method === 'GET' && response.status === 200) {
+    fetch(event.request)
+      .then((response) => {
+        if (response.status === 200) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
         return response;
-      });
-    }).catch(() => {
-      if (event.request.mode === 'navigate') {
-        return caches.match('/');
-      }
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          if (event.request.mode === 'navigate') {
+            return caches.match('/');
+          }
+          return new Response('Offline', { status: 503 });
+        });
+      })
   );
 });

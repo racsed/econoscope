@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FlaskConical, Menu, X, Sun, Moon } from 'lucide-react';
+import { FlaskConical, Menu, X, Sun, Moon, Search } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NAV_LINKS } from '@/lib/constants';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { useSearchModal } from '@/components/layout/SearchModal';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const { openSearch } = useSearchModal();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-bg-card/80 backdrop-blur-lg border-b border-border">
@@ -47,11 +49,21 @@ export default function Header() {
             );
           })}
 
+          {/* Search */}
+          <button
+            type="button"
+            onClick={openSearch}
+            className="ml-2 p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-elevated transition-colors"
+            aria-label="Rechercher"
+          >
+            <Search className="h-4.5 w-4.5" />
+          </button>
+
           {/* Theme toggle */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="ml-2 p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-elevated transition-colors"
+            className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-elevated transition-colors"
             aria-label={theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'}
           >
             {theme === 'dark' ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
@@ -60,6 +72,16 @@ export default function Header() {
 
         {/* Right side mobile */}
         <div className="flex items-center gap-1 md:hidden">
+          {/* Search mobile */}
+          <button
+            type="button"
+            onClick={openSearch}
+            className="p-2 text-text-secondary hover:text-text-primary transition-colors"
+            aria-label="Rechercher"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+
           {/* Theme toggle mobile */}
           <button
             type="button"

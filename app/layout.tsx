@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { ServiceWorkerRegister } from '@/components/layout/ServiceWorkerRegister';
+import { SearchModalProvider } from '@/components/layout/SearchModal';
 import '@/styles/globals.css';
 
 const inter = Inter({

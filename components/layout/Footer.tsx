@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAV_LINKS } from '@/lib/constants';
+import { FOOTER_LINKS } from '@/lib/constants';
 
 export default function Footer() {
   return (
@@ -23,7 +23,7 @@ export default function Footer() {
               Navigation
             </p>
             <ul className="mt-3 space-y-2">
-              {NAV_LINKS.map((link) => (
+              {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

@@ -29,6 +29,17 @@ export function Slider({
   const [editing, setEditing] = useState(false);
   const [inputValue, setInputValue] = useState(String(value));
   const inputRef = useRef<HTMLInputElement>(null);
+  const prevValueRef = useRef(value);
+  const [valuePulse, setValuePulse] = useState(false);
+
+  useEffect(() => {
+    if (prevValueRef.current !== value) {
+      prevValueRef.current = value;
+      setValuePulse(true);
+      const timer = setTimeout(() => setValuePulse(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [value]);
 
   useEffect(() => {
     if (editing && inputRef.current) {
@@ -77,7 +88,13 @@ export function Slider({
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="cursor-text rounded px-1 py-0.5 font-mono text-sm text-text-primary transition-colors hover:bg-bg-elevated"
+            className="cursor-text rounded px-1 py-0.5 font-mono text-sm text-text-primary transition-all duration-150 hover:bg-bg-elevated"
+            style={{
+              fontVariantNumeric: "tabular-nums",
+              ...(valuePulse
+                ? { color, transform: "scale(1.08)" }
+                : { transform: "scale(1)" }),
+            }}
           >
             {value}
             {unit}
