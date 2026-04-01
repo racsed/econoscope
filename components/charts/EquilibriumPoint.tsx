@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useAnimatedValue } from '@/hooks/useAnimatedScale';
 
 interface EquilibriumPointProps {
   cx: number;
@@ -19,12 +20,15 @@ export function EquilibriumPoint({
   label,
   labelOffset = { x: 10, y: -10 },
 }: EquilibriumPointProps) {
+  const animCx = useAnimatedValue(cx, 400);
+  const animCy = useAnimatedValue(cy, 400);
+
   return (
     <g>
       {/* Pulse ring */}
       <motion.circle
-        cx={cx}
-        cy={cy}
+        cx={animCx}
+        cy={animCy}
         r={size}
         fill="none"
         stroke={color}
@@ -42,8 +46,8 @@ export function EquilibriumPoint({
       />
       {/* Core dot */}
       <motion.circle
-        cx={cx}
-        cy={cy}
+        cx={animCx}
+        cy={animCy}
         r={size}
         fill={color}
         initial={{ scale: 0 }}
@@ -51,12 +55,12 @@ export function EquilibriumPoint({
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       />
       {/* Inner bright dot */}
-      <circle cx={cx} cy={cy} r={size * 0.4} fill="white" opacity={0.6} />
+      <circle cx={animCx} cy={animCy} r={size * 0.4} fill="white" opacity={0.6} />
       {/* Label */}
       {label && (
         <motion.text
-          x={cx + labelOffset.x}
-          y={cy + labelOffset.y}
+          x={animCx + labelOffset.x}
+          y={animCy + labelOffset.y}
           fill={color}
           fontSize={12}
           fontFamily="var(--font-mono)"

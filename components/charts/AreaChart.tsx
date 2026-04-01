@@ -1,17 +1,17 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useRef } from 'react';
 import { scaleLinear } from '@visx/scale';
-import { AreaClosed, LinePath } from '@visx/shape';
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
-import { curveMonotoneX } from 'd3-shape';
+import { line, area, curveMonotoneX } from 'd3-shape';
 import { motion } from 'framer-motion';
 import type { ChartData, Point } from '@/engine/types';
 import { ChartContainer } from './ChartContainer';
 import { useChartColors } from '@/hooks/useChartColors';
+import { useAnimatedPath } from '@/hooks/useAnimatedPath';
 
 interface AreaChartProps {
   data: ChartData;
@@ -30,6 +30,115 @@ function formatCompact(value: number): string {
 
 const bisectX = bisector<Point, number>((d) => d.x).left;
 
+/* ---------- Animated area fill ---------- */
+function AnimatedAreaPath({
+  pathString,
+  fill,
+  opacity,
+  hasRendered,
+  idx,
+}: {
+  pathString: string;
+  fill: string;
+  opacity?: number;
+  hasRendered: boolean;
+  idx: number;
+}) {
+  const animatedD = useAnimatedPath(pathString, { duration: 400 });
+
+  if (!hasRendered) {
+    return (
+      <motion.path
+        d={pathString}
+        fill={fill}
+        opacity={opacity ?? 1}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: opacity ?? 1 }}
+        transition={{ duration: 0.8, delay: idx * 0.15 }}
+      />
+    );
+  }
+
+  return <path d={animatedD} fill={fill} opacity={opacity ?? 1} />;
+}
+
+/* ---------- Animated line stroke ---------- */
+function AnimatedLinePath({
+  pathString,
+  color,
+  strokeWidth = 2.5,
+  dashed,
+  idx,
+  hasRendered,
+}: {
+  pathString: string;
+  color: string;
+  strokeWidth?: number;
+  dashed?: boolean;
+  idx: number;
+  hasRendered: boolean;
+}) {
+  const animatedD = useAnimatedPath(pathString, { duration: 400 });
+
+  if (!hasRendered) {
+    return (
+      <motion.path
+        d={pathString}
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeDasharray={dashed ? '6,4' : undefined}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{
+          pathLength: { duration: 1.2, delay: idx * 0.15, ease: 'easeInOut' },
+          opacity: { duration: 0.3, delay: idx * 0.15 },
+        }}
+      />
+    );
+  }
+
+  return (
+    <path
+      d={animatedD}
+      fill="none"
+      stroke={color}
+      strokeWidth={strokeWidth}
+      strokeDasharray={dashed ? '6,4' : undefined}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  );
+}
+
+/* ---------- Animated glow ---------- */
+function AnimatedGlow({
+  pathString,
+  color,
+  hasRendered,
+}: {
+  pathString: string;
+  color: string;
+  hasRendered: boolean;
+}) {
+  const animatedD = useAnimatedPath(pathString, { duration: 400 });
+  const d = hasRendered ? animatedD : pathString;
+
+  return (
+    <path
+      d={d}
+      fill="none"
+      stroke={color}
+      strokeWidth={8}
+      strokeOpacity={0.06}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  );
+}
+
 function AreaChartInner({
   data,
   width,
@@ -40,6 +149,10 @@ function AreaChartInner({
   const innerHeight = height - margin.top - margin.bottom;
   const colors = useChartColors();
   const [hoverX, setHoverX] = useState<number | null>(null);
+  const renderCountRef = useRef(0);
+
+  renderCountRef.current += 1;
+  const hasRendered = renderCountRef.current > 2;
 
   const xScale = useMemo(() => {
     if (data.xDomain) {
@@ -64,7 +177,33 @@ function AreaChartInner({
     });
   }, [data, innerHeight]);
 
-  // Find nearest data points at a given pixel X
+  // d3 generators
+  const lineGen = useMemo(
+    () =>
+      line<Point>()
+        .x((d) => xScale(d.x) as number)
+        .y((d) => yScale(d.y) as number)
+        .curve(curveMonotoneX),
+    [xScale, yScale],
+  );
+
+  const areaGen = useMemo(
+    () =>
+      area<Point>()
+        .x((d) => xScale(d.x) as number)
+        .y0(innerHeight)
+        .y1((d) => yScale(d.y) as number)
+        .curve(curveMonotoneX),
+    [xScale, yScale, innerHeight],
+  );
+
+  const seriesPaths = useMemo(() => {
+    return data.series.map((s) => ({
+      line: lineGen(s.data) || 'M0,0',
+      area: areaGen(s.data) || 'M0,0',
+    }));
+  }, [data.series, lineGen, areaGen]);
+
   const getValuesAtX = useCallback(
     (pixelX: number) => {
       const dataX = xScale.invert(pixelX);
@@ -139,7 +278,7 @@ function AreaChartInner({
         )}
 
         <Group left={margin.left} top={margin.top}>
-          {/* Horizontal grid lines only */}
+          {/* Horizontal grid lines */}
           {yScale.ticks(5).map((tick) => (
             <line
               key={`grid-${tick}`}
@@ -172,82 +311,52 @@ function AreaChartInner({
           {/* Area fills + lines for each series */}
           {data.series.map((series, idx) => {
             const lastPoint = series.data[series.data.length - 1];
-            const pathData =
-              series.data
-                .map((d, i) => {
-                  const px = xScale(d.x);
-                  const py = yScale(d.y);
-                  return `${i === 0 ? 'M' : 'L'} ${px} ${py}`;
-                })
-                .join(' ') || 'M 0 0';
 
             return (
               <g key={series.id}>
-                {/* Gradient area fill */}
-                <motion.g
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: idx * 0.15 }}
-                >
-                  <AreaClosed<Point>
-                    data={series.data}
-                    x={(d) => xScale(d.x)}
-                    y={(d) => yScale(d.y)}
-                    yScale={yScale}
-                    curve={curveMonotoneX}
-                    fill={`url(#area-gradient-${series.id})`}
-                  />
-                </motion.g>
+                {/* Gradient area fill - primary visual */}
+                <AnimatedAreaPath
+                  pathString={seriesPaths[idx].area}
+                  fill={`url(#area-gradient-${series.id})`}
+                  hasRendered={hasRendered}
+                  idx={idx}
+                />
 
                 {/* Soft glow */}
                 {!series.dashed && (
-                  <LinePath<Point>
-                    data={series.data}
-                    x={(d) => xScale(d.x)}
-                    y={(d) => yScale(d.y)}
-                    stroke={series.color}
-                    strokeWidth={8}
-                    strokeOpacity={0.06}
-                    curve={curveMonotoneX}
+                  <AnimatedGlow
+                    pathString={seriesPaths[idx].line}
+                    color={series.color}
+                    hasRendered={hasRendered}
                   />
                 )}
 
                 {/* Animated stroke line */}
-                <motion.path
-                  d={pathData}
-                  fill="none"
-                  stroke={series.color}
+                <AnimatedLinePath
+                  pathString={seriesPaths[idx].line}
+                  color={series.color}
                   strokeWidth={series.strokeWidth ?? 2.5}
-                  strokeDasharray={series.dashed ? '6,4' : undefined}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{
-                    pathLength: {
-                      duration: 1.2,
-                      delay: idx * 0.15,
-                      ease: 'easeInOut',
-                    },
-                    opacity: { duration: 0.3, delay: idx * 0.15 },
-                  }}
+                  dashed={series.dashed}
+                  idx={idx}
+                  hasRendered={hasRendered}
                 />
 
                 {/* End-point label */}
                 {lastPoint && (
-                  <motion.text
+                  <text
                     x={xScale(lastPoint.x) + 6}
                     y={yScale(lastPoint.y) + 3}
                     fill={series.color}
                     fontSize={9}
                     fontFamily="var(--font-mono)"
                     fontWeight={600}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.9 }}
-                    transition={{ delay: idx * 0.15 + 1.2 }}
+                    opacity={0.9}
+                    style={{
+                      transition: 'x 0.4s cubic-bezier(0.33,1,0.68,1), y 0.4s cubic-bezier(0.33,1,0.68,1)',
+                    }}
                   >
                     {formatCompact(lastPoint.y)}
-                  </motion.text>
+                  </text>
                 )}
               </g>
             );
@@ -350,7 +459,7 @@ function AreaChartInner({
         </Group>
       </svg>
 
-      {/* Tooltip card */}
+      {/* Tooltip card with glass-morphism */}
       {hoverX !== null && hoverValues && (
         <div
           style={{
@@ -360,7 +469,10 @@ function AreaChartInner({
               hoverX + margin.left + 180 > width
                 ? hoverX + margin.left - 170
                 : hoverX + margin.left + 14,
+            transition: 'left 0.08s ease-out, top 0.08s ease-out',
             background: colors.tooltipBg,
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
             border: `1px solid ${colors.tooltipBorder}`,
             borderRadius: 8,
             padding: '8px 12px',

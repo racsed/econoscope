@@ -16,6 +16,7 @@ import { LimitesBlock } from '@/components/module/LimitesBlock';
 import { RealiteBlock } from '@/components/module/RealiteBlock';
 import { DataTable } from '@/components/module/DataTable';
 import { EconomistBlock } from '@/components/module/EconomistBlock';
+import { QuizBlock } from '@/components/module/QuizBlock';
 import { ScenarioBar } from '@/components/ui/ScenarioBar';
 
 export default function ModulePage() {
@@ -107,6 +108,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
       limites={<LimitesBlock limites={meta.limites} themeColor={themeColor} />}
       realite={<RealiteBlock items={meta.realite} themeColor={themeColor} />}
       economists={meta.economists ? <EconomistBlock economistIds={meta.economists} themeColor={themeColor} /> : undefined}
+      quiz={<QuizBlock moduleSlug={meta.slug} themeColor={themeColor} />}
       dataTable={<DataTable outputs={outputs} themeColor={themeColor} />}
     />
   );

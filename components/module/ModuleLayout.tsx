@@ -22,6 +22,7 @@ interface ModuleLayoutProps {
   limites: ReactNode;
   realite: ReactNode;
   economists?: ReactNode;
+  quiz?: ReactNode;
   dataTable?: ReactNode;
   comparison?: ReactNode;
   isProjectionMode?: boolean;
@@ -41,6 +42,7 @@ export function ModuleLayout({
   limites,
   realite,
   economists,
+  quiz,
   dataTable,
   comparison,
   isProjectionMode: _isProjectionMode = false,
@@ -216,6 +218,9 @@ export function ModuleLayout({
 
         {/* Economists */}
         {economists && <div className="mb-8">{economists}</div>}
+
+        {/* Quiz */}
+        {quiz && <div className="mb-8">{quiz}</div>}
 
         {/* Data Table */}
         {dataTable && <div className="mb-8">{dataTable}</div>}

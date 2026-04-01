@@ -17,7 +17,8 @@ export function ChartContainer({
 }: ChartContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState<{ width: number; height: number } | null>(null);
-  const heightRef = useRef(minHeight);
+  const lastWidthRef = useRef(0);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const measure = useCallback(() => {
     const el = containerRef.current;
@@ -25,7 +26,6 @@ export function ChartContainer({
     const w = Math.floor(el.clientWidth);
     if (w <= 0) return;
 
-    // Determine height
     let h = minHeight;
     if (aspectRatio) {
       h = Math.max(Math.round(w / aspectRatio), minHeight);
@@ -37,9 +37,7 @@ export function ChartContainer({
       h = parentH - 4;
     }
 
-    // Cap to prevent absurd sizes
     h = Math.min(h, 900);
-    heightRef.current = h;
 
     setDims(prev => {
       if (prev && prev.width === w && prev.height === h) return prev;
@@ -49,23 +47,36 @@ export function ChartContainer({
 
   useEffect(() => {
     measure();
+
     const observer = new ResizeObserver(() => {
-      // Only measure width changes - ignore height to prevent loops
       const el = containerRef.current;
       if (!el) return;
       const w = Math.floor(el.clientWidth);
-      if (dims && w === dims.width) return;
-      measure();
+      // Only react to width changes - never height, to prevent loops
+      if (w === lastWidthRef.current) return;
+      lastWidthRef.current = w;
+
+      // Debounce resize to prevent janky re-renders during window resize
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(measure, 60);
     });
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [measure, dims]);
+
+    if (containerRef.current) {
+      lastWidthRef.current = Math.floor(containerRef.current.clientWidth);
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(debounceRef.current);
+    };
+  }, [measure]);
 
   return (
     <div
       ref={containerRef}
       className={`w-full ${className}`}
-      style={{ height: heightRef.current }}
+      style={{ height: minHeight }}
     >
       {dims && dims.width > 0 && children(dims)}
     </div>
