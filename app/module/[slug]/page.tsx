@@ -79,6 +79,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
       level={meta.level as 'accessible' | 'intermediate' | 'advanced'}
       introduction={meta.introduction}
       isProjectionMode={isProjectionMode}
+      outputs={outputs}
       controls={
         <ControlPanel
           inputs={inputs}

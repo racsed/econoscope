@@ -12,7 +12,7 @@ interface ChartContainerProps {
 export function ChartContainer({
   children,
   aspectRatio,
-  minHeight = 380,
+  minHeight = 340,
   className = '',
 }: ChartContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);

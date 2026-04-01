@@ -166,14 +166,14 @@ function BarCascadeInner({
                   x={x}
                   y={y}
                   width={barWidth}
-                  height={Math.max(0, barHeight)}
+                  height={Math.max(2, barHeight)}
                   rx={3}
                   fill="url(#bar-grad)"
                   opacity={isHovered ? 1 : 0.85}
                   initial={{ y: innerHeight, height: 0, opacity: 0 }}
                   animate={{
-                    y,
-                    height: Math.max(0, barHeight),
+                    y: barHeight < 2 ? y - (2 - barHeight) : y,
+                    height: Math.max(2, barHeight),
                     opacity: isHovered ? 1 : 0.85,
                   }}
                   transition={{
@@ -412,8 +412,8 @@ function BarCascadeInner({
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          gap: '8px 18px',
-          paddingTop: 8,
+          gap: '4px 14px',
+          paddingTop: 4,
         }}
       >
         {[
@@ -445,7 +445,7 @@ function BarCascadeInner({
 
 export function BarCascade({ data, themeColor }: BarCascadeProps) {
   return (
-    <ChartContainer minHeight={380}>
+    <ChartContainer minHeight={400}>
       {({ width, height }) => (
         <div style={{ position: 'relative' }}>
           <BarCascadeInner

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { ExportButton } from '@/components/charts/ExportButton';
 import { ProjectionMode } from '@/components/module/ProjectionMode';
 import { THEME_COLORS, LEVEL_LABELS, type ThemeType, type LevelType } from '@/lib/constants';
+import type { SimulationOutput } from '@/engine/types';
 
 interface ModuleLayoutProps {
   title: string;
@@ -24,6 +25,7 @@ interface ModuleLayoutProps {
   dataTable?: ReactNode;
   comparison?: ReactNode;
   isProjectionMode?: boolean;
+  outputs?: SimulationOutput[];
 }
 
 export function ModuleLayout({
@@ -42,6 +44,7 @@ export function ModuleLayout({
   dataTable,
   comparison,
   isProjectionMode: _isProjectionMode = false,
+  outputs,
 }: ModuleLayoutProps) {
   const themeColor = THEME_COLORS[theme];
   const chartRef = useRef<HTMLDivElement>(null);
@@ -61,6 +64,7 @@ export function ModuleLayout({
         scenarios={scenarios}
         controls={controls}
         title={title}
+        outputs={outputs}
       />
 
       <motion.div
