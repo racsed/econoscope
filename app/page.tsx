@@ -387,13 +387,15 @@ export default function HomePage() {
                 name: 'Karim B.',
                 color: '#34D399',
               },
-            ].map((item, i) => (
+            ].map((item, i) => {
+              const slideX = i === 0 ? -30 : i === 2 ? 30 : 0;
+              return (
               <motion.div
                 key={item.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12 }}
+                initial={{ opacity: 0, y: 20, x: slideX }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: i * 0.15, duration: 0.5, ease: 'easeOut' }}
                 className="bg-bg-card border border-border rounded-2xl p-8 flex flex-col shadow-sm"
               >
                 <span
@@ -415,7 +417,8 @@ export default function HomePage() {
                   </span>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -448,10 +451,10 @@ export default function HomePage() {
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: i * 0.12, duration: 0.5, ease: 'easeOut' }}
                 className="flex flex-col items-center gap-2"
               >
                 <CountUpNumber value={stat.value} suffix={stat.suffix} />

@@ -298,7 +298,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Production Y (Mds\u20ac)',
     yLabel: 'Niveau des prix P',
     xDomain: [yMin, yMax],
-    yDomain: [0, 5],
+    yDomain: [0, Math.max(eq.p * 1.5, 3)],
     equilibrium: { x: eq.y, y: eq.p },
     annotations,
   };

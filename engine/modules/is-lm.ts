@@ -281,7 +281,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Revenu national Y (Mds\u20ac)',
     yLabel: "Taux d'intérêt r (%)",
     xDomain: [0, yMax],
-    yDomain: [-2, 20],
+    yDomain: [Math.min(-2, eq.r - 3), Math.max(eq.r + 5, 10)],
     equilibrium: { x: eq.y, y: eq.r },
     annotations,
   };

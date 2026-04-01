@@ -258,7 +258,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     xLabel: 'Taux de chômage (%)',
     yLabel: "Taux d'inflation (%)",
     xDomain: [uMin, uMax],
-    yDomain: [-5, 15],
+    yDomain: [Math.min(-3, inflationAtNairu - 4), Math.max(inflationAtNairu + 6, 12)],
     annotations,
   };
 
