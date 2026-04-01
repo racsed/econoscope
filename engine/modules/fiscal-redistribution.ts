@@ -251,7 +251,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     },
     {
       id: 'taux_effectif',
-      label: 'Taux effectif net (%)',
+      label: 'Taux effectif net',
       color: '#f59e0b',
       data: tauxEffectifSeries,
       strokeWidth: 2,

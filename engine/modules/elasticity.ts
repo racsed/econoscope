@@ -217,7 +217,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       type: 'point',
       x: prixInitial,
       y: recetteInitiale,
-      label: `RT initiale: ${recetteInitiale.toFixed(0)}\u20ac`,
+      label: `Recette initiale : ${recetteInitiale.toFixed(0)} \u20ac`,
       color: '#3b82f6',
     },
   ];
@@ -227,7 +227,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       type: 'point',
       x: prixNouveau,
       y: recetteNouvelle,
-      label: `RT nouvelle: ${recetteNouvelle.toFixed(0)}\u20ac`,
+      label: `Recette apres variation : ${recetteNouvelle.toFixed(0)} \u20ac`,
       color: '#ef4444',
     });
   }
@@ -238,7 +238,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     series: [
       {
         id: 'demande',
-        label: 'Courbe de demande Q(P)',
+        label: 'Courbe de demande',
         color: '#3b82f6',
         data: demandCurve,
         strokeWidth: 2.5,
@@ -256,7 +256,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     series: [
       {
         id: 'recette_totale',
-        label: 'Recette totale RT(P)',
+        label: 'Recette totale',
         color: '#10b981',
         data: revenueCurve,
         strokeWidth: 2.5,

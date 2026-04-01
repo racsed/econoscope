@@ -211,14 +211,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'ppf-pays1',
-      label: 'FPP Pays 1',
+      label: 'Frontiere Pays 1',
       color: '#3b82f6',
       data: ppfPays1,
       strokeWidth: 2.5,
     },
     {
       id: 'ppf-pays2',
-      label: 'FPP Pays 2',
+      label: 'Frontiere Pays 2',
       color: '#ef4444',
       data: ppfPays2,
       strokeWidth: 2.5,

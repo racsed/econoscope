@@ -254,14 +254,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'demande',
-      label: 'Demande (D)',
+      label: 'Demande',
       color: '#3b82f6',
       data: demandCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'offre',
-      label: 'Offre (S)',
+      label: 'Offre',
       color: '#ef4444',
       data: supplyCurve,
       strokeWidth: 2.5,
@@ -271,7 +271,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (taxe > 0 && shiftedCurve.length > 0) {
     series.push({
       id: 'courbe_deplacee',
-      label: taxeSurVendeur ? "Offre avec taxe (S')" : "Demande avec taxe (D')",
+      label: taxeSurVendeur ? 'Offre avec taxe' : 'Demande avec taxe',
       color: taxeSurVendeur ? '#f97316' : '#8b5cf6',
       data: shiftedCurve,
       strokeWidth: 2,

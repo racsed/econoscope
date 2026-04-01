@@ -162,7 +162,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'fpp',
-      label: 'Frontière des possibilités (FPP)',
+      label: 'Frontiere des possibilites',
       color: '#3b82f6',
       data: ppfCurve,
       strokeWidth: 2.5,

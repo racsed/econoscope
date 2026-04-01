@@ -185,8 +185,8 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     {
       id: 'phillips_ct',
       label: versionAugmentee
-        ? `Phillips CT (pi_e = ${anticipations}%)`
-        : 'Phillips originale',
+        ? `Court terme (anticipations ${anticipations}%)`
+        : 'Courbe originale',
       color: '#3b82f6',
       data: shortRunCurve,
       strokeWidth: 2.5,
@@ -196,7 +196,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (versionAugmentee && altCurve.length > 0) {
     series.push({
       id: 'phillips_ct_alt',
-      label: `Phillips CT (pi_e = ${altAnticipations}%)`,
+      label: `Court terme (anticipations ${altAnticipations}%)`,
       color: '#8b5cf6',
       data: altCurve,
       strokeWidth: 2,
@@ -207,7 +207,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (originalCurve.length > 0) {
     series.push({
       id: 'phillips_originale',
-      label: 'Phillips originale (pi_e = 0)',
+      label: 'Courbe originale (sans anticipations)',
       color: '#94a3b8',
       data: originalCurve,
       strokeWidth: 1.5,
@@ -219,7 +219,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     // Long-run Phillips curve: vertical at NAIRU
     series.push({
       id: 'phillips_lt',
-      label: `LRPC (NAIRU = ${nairu}%)`,
+      label: `Long terme (vertical a ${nairu}%)`,
       color: '#ef4444',
       data: [
         { x: nairu, y: -5 },

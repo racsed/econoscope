@@ -176,14 +176,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'demande',
-      label: 'Demande (P = a - bQ)',
+      label: 'Demande',
       color: '#3b82f6',
       data: demandCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'cout_marginal',
-      label: 'Coût marginal (Cm)',
+      label: 'Cout marginal',
       color: '#10b981',
       data: cmLine,
       strokeWidth: 2,
@@ -194,7 +194,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (mode === 'monopole') {
     series.push({
       id: 'recette_marginale',
-      label: 'Recette marginale (MR)',
+      label: 'Recette marginale',
       color: '#f59e0b',
       data: mrCurve,
       strokeWidth: 2,
@@ -250,7 +250,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const chartData: ChartData = {
     type: 'line',
     series,
-    xLabel: 'Quantité (Q)',
+    xLabel: 'Quantite',
     yLabel: 'Prix (EUR)',
     xDomain: [0, maxQ],
     yDomain: [0, maxPrice],
@@ -289,9 +289,9 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
       { id: 'prix_monopole', label: 'Prix monopole', value: round2(P_m), unit: 'EUR' },
       { id: 'quantite_monopole', label: 'Quantité monopole', value: round2(Q_m) },
       { id: 'profit_monopole', label: 'Profit monopole', value: round2(profitMonopole), unit: 'EUR' },
-      { id: 'perte_seche', label: 'Perte sèche (DWL)', value: round2(DWL), unit: 'EUR' },
-      { id: 'surplus_conso_cpp', label: 'Surplus conso. (CPP)', value: round2(surplusConsoConcurrence), unit: 'EUR' },
-      { id: 'surplus_conso_monopole', label: 'Surplus conso. (monopole)', value: round2(surplusConsoMonopole), unit: 'EUR' },
+      { id: 'perte_seche', label: 'Perte seche', value: round2(DWL), unit: 'EUR' },
+      { id: 'surplus_conso_cpp', label: 'Surplus consommateur en concurrence', value: round2(surplusConsoConcurrence), unit: 'EUR' },
+      { id: 'surplus_conso_monopole', label: 'Surplus consommateur en monopole', value: round2(surplusConsoMonopole), unit: 'EUR' },
     ],
     chartData,
     narration: { observation, interpretation },

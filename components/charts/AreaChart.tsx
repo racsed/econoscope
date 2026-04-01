@@ -16,7 +16,7 @@ interface AreaChartProps {
   themeColor?: string;
 }
 
-const margin = { top: 30, right: 30, bottom: 50, left: 65 };
+const margin = { top: 30, right: 30, bottom: 60, left: 65 };
 
 function formatCompact(value: number): string {
   const abs = Math.abs(value);
@@ -59,6 +59,7 @@ function AreaChartInner({
   }, [data, innerHeight]);
 
   return (
+    <>
     <svg width={width} height={height}>
       {data.yLabel && (
         <text x={margin.left} y={14} fill={colors.tickLabel} fontSize={10} fontFamily="var(--font-mono)">
@@ -180,18 +181,16 @@ function AreaChartInner({
         />
       </Group>
 
-      {/* Legend */}
-      <Group left={margin.left + 10} top={margin.top + 5}>
-        {data.series.map((series, i) => (
-          <g key={series.id} transform={`translate(0, ${i * 20})`}>
-            <rect width={14} height={10} rx={2} fill={series.color} opacity={0.4} />
-            <text x={20} y={9} fill={colors.legendText} fontSize={11}>
-              {series.label}
-            </text>
-          </g>
-        ))}
-      </Group>
     </svg>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px 20px', paddingTop: 6 }}>
+      {data.series.map((s) => (
+        <div key={s.id} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width={14} height={10}><rect width={14} height={10} rx={2} fill={s.color} opacity={0.4} /></svg>
+          <span style={{ fontSize: 11, color: colors.legendText }}>{s.label}</span>
+        </div>
+      ))}
+    </div>
+    </>
   );
 }
 

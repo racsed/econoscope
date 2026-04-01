@@ -202,21 +202,21 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'demande',
-      label: 'Demande (bénéfice marginal)',
+      label: 'Demande',
       color: '#3b82f6',
       data: demandCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'cm-prive',
-      label: 'Cm privé (offre)',
+      label: 'Cout marginal prive',
       color: '#ef4444',
       data: supplyPrive,
       strokeWidth: 2.5,
     },
     {
       id: 'cm-social',
-      label: isNegative ? 'Cm social (Cm privé + coût externe)' : 'Cm social (Cm privé - bénéfice externe)',
+      label: isNegative ? 'Cout marginal social' : 'Cout marginal social',
       color: '#8b5cf6',
       data: supplySocial,
       strokeWidth: 2,
@@ -227,7 +227,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (taxe > 0 && supplyWithTax.length > 0) {
     series.push({
       id: 'cm-avec-taxe',
-      label: isNegative ? 'Cm privé + taxe' : 'Cm privé - subvention',
+      label: isNegative ? 'Cout prive avec taxe' : 'Cout prive avec subvention',
       color: '#f59e0b',
       data: supplyWithTax,
       strokeWidth: 2,

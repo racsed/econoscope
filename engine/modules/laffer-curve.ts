@@ -188,7 +188,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
     type: 'area',
     series,
     xLabel: "Taux d'imposition (%)",
-    yLabel: 'Recettes fiscales / Revenu imposable',
+    yLabel: 'Montant',
     xDomain: [0, 100],
     yDomain: [0, Math.max(recetteOptimale, Y0) * 1.1],
     annotations,

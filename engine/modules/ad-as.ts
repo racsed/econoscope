@@ -252,14 +252,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'ad',
-      label: 'Demande globale (AD)',
+      label: 'Demande globale',
       color: '#3b82f6',
       data: adCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'sras',
-      label: 'Offre globale CT (SRAS)',
+      label: 'Offre globale (court terme)',
       color: '#ef4444',
       data: srasCurve,
       strokeWidth: 2.5,
@@ -269,7 +269,7 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   if (modeLongTerme) {
     series.push({
       id: 'lras',
-      label: `Offre globale LT (Yp = ${yPotential.toFixed(0)})`,
+      label: `Production potentielle (${yPotential.toFixed(0)} Mds)`,
       color: '#10b981',
       data: [
         { x: yPotential, y: 0.2 },
@@ -352,8 +352,8 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   return {
     outputs: [
-      { id: 'production', label: 'Production (Y)', value: round2(eq.y), unit: 'Mds\u20ac', direction: eq.y > eqBase.y ? 'up' : eq.y < eqBase.y ? 'down' : 'neutral' },
-      { id: 'niveau_prix', label: 'Niveau des prix (P)', value: round2(eq.p), direction: eq.p > eqBase.p ? 'up' : eq.p < eqBase.p ? 'down' : 'neutral' },
+      { id: 'production', label: 'Production', value: round2(eq.y), unit: 'Mds\u20ac', direction: eq.y > eqBase.y ? 'up' : eq.y < eqBase.y ? 'down' : 'neutral' },
+      { id: 'niveau_prix', label: 'Niveau des prix', value: round2(eq.p), direction: eq.p > eqBase.p ? 'up' : eq.p < eqBase.p ? 'down' : 'neutral' },
       { id: 'pib_potentiel', label: 'PIB potentiel', value: round2(yPotential), unit: 'Mds\u20ac' },
       { id: 'output_gap', label: 'Écart de production', value: round2(outputGap), unit: '%', direction: outputGap > 0 ? 'up' : outputGap < 0 ? 'down' : 'neutral' },
     ],

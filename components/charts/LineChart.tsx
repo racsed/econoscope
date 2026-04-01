@@ -17,7 +17,7 @@ interface LineChartProps {
   themeColor?: string;
 }
 
-const margin = { top: 30, right: 30, bottom: 50, left: 65 };
+const margin = { top: 30, right: 30, bottom: 60, left: 65 };
 
 function formatCompact(value: number): string {
   const abs = Math.abs(value);
@@ -61,6 +61,7 @@ function LineChartInner({
   }, [data, innerHeight]);
 
   return (
+    <>
     <svg width={width} height={height}>
       {/* Y-axis label (horizontal, above chart) */}
       {data.yLabel && (
@@ -236,31 +237,29 @@ function LineChartInner({
         />
       </Group>
 
-      {/* Legend */}
-      <Group left={margin.left + 10} top={margin.top + 5}>
-        {data.series.map((series, i) => (
-          <g key={series.id} transform={`translate(0, ${i * 20})`}>
-            <line
-              x1={0}
-              y1={0}
-              x2={20}
-              y2={0}
-              stroke={series.color}
-              strokeWidth={2.5}
-              strokeDasharray={series.dashed ? '4,2' : undefined}
-            />
-            <text
-              x={26}
-              y={4}
-              fill={colors.legendText}
-              fontSize={11}
-            >
-              {series.label}
-            </text>
-          </g>
-        ))}
-      </Group>
     </svg>
+    <Legend series={data.series} colors={colors} />
+    </>
+  );
+}
+
+function Legend({ series, colors }: { series: ChartData['series']; colors: ReturnType<typeof useChartColors> }) {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px 20px', paddingTop: 6 }}>
+      {series.map((s) => (
+        <div key={s.id} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width={20} height={3}>
+            <line
+              x1={0} y1={1.5} x2={20} y2={1.5}
+              stroke={s.color}
+              strokeWidth={2.5}
+              strokeDasharray={s.dashed ? '4,2' : undefined}
+            />
+          </svg>
+          <span style={{ fontSize: 11, color: colors.legendText }}>{s.label}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 

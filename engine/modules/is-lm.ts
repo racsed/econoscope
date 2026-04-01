@@ -239,14 +239,14 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
   const series: Series[] = [
     {
       id: 'is',
-      label: 'IS (marché des biens)',
+      label: 'Marche des biens',
       color: '#3b82f6',
       data: isCurve,
       strokeWidth: 2.5,
     },
     {
       id: 'lm',
-      label: 'LM (marché monétaire)',
+      label: 'Marche monetaire',
       color: '#ef4444',
       data: lmCurve,
       strokeWidth: 2.5,
@@ -359,8 +359,8 @@ function compute(values: Record<string, number | boolean | string>): ComputeResu
 
   return {
     outputs: [
-      { id: 'revenu_equilibre', label: "Revenu d'équilibre (Y*)", value: round2(eq.y), unit: 'Mds\u20ac' },
-      { id: 'taux_interet', label: "Taux d'intérêt (r*)", value: round2(eq.r), unit: '%' },
+      { id: 'revenu_equilibre', label: "Revenu d'equilibre", value: round2(eq.y), unit: 'Mds\u20ac' },
+      { id: 'taux_interet', label: "Taux d'interet", value: round2(eq.r), unit: '%' },
       { id: 'investissement', label: 'Investissement privé', value: round2(investissement), unit: 'Mds\u20ac' },
       { id: 'éviction', label: "Effet d'éviction", value: round2(Math.max(0, éviction)), unit: 'Mds\u20ac' },
       { id: 'multiplicateur_effectif', label: 'Multiplicateur effectif', value: round2(multiplicateurEffectif) },
