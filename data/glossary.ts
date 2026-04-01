@@ -493,6 +493,8 @@ export const glossary: GlossaryTerm[] = [
       "Rapport entre l'indice des prix des exportations et l'indice des prix des importations d'un pays : T = (Px/Pm) x 100. Une amélioration des termes de l'échange (hausse de l'indice) signifie qu'une même quantité d'exportations permet d'acheter davantage d'importations : le pouvoir d'achat international du pays augmente. Une détérioration (baisse) signifie l'inverse. Les pays exportateurs de matières premières subissent souvent une détérioration séculaire de leurs termes de l'échange (thèse Prebisch-Singer), justifiant historiquement les stratégies d'industrialisation par substitution aux importations en Amérique latine. Les chocs pétroliers de 1973 et 1979 ont constitué une amélioration brutale des termes de l'échange pour les pays de l'OPEP et une détérioration pour les pays importateurs. La France, importatrice nette d'énergie, a subi une dégradation de ses termes de l'échange en 2021-2022 avec la hausse des prix du gaz et du pétrole.",
     relatedModules: ['avantages-comparatifs', 'taux-de-change', 'carre-magique-kaldor'],
     category: 'Commerce international',
+    keyFormula: 'T = (Px / Pm) x 100',
+    seeAlso: ['Balance commerciale et balance des paiements', 'Taux de change réel et compétitivité-prix'],
   },
   {
     term: 'Balance commerciale et balance des paiements',
@@ -500,6 +502,8 @@ export const glossary: GlossaryTerm[] = [
       "La balance commerciale mesure la différence entre la valeur des exportations et des importations de biens et services d'un pays sur une période donnée. Un excédent commercial signifie que les exportations dépassent les importations. La balance des paiements est un document comptable plus large, établi par la Banque de France selon les normes du FMI (BPM6), qui enregistre l'ensemble des transactions économiques entre résidents et non-résidents. Elle comprend trois comptes : le compte des transactions courantes (balance commerciale + revenus primaires + revenus secondaires), le compte de capital (transferts en capital, acquisitions d'actifs non financiers) et le compte financier (investissements directs, investissements de portefeuille, autres investissements, avoirs de réserve). Par construction comptable, la somme des trois comptes (plus les erreurs et omissions) est nulle : un déficit courant est nécessairement financé par un excédent du compte financier (entrées de capitaux). La France affiche un déficit courant d'environ 1 % du PIB depuis les années 2000.",
     relatedModules: ['carre-magique-kaldor', 'taux-de-change'],
     category: 'Commerce international',
+    keyFigure: 'Deficit courant France : ~1% du PIB | Excedent Allemagne : ~6% du PIB',
+    seeAlso: ['Termes de l\'échange', 'Carré magique de Kaldor', 'Taux de change réel et compétitivité-prix'],
   },
   {
     term: 'Protectionnisme vs libre-échange',
@@ -507,6 +511,7 @@ export const glossary: GlossaryTerm[] = [
       "Le libre-échange désigne une politique commerciale fondée sur l'absence de barrières aux échanges internationaux, justifiée théoriquement par les gains mutuels du commerce (Ricardo, HOS). Le protectionnisme désigne l'ensemble des mesures visant à protéger la production nationale de la concurrence étrangère : droits de douane (tarifs), quotas (contingentements), subventions à l'exportation, normes techniques et sanitaires (barrières non tarifaires), et manipulations de change. Les arguments en faveur du protectionnisme incluent : la protection des industries naissantes (Friedrich List, industrie dans l'enfance), le maintien de l'emploi dans les secteurs menacés, la préservation de l'indépendance stratégique, la lutte contre le dumping social et environnemental, et l'argument des termes de l'échange (tarif optimal). Le mouvement historique va de l'ouverture progressive sous le GATT/OMC (1947-2000) à un retour du néo-protectionnisme (guerre commerciale USA-Chine depuis 2018, relocalisation post-Covid).",
     relatedModules: ['avantages-comparatifs', 'taux-de-change'],
     category: 'Commerce international',
+    seeAlso: ['Avantage comparatif (Ricardo)', 'OMC (Organisation Mondiale du Commerce) et GATT', 'Division internationale du travail (DIT)'],
   },
   {
     term: 'Division internationale du travail (DIT)',
@@ -514,6 +519,7 @@ export const glossary: GlossaryTerm[] = [
       "Spécialisation des pays dans certaines productions, fondée sur les avantages comparatifs, les dotations factorielles et les choix stratégiques. La DIT traditionnelle (XIXe-milieu XXe siècle) opposait les pays du Nord, spécialisés dans les produits manufacturés, aux pays du Sud, exportateurs de matières premières et de produits agricoles. La nouvelle DIT (à partir des années 1970-1980) est marquée par l'émergence des nouveaux pays industrialisés (NPI - Corée du Sud, Taïwan, puis Chine, Inde) et par la fragmentation des chaînes de valeur mondiales : un même produit (iPhone, Airbus) est conçu, fabriqué et assemblé dans plusieurs pays différents. Cette décomposition internationale des processus productifs (DIPP, concept de Bernis et Lassudrie-Duchêne) est favorisée par la baisse des coûts de transport et de communication, la libéralisation commerciale et les IDE. Elle crée des interdépendances mais aussi des vulnérabilités (ruptures d'approvisionnement, comme pendant la crise Covid-19).",
     relatedModules: ['avantages-comparatifs'],
     category: 'Commerce international',
+    seeAlso: ['Avantage comparatif (Ricardo)', 'Fragmentation de la chaîne de valeur', 'IDE (Investissements Directs à l\'Étranger)'],
   },
   {
     term: 'Fragmentation de la chaîne de valeur',
@@ -521,6 +527,8 @@ export const glossary: GlossaryTerm[] = [
       "Décomposition du processus de production d'un bien ou service en étapes distinctes réalisées dans différents pays, en fonction des avantages comparatifs de chacun. Également appelée décomposition internationale des processus productifs (DIPP) ou « commerce de tâches » (trade in tasks, Grossman et Rossi-Hansberg, 2008). Par exemple, un smartphone peut être conçu aux États-Unis (R&D), ses composants fabriqués en Corée du Sud (semi-conducteurs), au Japon (écrans) et en Chine (assemblage final). Selon l'OMC et l'OCDE, le commerce en valeur ajoutée montre que 60 à 70 % du commerce mondial est constitué de biens intermédiaires circulant au sein de ces chaînes globales de valeur (CGV). Cette organisation accroît l'efficacité productive mais augmente la vulnérabilité aux chocs (pandémie, guerre, catastrophe naturelle) et pose des défis de mesure statistique (les exportations brutes surestiment la valeur ajoutée domestique). La crise Covid-19 et les tensions géopolitiques ont relancé les débats sur la « relocalisation » et la « résilience » des chaînes d'approvisionnement.",
     relatedModules: ['avantages-comparatifs', 'taux-de-change'],
     category: 'Commerce international',
+    keyFigure: '60-70% du commerce mondial = biens intermediaires (CGV, OMC)',
+    seeAlso: ['Division internationale du travail (DIT)', 'IDE (Investissements Directs à l\'Étranger)'],
   },
   {
     term: 'Taux de change réel et compétitivité-prix',
@@ -528,6 +536,8 @@ export const glossary: GlossaryTerm[] = [
       "Le taux de change réel (TCR) est le taux de change nominal ajusté des niveaux de prix relatifs entre deux pays : TCR = e x (P*/P), où e est le taux de change nominal (nombre d'unités de monnaie nationale pour une unité de monnaie étrangère), P* le niveau des prix étrangers et P le niveau des prix nationaux. Une appréciation réelle (hausse du TCR en cotation au certain, ou baisse en cotation à l'incertain) signifie une perte de compétitivité-prix : les produits nationaux deviennent relativement plus chers que les produits étrangers. La compétitivité-prix dépend donc à la fois du taux de change nominal et de l'écart d'inflation avec les partenaires commerciaux. C'est pourquoi, au sein de la zone euro (taux de change nominal fixe entre pays membres), les divergences d'inflation créent des écarts de compétitivité-prix persistants : l'Allemagne, avec une inflation structurellement plus basse, a gagné en compétitivité par rapport à l'Europe du Sud dans les années 2000.",
     relatedModules: ['taux-de-change', 'avantages-comparatifs', 'carre-magique-kaldor'],
     category: 'Commerce international',
+    keyFormula: 'TCR = e x (P* / P)',
+    seeAlso: ['Dévaluation vs dépréciation', 'Condition de Marshall-Lerner et courbe en J', 'Balance commerciale et balance des paiements'],
   },
   {
     term: 'Dévaluation vs dépréciation',
@@ -535,6 +545,7 @@ export const glossary: GlossaryTerm[] = [
       "La dévaluation est une décision politique des autorités monétaires de réduire la valeur officielle de la monnaie nationale par rapport à une ou plusieurs monnaies étrangères, dans un régime de change fixe (ou semi-fixe). La France a procédé à plusieurs dévaluations du franc entre 1981 et 1986, notamment en 1982 et 1983, dans le cadre du Système monétaire européen (SME). La dépréciation, en revanche, est une baisse de la valeur de la monnaie résultant des forces du marché (offre et demande de devises) dans un régime de change flottant. Par exemple, l'euro s'est déprécié face au dollar en 2022, passant brièvement sous la parité. Les deux phénomènes ont des effets économiques similaires : amélioration de la compétitivité-prix (les exportations deviennent moins chères en devises étrangères), renchérissement des importations, et inflation importée. L'amélioration de la balance commerciale n'est pas immédiate - la courbe en J décrit la détérioration initiale avant l'amélioration, conformément à la condition de Marshall-Lerner.",
     relatedModules: ['taux-de-change', 'carre-magique-kaldor'],
     category: 'Commerce international',
+    seeAlso: ['Taux de change réel et compétitivité-prix', 'Condition de Marshall-Lerner et courbe en J', 'Balance commerciale et balance des paiements'],
   },
   {
     term: 'Condition de Marshall-Lerner et courbe en J',
@@ -542,6 +553,8 @@ export const glossary: GlossaryTerm[] = [
       "La condition de Marshall-Lerner stipule qu'une dévaluation (ou dépréciation) de la monnaie nationale améliore la balance commerciale si, et seulement si, la somme des élasticités-prix de la demande d'exportations et de la demande d'importations est supérieure à 1 en valeur absolue (|εx| + |εm| > 1). Lorsque cette condition est vérifiée, l'effet volume (hausse des quantités exportées, baisse des quantités importées) l'emporte sur l'effet prix (renchérissement des importations). La courbe en J décrit la dynamique temporelle : à court terme, les élasticités sont faibles (les contrats sont en cours, les habitudes de consommation sont rigides) et la balance commerciale se détériore (partie descendante du J) car le renchérissement des importations domine. À moyen terme (6-18 mois), les quantités s'ajustent, les exportations augmentent et les importations diminuent, améliorant la balance (partie ascendante du J). Ce délai d'ajustement est un argument classique contre les politiques de dévaluation compétitive.",
     relatedModules: ['taux-de-change'],
     category: 'Commerce international',
+    keyFormula: 'Condition M-L : |epsilon_x| + |epsilon_m| > 1',
+    seeAlso: ['Dévaluation vs dépréciation', 'Taux de change réel et compétitivité-prix', 'Élasticité-prix de la demande'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -553,6 +566,9 @@ export const glossary: GlossaryTerm[] = [
       "Indicateur synthétique de mesure des inégalités, compris entre 0 (égalité parfaite : tous les individus ont le même revenu) et 1 (inégalité maximale : un seul individu détient tout le revenu). Mathématiquement, il correspond au rapport de l'aire comprise entre la courbe de Lorenz et la diagonale d'égalité (aire de concentration) sur l'aire totale du triangle sous la diagonale : G = A/(A+B), soit G = 2A. Le coefficient de Gini des revenus disponibles (après redistribution) est d'environ 0,29 en France (INSEE, 2023), 0,39 aux États-Unis (Census Bureau), 0,26 en Suède et 0,63 en Afrique du Sud, l'un des pays les plus inégalitaires au monde. Le Gini peut être calculé pour les revenus, le patrimoine (généralement plus élevé, autour de 0,65 en France), les salaires, ou toute autre distribution. Ses limites : il ne renseigne pas sur la localisation des inégalités (deux distributions très différentes peuvent avoir le même Gini si les courbes de Lorenz se croisent).",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     category: 'Inégalités et protection sociale',
+    keyFormula: 'Gini = 2A = 1 - 2 integrale L(p) dp',
+    keyFigure: 'Gini revenus : France 0.29 | USA 0.39 | Suede 0.26 | Afrique du Sud 0.63',
+    seeAlso: ['Courbe de Lorenz', 'Déciles et centiles de revenus', 'Rapport interdécile (D9/D1)'],
   },
   {
     term: 'Courbe de Lorenz',
@@ -560,6 +576,8 @@ export const glossary: GlossaryTerm[] = [
       "Représentation graphique de la répartition des revenus (ou du patrimoine) dans une population, développée par Max Lorenz (1905). L'axe horizontal porte les parts cumulées de la population, classées du plus pauvre au plus riche (en %). L'axe vertical porte les parts cumulées du revenu (ou patrimoine) total détenues par ces populations cumulées. La diagonale (droite à 45°) représente l'égalité parfaite : les x % les plus pauvres détiennent x % du revenu. Plus la courbe de Lorenz s'éloigne de la diagonale (se creuse vers le bas), plus les inégalités sont fortes. Par exemple, en France, les 20 % les plus pauvres détiennent environ 9 % du revenu disponible total, tandis que les 20 % les plus riches en détiennent environ 38 %. La courbe de Lorenz permet de visualiser l'effet de la redistribution : la courbe des revenus disponibles (après impôts et transferts) est plus proche de la diagonale que celle des revenus primaires (avant redistribution), illustrant l'effet réducteur d'inégalités du système socio-fiscal.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     category: 'Inégalités et protection sociale',
+    keyFigure: 'France : 20% les plus pauvres = 9% du revenu | 20% les plus riches = 38%',
+    seeAlso: ['Coefficient de Gini', 'Déciles et centiles de revenus', 'Revenu disponible'],
   },
   {
     term: 'Déciles et centiles de revenus',
@@ -567,6 +585,8 @@ export const glossary: GlossaryTerm[] = [
       "Outils statistiques de découpage d'une distribution en parts égales, utilisés pour analyser les inégalités de revenus. Les déciles divisent la population, classée par revenu croissant, en 10 groupes de taille égale (10 % chacun). Le premier décile (D1) est le seuil de revenu en dessous duquel se situent les 10 % les plus pauvres ; le neuvième décile (D9) est le seuil en dessous duquel se situent 90 % de la population. Le rapport interdécile D9/D1 est un indicateur d'inégalité courant : en France, il est d'environ 3,4 pour le niveau de vie (INSEE), signifiant que le seuil du décile le plus aisé est 3,4 fois supérieur au seuil du décile le plus modeste. Les centiles divisent la population en 100 groupes de 1 %. Le centile P99 (les 1 % les plus riches) concentre environ 10 % des revenus en France et 20 % aux États-Unis (données World Inequality Database, Piketty-Saez-Zucman). L'analyse par centiles supérieurs est indispensable pour étudier la concentration des richesses au sommet de la distribution.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     category: 'Inégalités et protection sociale',
+    keyFigure: 'D9/D1 France : 3.4 | P99 (top 1%) : ~10% des revenus en France, ~20% aux USA',
+    seeAlso: ['Coefficient de Gini', 'Rapport interdécile (D9/D1)', 'Courbe de Lorenz'],
   },
   {
     term: 'Revenu disponible',
@@ -574,6 +594,9 @@ export const glossary: GlossaryTerm[] = [
       "Revenu dont disposent effectivement les ménages pour consommer et épargner, après prise en compte de l'ensemble des prélèvements obligatoires et des transferts sociaux. Selon la définition de l'INSEE : Revenu disponible = Revenus primaires (salaires + revenus du patrimoine + revenus mixtes des indépendants) - Prélèvements obligatoires (impôt sur le revenu, CSG, CRDS, cotisations sociales) + Prestations sociales (allocations familiales, minima sociaux, aides au logement). Le revenu disponible ajusté (RDA) intègre en outre les transferts sociaux en nature (éducation, santé publique). Le niveau de vie est le revenu disponible du ménage divisé par le nombre d'unités de consommation (échelle d'équivalence de l'OCDE modifiée : 1 UC pour le premier adulte, 0,5 pour les autres personnes de 14 ans ou plus, 0,3 pour les enfants de moins de 14 ans). En France, le niveau de vie médian est d'environ 24 000 euros par an et par UC (INSEE, 2023).",
     relatedModules: ['fiscalite-redistribution', 'courbe-de-lorenz-gini'],
     category: 'Inégalités et protection sociale',
+    keyFormula: 'RD = Revenus primaires - Prelevements + Prestations | Niveau de vie = RD / UC',
+    keyFigure: 'Niveau de vie median France : ~24 000 EUR/an/UC (INSEE 2023)',
+    seeAlso: ['Prestations sociales contributives vs non contributives', 'Pauvreté relative vs pauvreté absolue', 'Déciles et centiles de revenus'],
   },
   {
     term: 'Prestations sociales contributives vs non contributives',
@@ -581,6 +604,7 @@ export const glossary: GlossaryTerm[] = [
       "Les prestations sociales contributives sont des droits acquis en contrepartie de cotisations sociales préalables, relevant de la logique assurantielle (bismarckienne). Elles sont proportionnelles aux cotisations versées et à la durée de cotisation : retraites (pensions proportionnelles au salaire de référence et à la durée de cotisation), indemnités journalières de maladie, allocations chômage (ARE, dont le montant dépend du salaire antérieur et de la durée d'affiliation). Les prestations non contributives sont versées sous condition de ressources, indépendamment de toute cotisation préalable, relevant de la logique d'assistance (beveridgienne). Elles visent à garantir un revenu minimum : RSA (Revenu de solidarité active), AAH (Allocation aux adultes handicapés), ASS (Allocation de solidarité spécifique), allocations familiales sous conditions de ressources, CMU-C/C2S. Le système français de protection sociale est hybride, combinant les deux logiques. Le financement a évolué : la CSG (1991), impôt proportionnel sur tous les revenus, a partiellement remplacé les cotisations salariales, « fiscalisant » une partie de la protection sociale.",
     relatedModules: ['fiscalite-redistribution', 'courbe-de-lorenz-gini'],
     category: 'Inégalités et protection sociale',
+    seeAlso: ['Revenu disponible', 'Pauvreté relative vs pauvreté absolue'],
   },
   {
     term: 'Pauvreté relative vs pauvreté absolue',
@@ -588,6 +612,8 @@ export const glossary: GlossaryTerm[] = [
       "Deux approches complémentaires de la mesure de la pauvreté. La pauvreté absolue, utilisée par la Banque mondiale, définit un seuil fixe de revenu en dessous duquel un individu ne peut satisfaire ses besoins fondamentaux (alimentation, logement, habillement). Le seuil international de pauvreté extrême est de 2,15 dollars PPA par jour (révisé en 2022). La pauvreté relative, privilégiée en Europe (Eurostat, INSEE), est définie par rapport au niveau de vie médian de la société : est considéré comme pauvre tout individu dont le niveau de vie est inférieur à un seuil conventionnel, fixé à 60 % du niveau de vie médian (convention européenne) ou 50 % (convention OCDE et ancienne convention INSEE). En France, au seuil de 60 %, le taux de pauvreté est d'environ 14,5 % (soit 9,1 millions de personnes, INSEE 2023), avec un seuil d'environ 1 200 euros mensuels pour une personne seule. La pauvreté relative peut augmenter même si le niveau de vie des plus pauvres s'améliore, dès lors que le revenu médian progresse plus vite.",
     relatedModules: ['courbe-de-lorenz-gini', 'fiscalite-redistribution'],
     category: 'Inégalités et protection sociale',
+    keyFigure: 'Pauvrete France (60% mediane) : 14.5% soit 9.1M personnes | Seuil : ~1 200 EUR/mois',
+    seeAlso: ['Revenu disponible', 'Prestations sociales contributives vs non contributives', 'Coefficient de Gini'],
   },
   {
     term: 'Mobilité sociale',
@@ -595,6 +621,8 @@ export const glossary: GlossaryTerm[] = [
       "Changement de position dans la hiérarchie sociale, analysé selon deux dimensions principales. La mobilité intergénérationnelle compare la position sociale d'un individu à celle de ses parents (généralement le père, dans les tables de mobilité de l'INSEE) : elle mesure la fluidité sociale et l'égalité des chances. La mobilité professionnelle (intragénérationnelle) concerne les changements de position au cours de la carrière d'un même individu. On distingue la mobilité structurelle (due aux transformations de la structure des emplois - tertiarisation, montée des qualifications - qui créent mécaniquement de la mobilité ascendante) de la mobilité nette ou de circulation (mobilité « pure » une fois corrigée des effets structurels). Les tables de mobilité (INSEE) et les odds ratios (rapports des chances relatives, Erikson-Goldthorpe) montrent qu'en France, malgré une mobilité structurelle importante, la reproduction sociale reste forte : un fils de cadre a 4,5 fois plus de chances de devenir cadre qu'un fils d'ouvrier (données INSEE 2023). Les travaux de Pierre Bourdieu sur le capital culturel et de Raymond Boudon sur l'inégalité des chances éclairent les mécanismes de cette reproduction.",
     relatedModules: ['courbe-de-lorenz-gini'],
     category: 'Inégalités et protection sociale',
+    keyFigure: 'Fils de cadre -> cadre : 4.5x plus de chances qu\'un fils d\'ouvrier (INSEE 2023)',
+    seeAlso: ['Déciles et centiles de revenus', 'Coefficient de Gini'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -606,6 +634,8 @@ export const glossary: GlossaryTerm[] = [
       "Institution monétaire de la zone euro, créée en 1998 et siégeant à Francfort, chargée de conduire la politique monétaire unique pour les pays ayant adopté l'euro (20 pays en 2024). Son mandat principal, inscrit dans le traité de Maastricht (article 127 TFUE), est la stabilité des prix, définie comme une inflation de 2 % à moyen terme (objectif symétrique révisé en 2021). La BCE est indépendante du pouvoir politique (indépendance organique et fonctionnelle). Son organe de décision est le Conseil des gouverneurs (6 membres du directoire + gouverneurs des banques centrales nationales). Ses instruments sont les taux directeurs (taux de refinancement, taux de facilité de dépôt, taux de prêt marginal), les opérations d'open market, les réserves obligatoires, et depuis 2015 les programmes d'achats d'actifs (APP, PEPP). La BCE supervise également les banques systémiques de la zone euro dans le cadre du Mécanisme de surveillance unique (MSU/SSM) depuis 2014.",
     relatedModules: ['creation-monetaire', 'is-lm', 'courbe-de-phillips'],
     category: 'Institutions',
+    keyFigure: 'Cible inflation BCE : 2% | Taux directeur 2024 : 4.5% | 20 pays membres zone euro',
+    seeAlso: ['Politique monétaire', 'Quantitative easing (assouplissement quantitatif)', 'Taux d\'intérêt'],
   },
   {
     term: 'FMI (Fonds Monétaire International) et Banque mondiale',
@@ -613,6 +643,8 @@ export const glossary: GlossaryTerm[] = [
       "Deux institutions de Bretton Woods créées en 1944, aux missions distinctes mais complémentaires. Le FMI (189 pays membres, siège à Washington) a pour mission d'assurer la stabilité du système monétaire international : surveillance des politiques macroéconomiques (Article IV), assistance financière aux pays en difficulté de balance des paiements (prêts conditionnels assortis de programmes d'ajustement structurel), et assistance technique. Ses ressources proviennent des quotes-parts des pays membres (DTS - Droits de Tirage Spéciaux). La Banque mondiale (BIRD + AID) finance des projets de développement à long terme (infrastructures, éducation, santé) dans les pays en développement, par des prêts à taux préférentiel ou des dons. Ces deux institutions ont fait l'objet de critiques : conditionnalité excessive et effets sociaux négatifs des plans d'ajustement structurel (consensus de Washington), sous-représentation des pays émergents dans la gouvernance, et inadaptation aux crises financières modernes. Les réformes de 2010 ont partiellement rééquilibré les droits de vote au profit des BRICS.",
     relatedModules: ['taux-de-change', 'carre-magique-kaldor'],
     category: 'Institutions',
+    keyFigure: '189 pays membres | Quotes-parts en DTS',
+    seeAlso: ['BCE (Banque Centrale Européenne)', 'OMC (Organisation Mondiale du Commerce) et GATT', 'Pacte de stabilité et de croissance (PSC)'],
   },
   {
     term: 'OMC (Organisation Mondiale du Commerce) et GATT',
@@ -620,6 +652,8 @@ export const glossary: GlossaryTerm[] = [
       "Le GATT (General Agreement on Tariffs and Trade, 1947) était un accord multilatéral visant à libéraliser le commerce international par la réduction progressive des droits de douane et l'élimination des barrières non tarifaires. Ses principes fondamentaux étaient la clause de la nation la plus favorisée (NPF : tout avantage commercial accordé à un pays doit être étendu à tous les membres), le traitement national (les produits importés ne doivent pas être discriminés par rapport aux produits nationaux une fois sur le territoire) et la réciprocité. Huit cycles de négociations (dont le Kennedy Round et le Tokyo Round) ont réduit les droits de douane moyens de 40 % à environ 4 %. L'OMC, créée en 1995 à l'issue du cycle d'Uruguay (Accords de Marrakech), a remplacé le GATT avec un cadre institutionnel permanent, un mécanisme contraignant de règlement des différends (Organe d'appel) et un champ élargi aux services (AGCS) et à la propriété intellectuelle (ADPIC). Le cycle de Doha (2001), censé intégrer les préoccupations des pays en développement, est dans l'impasse depuis 2008. L'OMC compte 164 membres en 2024.",
     relatedModules: ['avantages-comparatifs', 'taux-de-change'],
     category: 'Institutions',
+    keyFigure: '164 pays membres en 2024 | Droits de douane moyens : ~4% (vs 40% en 1947)',
+    seeAlso: ['Protectionnisme vs libre-échange', 'Avantage comparatif (Ricardo)'],
   },
   {
     term: 'Pacte de stabilité et de croissance (PSC)',
@@ -627,6 +661,8 @@ export const glossary: GlossaryTerm[] = [
       "Cadre de gouvernance budgétaire de l'Union européenne, adopté en 1997 (Conseil d'Amsterdam), visant à maintenir la discipline budgétaire des États membres et à prévenir les déficits excessifs qui pourraient menacer la stabilité de la monnaie unique. Les critères centraux, hérités du traité de Maastricht (1992), sont : un déficit public inférieur à 3 % du PIB et une dette publique inférieure à 60 % du PIB (ou en diminution suffisante). Le volet préventif fixe des objectifs de moyen terme (OMT) de solde structurel proche de l'équilibre. Le volet correctif (procédure de déficit excessif, PDE) peut théoriquement conduire à des sanctions financières, mais celles-ci n'ont jamais été appliquées, même lorsque la France et l'Allemagne ont enfreint les règles en 2003. Le PSC a été suspendu entre 2020 et 2023 (clause dérogatoire Covid) puis réformé en 2024, avec des trajectoires d'ajustement plus individualisées et une prise en compte de l'investissement public. Ses critiques pointent son caractère pro-cyclique (austérité en récession) et l'absence de coordination budgétaire positive entre pays membres.",
     relatedModules: ['carre-magique-kaldor', 'multiplicateur-keynesien', 'donnees-historiques'],
     category: 'Institutions',
+    keyFigure: 'Deficit < 3% du PIB | Dette < 60% du PIB | Suspendu 2020-2023 (Covid)',
+    seeAlso: ['Politique budgétaire', 'Dette publique', 'BCE (Banque Centrale Européenne)'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -638,6 +674,8 @@ export const glossary: GlossaryTerm[] = [
       "Salaire horaire minimum légal en dessous duquel aucun salarié ne peut être rémunéré en France, instauré en 1950 (SMIG) puis réformé en 1970 (SMIC - Salaire Minimum Interprofessionnel de Croissance). Son montant est revalorisé au 1er janvier de chaque année en fonction de l'inflation (indice des prix à la consommation des ménages du premier quintile) et de la moitié du gain de pouvoir d'achat du salaire horaire moyen des ouvriers et employés. Le gouvernement peut ajouter un « coup de pouce » discrétionnaire. En 2024, le SMIC brut est d'environ 1 767 euros mensuels (pour 35 heures). Le débat économique sur le salaire minimum oppose deux visions : l'analyse néoclassique standard prédit qu'un salaire plancher supérieur au salaire d'équilibre crée du chômage (excès d'offre de travail) ; les travaux empiriques de Card et Krueger (1994) sur le New Jersey ont montré qu'une hausse modérée du salaire minimum peut être neutre, voire positive sur l'emploi (modèle de monopsone). L'effet dépend du niveau du SMIC par rapport au salaire médian (indice de Kaitz, environ 61 % en France, parmi les plus élevés de l'OCDE).",
     relatedModules: ['offre-et-demande', 'courbe-de-phillips'],
     category: 'Marché du travail',
+    keyFigure: 'SMIC brut 2024 : 1 767 EUR/mois (35h) | Indice de Kaitz France : ~61%',
+    seeAlso: ['Chômage au sens du BIT', 'Équilibre de marché', 'Courbe de Phillips'],
   },
   {
     term: 'Chômage structurel vs chômage conjoncturel',
@@ -645,6 +683,8 @@ export const glossary: GlossaryTerm[] = [
       "Le chômage conjoncturel (ou cyclique) résulte d'une insuffisance temporaire de la demande globale par rapport aux capacités de production de l'économie. Il apparaît en période de récession et se résorbe lors de la reprise : c'est le « chômage keynésien », traitable par des politiques de relance (budgétaire ou monétaire). Le chômage structurel résulte de facteurs durables liés au fonctionnement du marché du travail : inadéquation entre les qualifications offertes et demandées (mismatch), rigidités salariales (SMIC, conventions collectives), réglementation du travail (coût du licenciement), insuffisante mobilité géographique, ou transformation technologique. Il correspond au NAIRU et ne peut être réduit que par des réformes structurelles (formation professionnelle, flexibilisation, allègements de charges). On peut ajouter le chômage frictionnel (temps de transition entre deux emplois, incompressible et même souhaitable) et le chômage classique (salaire réel supérieur à la productivité marginale, analyse néoclassique). En France, le débat porte sur la part respective du chômage structurel (estimé entre 7 % et 8 %) et conjoncturel.",
     relatedModules: ['courbe-de-phillips', 'ad-as', 'carre-magique-kaldor'],
     category: 'Marché du travail',
+    keyFigure: 'Chomage structurel France estime : 7-8% | Part conjoncturelle variable',
+    seeAlso: ['NAIRU (Non-Accelerating Inflation Rate of Unemployment)', 'Courbe de Beveridge', 'Loi d\'Okun', 'Halo du chômage'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -656,6 +696,8 @@ export const glossary: GlossaryTerm[] = [
       "Politique monétaire non conventionnelle consistant, pour une banque centrale, à acheter massivement des titres financiers (obligations d'État, titres de dette d'entreprise, titres adossés à des créances hypothécaires) sur les marchés secondaires, dans le but d'injecter de la liquidité dans l'économie et de faire baisser les taux d'intérêt à long terme lorsque les taux directeurs ont atteint leur plancher effectif (zero lower bound). Le mécanisme agit par plusieurs canaux : effet de portefeuille (les vendeurs de titres réinvestissent dans des actifs plus risqués), effet de signalement (engagement implicite de maintenir les taux bas), et effet de richesse (hausse des prix des actifs financiers). La Fed a mené trois programmes de QE entre 2008 et 2014 (total de plus de 4 500 milliards de dollars). La BCE a lancé son programme d'achats d'actifs (APP) en mars 2015 puis le PEPP en 2020 (pandémie), totalisant plus de 5 000 milliards d'euros. Les critiques portent sur le risque de bulles financières, l'accroissement des inégalités de patrimoine et la dépendance des marchés à la liquidité de la banque centrale.",
     relatedModules: ['creation-monetaire', 'is-lm'],
     category: 'Monnaie et finance',
+    keyFigure: 'Fed QE 2008-2014 : +4 500 Md USD | BCE APP+PEPP : +5 000 Md EUR',
+    seeAlso: ['Politique monétaire', 'Trappe à liquidité', 'BCE (Banque Centrale Européenne)', 'Taux d\'intérêt'],
   },
   {
     term: 'Théorie quantitative de la monnaie',
@@ -663,6 +705,8 @@ export const glossary: GlossaryTerm[] = [
       "Théorie selon laquelle le niveau général des prix est proportionnel à la quantité de monnaie en circulation, formalisée par l'équation des échanges d'Irving Fisher (1911) : MV = PY, où M est la masse monétaire, V la vitesse de circulation de la monnaie, P le niveau général des prix et Y le volume de la production réelle. Si l'on suppose V stable (hypothèse monétariste) et Y déterminé par les facteurs réels à long terme (PIB potentiel), alors toute augmentation de M se traduit par une hausse proportionnelle de P : « l'inflation est toujours et partout un phénomène monétaire » (Milton Friedman). Cette théorie, dont les origines remontent à Jean Bodin (XVIe siècle) et David Hume (XVIIIe siècle), a été réactivée par le courant monétariste dans les années 1970. Keynes la conteste en montrant que V n'est pas stable (elle dépend du taux d'intérêt via la préférence pour la liquidité) et que Y peut varier (sous-emploi). Empiriquement, la relation M-P est vérifiée à long terme et pour les fortes inflations, mais beaucoup plus instable à court terme et dans les économies à faible inflation.",
     relatedModules: ['creation-monetaire', 'courbe-de-phillips', 'is-lm'],
     category: 'Monnaie et finance',
+    keyFormula: 'MV = PY (equation de Fisher)',
+    seeAlso: ['Inflation', 'Masse monétaire (M1, M2, M3)', 'Création monétaire et multiplicateur de crédit', 'Politique monétaire'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -674,6 +718,8 @@ export const glossary: GlossaryTerm[] = [
       "Le PIB potentiel représente le niveau maximal de production qu'une économie peut soutenir durablement sans générer de tensions inflationnistes, c'est-à-dire en utilisant pleinement ses facteurs de production (travail, capital) à leur niveau d'équilibre. Il n'est pas directement observable et fait l'objet d'estimations (méthodes statistiques : filtre de Hodrick-Prescott ; méthodes structurelles : fonction de production, Commission européenne). L'écart de production (output gap) mesure la différence entre le PIB effectif et le PIB potentiel, en pourcentage du PIB potentiel. Un output gap négatif (PIB effectif < PIB potentiel) signale une sous-utilisation des capacités et des pressions déflationnistes ; un output gap positif signale une surchauffe et des pressions inflationnistes. Ce concept est central pour la politique économique : la politique budgétaire discrétionnaire devrait être contra-cyclique (expansionniste quand l'output gap est négatif, restrictive quand il est positif). Le solde structurel des finances publiques est calculé en corrigeant le solde effectif de l'effet du cycle (output gap).",
     relatedModules: ['ad-as', 'courbe-de-phillips', 'carre-magique-kaldor', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFormula: 'Output gap = (PIB effectif - PIB potentiel) / PIB potentiel x 100',
+    seeAlso: ['Loi d\'Okun', 'Politique budgétaire', 'Stabilisateurs automatiques'],
   },
   {
     term: 'Croissance endogène',
@@ -681,6 +727,7 @@ export const glossary: GlossaryTerm[] = [
       "Famille de modèles théoriques développés à partir des années 1980 (Romer, 1986 ; Lucas, 1988 ; Barro, 1990 ; Aghion et Howitt, 1992) qui endogénéisent le progrès technique, c'est-à-dire l'expliquent par des décisions économiques, contrairement au modèle de Solow (1956) où le progrès technique est exogène (« tombé du ciel »). Les sources de la croissance endogène sont : le capital humain (investissement en éducation et santé, Lucas), la R&D et l'innovation (Romer : les idées sont des biens non rivaux qui génèrent des rendements croissants), les infrastructures publiques (Barro : les dépenses publiques productives améliorent la productivité privée), et la destruction créatrice (Aghion-Howitt, reprenant Schumpeter). Ces modèles justifient l'intervention publique en faveur de l'éducation, de la recherche et des infrastructures, car le marché sous-investit dans ces domaines en raison des externalités positives et de la non-rivalité des connaissances. Ils expliquent aussi la persistance des écarts de développement entre pays (absence de convergence automatique).",
     relatedModules: ['ad-as', 'frontiere-possibilites-production', 'donnees-historiques'],
     category: 'Macroéconomie',
+    seeAlso: ['PIB potentiel et écart de production (output gap)', 'Investissement (FBCF)', 'PIB (Produit Intérieur Brut)'],
   },
   {
     term: 'Investissement (FBCF)',
@@ -688,6 +735,8 @@ export const glossary: GlossaryTerm[] = [
       "La Formation Brute de Capital Fixe (FBCF) mesure la valeur des actifs fixes acquis par les agents économiques (entreprises, ménages, administrations publiques) pour être utilisés dans le processus de production pendant au moins un an. Elle comprend les achats de biens d'équipement (machines, matériel de transport), les constructions (bâtiments industriels, logements neufs), les logiciels et bases de données, et la R&D capitalisée (depuis le SEC 2010). La FBCF représente environ 25 % du PIB en France. Le taux d'investissement (FBCF/PIB) est un déterminant crucial de la croissance future. L'investissement dépend du taux d'intérêt réel (coût du capital), des anticipations de demande (principe de l'accélérateur), du taux de profit (autofinancement), du climat des affaires et de l'incertitude. Keynes insistait sur le rôle des « esprits animaux » (animal spirits) des entrepreneurs : l'investissement est la composante la plus volatile de la demande agrégée, source majeure des fluctuations conjoncturelles.",
     relatedModules: ['is-lm', 'multiplicateur-keynesien', 'ad-as', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFigure: 'FBCF France : ~25% du PIB | Composante la plus volatile de la demande',
+    seeAlso: ['PIB (Produit Intérieur Brut)', 'Taux d\'intérêt', 'Multiplicateur keynésien'],
   },
   {
     term: 'Dette publique',
@@ -695,6 +744,8 @@ export const glossary: GlossaryTerm[] = [
       "Ensemble des engagements financiers de l'État et des administrations publiques (État, collectivités locales, sécurité sociale) résultant de l'accumulation des déficits budgétaires passés. Elle est mesurée au sens de Maastricht (dette brute consolidée, selon le protocole du traité) et rapportée au PIB pour les comparaisons internationales. En France, la dette publique a franchi le seuil de 110 % du PIB en 2024 (environ 3 200 milliards d'euros). Le débat sur la soutenabilité de la dette porte sur plusieurs indicateurs : le ratio dette/PIB et sa dynamique (condition de stabilisation : solde primaire suffisant pour compenser l'effet « boule de neige » - quand le taux d'intérêt apparent dépasse le taux de croissance nominale), la charge d'intérêts (environ 50 milliards d'euros en France, deuxième poste budgétaire), et la structure de la dette (maturité, part détenue par les non-résidents, taux fixe vs variable). L'approche ricardienne (Barro, 1974) considère que dette et impôt sont équivalents car les agents anticipent les impôts futurs. Les keynésiens soulignent que la dette peut être soutenable si elle finance des investissements productifs qui augmentent le PIB futur.",
     relatedModules: ['multiplicateur-keynesien', 'courbe-de-laffer', 'donnees-historiques'],
     category: 'Macroéconomie',
+    keyFigure: 'Dette France 2024 : ~110% du PIB (~3 200 Md EUR) | Charge d\'interets : ~50 Md EUR/an',
+    seeAlso: ['Politique budgétaire', 'Pacte de stabilité et de croissance (PSC)', 'Effet d\'éviction'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -706,6 +757,7 @@ export const glossary: GlossaryTerm[] = [
       "Modèle théorique de marché reposant sur cinq conditions : atomicité (grand nombre d'acheteurs et de vendeurs, aucun ne pouvant influencer le prix), homogénéité du produit (biens identiques, substituables parfaitement), libre entrée et sortie (absence de barrières), transparence de l'information (tous les agents connaissent les prix et les qualités), et mobilité parfaite des facteurs de production. Dans ce cadre, le prix est un « donné » pour chaque agent (price-taker). À l'équilibre de long terme, le prix est égal au coût marginal (P = Cm) et au minimum du coût moyen : le profit économique est nul (les entreprises couvrent exactement leurs coûts, y compris la rémunération normale du capital). Ce modèle, formalisé par Walras et Marshall, sert de benchmark (référence) pour évaluer les inefficiences des marchés réels. Les écarts par rapport à la concurrence parfaite (monopole, oligopole, concurrence monopolistique) sont étudiés en économie industrielle. Edward Chamberlin (1933) et Joan Robinson (1933) ont développé la théorie de la concurrence imparfaite.",
     relatedModules: ['concurrence-monopole', 'offre-et-demande'],
     category: 'Microéconomie',
+    seeAlso: ['Monopole', 'Équilibre de marché', 'Coût marginal et coût moyen'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -717,6 +769,8 @@ export const glossary: GlossaryTerm[] = [
       "Investissements réalisés par une entreprise résidente d'un pays dans une entreprise située dans un autre pays, avec l'intention d'acquérir un intérêt durable et d'exercer une influence significative sur la gestion (seuil conventionnel : détention d'au moins 10 % du capital social, selon la définition du FMI et de l'OCDE). On distingue les IDE entrants (investissements étrangers dans le pays) et les IDE sortants (investissements du pays à l'étranger). Les IDE prennent trois formes : création d'une filiale ex nihilo (greenfield investment), acquisition ou fusion avec une entreprise existante (brownfield), et investissement d'expansion d'une filiale existante. Les déterminants des IDE combinent des facteurs d'attraction (taille du marché, coûts de production, fiscalité, stabilité institutionnelle, qualité des infrastructures) et des motivations stratégiques des entreprises (accès aux marchés, accès aux ressources, efficacité productive, actifs stratégiques). La France est à la fois un grand pays d'accueil et d'origine des IDE (environ 40 milliards d'euros entrants par an, Banque de France).",
     relatedModules: ['avantages-comparatifs', 'taux-de-change'],
     category: 'Commerce international',
+    keyFigure: 'IDE entrants France : ~40 Md EUR/an | Seuil IDE : 10% du capital social',
+    seeAlso: ['Division internationale du travail (DIT)', 'Fragmentation de la chaîne de valeur', 'Avantage comparatif (Ricardo)'],
   },
 
   // ═══════════════════════════════════════════════════════════════════════
