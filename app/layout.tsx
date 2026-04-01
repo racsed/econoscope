@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
+import { PageTransition } from '@/components/layout/PageTransition';
 import { ServiceWorkerRegister } from '@/components/layout/ServiceWorkerRegister';
 import '@/styles/globals.css';
 
@@ -57,14 +58,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" data-theme="light" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icon.svg" />
-      </head>
+      <head />
       <body className="min-h-screen flex flex-col antialiased bg-bg-primary text-text-primary">
         <ThemeProvider>
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </div>
           <Footer />
           <ServiceWorkerRegister />
         </ThemeProvider>

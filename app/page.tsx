@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -8,9 +9,35 @@ import {
   Eye,
   Lightbulb,
   FlaskConical,
+  History,
+  GraduationCap,
+  BookOpen,
+  Globe,
+  Presentation,
 } from 'lucide-react';
 import { modulesCatalog } from '@/data/modules-catalog';
 import { THEME_COLORS, type ThemeType } from '@/lib/constants';
+
+function CountUpNumber({ value, suffix = '', duration = 1.5 }: { value: number; suffix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start: number | null = null;
+    const animate = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(value * eased));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [isInView, value, duration]);
+
+  return <span ref={ref} className="font-mono font-bold text-3xl text-accent-indigo tabular-nums">{display}{suffix}</span>;
+}
 
 const featuredSlugs = [
   'offre-et-demande',
@@ -193,24 +220,29 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-3xl font-bold text-center mb-16 text-text-primary"
           >
-            Comment ca marché
+            Comment ca marche
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Connecting line between steps on desktop */}
+            <div className="hidden md:block absolute top-[3.5rem] left-[calc(16.67%+1rem)] right-[calc(16.67%+1rem)] h-px bg-gradient-to-r from-[#5B5EF4]/30 via-[#22D3EE]/30 to-[#34D399]/30" />
+
             {[
               {
                 icon: SlidersHorizontal,
-                title: 'Choisis un mécanisme',
+                title: 'Choisis un mecanisme',
                 description:
-                  'Offre et demande, multiplicateur keynésien, IS-LM... Chaque module isole un concept économique.',
+                  'Offre et demande, multiplicateur keynesien, IS-LM... Chaque module isole un concept economique.',
                 color: '#5B5EF4',
+                step: '01',
               },
               {
                 icon: Eye,
                 title: 'Manipule les variables',
                 description:
-                  'Deplace les curseurs, change les paramètres. Les graphiques reagissent en temps réel.',
+                  'Deplace les curseurs, change les parametres. Les graphiques reagissent en temps reel.',
                 color: '#22D3EE',
+                step: '02',
               },
               {
                 icon: Lightbulb,
@@ -218,6 +250,7 @@ export default function HomePage() {
                 description:
                   "La narration s'adapte a tes choix. Tu vois ce qui se passe et pourquoi.",
                 color: '#34D399',
+                step: '03',
               },
             ].map((step, i) => (
               <motion.div
@@ -226,10 +259,14 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="text-center"
+                className="relative text-center bg-bg-card border border-border rounded-2xl p-6 pt-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 hover:border-border"
               >
+                {/* Large step number behind icon */}
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 text-6xl font-black font-mono text-text-primary/[0.04] select-none pointer-events-none leading-none">
+                  {step.step}
+                </div>
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                  className="relative w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
                   style={{ backgroundColor: `${step.color}1A` }}
                 >
                   <step.icon size={24} style={{ color: step.color }} />
@@ -333,22 +370,105 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats/Trust */}
-      <section className="py-20 px-4 bg-bg-elevated border-t border-border">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {/* Testimonials / Use cases */}
+      <section className="py-24 px-4 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-4 text-text-primary"
+          >
+            Qui utilise Econoscope ?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-text-secondary text-center mb-14 max-w-xl mx-auto"
+          >
+            Etudiants, enseignants et curieux y trouvent leur compte.
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { value: '10', label: 'Modules interactifs' },
-              { value: '40+', label: 'Scénarios réels' },
-              { value: '100%', label: 'Gratuit et ouvert' },
-              { value: '0', label: 'Cookie de tracking' },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-2xl font-bold font-mono text-accent-indigo mb-1">
-                  {stat.value}
+              {
+                icon: GraduationCap,
+                label: 'Etudiant',
+                quote: 'Je comprends enfin IS-LM grace aux simulations interactives.',
+                color: '#5B5EF4',
+              },
+              {
+                icon: Presentation,
+                label: 'Enseignant',
+                quote: 'Je projette les modules en cours, mes eleves manipulent en direct.',
+                color: '#22D3EE',
+              },
+              {
+                icon: Lightbulb,
+                label: 'Autodidacte',
+                quote: "Les faits historiques avec simulateur, c'est exactement ce qu'il manquait.",
+                color: '#34D399',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12 }}
+                className="bg-bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center"
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ backgroundColor: `${item.color}1A` }}
+                >
+                  <item.icon size={22} style={{ color: item.color }} />
                 </div>
+                <p className="text-sm text-text-secondary italic leading-relaxed mb-4">
+                  &laquo;&nbsp;{item.quote}&nbsp;&raquo;
+                </p>
+                <span
+                  className="text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: `${item.color}15`, color: item.color }}
+                >
+                  {item.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-20 px-4 bg-bg-elevated border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+            {[
+              { value: 17, suffix: '', label: 'Simulateurs interactifs', icon: FlaskConical, color: '#5B5EF4' },
+              { value: 40, suffix: '', label: 'Faits historiques', icon: History, color: '#EC4899' },
+              { value: 20, suffix: '', label: 'Economistes cites', icon: GraduationCap, color: '#22D3EE' },
+              { value: 48, suffix: '', label: 'Termes au glossaire', icon: BookOpen, color: '#F59E0B' },
+              { value: 30, suffix: '+', label: 'Pays sur la carte', icon: Globe, color: '#34D399' },
+              { value: 80, suffix: '+', label: 'Scenarios preconfigures', icon: SlidersHorizontal, color: '#8B5CF6' },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="bg-bg-card border border-border rounded-2xl p-5 flex flex-col items-center gap-2"
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-1"
+                  style={{ backgroundColor: `${stat.color}15` }}
+                >
+                  <stat.icon size={20} style={{ color: stat.color }} />
+                </div>
+                <CountUpNumber value={stat.value} suffix={stat.suffix} />
                 <div className="text-sm text-text-secondary">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
