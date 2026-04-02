@@ -97,6 +97,18 @@ export interface Scenario {
   values: Record<string, number | boolean | string>;
 }
 
+export interface CourseConcept {
+  term: string;
+  definition: string;
+}
+
+export interface CourseContent {
+  introduction: string;
+  keyConcepts: CourseConcept[];
+  methodology: string;
+  forTeachers?: string;
+}
+
 export interface ModuleMeta {
   slug: string;
   title: string;
@@ -107,6 +119,7 @@ export interface ModuleMeta {
   limites: string[];
   realite: string[];
   economists?: string[];
+  course?: CourseContent;
 }
 
 export interface ComputeResult {

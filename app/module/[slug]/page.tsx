@@ -18,6 +18,7 @@ import { DataTable } from '@/components/module/DataTable';
 import { EconomistBlock } from '@/components/module/EconomistBlock';
 import { QuizBlock } from '@/components/module/QuizBlock';
 import { ScenarioBar } from '@/components/ui/ScenarioBar';
+import { CourseBlock } from '@/components/module/CourseBlock';
 
 export default function ModulePage() {
   const params = useParams();
@@ -110,6 +111,7 @@ function ModuleContent({ module }: { module: NonNullable<ReturnType<typeof getMo
       economists={meta.economists ? <EconomistBlock economistIds={meta.economists} themeColor={themeColor} /> : undefined}
       quiz={<QuizBlock moduleSlug={meta.slug} themeColor={themeColor} />}
       dataTable={<DataTable outputs={outputs} themeColor={themeColor} />}
+      course={meta.course ? <CourseBlock course={meta.course} themeColor={themeColor} /> : undefined}
     />
   );
 }

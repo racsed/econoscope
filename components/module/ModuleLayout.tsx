@@ -25,6 +25,7 @@ interface ModuleLayoutProps {
   quiz?: ReactNode;
   dataTable?: ReactNode;
   comparison?: ReactNode;
+  course?: ReactNode;
   isProjectionMode?: boolean;
   outputs?: SimulationOutput[];
 }
@@ -45,6 +46,7 @@ export function ModuleLayout({
   quiz,
   dataTable,
   comparison,
+  course,
   isProjectionMode: _isProjectionMode = false,
   outputs,
 }: ModuleLayoutProps) {
@@ -90,6 +92,9 @@ export function ModuleLayout({
             {introduction}
           </p>
         </div>
+
+        {/* Course content */}
+        {course}
 
         {/* Main: Controls + Visualization */}
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 mb-8">
