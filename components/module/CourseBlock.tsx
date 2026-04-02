@@ -17,7 +17,9 @@ export function CourseBlock({ course, themeColor }: CourseBlockProps) {
   const firstParagraph = course.introduction.split('\n\n')[0];
 
   return (
-    <div className="bg-bg-card border border-border shadow-sm rounded-2xl overflow-hidden mb-8">
+    <div className="relative bg-bg-card border border-border shadow-sm rounded-2xl overflow-hidden mb-8">
+      {/* Gradient left accent */}
+      <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl" style={{ background: `linear-gradient(180deg, ${themeColor}, #22D3EE)` }} />
       {/* Header */}
       <div className="px-5 pt-5 pb-4">
         <div className="flex items-center gap-2 mb-3">
@@ -81,6 +83,7 @@ export function CourseBlock({ course, themeColor }: CourseBlockProps) {
                     <div
                       key={i}
                       className="rounded-xl border border-border bg-bg-hover/50 p-4"
+                      style={{ borderLeft: `2px solid ${themeColor}40` }}
                     >
                       <dt
                         className="font-semibold text-sm mb-1"
@@ -100,7 +103,7 @@ export function CourseBlock({ course, themeColor }: CourseBlockProps) {
               <div
                 className="rounded-xl p-4 border"
                 style={{
-                  backgroundColor: `${themeColor}08`,
+                  background: `linear-gradient(135deg, ${themeColor}08, ${themeColor}03)`,
                   borderColor: `${themeColor}20`,
                 }}
               >

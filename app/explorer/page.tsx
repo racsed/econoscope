@@ -169,7 +169,7 @@ function ModuleCard({
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.3 }}
-      className={`group relative bg-bg-card border border-border rounded-2xl p-5 h-full shadow-sm transition-all duration-300 ${
+      className={`group relative bg-bg-card border border-border rounded-2xl overflow-hidden h-full shadow-sm transition-all duration-300 ${
         isAvailable
           ? 'hover:shadow-md hover:-translate-y-0.5 cursor-pointer'
           : 'opacity-50 cursor-default'
@@ -185,8 +185,9 @@ function ModuleCard({
         (e.currentTarget as HTMLElement).style.borderColor = '';
       }}
     >
+      <div className="h-0.5 rounded-t-2xl" style={{ background: color }} />
       {/* Top row */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-4 px-5 pt-5">
         <div
           className="w-10 h-10 rounded-xl flex items-center justify-center"
           style={{ backgroundColor: `${color}15` }}
@@ -211,27 +212,29 @@ function ModuleCard({
       </div>
 
       {/* Content */}
-      <h3 className="text-base font-semibold text-text-primary mb-1.5">
-        {mod.title}
-      </h3>
-      <p className="text-sm text-text-secondary leading-relaxed mb-4">
-        {mod.description}
-      </p>
+      <div className="px-5 pb-5">
+        <h3 className="text-base font-semibold text-text-primary mb-1.5">
+          {mod.title}
+        </h3>
+        <p className="text-sm text-text-secondary leading-relaxed mb-4">
+          {mod.description}
+        </p>
 
-      {/* Footer */}
-      {isAvailable ? (
-        <div
-          className="flex items-center gap-1 text-sm font-medium"
-          style={{ color }}
-        >
-          Explorer
-          <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </div>
-      ) : (
-        <div className="text-xs text-text-muted font-medium">
-          Bientot disponible
-        </div>
-      )}
+        {/* Footer */}
+        {isAvailable ? (
+          <div
+            className="flex items-center gap-1 text-sm font-medium"
+            style={{ color }}
+          >
+            Explorer
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </div>
+        ) : (
+          <div className="text-xs text-text-muted font-medium">
+            Bientot disponible
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 

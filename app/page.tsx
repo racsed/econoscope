@@ -159,7 +159,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/explorer"
-                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full shadow-lg shadow-accent-indigo/0 hover:shadow-accent-indigo/25 hover:bg-[#4F52E0] active:scale-[0.98] transition-all duration-200"
+                className="group flex items-center gap-2 px-8 py-3.5 bg-accent-indigo text-white font-semibold rounded-full shadow-lg shadow-accent-indigo/0 hover:shadow-accent-indigo/25 hover:bg-gradient-to-r hover:from-[#5B5EF4] hover:to-[#4F52E0] active:scale-[0.98] transition-all duration-200"
               >
                 Explorer les simulateurs
                 <ArrowRight
@@ -189,7 +189,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── How it works ─── */}
-      <section className="py-28 px-4 bg-bg-elevated">
+      <section className="py-28 px-4" style={{ background: 'linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-elevated) 100%)' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -295,7 +295,7 @@ export default function HomePage() {
                 >
                   <Link
                     href={`/module/${mod.slug}`}
-                    className="group block bg-bg-card border border-border rounded-2xl p-8 h-full shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+                    className="group block bg-bg-card border border-border rounded-2xl overflow-hidden h-full shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
                     }}
@@ -303,35 +303,38 @@ export default function HomePage() {
                       (e.currentTarget as HTMLElement).style.borderColor = '';
                     }}
                   >
-                    <div className="flex items-start justify-between mb-6">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: `${color}15` }}
-                      >
+                    <div className="h-1 rounded-t-2xl" style={{ background: `linear-gradient(90deg, ${color}, ${color}80)` }} />
+                    <div className="p-8">
+                      <div className="flex items-start justify-between mb-6">
                         <div
-                          className="w-2.5 h-2.5 rounded-full transition-transform duration-300 group-hover:scale-125"
-                          style={{ backgroundColor: color }}
-                        />
+                          className="w-10 h-10 rounded-xl flex items-center justify-center"
+                          style={{ backgroundColor: `${color}15` }}
+                        >
+                          <div
+                            className="w-2.5 h-2.5 rounded-full transition-transform duration-300 group-hover:scale-125"
+                            style={{ backgroundColor: color }}
+                          />
+                        </div>
+                        <span
+                          className="text-xs font-medium px-2.5 py-1 rounded-full"
+                          style={{
+                            backgroundColor: `${color}15`,
+                            color: color,
+                          }}
+                        >
+                          {mod.theme}
+                        </span>
                       </div>
-                      <span
-                        className="text-xs font-medium px-2.5 py-1 rounded-full"
-                        style={{
-                          backgroundColor: `${color}15`,
-                          color: color,
-                        }}
-                      >
-                        {mod.theme}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-text-primary mb-3">
-                      {mod.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                      {mod.description}
-                    </p>
-                    <div className="flex items-center gap-1 text-sm font-medium" style={{ color }}>
-                      Explorer
-                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      <h3 className="text-lg font-semibold text-text-primary mb-3">
+                        {mod.title}
+                      </h3>
+                      <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                        {mod.description}
+                      </p>
+                      <div className="flex items-center gap-1 text-sm font-medium" style={{ color }}>
+                        Explorer
+                        <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </div>
                     </div>
                   </Link>
                 </motion.div>
@@ -387,7 +390,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Stats (dark section) ─── */}
-      <section className="py-28 px-4 bg-[#1A1D26]">
+      <section className="py-28 px-4" style={{ background: 'linear-gradient(135deg, #1A1D26, #1E2436)' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

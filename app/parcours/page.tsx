@@ -59,7 +59,9 @@ export default function ParcoursPage() {
                 transition={{ delay: index * 0.08 }}
               >
                 <Link href={`/parcours/${parcours.id}`} className="block group">
-                  <div className="h-full rounded-2xl border border-border bg-bg-card p-6 transition-all duration-200 hover:border-transparent hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
+                  <div className="h-full rounded-2xl border border-border bg-bg-card overflow-hidden transition-all duration-200 hover:border-transparent hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
+                    <div className="h-[3px]" style={{ background: parcours.color }} />
+                    <div className="p-6">
                     {/* Icon + badge row */}
                     <div className="flex items-start justify-between mb-4">
                       <div
@@ -103,6 +105,11 @@ export default function ParcoursPage() {
                         size={16}
                         className="transition-transform group-hover:translate-x-1"
                       />
+                    </div>
+                    </div>
+                    {/* Progress-style bar at bottom */}
+                    <div className="h-1 bg-bg-elevated">
+                      <div className="h-full w-0 group-hover:w-full transition-all duration-500" style={{ background: `linear-gradient(90deg, ${parcours.color}, ${parcours.color}60)` }} />
                     </div>
                   </div>
                 </Link>

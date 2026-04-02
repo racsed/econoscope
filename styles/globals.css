@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #FAFBFC;
+  --color-bg-primary: #F6F7F9;
   --color-bg-card: #FFFFFF;
-  --color-bg-elevated: #F4F5F7;
-  --color-bg-hover: #F0F1F4;
-  --color-bg-narration: #F8F9FB;
-  --color-border: #E2E4E9;
-  --color-border-subtle: #EDEEF1;
+  --color-bg-elevated: #F0F1F4;
+  --color-bg-hover: #EAEDF2;
+  --color-bg-narration: #F4F5F8;
+  --color-border: #DFE1E8;
+  --color-border-subtle: #EAECF0;
+
+  --gradient-brand: linear-gradient(135deg, #5B5EF4, #22D3EE);
+  --gradient-brand-subtle: linear-gradient(135deg, rgba(91,94,244,0.08), rgba(34,211,238,0.05));
   --color-text-primary: #1A1D26;
   --color-text-secondary: #5F6980;
   --color-text-muted: #9CA3B4;
@@ -155,6 +158,9 @@ body {
   outline: 2px solid var(--color-accent-indigo);
   outline-offset: 2px;
 }
+
+/* Typography refinement */
+h1, h2, h3 { letter-spacing: -0.02em; }
 
 /* Theme transition for smooth switching */
 html[data-theme] {

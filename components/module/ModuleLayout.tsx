@@ -88,6 +88,7 @@ export function ModuleLayout({
             {title}
           </h1>
           <p className="text-lg text-text-secondary">{subtitle}</p>
+          <div className="mt-3 h-0.5 w-20 rounded-full" style={{ background: `linear-gradient(90deg, ${themeColor}, ${themeColor}40)` }} />
           <p className="mt-4 text-text-secondary max-w-3xl leading-relaxed">
             {introduction}
           </p>
@@ -100,7 +101,9 @@ export function ModuleLayout({
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 mb-8">
           {/* Control Panel */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 space-y-1">
+            <div className="bg-bg-card border border-border shadow-sm rounded-2xl overflow-hidden">
+              <div className="h-0.5" style={{ background: themeColor }} />
+              <div className="p-5 space-y-1">
               {/* Mobile toggle */}
               <button
                 onClick={() => setControlsOpen((v) => !v)}
@@ -143,11 +146,12 @@ export function ModuleLayout({
                   </motion.div>
                 )}
               </AnimatePresence>
+              </div>
             </div>
           </div>
 
           {/* Visualization */}
-          <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[300px] sm:min-h-[400px] flex flex-col">
+          <div className="bg-bg-card border border-border shadow-sm rounded-2xl p-5 min-h-[300px] sm:min-h-[400px] flex flex-col" style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFBFD 100%)' }}>
             {/* Toolbar row */}
             <div className="flex items-center justify-between gap-2 mb-2">
               <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
